@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Placeholders &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Require.JS" href="requirejs.html" />
+    <link rel="prev" title="Navigation" href="navigation.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="placeholders">
+<h1>Placeholders<a class="headerlink" href="#placeholders" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Filename</td>
+<td><code class="docutils literal"><span class="pre">placeholders.yml</span></code></td>
+</tr>
+<tr class="row-even"><td>Root Node</td>
+<td><code class="docutils literal"><span class="pre">placeholders</span></code></td>
+</tr>
+<tr class="row-odd"><td>Sections</td>
+<td><ul class="first last simple">
+<li><a class="reference internal" href="#reference-placeholders-section-items"><span class="std std-ref">items</span></a></li>
+<li><a class="reference internal" href="#reference-placeholders-section-placeholders"><span class="std std-ref">placeholders</span></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="items">
+<span id="reference-placeholders-section-items"></span><h2><code class="docutils literal"><span class="pre">items</span></code><a class="headerlink" href="#items" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The <code class="docutils literal"><span class="pre">items</span></code> option is a map that is used to create named items which will then later be assigned
+to different <a class="reference internal" href="#reference-placeholders-section-placeholders"><span class="std std-ref">placeholders</span></a>. Each key is a
+unique key which will later be used to refer to a certain item. The value is a map that controls
+how an item will be rendered when being assigned to a placeholder:</p>
+<div class="section" id="acl">
+<h3><code class="docutils literal"><span class="pre">acl</span></code><a class="headerlink" href="#acl" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The item will only be rendered if the user is granted access to the configured access control list.</p>
+</div>
+<div class="section" id="action">
+<h3><code class="docutils literal"><span class="pre">action</span></code><a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A controller that will be called when rendering the item. This option is useful when some complex
+logic needs to be executed when rendering the placeholder item. For simple templates, you should
+use the <a class="reference internal" href="#template">template</a> option instead.</p>
+</div>
+<div class="section" id="applicable">
+<h3><code class="docutils literal"><span class="pre">applicable</span></code><a class="headerlink" href="#applicable" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>An expression that will be evaluated at runtime to determine whether or not the item should be
+rendered.</p>
+</div>
+<div class="section" id="template">
+<h3><code class="docutils literal"><span class="pre">template</span></code><a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<p>A template reference that will be included when the item is rendered.</p>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+</div>
+</div>
+<div class="section" id="reference-placeholders-section-placeholders">
+<span id="id1"></span><h2><code class="docutils literal"><span class="pre">placeholders</span></code><a class="headerlink" href="#reference-placeholders-section-placeholders" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>With the <code class="docutils literal"><span class="pre">placeholders</span></code> option you assign your defined <a class="reference internal" href="#reference-placeholders-section-items"><span class="std std-ref">items</span></a>
+to some placeholders. The keys of this map are the names of placeholders items should be assigned
+to. Placeholders that do not exist will be ignored. The value of the map is another map with the
+only key being <code class="docutils literal"><span class="pre">items</span></code>:</p>
+<div class="section" id="id2">
+<h3><code class="docutils literal"><span class="pre">items</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The map keys are the names of <a class="reference internal" href="#reference-placeholders-section-items"><span class="std std-ref">defined items</span></a>. The
+value can be an optional map with <code class="docutils literal"><span class="pre">order</span></code> being the only allowed key. The value of the <code class="docutils literal"><span class="pre">order</span></code>
+option controls the order in which multiple items will be rendered within a placeholder. When the
+order is not important, the item can be appended to the list of existing items by using <code class="docutils literal"><span class="pre">~</span></code> (the
+YAML <code class="docutils literal"><span class="pre">null</span></code> value).</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev_guide/reference/format/placeholders.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Developer Guide</a><ul>
+  <li><a href="../index.html">Annotation and Configuration Format</a><ul>
+  <li><a href="index.html">Configuration Format Reference</a><ul>
+      <li>Previous: <a href="navigation.html" title="previous chapter">Navigation</a></li>
+      <li>Next: <a href="requirejs.html" title="next chapter">Require.JS</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/dev_guide/reference/format/placeholders.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

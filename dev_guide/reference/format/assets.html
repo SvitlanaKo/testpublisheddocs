@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Assets &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Dashboard" href="dashboards.html" />
+    <link rel="prev" title="Access Control Lists" href="acls.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="assets">
+<h1>Assets<a class="headerlink" href="#assets" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Filename</td>
+<td><code class="docutils literal"><span class="pre">assets.yml</span></code></td>
+</tr>
+<tr class="row-even"><td>Root Node</td>
+<td><code class="docutils literal"><span class="pre">assets</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal"><span class="pre">assets.yml</span></code> file can be used to define CSS file groups. The listed files will be
+automatically merged and optimized for web presentation.</p>
+<p>The following example creates two groups (<code class="docutils literal"><span class="pre">first_group</span></code> and <code class="docutils literal"><span class="pre">second_group</span></code>) each of them
+containing three CSS files:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># src/Acme/DemoBundle/Resources/config/oro/assets.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">assets</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">css</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">first_group</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;First/Assets/Path/To/Css/first.css&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;First/Assets/Path/To/Css/second.css&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;First/Assets/Path/To/Css/third.css&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">second_group</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;Second/Assets/Path/To/Css/first.css&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;Second/Assets/Path/To/Css/second.css&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;Second/Assets/Path/To/Css/third.css&#39;</span>
+</pre></div>
+</td></tr></table></div>
+<p>By default, when you install the application&#8217;s assets using the <code class="docutils literal"><span class="pre">oro:assets:install</span></code> command, all
+CSS files from all groups and all bundles will be merged and optimized.</p>
+<p>For debugging purposes compression of CSS files of certain groups can be disabled with the
+<code class="docutils literal"><span class="pre">css_debug</span></code> option:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">oro_assetic</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">css_debug</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">first_group</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can use the <code class="docutils literal"><span class="pre">oro:assetic:groups</span></code> command to get a list of all available groups.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Learn more about <a class="reference internal" href="../../theme/layout.html#book-layout-debugging-css"><span class="std std-ref">how to debug your stylesheets</span></a> from the
+book.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev_guide/reference/format/assets.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Developer Guide</a><ul>
+  <li><a href="../index.html">Annotation and Configuration Format</a><ul>
+  <li><a href="index.html">Configuration Format Reference</a><ul>
+      <li>Previous: <a href="acls.html" title="previous chapter">Access Control Lists</a></li>
+      <li>Next: <a href="dashboards.html" title="next chapter">Dashboard</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/dev_guide/reference/format/assets.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

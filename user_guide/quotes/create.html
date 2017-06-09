@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Create a Quote &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Edit a Quote" href="edit.html" />
+    <link rel="prev" title="Quotes" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="user-guide-quotes-create"></span><div class="section" id="create-a-quote">
+<h1>Create a Quote<a class="headerlink" href="#create-a-quote" title="Permalink to this headline">¶</a></h1>
+<p>You can create a quote based on the customer request for quote, or from scratch, based on the customer interaction outside OroCommerce.</p>
+<div class="section" id="create-a-quote-from-scratch">
+<h2>Create a Quote From Scratch<a class="headerlink" href="#create-a-quote-from-scratch" title="Permalink to this headline">¶</a></h2>
+<p>To create a new quote from scratch:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Quotes</strong> in the main menu.</p>
+<img alt="../../_images/Quotes.png" class="with-border" src="../../_images/Quotes.png" />
+</li>
+<li><p class="first">Click <strong>Create Quote</strong>.</p>
+<img alt="../../_images/create_quote_general.png" src="../../_images/create_quote_general.png" />
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>General</strong> section:</p>
+<ol class="loweralpha simple">
+<li>Select a <strong>Customer</strong> and <strong>Customer User</strong> to create a quote for.</li>
+<li>Enter the quote expiration information in the <strong>Valid Until</strong> date and time boxes.</li>
+<li>Optionally, enter a <strong>PO Number</strong> for the customer reference.</li>
+<li>If necessary, set the <strong>Do Not Ship Later Than</strong> date, to limit the order validity based on the information from the customer.</li>
+<li>Select an order fulfilment officer in the <strong>Assigned To</strong> box.</li>
+<li>Select the assigned customer user that will receive the order delivery in the <strong>Assigned Customer</strong> box.</li>
+<li>Select a <strong>Website</strong> to make this quote visible only on the specified website.</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Line Items</strong> section:</p>
+<img alt="../../_images/create_quote_line_items.png" src="../../_images/create_quote_line_items.png" />
+<ol class="loweralpha">
+<li><p class="first">Add products as quote line items.</p>
+<p>Use Select Product and Free-form entry link to switch between the following product entry modes:</p>
+<p><strong>Select a Product</strong>: Select the product using search (v) or from the product list (=).</p>
+<p><strong>Free-Form Entry</strong>: Type in the SKU and/or Product Name.</p>
+</li>
+<li><p class="first">Fill in the offer:</p>
+<ol class="arabic simple">
+<li>Provide quantity and select a product unit measurement.</li>
+</ol>
+<ol class="arabic simple" start="3">
+<li>Check <strong>or more</strong> to allow the customer to increase the quantity in the order.</li>
+<li>Type in the unit price and select a currency.</li>
+</ol>
+<p>To offer alternative quantity and prices, use <strong>+ Add Offer</strong>.</p>
+<p>Add notes to the quote line, if necessary: click <strong>Add notes</strong> in the Seller Notes section.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To delete any quote line, click <strong>Delete</strong> on the right of the line item information group.</p>
+</div>
+</li>
+</ol>
+<p>Add more products, if necessary, by clicking <strong>+ Add Products</strong> below the existing product lines.</p>
+</li>
+<li><p class="first">In the <strong>Shipping Address</strong> section, enter the shipping address, organization name and name of the person the future order should be shipped to.</p>
+<img alt="../../_images/create_quote_address.png" src="../../_images/create_quote_address.png" />
+</li>
+<li><p class="first">In the <strong>Shipping Information</strong> section, configure the recommended shipping options for the customer:</p>
+<img alt="../../_images/create_quote_shipping.png" src="../../_images/create_quote_shipping.png" />
+<ol class="loweralpha simple">
+<li>In the <strong>Shipping Methods</strong> list, select the recommended (default) shipping method that will be pre-selected when the customer gets to the shipping configuration on the checkout.</li>
+</ol>
+<ol class="loweralpha simple" start="3">
+<li>Optionally, enter the <strong>Overridden Shipping Cost Amount, USD</strong> - a custom shipping cost that will be used instead of the one dynamically generated based on the shipping method selection.</li>
+<li>To enforce using only the default Shipping method selected earlier, enable the <strong>Shipping Method Locked</strong> flag. When the shippig method is locked, the buyer does not see any other payment options but the default one.</li>
+<li>Tick the <strong>Allow Unlisted Shipping Methods</strong> box to allow using the shipping method that is already selected as a default one, even if it is disabled by the shipping rule configuration.</li>
+</ol>
+</li>
+<li><p class="first">Optionally, select a <strong>Payment Term</strong> as an available payment method.</p>
+</li>
+</ol>
+<ol class="arabic simple" start="9">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/quotes/create.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+  <li><a href="index.html">Quotes</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Quotes</a></li>
+      <li>Next: <a href="edit.html" title="next chapter">Edit a Quote</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/quotes/create.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

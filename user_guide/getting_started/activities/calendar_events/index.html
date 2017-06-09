@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Calendar Events &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="All Calendar Events Grid" href="activities_events_grid.html" />
+    <link rel="prev" title="Calendars" href="../calendars_overview.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="calendar-events">
+<span id="doc-activities-events"></span><h1>Calendar Events<a class="headerlink" href="#calendar-events" title="Permalink to this headline">¶</a></h1>
+<p>In OroCRM and in OroCommerce Management Console, you can create and monitor planned activities, like a call with the customer, as calendar events. These planned activities may be linked to the related data in OroCRM and OroCommerce (e.g. a demo may be linked to the opportunity in OroCRM and to the request for quote in OroCommerce).</p>
+<p>You can leverage the following actions for managing calendar events (see aggregated information <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions"><span class="std std-ref">here</span></a>):</p>
+<ul class="simple">
+<li><a class="reference internal" href="actions/add.html#doc-activities-events-actions-add-detailed"><span class="std std-ref">Create</span></a> a calendar event.</li>
+<li><a class="reference internal" href="actions/view.html#doc-activities-events-actions-view-detailed"><span class="std std-ref">View</span></a> a calendar event.</li>
+<li><a class="reference internal" href="actions/edit.html#doc-activities-events-actions-edit-detailed"><span class="std std-ref">Edit</span></a> a calendar event.</li>
+<li><a class="reference internal" href="actions/delete.html#doc-activities-events-actions-delete-detailed"><span class="std std-ref">Delete</span></a> a calendar event.</li>
+<li><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-changetimeframe"><span class="std std-ref">Reschedule</span></a> a calendar event.</li>
+<li>Manage a calendar events <a class="reference internal" href="actions/context.html#doc-activities-events-actions-context-detailed"><span class="std std-ref">context</span></a>.</li>
+<li><a class="reference internal" href="actions/comment.html#doc-activities-events-actions-comment-detailed"><span class="std std-ref">Comment</span></a> on the calendar event.</li>
+<li><a class="reference internal" href="actions/reply.html#doc-activities-events-actions-respond-detailed"><span class="std std-ref">Respond</span></a> to the invitation in the calendar event with the <em>Accept/Tentative/Decline</em> status.</li>
+<li><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-hangout"><span class="std std-ref">launch the hangout call</span></a> from the calendar event (available only when the google integration is enabled).</li>
+</ul>
+<p>You can use most of these actions in the following perspectives:</p>
+<ol class="loweralpha">
+<li><p class="first"><a class="reference internal" href="../../widgets_today_calendar.html#doc-widgets-today-calendar"><span class="std std-ref">Today&#8217;s Calendar</span></a> widget</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../../_images/add_event_todays_calendar.png" src="../../../../_images/add_event_todays_calendar.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="../../my_oro/my_user_calendar.html#doc-my-oro-calendar"><span class="std std-ref">My Calendar</span></a> page</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../../_images/add_event_my_calendar.png" src="../../../../_images/add_event_my_calendar.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first">The list of events on the <a class="reference internal" href="activities_events_grid.html#doc-activities-events-grid"><span class="std std-ref">All Calendar Events</span></a> page, also known as Events Grid.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../../_images/add_event_all_calendar_events.png" src="../../../../_images/add_event_all_calendar_events.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first"><strong>Activity</strong> section of the related items - records in OroCRM and OroCommerce that are related to the customer user activity and have been added as a calendar event context. The event may be related to the opportunity, quote, customer user, contact, account, lead, business customer, case, request for quote, and order.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../../_images/events_view_fromgrid.png" src="../../../../_images/events_view_fromgrid.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user_guide/getting_started/activities/calendar_events/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">User Guide</a><ul>
+  <li><a href="../../index.html">Getting Started with UI</a><ul>
+  <li><a href="../index.html">Activities</a><ul>
+      <li>Previous: <a href="../calendars_overview.html" title="previous chapter">Calendars</a></li>
+      <li>Next: <a href="activities_events_grid.html" title="next chapter">All Calendar Events Grid</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../../_sources/user_guide/getting_started/activities/calendar_events/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

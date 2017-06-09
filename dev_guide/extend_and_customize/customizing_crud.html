@@ -1,0 +1,1049 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customizing CRUD Pages &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Extending Entities to Support Bulk Import and Export" href="customizing_import_export.html" />
+    <link rel="prev" title="How to Add Properties to Core Entities" href="../entities/adding_properties.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customizing-crud-pages">
+<h1>Customizing CRUD Pages<a class="headerlink" href="#customizing-crud-pages" title="Permalink to this headline">¶</a></h1>
+<p>OroCommerce equips users and developers with powerful UIs that they can use to manage both simple and complex data entities, including all entity attributes (fields) and relations. As a developer, you can easily enable standard CRUD pages for a new entity, and with the same ease, you can add more fields to any of the entities that you have created before. Just add new entity properties, create a migration script and modify the templates if necessary.</p>
+<p>But what if you need to add a few more fields to one of the OroCommerce built-in entities, or to an entity that has been created by somebody else’s extension? Where would you start?</p>
+<p>Editing the OroCommerce source code or the code for third party extensions is never a good idea. In this article, we will show you how to customize the CRUD pages of the existing entities with the custom code in your own bundle.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>CRUD stands for Create, Read, Update and Delete operations. They are commonly accompanied by some sort of listing or navigation that allows to retrieve, sort and filter multiple records at once. In the context of OroCommerce the data management UIs for the above operations are represented by the following pages:</p>
+<ul class="last simple">
+<li><strong>List</strong> – represented by the data grids (for example, select <strong>Products → Products</strong> in the main navigation menu). For more information on customization of the data grids, see the <a class="reference external" href="customizing-data-grid-in-orocommerce">Customizing Data Grids in OroCommerce</a> section.</li>
+<li><strong>Create</strong> – an entity creation screen (for example, go to <strong>Products → Products</strong> and click on the <strong>Create Product</strong> button above the product data grid). In most cases, the entity creation screen and entity editing screen look and work exactly the same, though there may be exceptions to this rule.</li>
+<li><strong>Read</strong> – an entity view page (for example, go to <strong>Products → Products</strong> and click on any product in the grid).</li>
+<li><strong>Update</strong> – an entity editing page (for example, go to <strong>Products → Products</strong> and select Edit in the action column, or click on the <strong>Edit</strong> button on the product view page).</li>
+<li><strong>Delete</strong> – there is no special screen for entity deletion other than the confirmation popup window (go to <strong>Products → Products</strong> select <strong>Delete</strong> in the action column, or click on the Delete button on the product view or edit page).</li>
+</ul>
+</div>
+<p>For the purpose of the today’s exercise, we will be adding a new text field to the product edit and view screens from our custom bundle.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Before we start writing code, you should create a new bundle in your application. If you are not familiar with bundle creation process yet, please check the article about <a class="reference external" href="how-to-create-new-bundle">how to create a new bundle in OroPlatform, OroCRM, or OroCommerce</a>. If you have already created a bundle for your app customizations, you are good to go and may reuse it in other tutorials as well.</p>
+</div>
+<div class="section" id="custom-data-entity">
+<h2>Custom Data Entity<a class="headerlink" href="#custom-data-entity" title="Permalink to this headline">¶</a></h2>
+<p>As the first step we will create a new entity to store our custom data. It is still possible to create new product entity fields from your custom bundle, but we will show how you can add some data that is stored elsewhere (it may as well be calculated on the fly or submitted to an external web-service for storage).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please check the <a class="reference external" href="entities/creating-entities">How to Create Entities</a> article in the OroCookbook to learn more.</p>
+</div>
+<p>Let’s also make our entity compliant with the <a class="reference external" href="https://github.com/orocommerce/orocommerce/blob/071c81dfb0ed3c5240edba0122a7ce5d647ecbcf/src/OroB2B/Bundle/ProductBundle/Model/ProductHolderInterface.php">ProductHolderInterface</a> so it will be possible to reuse it in other places (e.g. reports). Other than the reference to the product, our entity will have only one text field to store our data. You can add multiple fields and use other data types according to your requirements.</p>
+<p>This is how our custom entity will look like:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/Entity/ProductOptions.php</span>
+<span class="sd">/**</span>
+<span class="sd"> * @ORM\Table(name=&quot;oro_bpe_prod_opts&quot;)</span>
+<span class="sd"> * @ORM\Entity</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">ProductOptions</span> <span class="k">implements</span> <span class="nx">ProductHolderInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var integer</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ORM\Id</span>
+<span class="sd">     * @ORM\Column(type=&quot;integer&quot;)</span>
+<span class="sd">     * @ORM\GeneratedValue(strategy=&quot;AUTO&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$id</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var Product</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ORM\ManyToOne(targetEntity=&quot;OroB2B\Bundle\ProductBundle\Entity\Product&quot;)</span>
+<span class="sd">     * @ORM\JoinColumn(name=&quot;product_id&quot;, referencedColumnName=&quot;id&quot;, nullable=false, onDelete=&quot;CASCADE&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$product</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var string</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ORM\Column(name=&quot;value&quot;, type=&quot;text&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$value</span><span class="p">;</span>
+
+    <span class="c1">// ..... Getters &amp; Setters implementations .....</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="installation-and-migrations">
+<h2>Installation And Migrations<a class="headerlink" href="#installation-and-migrations" title="Permalink to this headline">¶</a></h2>
+<p>It might be not necessary for this exercise, but if you plan to distribute your custom bundle, or if you want to deploy it later to another application or machine, you have to create the installation and migration scripts. The installation script should create the required database structures during application installation, and the migration scripts will be used to update your module in the application to a specific version.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">More information about migrations is available in the <a class="reference external" href="https://github.com/laboro/platform/blob/master/src/Oro/Bundle/MigrationBundle/README.md">OroMigrationBundle documentation</a>.</p>
+</div>
+<p>We are going to have only one version of our custom bundle in this blog post, so the installation and migration code will look very similar.</p>
+<p>Installation:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/Migrations/Schema/OroBlogPostExampleBundleInstaller.php</span>
+<span class="k">class</span> <span class="nc">OroBlogPostExampleBundleInstaller</span> <span class="k">implements</span> <span class="nx">Installation</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getMigrationVersion</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;v1_0&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">,</span> <span class="nx">QueryBag</span> <span class="nv">$queries</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** Tables generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createOroBpeProdOptsTable</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+
+        <span class="sd">/** Foreign keys generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addOroBpeProdOptsForeignKeys</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create oro_bpe_prod_opts table</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">createOroBpeProdOptsTable</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;oro_bpe_prod_opts&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;autoincrement&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;product_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setPrimaryKey</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">([</span><span class="s1">&#39;product_id&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Add oro_bpe_prod_opts foreign keys.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addOroBpeProdOptsForeignKeys</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_bpe_prod_opts&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;orob2b_product&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;product_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Migration:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/Migrations/Schema/v1_0/OroBlogPostExampleBundle.php</span>
+<span class="k">class</span> <span class="nc">OroBlogPostExampleBundle</span> <span class="k">implements</span> <span class="nx">Migration</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">,</span> <span class="nx">QueryBag</span> <span class="nv">$queries</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** Tables generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createOroBpeProdOptsTable</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+
+        <span class="sd">/** Foreign keys generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addOroBpeProdOptsForeignKeys</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create oro_bpe_prod_opts table</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">createOroBpeProdOptsTable</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;oro_bpe_prod_opts&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;autoincrement&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;product_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setPrimaryKey</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">([</span><span class="s1">&#39;product_id&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Add oro_bpe_prod_opts foreign keys.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addOroBpeProdOptsForeignKeys</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_bpe_prod_opts&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;orob2b_product&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;product_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="form-types">
+<h2>Form Types<a class="headerlink" href="#form-types" title="Permalink to this headline">¶</a></h2>
+<p>In order to customize the new product field, we need to implement a corresponding form type that will be used in the main form on the product create and edit pages:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/Form/Type/ProductOptionsType.php</span>
+<span class="k">class</span> <span class="nc">ProductOptionsType</span> <span class="k">extends</span> <span class="nx">AbstractType</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">NAME</span> <span class="o">=</span> <span class="s1">&#39;oro_blogpostexample_product_options&#39;</span><span class="p">;</span>
+
+    <span class="sd">/** @var string */</span>
+    <span class="k">protected</span> <span class="nv">$dataClass</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param string $dataClass</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setDataClass</span><span class="p">(</span><span class="nv">$dataClass</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dataClass</span> <span class="o">=</span> <span class="nv">$dataClass</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">buildForm</span><span class="p">(</span><span class="nx">FormBuilderInterface</span> <span class="nv">$builder</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">configureOptions</span><span class="p">(</span><span class="nx">OptionsResolver</span> <span class="nv">$resolver</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$resolver</span><span class="o">-&gt;</span><span class="na">setDefaults</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;data_class&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dataClass</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The setDataClass method is used here to provide more flexibility while allowing for the re-use of this form type. Using it like this is optional.</p>
+<p>Once you have your new form type, it should be registered in the service container to be recognizable by the Symfony’s form factory:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>#src/Oro/Bundle/BlogPostExampleBundle/Resources/config/form_types.yml
+services:
+    oro_blogpostexample.form.type.product_options:
+        class: Oro\Bundle\BlogPostExampleBundle\Form\Type\ProductOptionsType
+        calls:
+            - [setDataClass, [&#39;%oro_blogpostexample.entity.product_options.class%&#39;]]
+        tags:
+            - { name: form.type, alias: oro_blogpostexample_product_options }
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="form-type-extension">
+<h2>Form Type Extension<a class="headerlink" href="#form-type-extension" title="Permalink to this headline">¶</a></h2>
+<p>Any integrations between different form types within OroCommerce can use form type extension to tie in the form types together. In our case, we need to list the following form events:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>FormEvents::POST_SET_DATA</strong> – it will be used to assign values to the form from our custom entity object;</li>
+<li><strong>FormEvents::POST_SUBMIT</strong> – it will be used to convert, validate and persist our custom values.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/Form/Extension/ProductFormExtension.php</span>
+<span class="k">class</span> <span class="nc">ProductFormExtension</span> <span class="k">extends</span> <span class="nx">AbstractTypeExtension</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">FORM_ELEMENT_NAME</span> <span class="o">=</span> <span class="s1">&#39;oro_blogpostexample_product_options&#39;</span><span class="p">;</span>
+
+    <span class="sd">/** @var ManagerRegistry */</span>
+    <span class="k">protected</span> <span class="nv">$registry</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param ManagerRegistry $registry</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">ManagerRegistry</span> <span class="nv">$registry</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span> <span class="o">=</span> <span class="nv">$registry</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getExtendedType</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">ProductType</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritdoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">buildForm</span><span class="p">(</span><span class="nx">FormBuilderInterface</span> <span class="nv">$builder</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//Appending Parent form with our custom form</span>
+        <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span>
+            <span class="nx">self</span><span class="o">::</span><span class="na">FORM_ELEMENT_NAME</span><span class="p">,</span>
+            <span class="nx">ProductOptionsType</span><span class="o">::</span><span class="na">NAME</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oro.blogpostexample.product_options.entity_label&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+                <span class="s1">&#39;mapped&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+
+        <span class="c1">//Subscribing to events</span>
+        <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">addEventListener</span><span class="p">(</span><span class="nx">FormEvents</span><span class="o">::</span><span class="na">POST_SET_DATA</span><span class="p">,</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;onPostSetData&#39;</span><span class="p">]);</span>
+        <span class="nv">$builder</span><span class="o">-&gt;</span><span class="na">addEventListener</span><span class="p">(</span><span class="nx">FormEvents</span><span class="o">::</span><span class="na">POST_SUBMIT</span><span class="p">,</span> <span class="p">[</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;onPostSubmit&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param FormEvent $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onPostSetData</span><span class="p">(</span><span class="nx">FormEvent</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** @var Product|null $product */</span>
+        <span class="nv">$product</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$product</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$product</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$options</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getProductOptionsRepository</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">findOneBy</span><span class="p">([</span><span class="s1">&#39;product&#39;</span> <span class="o">=&gt;</span> <span class="nv">$product</span><span class="p">]);</span>
+
+        <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getForm</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">FORM_ELEMENT_NAME</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param FormEvent $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onPostSubmit</span><span class="p">(</span><span class="nx">FormEvent</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** @var Product|null $product */</span>
+        <span class="nv">$product</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$product</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="sd">/** @var ProductOptionsType $form */</span>
+        <span class="nv">$form</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getForm</span><span class="p">();</span>
+
+        <span class="sd">/** @var ProductOptions $options */</span>
+        <span class="nv">$options</span> <span class="o">=</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">FORM_ELEMENT_NAME</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getData</span><span class="p">();</span>
+        <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setProduct</span><span class="p">(</span><span class="nv">$product</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$form</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getProductOptionsObjectManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">persist</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return ObjectManager|null</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getProductOptionsObjectManager</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span><span class="o">-&gt;</span><span class="na">getManagerForClass</span><span class="p">(</span><span class="nx">ProductOptions</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return ObjectRepository</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getProductOptionsRepository</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getProductOptionsObjectManager</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">getRepository</span><span class="p">(</span><span class="nx">ProductOptions</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Our new form type extension should also be registered in the service container:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>#src/Oro/Bundle/BlogPostExampleBundle/Resources/config/form_types.yml
+services:
+    # ..... Form Definition .....
+
+    oro_blogpostexample.form.extension.product_type:
+        class: &#39;Oro\Bundle\BlogPostExampleBundle\Form\Extension\ProductFormExtension&#39;
+        public: true
+        arguments:
+            - &quot;@doctrine&quot;
+        tags:
+            - { name: form.type_extension, alias: oro_product }
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="ui-data-targets-and-listener">
+<h2>UI Data Targets and Listener<a class="headerlink" href="#ui-data-targets-and-listener" title="Permalink to this headline">¶</a></h2>
+<p>Once the entity, the form type, and the form type extension are created, we can start customizing the User Interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Additional information about the UI customization is available <a class="reference external" href="../theme/layout">in the Layout seciton</a>.</p>
+</div>
+<p>In our case, the custom data should be added to the product view page and the product edit/create pages, so we will use the following dataTargets:</p>
+<ul class="simple">
+<li>product-view will be used to display our custom data on the product view page;</li>
+<li>product-edit will be used to show our custom data on the product edit page;</li>
+<li>product-create-step-two will be used to add our custom data to the product creation page.</li>
+</ul>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span>#src/Oro/Bundle/BlogPostExampleBundle/Resources/config/services.yml
+
+services:
+    oro_blogpostexample.event_listener.form_view.product:
+        class: &#39;Oro\Bundle\BlogPostExampleBundle\EventListener\ProductFormListener&#39;
+        arguments:
+            - &#39;@translator&#39;
+            - &#39;@oro_entity.doctrine_helper&#39;
+            - &#39;@oro_blogpostexample.product_options.provider&#39;
+            - &#39;@request_stack&#39;
+        tags:
+            - { name: kernel.event_listener, event: oro_ui.scroll_data.before.product-view, method: onProductView }
+            - { name: kernel.event_listener, event: oro_ui.scroll_data.before.product-edit, method: onProductEdit }
+            - { name: kernel.event_listener, event: oro_ui.scroll_data.before.product-create-step-two, method: onProductEdit }
+</pre></div>
+</td></tr></table></div>
+<p>The event listener may be implemented as follows:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/EventListener/ProductFormListener.php</span>
+
+<span class="k">class</span> <span class="nc">ProductFormListener</span>
+<span class="p">{</span>
+    <span class="sd">/** @var TranslatorInterface */</span>
+    <span class="k">protected</span> <span class="nv">$translator</span><span class="p">;</span>
+
+    <span class="sd">/** @var DoctrineHelper */</span>
+    <span class="k">protected</span> <span class="nv">$doctrineHelper</span><span class="p">;</span>
+
+    <span class="sd">/** @var ProductOptionsProvider */</span>
+    <span class="k">protected</span> <span class="nv">$productOptionsProvider</span><span class="p">;</span>
+
+    <span class="sd">/** @var RequestStack */</span>
+    <span class="k">protected</span> <span class="nv">$requestStack</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param TranslatorInterface $translator</span>
+<span class="sd">     * @param DoctrineHelper $doctrineHelper</span>
+<span class="sd">     * @param ProductOptionsProvider $productOptionsProvider</span>
+<span class="sd">     * @param RequestStack $requestStack</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+        <span class="nx">TranslatorInterface</span> <span class="nv">$translator</span><span class="p">,</span>
+        <span class="nx">DoctrineHelper</span> <span class="nv">$doctrineHelper</span><span class="p">,</span>
+        <span class="nx">ProductOptionsProvider</span> <span class="nv">$productOptionsProvider</span><span class="p">,</span>
+        <span class="nx">RequestStack</span> <span class="nv">$requestStack</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">translator</span> <span class="o">=</span> <span class="nv">$translator</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doctrineHelper</span> <span class="o">=</span> <span class="nv">$doctrineHelper</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">productOptionsProvider</span> <span class="o">=</span> <span class="nv">$productOptionsProvider</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">requestStack</span> <span class="o">=</span> <span class="nv">$requestStack</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param BeforeListRenderEvent $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProductView</span><span class="p">(</span><span class="nx">BeforeListRenderEvent</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">requestStack</span><span class="o">-&gt;</span><span class="na">getCurrentRequest</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Retrieving current Product Id from request</span>
+        <span class="nv">$productId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$productId</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="sd">/** @var Product $product */</span>
+        <span class="nv">$product</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doctrineHelper</span><span class="o">-&gt;</span><span class="na">getEntityReference</span><span class="p">(</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$productId</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$product</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$productOptions</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">productOptionsProvider</span><span class="o">-&gt;</span><span class="na">getOptionsByProduct</span><span class="p">(</span><span class="nv">$product</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">===</span> <span class="nv">$productOptions</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$template</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getEnvironment</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span>
+            <span class="s1">&#39;OroB2BBlogPostExampleBundle:Product:product_options_view.html.twig&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;entity&#39;</span> <span class="o">=&gt;</span> <span class="nv">$product</span><span class="p">,</span>
+                <span class="s1">&#39;productOptions&#39;</span> <span class="o">=&gt;</span> <span class="nv">$productOptions</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBlock</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getScrollData</span><span class="p">(),</span> <span class="nv">$template</span><span class="p">,</span> <span class="s1">&#39;oro.blogpostexample.product.section.product_options&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param BeforeListRenderEvent $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProductEdit</span><span class="p">(</span><span class="nx">BeforeListRenderEvent</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$template</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getEnvironment</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span>
+            <span class="s1">&#39;OroB2BBlogPostExampleBundle:Product:product_options_update.html.twig&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">&#39;form&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getFormView</span><span class="p">()]</span>
+        <span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBlock</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getScrollData</span><span class="p">(),</span> <span class="nv">$template</span><span class="p">,</span> <span class="s1">&#39;oro.blogpostexample.product.section.product_options&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @param ScrollData $scrollData</span>
+<span class="sd">     * @param string $html</span>
+<span class="sd">     * @param string $label</span>
+<span class="sd">     * @param int $priority</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addBlock</span><span class="p">(</span><span class="nx">ScrollData</span> <span class="nv">$scrollData</span><span class="p">,</span> <span class="nv">$html</span><span class="p">,</span> <span class="nv">$label</span><span class="p">,</span> <span class="nv">$priority</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$blockLabel</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">translator</span><span class="o">-&gt;</span><span class="na">trans</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="nv">$blockId</span>    <span class="o">=</span> <span class="nv">$scrollData</span><span class="o">-&gt;</span><span class="na">addBlock</span><span class="p">(</span><span class="nv">$blockLabel</span><span class="p">,</span> <span class="nv">$priority</span><span class="p">);</span>
+        <span class="nv">$subBlockId</span> <span class="o">=</span> <span class="nv">$scrollData</span><span class="o">-&gt;</span><span class="na">addSubBlock</span><span class="p">(</span><span class="nv">$blockId</span><span class="p">);</span>
+        <span class="nv">$scrollData</span><span class="o">-&gt;</span><span class="na">addSubBlockData</span><span class="p">(</span><span class="nv">$blockId</span><span class="p">,</span> <span class="nv">$subBlockId</span><span class="p">,</span> <span class="nv">$html</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Templates</p>
+<p>And finally, we can define the templates – one for the form:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span><span class="c1"># //src/Oro/Bundle/BlogPostExampleBundle/Resources/views/Product/product_options_update.html.twig #}</span>
+
+<span class="p">{{</span> <span class="nx">form_widget</span><span class="p">(</span><span class="nx">form</span><span class="o">.</span><span class="nx">oro_blogpostexample_product_options</span><span class="p">)</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="nx">form_errors</span><span class="p">(</span><span class="nx">form</span><span class="o">.</span><span class="nx">oro_blogpostexample_product_options</span><span class="p">)</span> <span class="p">}}</span>
+</pre></div>
+</td></tr></table></div>
+<p>and one for the view:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//src/Oro/Bundle/BlogPostExampleBundle/Resources/views/Product/product_options_view.html.twig</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="nx">import</span> <span class="s1">&#39;OroUIBundle::macros.html.twig&#39;</span> <span class="k">as</span> <span class="nx">UI</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="p">{{</span> <span class="nx">UI</span><span class="o">.</span><span class="nx">renderHtmlProperty</span><span class="p">(</span><span class="s1">&#39;oro.blogpostexample.product_options.label&#39;</span><span class="o">|</span> <span class="nx">trans</span><span class="p">,</span> <span class="nx">productOptions</span><span class="o">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">}}</span>
+</pre></div>
+</td></tr></table></div>
+<p>As a result, the following blocks will be shown on the product edit and create pages:</p>
+<img alt="../../_images/crud_result_edit.png" src="../../_images/crud_result_edit.png" />
+<p>In view mode, the block looks as follows:</p>
+<img alt="../../_images/crud_result_view.png" src="../../_images/crud_result_view.png" />
+<p>A fully working example, organized into a custom bundle is available <a class="reference external" href="https://www.orocommerce.com/downloads/orob2bblogpostexamplebundle?wpdmdl=1732">here</a> (Download 13.47 KB).</p>
+<p>In order to add this bundle to your application:</p>
+<ul>
+<li><p class="first">Please extract the content of the zip archive into a source code directory that is recognized by your composer autoload settings;</p>
+</li>
+<li><p class="first">Clear the application cache with the following command:</p>
+<p><cite>php app/console clear:cache</cite></p>
+<p>and run the migrations with the following command:</p>
+<p><cite>app oro:migration:load &#8211;force &#8211;bundles=OroBlogPostExampleBundle</cite></p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/extend_and_customize/customizing_crud.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">Customizing Oro Features</a><ul>
+      <li>Previous: <a href="../entities/adding_properties.html" title="previous chapter">How to Add Properties to Core Entities</a></li>
+      <li>Next: <a href="customizing_import_export.html" title="next chapter">Extending Entities to Support Bulk Import and Export</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/extend_and_customize/customizing_crud.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cases &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Emails" href="using_emails.html" />
+    <link rel="prev" title="Tasks" href="activities_add_assign_tasks.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cases">
+<span id="user-guide-activities-cases"></span><h1>Cases<a class="headerlink" href="#cases" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-case">
+<h2>Create Case<a class="headerlink" href="#create-case" title="Permalink to this headline">¶</a></h2>
+<p>In order to keep the details of a certain issue, problem or failures reported by the customers, define their priority
+and the person responsible for handling them, use the <strong>Create Case</strong> action.</p>
+<p>Cases can be created from the Cases grid:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Activities &gt; Cases</strong>.</li>
+<li>Click the <span class="guilabel">Create Case</span> button.</li>
+<li>The <strong>Create Case</strong> page appears. The page contains the following fields:</li>
+</ol>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Subject*</strong></td>
+<td>The case title. Must be defined.</td>
+</tr>
+<tr class="row-odd"><td><strong>Description</strong></td>
+<td>A free text tab. Contains the problem description. May be left empty.</td>
+</tr>
+<tr class="row-even"><td><strong>Resolution</strong></td>
+<td>A free text tab. Contains the problem resolution details. May be left empty.</td>
+</tr>
+<tr class="row-odd"><td><strong>Owner*</strong></td>
+<td><p class="first">Limits the list of users that can manage the case (view, edit) to users,  whose
+roles allow managing
+cases assigned to the owner (e.g. the owner, owner&#8217;s managers, colleagues, etc.).</p>
+<p>By default is set to the user filing the case.</p>
+<p>To clear the field, click the <span class="guilabel">x</span> button.</p>
+<p class="last">You can choose another owner from the list.</p>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Assigned To</strong></td>
+<td>Defines the user, who shall resolve the issue. The field may be left empty.</td>
+</tr>
+<tr class="row-odd"><td><strong>Source*</strong></td>
+<td><p class="first">Defines how you have received information about the issue. The possible options are:</p>
+<ul class="simple">
+<li><em>Email</em></li>
+<li><em>Other</em></li>
+<li><em>Phone</em></li>
+<li><em>Web</em></li>
+</ul>
+<p class="last">The field is by default filled with the <em>Other</em> option.</p>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Status*</strong></td>
+<td><p class="first">Defines the current status of the case processing. The possible options are:</p>
+<ul class="simple">
+<li><em>Open</em></li>
+<li><em>In Progress</em></li>
+<li><em>Resolved</em></li>
+<li><em>Closed*</em></li>
+</ul>
+<p class="last">The field is by default filled with the <em>Open</em> option.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Priority*</strong></td>
+<td><p class="first">Defines the task priority. The possible options are:</p>
+<ul class="simple">
+<li><em>Low</em></li>
+<li><em>Normal</em></li>
+<li><em>High</em></li>
+</ul>
+<p class="last">The field is by default set to the <em>Normal</em> option.</p>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Related Contact</strong></td>
+<td>Defines a <a class="reference internal" href="../../system/glossary.html#term-contact"><span class="xref std std-term">contact record</span></a> related to the case, if any. The field may be left
+empty.</td>
+</tr>
+<tr class="row-odd"><td><strong>Related Account</strong></td>
+<td>Defines an <a class="reference internal" href="../../system/glossary.html#term-account"><span class="xref std std-term">account record</span></a> related to the case, if any. The field may be left
+empty.</td>
+</tr>
+<tr class="row-even"><td><strong>Tags</strong></td>
+<td>Defines <a class="reference internal" href="../../system/glossary.html#term-tag"><span class="xref std std-term">tags</span></a> for the case. Click the <span class="guilabel">Select and existing tag or create new</span>
+button and either choose a tag from the drop-down menu or enter a new tag. Any number of tags may be added.</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li>Click the button in the top right corner to save the case.</li>
+</ol>
+<p>For example, the company has received a phone call from a manager of the Acuserv company saying that some of the details
+in the previous supply were faulty. The head of the purchasing department in Acuserv is Jennifer Paxton (a related
+contact). We&#8217;ve assigned the issue to Michael Buckley from the Marketing department and defined its priority as high.
+We&#8217;ve added the <em>Business</em> and <em>Gold Partner</em> tags for this case.</p>
+<img alt="../../../_images/create_case_ex.png" src="../../../_images/create_case_ex.png" />
+</div>
+<div class="section" id="view-and-manage-cases">
+<h2>View and Manage Cases<a class="headerlink" href="#view-and-manage-cases" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>All the cases can be viewed from the Cases grid.</li>
+<li>All the cases assigned to a specific user (cases, for which the <strong>Assigned to</strong> field is not empty) are displayed in and
+can be reached from the <strong>Cases</strong> grid in the <strong>Additional Information</strong> section on the View page of the user record.</li>
+</ul>
+<img alt="../../../_images/case_view_user.png" src="../../../_images/case_view_user.png" />
+<ul class="simple">
+<li>All the cases assigned to a specific contact (cases, for which the  <strong>Related Contact</strong> field is not empty) are
+displayed in and can be reached from the <strong>Cases</strong> grid in the <strong>Additional Information</strong> section on the View page of the
+contact record.</li>
+</ul>
+<img alt="../../../_images/case_view_contact.png" src="../../../_images/case_view_contact.png" />
+<ul class="simple">
+<li>All the cases assigned to a specific account (cases, for which the <strong>Related Account</strong> field is not empty) are displayed
+and can be reached from the <strong>Cases</strong> grid in the <strong>Additional Information</strong> section on the View page of the account record.</li>
+</ul>
+<img alt="../../../_images/case_view_account.png" src="../../../_images/case_view_account.png" />
+<ul class="simple">
+<li>From any of the grids above, you can manage the cases using the action icons:<ul>
+<li>Delete the case: <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
+<li>Get to the <a class="reference internal" href="../records/data_management_form.html#user-guide-ui-components-create-pages"><span class="std std-ref">Edit form</span></a> of the case: <i class="fa fa-edit fa-lg" aria-hidden="true"></i></li>
+<li>Get to the <a class="reference internal" href="../records/data_management_view.html#user-guide-ui-components-view-pages"><span class="std std-ref">View page</span></a> of the case:  <i class="fa fa-eye fa-lg" aria-hidden="true"></i></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/activities/activities_create_case.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Getting Started with UI</a><ul>
+  <li><a href="index.html">Activities</a><ul>
+      <li>Previous: <a href="activities_add_assign_tasks.html" title="previous chapter">Tasks</a></li>
+      <li>Next: <a href="using_emails.html" title="next chapter">Emails</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/activities/activities_create_case.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

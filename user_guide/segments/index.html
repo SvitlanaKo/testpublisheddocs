@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Segments &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="System Configuration" href="../system/index.html" />
+    <link rel="prev" title="Link a Tax Code to a Product" href="../taxes/link_a_tax_code_to_a_product.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="segments">
+<span id="user-guide-filters-segments"></span><h1>Segments<a class="headerlink" href="#segments" title="Permalink to this headline">¶</a></h1>
+<p>Segments are dynamically filtered subsets of the data (e.g. product collection, marketing list) in OroCommerce.</p>
+<p>To use a set of records in reports, filters, web catalog nodes or marketing lists, you can create a segment and reuse it instead of copying the same query as a condition.</p>
+<img alt="../../_images/use_segments_in_filter.png" src="../../_images/use_segments_in_filter.png" />
+<p>Segment combines a set of records filtered using the query that may use the following information as the foundation:</p>
+<ul class="simple">
+<li>Activity</li>
+<li>Data audit</li>
+<li>Field Condition</li>
+<li>Segment</li>
+<li>Condition Group</li>
+</ul>
+<p>Dynamic segments refresh automatically. Segments of manual type require explicit refresh by clicking <strong>Refresh</strong> <i class="fa fa-repeat fa-lg" aria-hidden="true"></i>.</p>
+<div class="section" id="create-segments">
+<span id="user-guide-create-segments"></span><h2>Create Segments<a class="headerlink" href="#create-segments" title="Permalink to this headline">¶</a></h2>
+<p>To create a new segment:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Reports &amp; Segments &gt; Manage Segments</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Segment</strong>.</p>
+<p>The <em>Create Segment page</em> emerges.</p>
+</li>
+<li><p class="first">In the <em>General Details</em>:</p>
+<img alt="../../_images/segment_general.png" src="../../_images/segment_general.png" />
+<ol class="loweralpha simple">
+<li>Fill in the segment name.</li>
+<li><em>Optionally</em>, add a <strong>Description</strong> to help you and other users to understand the purpose or peculiarities of the segment in the future.</li>
+<li>Select the main entity that segment should look up.</li>
+<li>Select the segment type from the list. <strong>Dynamic</strong> segments are updated as soon as any changes have taken place in the system. <strong>Manual</strong> segments are updated only following the manual refresh action when viewing the segment details.</li>
+<li>Optionally, specify the records limit. The segment shows the first X results in case the limit is provided.</li>
+<li>Select the segment owner - a business unit, members of which can manage the segment, subject to the roles defined in the system.</li>
+</ol>
+</li>
+<li><p class="first">In the <em>Designer &gt; Columns</em> section, define the set of the fields of the entity records to be shown in the segment.</p>
+<img alt="../../_images/list_columns.png" src="../../_images/list_columns.png" />
+<p>In order to add a column to the grid:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Choose a field from the drop-down in the <strong>Column</strong> section.</li>
+<li>Type in a label to refer to the field in the segment report on the interface. The field label is used by default. Customize it if necessary.</li>
+<li>Define the sorting order for at least one column in the segment to sort the resulting data set by the field value.</li>
+<li>Click <strong>Add</strong> button.</li>
+<li>Reorder the columns by clicking on the line and dragging it to the necessary location.</li>
+</ol>
+<img alt="../../_images/segments_column.png" src="../../_images/segments_column.png" />
+</div></blockquote>
+<p>In order to manage the columns, use action icons in the last column:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Delete a column from the segment with <i class="fa fa-trash fa-lg" aria-hidden="true"></i>.</li>
+<li>Edit the column settings with <i class="fa fa-edit fa-lg" aria-hidden="true"></i>.</li>
+<li>Change the column position, dragging the column by the <i class="fa fa-arrows-v fa-lg" aria-hidden="true"></i> icon.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">In the <em>Designer &gt; Filters</em> section, define the filter to select the records for the segment.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="refresh-manual-segment">
+<h2>Refresh Manual Segment<a class="headerlink" href="#refresh-manual-segment" title="Permalink to this headline">¶</a></h2>
+<p>To refresh the data in the segment of the manual type:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Reports &amp; Segments &gt; Manage Segments</strong> in the main menu.</li>
+<li>Click on the necessary segment line.</li>
+<li>Click <strong>Refresh</strong> <i class="fa fa-repeat fa-lg" aria-hidden="true"></i>.</li>
+</ol>
+</div>
+<div class="section" id="view-a-segment-filtered-records">
+<h2>View a Segment Filtered Records<a class="headerlink" href="#view-a-segment-filtered-records" title="Permalink to this headline">¶</a></h2>
+<p>To view the records selected using the segment filter:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Reports &amp; Segments &gt; Manage Segments</strong> in the main menu.</li>
+<li>Click on the necessary segment line.</li>
+</ol>
+<img alt="../../_images/segment_view.png" src="../../_images/segment_view.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/segments/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+      <li>Previous: <a href="../taxes/link_a_tax_code_to_a_product.html" title="previous chapter">Link a Tax Code to a Product</a></li>
+      <li>Next: <a href="../system/index.html" title="next chapter">System Configuration</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/segments/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

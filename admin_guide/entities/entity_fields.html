@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Entity Fields &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="entity-fields">
+<span id="doc-entity-fields"></span><h1>Entity Fields<a class="headerlink" href="#entity-fields" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
+<li><a class="reference internal" href="#actions" id="id2">Actions</a><ul>
+<li><a class="reference internal" href="#create-a-custom-entity-field" id="id3">Create a Custom Entity Field</a></li>
+<li><a class="reference internal" href="#edit-a-custom-entity-field" id="id4">Edit a Custom Entity Field</a></li>
+<li><a class="reference internal" href="#delete-a-custom-entity-field" id="id5">Delete a Custom Entity Field</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#links" id="id6">Links</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Fields are used to collect details of entity records.</p>
+<p>For example, a &#8216;street name&#8217;, a &#8216;zip code&#8217;, and a &#8216;building number&#8217; may be fields of an &#8216;address.&#8217;</p>
+<p>You can add new fields to any <a class="reference internal" href="../../user_guide/system/glossary.html#term-custom-entity"><span class="xref std std-term">custom entity</span></a> or an extendible <a class="reference internal" href="../../user_guide/system/glossary.html#term-system-entity"><span class="xref std std-term">system entity</span></a>.</p>
+<p>This guide describes how to create and modify the fields.</p>
+</div>
+<div class="section" id="actions">
+<h2><a class="toc-backref" href="#id2">Actions</a><a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-a-custom-entity-field">
+<span id="doc-entity-fields-create"></span><h3><a class="toc-backref" href="#id3">Create a Custom Entity Field</a><a class="headerlink" href="#create-a-custom-entity-field" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate <strong>System&gt;Entities&gt;Entities Management</strong>.</p>
+</li>
+<li><p class="first">On the <strong>All Entities</strong> page, click the required entity in the grid.</p>
+</li>
+<li><p class="first">On the entity view page, click the <span class="guilabel">Create Field</span> button in the upper-right corner of the page.</p>
+</li>
+<li><p class="first">Specify information for the basic entity field properties. See the descriptions of the basic properties in the <a class="reference external" href="./entity-field-properties#basic-entity-field-properties">Basic Entity Field Properties</a> section.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/new_entity_field.png" src="../../_images/new_entity_field.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first">Click <span class="guilabel">Continue</span> button. Depending on what has been selected for <strong>Type</strong>, the corresponding additional fields appear.</p>
+</li>
+<li><p class="first">Specify information for additional properties. See the descriptions of the basic properties in the <a class="reference external" href="./entity-field-properties#advanced-entity-field-properties">Advanced Entity Field Properties</a> section.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> in the upper-right corner of the page.</p>
+</li>
+<li><p class="first">After that, you may require to update the schema. For how to do it, see the <a class="reference external" href="./entity-actions#update-schema">Update Schema</a> section.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="edit-a-custom-entity-field">
+<h3><a class="toc-backref" href="#id4">Edit a Custom Entity Field</a><a class="headerlink" href="#edit-a-custom-entity-field" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate <strong>System&gt;Entities&gt;Entities Management</strong>.</p>
+</li>
+<li><p class="first">On the <strong>All Entities</strong> page, click the required entity in the grid.</p>
+</li>
+<li><p class="first">On the entity view page, click <strong>Fields</strong>.</p>
+</li>
+<li><p class="first">In the grid of the <strong>Fields</strong> section, click the required field.</p>
+</li>
+<li><p class="first">Make the required changes according to the description provided in step 6 of the <a class="reference external" href="./entity-fields#create-a-custom-entiry-field">Create a Custom Entity Field</a> section.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The list of properties editable for system entity fields depends on configuration and is created in a way reasonable and safe for the system performance and operation.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save</strong> in the upper-right corner of the page.</p>
+</li>
+<li><p class="first">After that, you may require to update the schema. For how to do it, see the <a class="reference external" href="./entity-actions#update-schema">Update Schema</a> section.</p>
+</li>
+</ol>
+<p>Alternatively, you can start editing an entity field from the entity view page by clicking the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> icon at the right end of the corresponding row.</p>
+</div>
+<div class="section" id="delete-a-custom-entity-field">
+<h3><a class="toc-backref" href="#id5">Delete a Custom Entity Field</a><a class="headerlink" href="#delete-a-custom-entity-field" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the main menu, navigate <strong>System&gt;Entities&gt;Entities Management</strong>.</li>
+<li>On the <strong>All Entities</strong> page, click the required entity in the grid.</li>
+<li>On the entity view page, click <strong>Fields</strong>.</li>
+<li>In the grid of the <strong>Fields</strong> section, choose the required entity field and click the <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong> icon at the right end of the corresponding row.</li>
+<li>In the <strong>Deletion Confirmation</strong> dialog box, click <span class="guilabel">Yes</span>.</li>
+<li>After that, you may require to update the schema. For how to do it, see the <a class="reference external" href="./entity-actions#update-schema">Update Schema</a> section.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="links">
+<h2><a class="toc-backref" href="#id6">Links</a><a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+<p>For the detailed description of entity field types, see the <a class="reference external" href="./entity-field-types">Entity Field Types</a> guide.</p>
+<p>For the overview of the entities, see the <a class="reference external" href="./entities">Entities</a> guide.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/admin_guide/entities/entity_fields.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/admin_guide/entities/entity_fields.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

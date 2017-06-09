@@ -1,0 +1,734 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customizing Data Grid &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using PHP Instead of Twig for Templates" href="using_php_instead_of_twig_for_templates.html" />
+    <link rel="prev" title="How to Add an Extension to the OroCRM Marketplace" href="how_to_add_an_extension_to_oro_marketplace.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customizing-data-grid">
+<h1>Customizing Data Grid<a class="headerlink" href="#customizing-data-grid" title="Permalink to this headline">¶</a></h1>
+<p>Most business application users have to deal with significant amounts of data on a daily basis. Thus, efficiently navigating through large data sets becomes a must have requirement and OroCommerce is not an exception. The application users must be able to easily filter, sort, and search through thousands (or millions) of records, usually represented in the form of a data grid on a page.</p>
+<p>This topic uses existing OroCommerce data grids for illustration. If you are not familiar with OroPlatform data grids, you may find it helpful to check the <a class="reference external" href="../entities/datagrid">articles on how to create a simple data grid</a>, and <a class="reference internal" href="../other/how_to_pass_request_parameter_to_grid.html#how-to-pass-request-parameter-to-the-grid"><span class="std std-ref">how to pass request parameters to your data grid</span></a>. The <a class="reference external" href="../reference/format/datagrid">datagrid.yml configuration reference</a> and the OroDataGridBundle documentation contain additional useful information.</p>
+<img alt="../../_images/grid1.png" src="../../_images/grid1.png" />
+<div class="section" id="data-sources">
+<h2>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h2>
+<p>A data grid is usually used to visualize some data coming from a data source. OroDataGridBundle allows for use of various data sources for data grids, and includes the ORM data source adapter out of the box. It is possible to <a class="reference external" href="https://github.com/orocrm/platform/blob/master/src/Oro/Bundle/DataGridBundle/Resources/doc/backend/datasources.md">implement your own data source adapters</a> as well.</p>
+<p>The ORM data source types allow for database query specification, sorters and filters definitions to be specified in the data grid configuration. Data grid configuration can be supplied by a developer in YAML format. By convention, the datagrid.yml files placed in Resources/config folders of any application bundle are processed automatically. All supported data source configuration options that can be used in data source configuration section are described in the <a class="reference external" href="https://github.com/orocrm/platform/blob/master/src/Oro/Bundle/DataGridBundle/Resources/doc/backend/datasources.md">datasources section of the DataGridBundle documentation</a>.</p>
+</div>
+<div class="section" id="inner-workings-of-data-grids">
+<h2>Inner Workings of Data Grids<a class="headerlink" href="#inner-workings-of-data-grids" title="Permalink to this headline">¶</a></h2>
+<p>Data grids in Oro applications are highly customizable. It is possible to modify an existing grid in order to fetch more data than was originally defined in the grid configuration. In this article, we will retrieve and present to a user some additional data in the existing <a class="reference external" href="https://github.com/laboro/dev/blob/56a4044c13cde93a31dfaac373de428962a13f56/package/commerce/src/OroB2B/Bundle/ProductBundle/Resources/config/datagrid.yml#L101">products-grid</a>.</p>
+<p>And before we start customizing it, let’s take a deeper look into two aspects of how the data grids actually work:</p>
+<ul class="simple">
+<li>Building and configuring a new DataGrid instance</li>
+<li>Fetching data</li>
+</ul>
+<div class="section" id="building-grids">
+<h3>Building Grids<a class="headerlink" href="#building-grids" title="Permalink to this headline">¶</a></h3>
+<img alt="OroDataGridBundle base class diagram" src="../../_images/datagrid_base_uml-800x487.jpg" />
+<p>DatagridBuilder class is responsible for creating and configuring a data grid object and its data source. This is how the build method is processing the grid configuration internally:</p>
+<img alt="Data grid build process" src="../../_images/build-flow-551x600.png" />
+<p>Imagine that you need to show a list of related price lists for every product record in the product grid. You want it to be displayed in a separate column with a multi-select filter. Also you want to add one more column to display owner of each of the product records.</p>
+<p>One of the possible ways to customize this grid would be through events triggered by the system during the grid build process and when the data is fetched from the data source.</p>
+<p>There are several events triggered before processing the data grid configuration files. In this case, a good choice is the onBuildBefore event. By listening to this event you can add new elements to the grid configuration or modify already existing configuration in your event listener.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">More information about grid column definition configuration options is available in the <a class="reference external" href="https://github.com/orocrm/platform/blob/master/src/Oro/Bundle/DataGridBundle/Resources/doc/backend/datagrid.md#columns-and-properties">columns and properties section of the DataGridBundle documentation</a>.</p>
+</div>
+<p>The Product entity has a many-to-one relation with the Business Unit entity, so in order to add the owner column to the grid and load the owner data from the data source, you should modify its query configuration by adding additional join and select parts.</p>
+</div>
+<div class="section" id="fetching-data">
+<h3>Fetching Data<a class="headerlink" href="#fetching-data" title="Permalink to this headline">¶</a></h3>
+<p>However, the retrieving data for the price lists column is a little bit more complicated, because the Product entity has many-to-many relation with price lists, and the join result will contain duplicate rows. In such situations or when some other dynamic data should be included into the query results, a possible solution would be data modification after the rows were fetched from the data source.</p>
+<p>This is how the data retrieval works in general:</p>
+<img alt="Data grid records retrieval" src="../../_images/orm-result.png" />
+<p>So in our customization, we will fetch the price list data in a separate query, and then we will attach this data to each of the product records in the grid.</p>
+</div>
+</div>
+<div class="section" id="product-grid-customization">
+<h2>Product Grid Customization<a class="headerlink" href="#product-grid-customization" title="Permalink to this headline">¶</a></h2>
+<p>The resulting implementation of the ProductsGridListener may look similar to this example:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProductsGridListener</span>
+<span class="p">{</span>
+   <span class="o">...</span>
+
+   <span class="sd">/**</span>
+<span class="sd">    * @param BuildBefore $event</span>
+<span class="sd">    */</span>
+   <span class="k">public</span> <span class="k">function</span> <span class="nf">onBuildBefore</span><span class="p">(</span><span class="nx">BuildBefore</span> <span class="nv">$event</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="nv">$datagridConfiguration</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getConfig</span><span class="p">();</span>
+       <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBusinessUnitColumn</span><span class="p">(</span><span class="nv">$datagridConfiguration</span><span class="p">);</span>
+       <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addPriceListsColumn</span><span class="p">(</span><span class="nv">$datagridConfiguration</span><span class="p">);</span>
+   <span class="p">}</span>
+
+   <span class="sd">/**</span>
+<span class="sd">    * @param OrmResultAfter $event</span>
+<span class="sd">    */</span>
+   <span class="k">public</span> <span class="k">function</span> <span class="nf">onResultAfter</span><span class="p">(</span><span class="nx">OrmResultAfter</span> <span class="nv">$event</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="nv">$records</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getRecords</span><span class="p">();</span>
+       <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addPriceListsToRecords</span><span class="p">(</span><span class="nv">$records</span><span class="p">);</span>
+   <span class="p">}</span>
+
+   <span class="sd">/**</span>
+<span class="sd">    * @param DatagridConfiguration $datagridConfiguration</span>
+<span class="sd">    */</span>
+   <span class="k">protected</span> <span class="k">function</span> <span class="nf">addPriceListsColumn</span><span class="p">(</span><span class="nx">DatagridConfiguration</span> <span class="nv">$datagridConfiguration</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="nv">$column</span> <span class="o">=</span> <span class="p">[</span>
+           <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Price Lists&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;twig&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;template&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;OroB2BPricingBundle:Datagrid:Column/price_lists.html.twig&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;frontend_type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;renderable&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+       <span class="p">];</span>
+       <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;price_lists&#39;</span><span class="p">,</span> <span class="nv">$column</span><span class="p">);</span>
+   <span class="p">}</span>
+
+   <span class="sd">/**</span>
+<span class="sd">    * @param DatagridConfiguration $datagridConfiguration</span>
+<span class="sd">    */</span>
+   <span class="k">protected</span> <span class="k">function</span> <span class="nf">addBusinessUnitColumn</span><span class="p">(</span><span class="nx">DatagridConfiguration</span> <span class="nv">$datagridConfiguration</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">joinTable</span><span class="p">(</span>
+           <span class="s1">&#39;left&#39;</span><span class="p">,</span>
+           <span class="p">[</span>
+               <span class="s1">&#39;join&#39;</span> <span class="o">=&gt;</span> <span class="nx">BusinessUnit</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+               <span class="s1">&#39;alias&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;business_unit&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;conditionType&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;WITH&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;condition&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;product.owner = business_unit&#39;</span><span class="p">,</span>
+           <span class="p">]</span>
+       <span class="p">);</span>
+
+       <span class="nv">$column</span> <span class="o">=</span> <span class="p">[</span>
+           <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Owner&#39;</span>
+       <span class="p">];</span>
+
+       <span class="c1">// column name should be ther same as the field alias in the select query</span>
+       <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="nv">$column</span><span class="p">,</span> <span class="s1">&#39;business_unit.name as owner&#39;</span><span class="p">);</span>
+   <span class="p">}</span>
+
+   <span class="sd">/**</span>
+<span class="sd">    * @param ResultRecord[] $records</span>
+<span class="sd">    * @throws \Doctrine\ORM\ORMException</span>
+<span class="sd">    */</span>
+   <span class="k">protected</span> <span class="k">function</span> <span class="nf">addPriceListsToRecords</span><span class="p">(</span><span class="k">array</span> <span class="nv">$records</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span><span class="o">-&gt;</span><span class="na">getRepository</span><span class="p">(</span><span class="nx">PriceListToProduct</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+       <span class="sd">/** @var EntityManager $objectManager */</span>
+       <span class="nv">$objectManager</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span><span class="o">-&gt;</span><span class="na">getManager</span><span class="p">();</span>
+
+       <span class="nv">$products</span> <span class="o">=</span> <span class="p">[];</span>
+       <span class="k">foreach</span> <span class="p">(</span><span class="nv">$records</span> <span class="k">as</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nv">$products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$objectManager</span><span class="o">-&gt;</span><span class="na">getReference</span><span class="p">(</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$record</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">));</span>
+       <span class="p">}</span>
+
+       <span class="nv">$priceLists</span> <span class="o">=</span> <span class="p">[];</span>
+       <span class="k">foreach</span> <span class="p">(</span><span class="nv">$repository</span><span class="o">-&gt;</span><span class="na">findBy</span><span class="p">([</span><span class="s1">&#39;product&#39;</span> <span class="o">=&gt;</span> <span class="nv">$products</span><span class="p">])</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nv">$priceLists</span><span class="p">[</span><span class="nv">$item</span><span class="o">-&gt;</span><span class="na">getProduct</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()][]</span> <span class="o">=</span> <span class="nv">$item</span><span class="o">-&gt;</span><span class="na">getPriceList</span><span class="p">();</span>
+       <span class="p">}</span>
+
+       <span class="sd">/** @var ResultRecord $record */</span>
+       <span class="k">foreach</span> <span class="p">(</span><span class="nv">$records</span> <span class="k">as</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$record</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+           <span class="nv">$products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$objectManager</span><span class="o">-&gt;</span><span class="na">getReference</span><span class="p">(</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+
+           <span class="nv">$record</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">([</span><span class="s1">&#39;price_lists&#39;</span> <span class="o">=&gt;</span> <span class="nv">$priceLists</span><span class="p">[</span><span class="nv">$id</span><span class="p">]]);</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>We will need to register this event listener in the service container:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>grid_event_listener.product:
+    class: &#39;Oro\Bundle\CustomGridBundle\Datagrid\ProductsGridListener&#39;
+    arguments:
+        - @doctrine
+    tags:
+        - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.before.products-grid, method: onBuildBefore }
+        - { name: kernel.event_listener, event: oro_datagrid.orm_datasource.result.after.products-grid, method: onResultAfter }
+</pre></div>
+</td></tr></table></div>
+<p>After the application cache is refreshed (or immediately in the dev mode) two new columns will appear in the product grid.</p>
+</div>
+<div class="section" id="custom-filters">
+<h2>Custom Filters<a class="headerlink" href="#custom-filters" title="Permalink to this headline">¶</a></h2>
+<p>Our second customization task will be to add filters for the newly introduced column.</p>
+<p>In most cases, the <a class="reference external" href="https://github.com/orocrm/platform/blob/master/src/Oro/Bundle/FilterBundle/Resources/doc/reference/filter_form_types.md">built-in filters</a> would work just perfectly. But in the case of the price lists column, a custom filter is required. The purpose of this filter will be to modify the data retrieval query depending on the filter values entered by a user.</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProductPriceListsFilter</span> <span class="k">extends</span> <span class="nx">EntityFilter</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var RegistryInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$registry</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @inheritdoc</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">apply</span><span class="p">(</span><span class="nx">FilterDatasourceAdapterInterface</span> <span class="nv">$ds</span><span class="p">,</span> <span class="nv">$data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** @var array $data */</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">parseData</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">restrictByPriceList</span><span class="p">(</span><span class="nv">$ds</span><span class="p">,</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param RegistryInterface $registry</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setRegistry</span><span class="p">(</span><span class="nx">RegistryInterface</span> <span class="nv">$registry</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span> <span class="o">=</span> <span class="nv">$registry</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param OrmFilterDatasourceAdapter|FilterDatasourceAdapterInterface $ds</span>
+<span class="sd">     * @param array $priceLists</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">restrictByPriceList</span><span class="p">(</span><span class="nv">$ds</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$priceLists</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$queryBuilder</span> <span class="o">=</span> <span class="nv">$ds</span><span class="o">-&gt;</span><span class="na">getQueryBuilder</span><span class="p">();</span>
+        <span class="nv">$parentAlias</span> <span class="o">=</span> <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="na">getRootAliases</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nv">$parameterName</span> <span class="o">=</span> <span class="nv">$ds</span><span class="o">-&gt;</span><span class="na">generateParameterName</span><span class="p">(</span><span class="s1">&#39;price_lists&#39;</span><span class="p">);</span>
+
+        <span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span><span class="o">-&gt;</span><span class="na">getRepository</span><span class="p">(</span><span class="nx">PriceListToProduct</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$subQueryBuilder</span> <span class="o">=</span> <span class="nv">$repository</span><span class="o">-&gt;</span><span class="na">createQueryBuilder</span><span class="p">(</span><span class="s1">&#39;relation&#39;</span><span class="p">);</span>
+        <span class="nv">$subQueryBuilder</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span>
+            <span class="nv">$subQueryBuilder</span><span class="o">-&gt;</span><span class="na">expr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">andX</span><span class="p">(</span>
+                <span class="nv">$subQueryBuilder</span><span class="o">-&gt;</span><span class="na">expr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">eq</span><span class="p">(</span><span class="s1">&#39;relation.product&#39;</span><span class="p">,</span> <span class="nv">$parentAlias</span><span class="p">),</span>
+                <span class="nv">$subQueryBuilder</span><span class="o">-&gt;</span><span class="na">expr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">in</span><span class="p">(</span><span class="s1">&#39;relation.priceList&#39;</span><span class="p">,</span> <span class="s2">&quot;:</span><span class="si">$parameterName</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">);</span>
+
+        <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">(</span><span class="nv">$subQueryBuilder</span><span class="o">-&gt;</span><span class="na">expr</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">exists</span><span class="p">(</span><span class="nv">$subQueryBuilder</span><span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getDQL</span><span class="p">()));</span>
+        <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="na">setParameter</span><span class="p">(</span><span class="nv">$parameterName</span><span class="p">,</span> <span class="nv">$priceLists</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Our new filter should be registered in the service container with the oro_filter.extension.orm_filter.filter tag:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span>grid_filter.price_lists:
+    class: &#39;Oro\Bundle\CustomGridBundle\Filter\ProductPriceListsFilter&#39;
+    public: false
+    arguments:
+        - &#39;@form.factory&#39;
+        - &#39;@oro_filter.filter_utility&#39;
+    calls:
+        - [setRegistry, [&#39;@doctrine&#39;]]
+    tags:
+        - { name: oro_filter.extension.orm_filter.filter, type: product-price-lists }
+</pre></div>
+</td></tr></table></div>
+<p>This filter can be added to the grid configuration similarly to how we added new columns – in an event listener. Thus the final implementation of the ProductsGridListener would look like this:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProductsGridListener</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var RegistryInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$registry</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param RegistryInterface $registry</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">RegistryInterface</span> <span class="nv">$registry</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span> <span class="o">=</span> <span class="nv">$registry</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param BuildBefore $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onBuildBefore</span><span class="p">(</span><span class="nx">BuildBefore</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$datagridConfiguration</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getConfig</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addBusinessUnitColumn</span><span class="p">(</span><span class="nv">$datagridConfiguration</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addPriceListsColumn</span><span class="p">(</span><span class="nv">$datagridConfiguration</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addPriceListsFilter</span><span class="p">(</span><span class="nv">$datagridConfiguration</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param OrmResultAfter $event</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onResultAfter</span><span class="p">(</span><span class="nx">OrmResultAfter</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$records</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getRecords</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addPriceListsToRecords</span><span class="p">(</span><span class="nv">$records</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param DatagridConfiguration $datagridConfiguration</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addPriceListsColumn</span><span class="p">(</span><span class="nx">DatagridConfiguration</span> <span class="nv">$datagridConfiguration</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$column</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Price Lists&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;twig&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;template&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;OroCustomGridBundle:Datagrid:Column/price_lists.html.twig&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;frontend_type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;renderable&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="p">];</span>
+        <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;price_lists&#39;</span><span class="p">,</span> <span class="nv">$column</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param DatagridConfiguration $datagridConfiguration</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addBusinessUnitColumn</span><span class="p">(</span><span class="nx">DatagridConfiguration</span> <span class="nv">$datagridConfiguration</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">joinTable</span><span class="p">(</span>
+            <span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;join&#39;</span> <span class="o">=&gt;</span> <span class="nx">BusinessUnit</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+                <span class="s1">&#39;alias&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;business_unit&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;conditionType&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;WITH&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;condition&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;product.owner = business_unit&#39;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+
+        <span class="nv">$column</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Owner&#39;</span>
+        <span class="p">];</span>
+
+        <span class="c1">// column name should be ther same as the field alias in the select query</span>
+        <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="nv">$column</span><span class="p">,</span> <span class="s1">&#39;business_unit.name as owner&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param DatagridConfiguration $datagridConfiguration</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addPriceListsFilter</span><span class="p">(</span><span class="nx">DatagridConfiguration</span> <span class="nv">$datagridConfiguration</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$filter</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;product-price-lists&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;data_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;price_lists&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">&#39;field_type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;entity&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;field_options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="s1">&#39;class&#39;</span> <span class="o">=&gt;</span> <span class="nx">PriceList</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+                    <span class="s1">&#39;property&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;multiple&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">];</span>
+
+        <span class="nv">$datagridConfiguration</span><span class="o">-&gt;</span><span class="na">addFilter</span><span class="p">(</span><span class="s1">&#39;price_lists&#39;</span><span class="p">,</span> <span class="nv">$filter</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param ResultRecord[] $records</span>
+<span class="sd">     * @throws \Doctrine\ORM\ORMException</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addPriceListsToRecords</span><span class="p">(</span><span class="k">array</span> <span class="nv">$records</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span><span class="o">-&gt;</span><span class="na">getRepository</span><span class="p">(</span><span class="nx">PriceListToProduct</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="sd">/** @var EntityManager $objectManager */</span>
+        <span class="nv">$objectManager</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">registry</span><span class="o">-&gt;</span><span class="na">getManager</span><span class="p">();</span>
+
+        <span class="nv">$products</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$records</span> <span class="k">as</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$objectManager</span><span class="o">-&gt;</span><span class="na">getReference</span><span class="p">(</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$record</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="nv">$priceLists</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$repository</span><span class="o">-&gt;</span><span class="na">findBy</span><span class="p">([</span><span class="s1">&#39;product&#39;</span> <span class="o">=&gt;</span> <span class="nv">$products</span><span class="p">])</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$priceLists</span><span class="p">[</span><span class="nv">$item</span><span class="o">-&gt;</span><span class="na">getProduct</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()][]</span> <span class="o">=</span> <span class="nv">$item</span><span class="o">-&gt;</span><span class="na">getPriceList</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="sd">/** @var ResultRecord $record */</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$records</span> <span class="k">as</span> <span class="nv">$record</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$record</span><span class="o">-&gt;</span><span class="na">getValue</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+            <span class="nv">$products</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$objectManager</span><span class="o">-&gt;</span><span class="na">getReference</span><span class="p">(</span><span class="nx">Product</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+
+            <span class="nv">$record</span><span class="o">-&gt;</span><span class="na">addData</span><span class="p">([</span><span class="s1">&#39;price_lists&#39;</span> <span class="o">=&gt;</span> <span class="nv">$priceLists</span><span class="p">[</span><span class="nv">$id</span><span class="p">]]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>A fully working example, organized into a custom bundle is available <a class="reference external" href="https://www.orocommerce.com/downloads/customgridbundle-zip?wpdmdl=1647">here</a> (Download 13.47 KB).</p>
+<p>In order to add this bundle to your application please extract the content of the zip archive into a source code directory that is recognized by your composer autoload settings.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/extend_and_customize/customizing_data_grid_in_orocommerce.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">Customizing Oro Features</a><ul>
+      <li>Previous: <a href="how_to_add_an_extension_to_oro_marketplace.html" title="previous chapter">How to Add an Extension to the OroCRM Marketplace</a></li>
+      <li>Next: <a href="using_php_instead_of_twig_for_templates.html" title="next chapter">Using PHP Instead of Twig for Templates</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/extend_and_customize/customizing_data_grid_in_orocommerce.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

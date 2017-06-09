@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Payment Rules Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Checkout: Payment" href="../checkout/index.html" />
+    <link rel="prev" title="InfinitePay Payment Method Integration" href="payment_methods/infinitepay.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="sys-payment-rules"></span><div class="section" id="payment-rules-configuration">
+<h1>Payment Rules Configuration<a class="headerlink" href="#payment-rules-configuration" title="Permalink to this headline">¶</a></h1>
+<p>You can configure one or more payment rules that enable the payment methods for the provided destinations.</p>
+<div class="section" id="create-a-payment-rule">
+<h2>Create a Payment Rule<a class="headerlink" href="#create-a-payment-rule" title="Permalink to this headline">¶</a></h2>
+<p>To create a payment rule:</p>
+<ol class="arabic">
+<li><p class="first">Ensure that the integrations for the payment methods that you plan to use (PayPal Payflow Gateway, PayPal Payments Pro, etc.) are already configured.</p>
+</li>
+<li><p class="first">Navigate to <strong>System &gt; Payment Rules</strong> in the main menu. The list of payment rules opens.</p>
+</li>
+<li><p class="first">Click <strong>Create Payment Rule</strong>. The corresponding page opens.</p>
+</li>
+<li><p class="first">In the <strong>General Information</strong> section:</p>
+<ol class="loweralpha simple">
+<li>Select the <strong>Enabled</strong> check box to activate the payment rule. You may keep it clear while you are drafting and testing the conditions.</li>
+<li>Specify the payment rule name and sort order to set the priority compared to other payment rules.</li>
+<li>Select the payment currency.</li>
+<li>Select <strong>Stop Further Rule Processing</strong> if you would like to prevent applying other payment rules with lower priority.</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Destinations</strong> section, add one or more destinations to apply this payment rule to.</p>
+<ol class="loweralpha">
+<li><p class="first">Click <strong>+ Add</strong>. The following section appears:</p>
+<img alt="../../../_images/create_payment_rule.png" class="with-border" src="../../../_images/create_payment_rule.png" />
+</li>
+<li><p class="first">Specify the destination (e.g. select a Country, or select a country and state; for the most granularity you may provide a distinct list of postal codes to apply the payment rule for.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Conditions</strong> section, specify the expression that describes the conditions when this payment rule should be applied. For example, <em>account = 1</em>.</p>
+<img alt="../../../_images/create_payment_rule_expression.png" class="with-border" src="../../../_images/create_payment_rule_expression.png" />
+<p>For detailed information about the expression language used in the shipping and payment rules, please see the <a class="reference internal" href="../../shipping/configuration/expression_lang.html#payment-shipping-expression-lang"><span class="std std-ref">Expression Language for Shipping and Payment Rules</span></a> guide.</p>
+</li>
+<li><p class="first">In the <strong>Payment Method Configurations</strong> section, you may enable one or more payment methods with this payment rule. To add a payment method, select it from the list and click <strong>+ Add</strong>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Only one unique payment method per integration may be selected in the payment rule.</p>
+<p><strong>PayPal:</strong></p>
+<p>To enable several PayPal Payflow Gateway options with different payment settings, create a separate payment rule for every unique option.
+You still can use one copy of PayPal Payflow Gateway and one copy of PayPal Payflow Gateway Express Checkout in the same payment rule, as these are different payment methods.</p>
+<p><strong>Wirecard:</strong></p>
+<p>The single Wircard integration enables you to set up the following payment methods:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><em>WireCard - Credit Card</em>—Via this payment method a buyer can pay for the order using a credit card.</li>
+<li><em>WireCard - PayPal</em>—When this payment method is used, a buyer is redirected to the PayPal site where they can complete the payment using their PayPal account or credit card.</li>
+<li><em>WireCard - SEPA</em>—Via this payment method a buyer can pay for the order in EUR using a SEPA (Single Euro Payment Area) payment.</li>
+</ul>
+<p>You can add any combination of these payment methods in a single payment rule. However, if you want to enable <strong>WireCard - SEPA</strong>, then in step 3 you must select <em>EUR</em> for <strong>Currency</strong>.</p>
+</div></blockquote>
+</div>
+</li>
+<li><p class="first">Click <span class="guilabel">Save</span>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="enable-a-payment-rule">
+<h2>Enable a Payment Rule<a class="headerlink" href="#enable-a-payment-rule" title="Permalink to this headline">¶</a></h2>
+<p>To enable a payment rule:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Payment Rules</strong> in the main menu. The list of shipping rules opens.</li>
+<li>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu at the end of the row with the necessary payment rule and click the <i class="fa fa-check fa-lg" aria-hidden="true"></i> <strong>Activate</strong> icon.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/payment/configuration/payment_rules.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Payment</a><ul>
+  <li><a href="index.html">Payment Configuration</a><ul>
+      <li>Previous: <a href="payment_methods/infinitepay.html" title="previous chapter">InfinitePay Payment Method Integration</a></li>
+      <li>Next: <a href="../checkout/index.html" title="next chapter">Checkout: Payment</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/payment/configuration/payment_rules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring Product Options &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Configuring Warehouses" href="warehouses.html" />
+    <link rel="prev" title="Configuring Inventory Status Constrains" href="statuses.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuring-product-options">
+<h1>Configuring Product Options<a class="headerlink" href="#configuring-product-options" title="Permalink to this headline">¶</a></h1>
+<p>You can control the way product inventory is managed for every product in the OroCommerce product catalog.</p>
+<p>To customize the default product inventory options:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Inventory &gt; Product Options</strong> in the menu to the left.
+The following page opens:</p>
+<img alt="../../../_images/product_options.png" class="with-border" src="../../../_images/product_options.png" />
+<p>The following table describes the options available on the page:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="93%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Managed Inventory</td>
+<td>This options indicates whether the product inventory is handled by OroCommerce vs external application.</td>
+</tr>
+<tr class="row-odd"><td>Inventory Threshold</td>
+<td>A minimum quantity of the product that is treated as <em>In stock</em>. When a product quantity reaches this threshold value, the product inventory status fallback to <em>Out Of Stock</em>.</td>
+</tr>
+<tr class="row-even"><td>Backorders</td>
+<td>A flag that indicates whether OroCommerce accepts backorders. When set to yes, buyers and sales people can order products in the quantities that are not currently available in the warehouses. The remaining portion of the order will be sustained until the product gets back in stock.</td>
+</tr>
+<tr class="row-odd"><td>Decrement Inventory</td>
+<td>A flag that indicates whether OroCommerce decrements inventory upon order. When both <strong>Decrement Inventory</strong> and <strong>Backorders</strong> are enabled, product quantity may get negative.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> box next to the option.</li>
+<li>Select <strong>Yes/No</strong> for the flag-like options, and type in the updated value for the threshold-like options.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/inventory/configuration/options.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../../system/index.html">System Configuration</a><ul>
+  <li><a href="../../system/commerce_configuration/index.html">General System Configuration</a><ul>
+      <li>Previous: <a href="statuses.html" title="previous chapter">Configuring Inventory Status Constrains</a></li>
+      <li>Next: <a href="warehouses.html" title="next chapter">Configuring Warehouses</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/inventory/configuration/options.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Expression Language for Shipping and Payment Rules &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Product Shipping Information" href="../shipping_attributes.html" />
+    <link rel="prev" title="Shipping Rules Configuration" href="shipping_rules.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="expression-language-for-shipping-and-payment-rules">
+<span id="payment-shipping-expression-lang"></span><h1>Expression Language for Shipping and Payment Rules<a class="headerlink" href="#expression-language-for-shipping-and-payment-rules" title="Permalink to this headline">¶</a></h1>
+<p>Expression language for payment and shipping rules expressions is a user-friendly and business oriented extension of the <a class="reference external" href="https://symfony.com/doc/current/components/expression_language/introduction.html">Symfony Expression Language</a>. It is easy to use and, on top of usual comparison and logical operators, it allows iterating through the collections of items using <em>(collection).all</em> and <em>(collection).any</em> operations.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#attributes-supported-in-shipping-and-payment-rule-expressions" id="id1">Attributes Supported in Shipping and Payment Rule Expressions</a><ul>
+<li><a class="reference internal" href="#attributes" id="id2">Attributes</a></li>
+<li><a class="reference internal" href="#collections" id="id3">Collections</a></li>
+<li><a class="reference internal" href="#lineitems-collection" id="id4">lineItems Collection</a></li>
+<li><a class="reference internal" href="#lineitems-x-product-unitprecisions-collection" id="id5">lineItems[X].product.unitPrecisions Collection</a></li>
+<li><a class="reference internal" href="#lineitems-x-product-inventorylevels-collection" id="id6">lineItems[X].product.inventoryLevels Collection</a></li>
+<li><a class="reference internal" href="#customer-users-collection" id="id7">customer.users Collection</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expression-syntax" id="id8">Expression Syntax</a></li>
+<li><a class="reference internal" href="#sample-expression" id="id9">Sample Expression</a></li>
+</ul>
+</div>
+<div class="section" id="attributes-supported-in-shipping-and-payment-rule-expressions">
+<h2><a class="toc-backref" href="#id1">Attributes Supported in Shipping and Payment Rule Expressions</a><a class="headerlink" href="#attributes-supported-in-shipping-and-payment-rule-expressions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="attributes">
+<h3><a class="toc-backref" href="#id2">Attributes</a><a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p><strong>Financial</strong></p>
+<ul class="simple">
+<li>paymentMethod <em>string</em></li>
+<li>currency <em>string</em></li>
+<li>subtotal.value <em>float</em></li>
+<li>subtotal.currency <em>string</em></li>
+</ul>
+<p><strong>Geographies</strong></p>
+<p><em>billingAddress</em></p>
+<ul class="simple">
+<li>billingAddress.street <em>string</em></li>
+<li>billingAddress.street2 <em>string</em></li>
+<li>billingAddress.city <em>string</em></li>
+<li>billingAddress.regionName <em>string</em></li>
+<li>billingAddress.regionCode <em>string</em></li>
+<li>billingAddress.postalCode <em>string</em></li>
+<li>billingAddress.countryName <em>string</em></li>
+<li>billingAddress.countryIso3 <em>string</em></li>
+<li>billingAddress.countryIso2 <em>string</em></li>
+</ul>
+<p><em>shippingAddress</em></p>
+<ul class="simple">
+<li>shippingAddress.street <em>string</em></li>
+<li>shippingAddress.street2 <em>string</em></li>
+<li>shippingAddress.city <em>string</em></li>
+<li>shippingAddress.regionName <em>string</em></li>
+<li>shippingAddress.regionCode <em>string</em></li>
+<li>shippingAddress.postalCode <em>string</em></li>
+<li>shippingAddress.countryName <em>string</em></li>
+<li>shippingAddress.countryIso3 <em>string</em></li>
+<li>shippingAddress.countryIso2 <em>string</em></li>
+</ul>
+<p><em>shippingOrigin</em></p>
+<ul class="simple">
+<li>shippingOrigin.street <em>string</em></li>
+<li>shippingOrigin.street2 <em>string</em></li>
+<li>shippingOrigin.city <em>string</em></li>
+<li>shippingOrigin.regionName <em>string</em></li>
+<li>shippingOrigin.regionCode <em>string</em></li>
+<li>shippingOrigin.postalCode <em>string</em></li>
+<li>shippingOrigin.countryName <em>string</em></li>
+<li>shippingOrigin.countryIso3 <em>string</em></li>
+<li>shippingOrigin.countryIso2 <em>string</em></li>
+</ul>
+<p><strong>Business</strong></p>
+<p><em>Customer</em></p>
+<ul class="simple">
+<li>customer.id <em>int</em></li>
+<li>customer.name <em>string</em></li>
+<li>customer.group.id <em>int</em></li>
+<li>customer.group.name <em>string</em></li>
+</ul>
+<p><em>Customer User</em></p>
+<ul class="simple">
+<li>customerUser.id <em>int</em></li>
+<li>customerUser.email <em>string</em></li>
+<li>customerUser.firstName <em>string</em></li>
+<li>customerUser.middleName <em>string</em></li>
+<li>customerUser.lastName <em>string</em></li>
+<li>customerUser.lastName <em>string</em> (which is a customerUser.firstName ~ ‘ ‘ ~ customerUser.lastName, e.g. &#8216;Amanda Cole&#8217;)</li>
+</ul>
+</div>
+<div class="section" id="collections">
+<h3><a class="toc-backref" href="#id3">Collections</a><a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>lineItems</strong> is a collection of line items (products and their quantity, units, price, weight, and dimensions) that are being ordered.</li>
+<li><strong>lineItems[X].product.unitPrecisions</strong> is a collection of unit precisions that is available in OroCommerce for the lineItem product in the order.</li>
+<li><strong>lineItems[X].product.inventoryLevels</strong> is a collection of inventory levels - available quantities of the particular product in various units in warehouses that are available in OroCommerce.</li>
+<li><strong>customer.users</strong> is a collection of customer users that belong to the customer the order is submitted for.</li>
+</ul>
+</div>
+<div class="section" id="lineitems-collection">
+<h3><a class="toc-backref" href="#id4">lineItems Collection</a><a class="headerlink" href="#lineitems-collection" title="Permalink to this headline">¶</a></h3>
+<p><strong>Attributes</strong></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use the items with LineItem prefix when processing the lineItems collection using .any() and .all() expressions. Alternatively, address the item in the collection directly, e.g. lineItems[1].product.sku.</p>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li>lineItem.product.id <em>int</em></li>
+<li>lineItem.product.sku <em>string</em></li>
+<li>lineItem.product.primaryUnitPrecision.unit.code <em>string</em></li>
+<li>lineItem.product.primaryUnitPrecision.precision <em>int</em></li>
+<li>lineItem.product.primaryUnitPrecision.sell <em>bool</em></li>
+<li>lineItem.product.category.id <em>int</em></li>
+<li>lineItem.product.inventoryLevels <strong>collection</strong></li>
+<li>lineItem.unit.code <em>string</em></li>
+<li>lineItem.quantity <em>int</em></li>
+<li>lineItem.price.value <em>float</em></li>
+<li>lineItem.price.currency <em>string</em></li>
+<li>lineItem.weight.value <em>float</em></li>
+<li>lineItem.weight.unit.code <em>string</em></li>
+<li>lineItem.dimensions.value.length <em>float</em></li>
+<li>lineItem.dimensions.value.width <em>float</em></li>
+<li>lineItem.dimensions.value.height <em>float</em></li>
+<li>lineItem.dimensions.unit.code <em>string</em></li>
+<li>lineItem.product.unitPrecisions <strong>collection</strong></li>
+</ul>
+</div>
+<div class="section" id="lineitems-x-product-unitprecisions-collection">
+<h3><a class="toc-backref" href="#id5">lineItems[X].product.unitPrecisions Collection</a><a class="headerlink" href="#lineitems-x-product-unitprecisions-collection" title="Permalink to this headline">¶</a></h3>
+<p><strong>Attributes</strong></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use the items with unitPrecision prefix when processing the unitPrecisions collection using LineItem.product.unitPrecisions.any() and LineItem.product.unitPrecisions.all() expressions. Alternatively, address the item in the collection directly, e.g. LineItem.product.unitPrecisions[1].unit.code.</p>
+</div>
+<ul class="simple">
+<li>unitPrecision.unit.code <em>string</em></li>
+<li>unitPrecision.precision <em>int</em></li>
+<li>unitPrecision.sell <em>bool</em></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="lineitems-x-product-inventorylevels-collection">
+<h3><a class="toc-backref" href="#id6">lineItems[X].product.inventoryLevels Collection</a><a class="headerlink" href="#lineitems-x-product-inventorylevels-collection" title="Permalink to this headline">¶</a></h3>
+<p><strong>Attributes</strong></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use the items with inventoryLevel prefix when processing the inventoryLevels collection using LineItem.product.inventoryLevels.any() and LineItem.product.inventoryLevels.all() expressions.  Alternatively, address the item in the collection directly, e.g. LineItem.product.inventoryLevels[1].warehouse.id.</p>
+</div>
+<ul class="simple">
+<li>inventoryLevel.id <em>int</em></li>
+<li>inventoryLevel.quantity <em>int</em></li>
+<li>inventoryLevel.productUnitPrecision.unit.code <em>string</em></li>
+<li>inventoryLevel.productUnitPrecision.precision <em>int</em></li>
+<li>inventoryLevel.productUnitPrecision.sell <em>bool</em></li>
+<li>inventoryLevel.warehouse.id <em>int</em></li>
+<li>inventoryLevel.warehouse.name <em>string</em></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="customer-users-collection">
+<h3><a class="toc-backref" href="#id7">customer.users Collection</a><a class="headerlink" href="#customer-users-collection" title="Permalink to this headline">¶</a></h3>
+<p><strong>Attributes</strong></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Use the items with user prefix when processing the customer.users collection using customer.users.any() and customer.users.all() expressions.  Alternatively, address the item in the collection directly, e.g. customer.users[1].email.</p>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li>user.id <em>int</em></li>
+<li>user.email <em>string</em></li>
+<li>user.firstName <em>string</em></li>
+<li>user.middleName <em>string</em></li>
+<li>user.lastName <em>string</em></li>
+</ul>
+</div>
+</div>
+<div class="section" id="expression-syntax">
+<h2><a class="toc-backref" href="#id8">Expression Syntax</a><a class="headerlink" href="#expression-syntax" title="Permalink to this headline">¶</a></h2>
+<p>You can use the following elements to build the expression that identifies the cases when shipping or payment rule should be applied.</p>
+<p><strong>Supported Data</strong></p>
+<ul class="simple">
+<li>Text enclosed in quotes (&#8216;) or double quotes (&#8221;)</li>
+<li>Numbers (e.g. 32)</li>
+<li>Arrays (e.g. [1, 5], and [&#8220;Option A&#8221;, &#8220;Option B&#8221;])</li>
+<li>Boolean values (true and false)</li>
+<li>null</li>
+<li>Attributes and data structures listed in the <a class="reference internal" href="#attributes-supported-in-shipping-and-payment-rule-expressions">Attributes Supported in Shipping and Payment Rule Expressions</a>, e.g. subtotal &gt; 100000 or lineItems.all(lineItem.quantity &gt; 1000).<ul>
+<li>Use <em>lineItems.all(expression)</em> and <em>lineItems.any(expression)</em> to assess the collection of line items (products and their quantity, units, price, weight, and dimensions) in the order, quote or request for quote. Inside the expression, use <em>lineItem.product.&lt;fieldname&gt;</em> phrase to access the product field value. Separate the field from the item with a period.</li>
+<li>Outside the collection operations, you can assess an element of the array using <em>item[id].fieldname</em> phrase (e.g. lineItems[1].product.price &gt; 1000.00). Separate the field from the item with a period.</li>
+</ul>
+</li>
+</ul>
+<p>See more information about using collections in the <strong>Collection Validation</strong> section below.</p>
+<p><strong>Supported operators</strong></p>
+<ul class="simple">
+<li>Arithmetic:<ul>
+<li>add: +</li>
+<li>subtract: -</li>
+<li>multiply: *</li>
+<li>divide: /</li>
+<li>mod (a remainder of division): %</li>
+<li>power: **</li>
+</ul>
+</li>
+<li>Operations with text:<ul>
+<li>concatenate: ~</li>
+</ul>
+</li>
+<li>Comparison:<ul>
+<li>equal: =</li>
+<li>not equal: !=</li>
+<li>less: &lt;</li>
+<li>more: &gt;</li>
+<li>less or equal: &lt;=</li>
+<li>more or equal: &gt;=</li>
+<li>matches (regexp)</li>
+<li>in</li>
+<li>not in</li>
+</ul>
+</li>
+<li>Logical:<ul>
+<li>and</li>
+<li>or</li>
+<li>not</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<p><strong>Collection Validation</strong> with <em>any (OR)</em> and <em>all (AND)</em> Operations</p>
+<p>To validate all items in the collection (e.g. products in the order being submitted), or ensure that at least one value has a particular quality (e.g. it meets bulk quantity requirements), use <em>items.all(sub-condition)</em> and <em>items.any(sub-condition)</em>  expression phrases. The sub-condition is an expression that applies to every item. Note that it is enclosed in brackets, and no single/double quotes (&#8216;/&#8221;) are used as they are reserved for the text values.</p>
+<p>When you are using <cite>all</cite> or <cite>any</cite> method, you provide the named collection of elements (e.g. products) and Oro automatically guesses the name of the single element (e.g. product). It is produced by stripping the trailing &#8216;s&#8217; for countable nouns and by adding a leading &#8216;Item&#8217; the the uncountable ones, like in: <cite>milk.all(milkItem.isfresh)</cite>.</p>
+<p>The <cite>items.all(nested_expression)</cite> expression is <cite>true</cite> when the nested condition is satisfied for every item in the collection. When an item evaluation results in <cite>false</cite>, the <cite>items.all()</cite> immediately returns <cite>false</cite> without processing the remaining items.</p>
+<p>Vise versa, <cite>items.any(nested_expression)</cite> is <cite>true</cite> if a nested expression evaluates to <cite>true</cite> for at least one item. Remaining items are not processed either.</p>
+</div>
+<div class="section" id="sample-expression">
+<h2><a class="toc-backref" href="#id9">Sample Expression</a><a class="headerlink" href="#sample-expression" title="Permalink to this headline">¶</a></h2>
+<p>For example, you need to ensure that all products are available in the requested quantity in the particular warehouse (inventory levels in the warehouse A is greater than the line item quantity in the order).</p>
+<p>You can refer to the <a class="reference internal" href="#attributes-supported-in-shipping-and-payment-rule-expressions">Attributes Supported in Shipping and Payment Rule Expressions</a> to build the expression.</p>
+<p>For expression evaluation, OroCommerce walks through the <em>lineItems</em> collection and for every item in the collection it checks that this product is available in the warehouse A in the units that were ordered, that it is enabled for sale from the warehouse A, and that it is in stock in the required quantity.</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">lineItems</span><span class="o">.</span><span class="nx">all</span><span class="p">(</span>
+ <span class="nx">lineItem</span><span class="o">.</span><span class="nx">product</span><span class="o">.</span><span class="nx">inventoryLevels</span><span class="o">.</span><span class="nx">any</span><span class="p">(</span>
+     <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">warehouse</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Additional Warehouse&#39;</span>
+       <span class="k">and</span>
+     <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">quantity</span> <span class="o">&gt;=</span> <span class="nx">lineItem</span><span class="o">.</span><span class="nx">quantity</span>
+       <span class="k">and</span>
+     <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">productUnitPrecision</span><span class="o">.</span><span class="nx">unit</span><span class="o">.</span><span class="nx">code</span> <span class="o">=</span> <span class="nx">lineItem</span><span class="o">.</span><span class="nx">productUnit</span><span class="o">.</span><span class="nx">code</span>
+       <span class="k">and</span>
+     <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">productUnitPrecision</span><span class="o">.</span><span class="nx">sell</span>
+   <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>lineItems.all(...)</cite> expression is a loop through the elements of <cite>lineItems</cite> collection. It exposes every element of the collection inside the loop (in round brackets) as a <cite>lineItem</cite>.</p>
+<p>In the example, for every line item, the following condition is verified to be true:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+ <span class="nx">lineItem</span><span class="o">.</span><span class="nx">product</span><span class="o">.</span><span class="nx">inventoryLevels</span><span class="o">.</span><span class="nx">any</span><span class="p">(</span>
+   <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">warehouse</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Additional Warehouse&#39;</span>
+     <span class="k">and</span>
+   <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">quantity</span> <span class="o">&gt;=</span> <span class="nx">lineItem</span><span class="o">.</span><span class="nx">quantity</span>
+     <span class="k">and</span>
+   <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">productUnitPrecision</span><span class="o">.</span><span class="nx">unit</span><span class="o">.</span><span class="nx">code</span> <span class="o">=</span> <span class="nx">lineItem</span><span class="o">.</span><span class="nx">productUnit</span><span class="o">.</span><span class="nx">code</span>
+     <span class="k">and</span>
+   <span class="nx">inventoryLevel</span><span class="o">.</span><span class="nx">productUnitPrecision</span><span class="o">.</span><span class="nx">sell</span>
+ <span class="p">)</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<p><cite>inventoryLevels</cite> is another collection being decomposed in the nested loop: <cite>lineItem.product.inventoryLevels.any(..)</cite></p>
+<p>Inside the loop, OroCommerce checks every inventory level to find the one that is related to the warehouse A and verify the remaining conditions to evaluate the quantity is enough, like the following:</p>
+<p><cite>inventoryLevel.productUnitPrecision.unit.code = lineItem.productUnit.code</cite></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/shipping/configuration/expression_lang.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Shipping</a><ul>
+  <li><a href="index.html">Shipping Configuration</a><ul>
+      <li>Previous: <a href="shipping_rules.html" title="previous chapter">Shipping Rules Configuration</a></li>
+      <li>Next: <a href="../shipping_attributes.html" title="next chapter">Product Shipping Information</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/shipping/configuration/expression_lang.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

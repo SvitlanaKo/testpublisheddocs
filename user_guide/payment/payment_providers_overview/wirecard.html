@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Wirecard Payments Services &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="InfinitePay Payment Service" href="infinitepay.html" />
+    <link rel="prev" title="Authorize.Net Payments Services" href="authorizenet.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wirecard-payments-services">
+<span id="doc-payment-payment-providers-overview-wirecard"></span><h1>Wirecard Payments Services<a class="headerlink" href="#wirecard-payments-services" title="Permalink to this headline">¶</a></h1>
+<p>Wirecard is one of the leading providers of cashless payment services in Europe and around the world. It enables business owners to accept payment in more than 120 currencies via different payment methods using the single account.</p>
+<p>Integration of OroCommerce with Wirecard enables you to accept on your website payments made via the following methods:</p>
+<ul class="simple">
+<li>Credit and debit cards</li>
+<li>PayPal</li>
+<li>SEPA Direct Debit</li>
+</ul>
+<p>All orders paid via Wirecard payment methods immediately become &#8216;payed in full&#8217;.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>See the <a class="reference internal" href="../prerequisites/wirecard.html#doc-payment-prerequisites-wirecard"><span class="std std-ref">Prerequisites for Wirecard Integration</span></a> topic for pre-integration steps.</p>
+<p class="last">See the <a class="reference internal" href="../configuration/payment_methods/wirecard.html#doc-payment-configuration-payment-method-integration-wirecard"><span class="std std-ref">Wirecard Integration</span></a> topic for the detailed description of steps required to set up an integration.</p>
+</div>
+<div class="section" id="credit-and-debit-cards">
+<span id="doc-payment-payment-providers-overview-wirecard-card"></span><h2>Credit and Debit Cards<a class="headerlink" href="#credit-and-debit-cards" title="Permalink to this headline">¶</a></h2>
+<p>When a buyer selects this payment method, they enter their card details during the checkout to complete the payment. See <a class="reference internal" href="../checkout/index.html#doc-payment-checkout-wirecard-card"><span class="std std-ref">Wirecard Credit Card Checkout</span></a>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Note that to accept card payments, a business must have a <em>merchant account</em>. This is a special bank account to which payments are transferred as soon as they are received from buyers. Next, money is transferred from the merchant account to the regular bank account, from which a business representative can withdraw it.</p>
+<p class="last">You may acquire a merchant account on your own or obtain it from Wirecard.</p>
+</div>
+<p>The following types of card payments are supported:</p>
+<ul class="simple">
+<li>American Express</li>
+<li>Diners Club</li>
+<li>Discover</li>
+<li>JCB</li>
+<li>Maestro SecureCode</li>
+<li>Mastercard</li>
+<li>Mastercard SecureCode</li>
+<li>UATP</li>
+<li>Visa</li>
+<li>Verified by Visa</li>
+</ul>
+</div>
+<div class="section" id="paypal">
+<span id="doc-payment-payment-providers-overview-wirecard-paypal"></span><h2>PayPal<a class="headerlink" href="#paypal" title="Permalink to this headline">¶</a></h2>
+<p>When a buyer selects this payment method, they are redirected to the PayPal site where they can complete the payment using their PayPal account or credit card. This is the same as the <a class="reference internal" href="paypal.html#user-guide-payment-payment-providers-overview-paypal"><span class="std std-ref">Paypal Payments Pro Express Checkout</span></a> but provided via Wirecard. Therefore, if you already have a Wirecard account, you do not need a PayPal business account.</p>
+<p>See <a class="reference internal" href="../checkout/index.html#doc-payment-checkout-wirecard-paypal"><span class="std std-ref">Wirecard PayPal Checkout</span></a>.</p>
+</div>
+<div class="section" id="sepa-direct-debit">
+<span id="doc-payment-payment-providers-overview-wirecard-sepa"></span><h2>SEPA Direct Debit<a class="headerlink" href="#sepa-direct-debit" title="Permalink to this headline">¶</a></h2>
+<p>When a buyer selects this payment method, they enter their bank account details—IBAN (International Bank Account Number), BIC (Bank Identification Code), and an account owner name—during the checkout. See <a class="reference internal" href="../checkout/index.html#doc-payment-checkout-wirecard-sepa"><span class="std std-ref">Wirecard PayPal Checkout</span></a>. By proceeding to the next checkout step, the buyer agrees to be charged and gives you a mandate to initiate the payment.</p>
+<p>The SEPA (Single Euro Payments Area) Direct Debit enables you to collect payments in the EUR currency all-round the 28 countries that are members of the European Union and several other European countries. The SEPA Direct Debit payments are standardized and usually take about 2 days to be settled. This scheme makes collecting of international payments simple and cost-efficient as international transactions are treated the same way as national ones and the business owner requires a single SEPA-compliant bank account to accept payments.</p>
+</div>
+<div class="section" id="security">
+<span id="doc-payment-payment-providers-overview-wirecard-security"></span><h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
+<p>With the Wirecard Checkout Seamless solution, a buyer enters sensitive payment information into a special form that is provided by Wirecard and is seamlessly integrated withing the checkout page of your OroCommerce shop. When a buyer continues to the order review, this information is immediately ciphered together with the order details (using a pre-shared key provided by Wirecard) and directly sent to the Wirecard. An OroCommerce server never stores buyer&#8217;s sensitive payment information (e.g complete card number, CVV code).</p>
+<p>Wirecard servers are PCI DSS complaint. This ensures that you provide to your buyers the security of payments that meets requirements of the controlling organizations.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/payment/payment_providers_overview/wirecard.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Payment</a><ul>
+  <li><a href="index.html">Payment Methods and Providers</a><ul>
+      <li>Previous: <a href="authorizenet.html" title="previous chapter">Authorize.Net Payments Services</a></li>
+      <li>Next: <a href="infinitepay.html" title="next chapter">InfinitePay Payment Service</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/payment/payment_providers_overview/wirecard.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

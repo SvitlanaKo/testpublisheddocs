@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>By default, OroCommerce calculates tax using a rate defined in the built-in tax rule (<a class="reference external" href="/user_guide/taxes/TaxRules">Managing tax rules</a>) for the default shipping origin address.</p>
+<p>To edit configuration options that impact the way OroCommerce implies tax in the Purchase Order or Quote, navigate to <strong>System &gt; Configuration &gt; Commerce &gt; Taxation</strong> and perform the necessary configuration:</p>
+<ul class="simple">
+<li>Enable or disable tax calculation for the products you sell.</li>
+<li>Select a tax provider. OroCommerce build-in Table Rates (the tax rules defined in <a class="reference external" href="/user_guide/taxes/TaxRules">Managing tax rules</a> section) are used by default. Alternatively, with some customization, you can use external tax management and compliance system, like AvaTax or Vertex, as a tax provider. See <a class="reference external" href="/user-guide/taxes/index.html#integration-with-external-tax-management-systems">Integration with external tax management systems</a> for more information.</li>
+<li>Apply taxes per single item in the purchase order or per total for the requested amount of the items of same kind. This may minimize roundoff accumulated error and secure you and your customers from over or under paying.</li>
+<li>Configure how OroCommerce selects the core jurisdiction whose tax rules should be applied in a purchase order tax calculation. Tax jurisdiction may be defined by either shipping origin, billing address, or shipping destination.</li>
+<li>Set up any tax jurisdiction exceptions - countries and states where tax jurisdiction selection should deviate from the core rule. For example, when the main tax jurisdiction is at the sale shipping destination, the exception may be for some countries and states to use shiping origin instead.</li>
+<li>Decide wheather the tax is included into the product price. When this option is enabled, the product price displayed in the purchase order will increase by the value of tax for this product item. <strong>Note</strong>: This may complicate the tax returns and deduction for your customers who are businesses.</li>
+<li>Configure a shipping origin address that will be used system-wide for origin-based tax. When the shipping origin is a core jurisdiction, OroCommerce will use the address provided here to find the matching built-in tax jurisdiction rules for tax calculation.</li>
+</ul>
+<div class="section" id="sample-configuration-for-tax-calculation">
+<h2>Sample configuration for tax calculation<a class="headerlink" href="#sample-configuration-for-tax-calculation" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../../../_images/ConfigurationSystemTaxationTaxCalculation.png" src="../../../../../_images/ConfigurationSystemTaxationTaxCalculation.png" />
+<p>Available actions:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Remember to clear the <strong>Use default</strong> flag before setting a custom option.</p>
+</div>
+<ol class="arabic simple">
+<li>In <strong>Enable Taxation</strong> section, enable or disable taxation by setting or clearing the <strong>Enabled</strong> box.</li>
+<li>In <strong>Tax Provider</strong> section, keep the default <strong>Built-in Table Rates</strong> or, if you have extended the default capabilities and set up an integration, select your custom tax management system.</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li>In <strong>Calculator</strong> section:</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>With <strong>Start Calculation With</strong>, specify the formula for tax calculation. Tax is calculated either for unit price or for a product total price. Formula for <em>Unit price</em> is:</li>
+</ol>
+<blockquote>
+<div><div class="line-block">
+<div class="line">tax = [ ( unit price * tax rate ) * unit quantity ] + ... + [ ( unit price * tax rate ) * unit quantity ].</div>
+</div>
+<p>Formula for <em>Row Total</em> is:</p>
+<div class="line-block">
+<div class="line">tax = [ (unit price * unit quantity) * tax rate ] + ... + [ (unit price * unit quantity) * tax rate ].</div>
+</div>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li>With <strong>Start Calculation On</strong> option, select when the rounding off shall happen. For <strong>Item</strong>, the taxable ammount is rounded up for every item. For <strong>Total</strong>, the total tax is aggregated as is, and the final amount is rounded up.</li>
+<li>Set or clear the <strong>Product prices include tax</strong> option. When product prices include tax, the tax ammount is substructed from unit, product, or total price. Otherwise, the tax is added on top of the unit, product, or total price.</li>
+</ol>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p class="first">In <strong>Matcher</strong> section:</p>
+<ol class="loweralpha simple">
+<li>Select the default tax jurisdiction base:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>For origin-based jurisdiction, select <strong>Shipping Origin</strong>, or</li>
+<li>For destination-based jurisdiction, select <strong>Destination</strong>.</li>
+</ul>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li>Specify all countries and states/regions that do not follow the default tax jurisdiction base. Click <strong>+ Add</strong>, select a country, type in state or region and select the alternative tax jurisdiction base.</li>
+<li>If you use destination as tax jurisdiction base by default or for any exclusions, select either <strong>Shipping Address</strong> or <strong>Billing Address</strong> as <strong>Destination</strong>.</li>
+</ol>
+</li>
+<li><p class="first">In <strong>Origin</strong> section, provide the origin address (e.g. location of your warehouse or company legal address). For the origin-based jurisdictions, OroCommerce uses this address to find the matching tax rule.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/user_guide/overview/system/configuration/taxation/tax_calculation_overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../../../_sources/user_guide/overview/system/configuration/taxation/tax_calculation_overview.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

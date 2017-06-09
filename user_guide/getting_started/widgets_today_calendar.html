@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Today’s Calendar Widget &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Managing Address Book" href="common_actions/manage_address_book.html" />
+    <link rel="prev" title="Recent Calls Widget" href="widgets_recent_calls.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="today-s-calendar-widget">
+<span id="doc-widgets-today-calendar"></span><h1>Today&#8217;s Calendar Widget<a class="headerlink" href="#today-s-calendar-widget" title="Permalink to this headline">¶</a></h1>
+<p>This widget displays events planned for today and your tasks due today. The events displayed may belong to your personal calendar or other calendars that you watch. The list of calendars that you can see is the same as selected on the <a class="reference internal" href="my_oro/my_user_calendar.html#doc-my-oro-calendar"><span class="std std-ref">My Calendar</span></a> page.</p>
+<img alt="../../_images/widget_calendar.png" src="../../_images/widget_calendar.png" />
+<div class="section" id="widget-s-header">
+<h2>Widget&#8217;s Header<a class="headerlink" href="#widget-s-header" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="expand-collapse-the-widget">
+<h3>Expand / Collapse the Widget<a class="headerlink" href="#expand-collapse-the-widget" title="Permalink to this headline">¶</a></h3>
+<p>Click <strong>+</strong> / <strong>-</strong> in the upper-left corner of the widget to expand / collapse it.</p>
+</div>
+<div class="section" id="add-a-calendar-event">
+<h3>Add a Calendar Event<a class="headerlink" href="#add-a-calendar-event" title="Permalink to this headline">¶</a></h3>
+<p>Click the <span class="guilabel">New Event</span> button to add a new calendar event. See the <a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-add"><span class="std std-ref">Add a Calendar Event</span></a> action description.</p>
+</div>
+<div class="section" id="move-the-widget">
+<h3>Move the Widget<a class="headerlink" href="#move-the-widget" title="Permalink to this headline">¶</a></h3>
+<p>Click the <img alt="IcMoveW" class="align-middle" src="../../_images/IcMoveW.png" /> <strong>Move</strong> icon and drag-and-drop the widget to move to another part of a dashboard.</p>
+</div>
+<div class="section" id="remove-the-widget">
+<h3>Remove the Widget<a class="headerlink" href="#remove-the-widget" title="Permalink to this headline">¶</a></h3>
+<p>Click the <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong> icon to remove the widget from a dashboard.</p>
+</div>
+<div class="section" id="open-the-calls-grid">
+<h3>Open the Calls Grid<a class="headerlink" href="#open-the-calls-grid" title="Permalink to this headline">¶</a></h3>
+<p>Click the <strong>My Calendar</strong> link to open the <strong>My Calendar</strong> page.</p>
+</div>
+<div class="section" id="configure-the-widget">
+<h3>Configure the Widget<a class="headerlink" href="#configure-the-widget" title="Permalink to this headline">¶</a></h3>
+<p>Click the <i class="fa fa-cog fa-lg" aria-hidden="true"></i> <strong>Configure</strong> icon to set parameters for a widget.</p>
+<p>To change a widget title, clear the <strong>Use default</strong> check box, and enter a new widget name into the <strong>Widget title</strong> field.</p>
+<img alt="../../_images/widgets_today_calendar_configuration.png" src="../../_images/widgets_today_calendar_configuration.png" />
+</div>
+</div>
+<div class="section" id="calendar">
+<h2>Calendar<a class="headerlink" href="#calendar" title="Permalink to this headline">¶</a></h2>
+<p>At the top of the calendar you can see today&#8217;s date.</p>
+<p>Events in the calendar take cells that reflect the time when an event starts and its duration.</p>
+<p>An icon in the upper-left corner of the event cell represents the invitation status depending on whether the invitation has been accepted:</p>
+<ul class="simple">
+<li><i class="fa fa-reply fa-lg" aria-hidden="true"></i> <strong>Not Responded</strong>—This is a basic status of the invitation. It appears in the following cases:<ul>
+<li>You have not given any response to the invitation.</li>
+<li>You are an event owner and are not required to respond.</li>
+</ul>
+</li>
+<li><i class="fa fa-check fa-lg" aria-hidden="true"></i> <strong>Accepted</strong>—You have agreed to attend an event (you have responded <strong>Yes</strong> to an event invitation).</li>
+<li><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i> <strong>Tentatively Accepted</strong>—You are not sure whether you are going to visit an event (you have responded <strong>Maybe</strong> to an event invitation).</li>
+<li>There will be no icon in the following cases:<ul>
+<li>You are not going to attend an event and have declined the invitation (you have responded <strong>No</strong> to an event invitation).</li>
+<li>This is the event from the system calendar.</li>
+<li>The calendar record represents a task.</li>
+</ul>
+</li>
+</ul>
+<p>The <i class="fa fa-bell-o fa-lg" aria-hidden="true"></i> <strong>Reminder</strong> icon in the upper-left corner appears when the event owner configured sending reminders about the event.</p>
+<div class="section" id="manage-events">
+<h3>Manage Events<a class="headerlink" href="#manage-events" title="Permalink to this headline">¶</a></h3>
+<p>From the calendar you can add, view a calendar event, respond to it, edit and delete it, start a hangout meeting, remove a context from a calendar event.</p>
+<p>See the action descriptions:</p>
+<ul class="simple">
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-add"><span class="std std-ref">Add a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-view"><span class="std std-ref">View a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-edit"><span class="std std-ref">Edit a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-changetimeframe"><span class="std std-ref">Change a Calendar Event Time Frame</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-delete"><span class="std std-ref">Delete a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-respond"><span class="std std-ref">Respond to a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-hangout"><span class="std std-ref">Start a Hangout Meeting</span></a></li>
+<li><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions-contextdel"><span class="std std-ref">Remove a Context from a Calendar Event</span></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="activities/calendar_events/index.html#doc-activities-events"><span class="std std-ref">Calendar Events</span></a></p>
+<p><a class="reference internal" href="activities/calendar_events/activities_events_actions.html#doc-activities-events-actions"><span class="std std-ref">Manage Calendar Events</span></a></p>
+<p><a class="reference internal" href="activities/calendar_events/activities_events_grid.html#doc-activities-events-grid"><span class="std std-ref">Calendar Events Grid</span></a></p>
+<p><a class="reference internal" href="activities/calendar_events/activities_events_viewpage.html#doc-activities-events-view-page"><span class="std std-ref">Calendar Event View Page</span></a></p>
+<p><a class="reference internal" href="my_oro/my_user_calendar.html#doc-my-oro-calendar"><span class="std std-ref">My Calendar Page</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/getting_started/widgets_today_calendar.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+  <li><a href="index.html">Getting Started with UI</a><ul>
+      <li>Previous: <a href="widgets_recent_calls.html" title="previous chapter">Recent Calls Widget</a></li>
+      <li>Next: <a href="common_actions/manage_address_book.html" title="next chapter">Managing Address Book</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/getting_started/widgets_today_calendar.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

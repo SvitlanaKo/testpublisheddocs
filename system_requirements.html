@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>System Requirements &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SEO Configuration Guide" href="seo_config_guide/index.html" />
+    <link rel="prev" title="Release Process" href="community/release.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="system-requirements">
+<span id="index-0"></span><span id="id1"></span><h1>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h1>
+<p>OroCommerce is a web application which runs on a server. Users interact with the application via a web browser on any computer or mobile device that have access to the internet or the network where the server is hosted.</p>
+<div class="section" id="server-side-requirements">
+<h2>Server-side Requirements<a class="headerlink" href="#server-side-requirements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="operating-systems">
+<h3>Operating Systems<a class="headerlink" href="#operating-systems" title="Permalink to this headline">¶</a></h3>
+<p>Linux distributions (RedHat, Ubuntu, Debian, CentOS) are recommended for the production setup.
+Windows 7 and above and Mac OS X can be used for the development environment.</p>
+</div>
+<div class="section" id="software">
+<h3>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h3>
+<p>Oro applications are compatible with most web servers with PHP support, but we recommend the following configuration:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><em>Web Server</em></td>
+<td><ul class="first simple">
+<li><a class="reference external" href="https://httpd.apache.org/">Apache</a> 2.2.x or 2.4.x</li>
+<li><a class="reference external" href="https://www.nginx.com/">Nginx</a> latest mainline or stable version</li>
+</ul>
+<p class="last">Web server configuration recommendations are well
+described in <a class="reference external" href="http://symfony.com/doc/2.8/setup/web_server_configuration.html">Symfony documentation</a></p>
+</td>
+</tr>
+<tr class="row-even"><td><em>PHP</em></td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://secure.php.net/">PHP</a> 7.X</li>
+<li>PHP CLI, the same version as for the web server</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>PHP Settings</em></td>
+<td><p class="first">Few updates to default PHP configuration settings
+should be done in php.ini for the web server and
+CLI:</p>
+<ul class="simple">
+<li>date.timezone must be set</li>
+<li>detect_unicode must be disabled</li>
+<li>memory_limit should be 512M or above</li>
+</ul>
+<p>If you have xdebug installed (not recommended in
+the production setup):</p>
+<ul class="last simple">
+<li>xdebug.scream must be disabled</li>
+<li>xdebug.show_exception_trace must be disabled</li>
+<li>xdebug.max_nesting_level above 100</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>PHP Extensions</em></td>
+<td><ul class="first last simple">
+<li>ctype</li>
+<li>curl</li>
+<li>fileinfo</li>
+<li>gd</li>
+<li>intl (ICU library 4.4 and above)</li>
+<li>json</li>
+<li>mbstring</li>
+<li>mcrypt</li>
+<li>mysql</li>
+<li>pcre</li>
+<li>simplexml</li>
+<li>tokenizer</li>
+<li>xml</li>
+<li>zip</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>Database</em></td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://www.mysql.com/">MySQL</a> 5.1 and above</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Process Control</em></td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="http://supervisord.org/">Supervisor</a> or alternative</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="enterprise-edition-software">
+<h3>Enterprise Edition Software<a class="headerlink" href="#enterprise-edition-software" title="Permalink to this headline">¶</a></h3>
+<p>Enterprise edition is built to support better scale and performance. It is compatible with additional software configuration that allows to achieve these goals.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><em>PHP Extensions</em></th>
+<th class="head"><ul class="first last simple">
+<li>pgsql</li>
+</ul>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>Database</em></td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> / <a class="reference external" href="https://www.enterprisedb.com/">EnterpriseDB</a> 9.1 and above</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>Search Index</em></td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a> 2.x</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Job Queue</em></td>
+<td><ul class="first last simple">
+<li><a class="reference external" href="https://www.rabbitmq.com/">RabbitMQ</a> 3.5.8 and above, 3.6.x is recommended</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p id="sys-requirements-postgre-config"><strong>PostgreSQL Configuration</strong></p>
+<p>PostgreSQL <cite>uuid-ossp</cite> extension should be loaded for proper doctrine&#8217;s <cite>guid</cite> type handling. In order to enable it, connect to the database server and run sql query:</p>
+<div class="highlight-sql"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="n">EXTENSION</span> <span class="ss">&quot;uuid-ossp&quot;</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="optional-recommendations">
+<h3>Optional recommendations<a class="headerlink" href="#optional-recommendations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://nodejs.org/en/">Node.js</a> could be used for more efficient JS assets minification</li>
+<li><a class="reference external" href="http://php.net/manual/en/book.tidy.php">Tidy PHP extension</a> should be installed to make sure that HTML is correctly converted into a text representation</li>
+<li><a class="reference external" href="https://redis.io/">Redis</a> - could be used for more efficient application caching. Supported versions of Redis from 2.0 to 3.2</li>
+</ul>
+</div>
+</div>
+<div class="section" id="client-side-requirements">
+<h2>Client-side Requirements<a class="headerlink" href="#client-side-requirements" title="Permalink to this headline">¶</a></h2>
+<p>On the client side, Oro applications could be used with most of the graphical browsers on any operating system.
+Recommended and supported browsers are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a> (latest)</li>
+<li><a class="reference external" href="https://www.google.com/chrome/">Google Chrome</a> (latest)</li>
+<li><a class="reference external" href="https://www.microsoft.com/en-us/download/internet-explorer.aspx">Microsoft Internet Explorer</a> 10 and above</li>
+<li><a class="reference external" href="https://www.microsoft.com/en-us/windows/microsoft-edge">Microsoft Edge</a> (latest)</li>
+<li><a class="reference external" href="http://www.apple.com/safari/">Safari</a> (latest)</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Any browser you use needs to have cookies and JavaScript turned on.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/system_requirements.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="community/release.html" title="previous chapter">Release Process</a></li>
+      <li>Next: <a href="seo_config_guide/index.html" title="next chapter">SEO Configuration Guide</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/system_requirements.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PayPal Payments Services &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Authorize.Net Payments Services" href="authorizenet.html" />
+    <link rel="prev" title="Payment Term Service" href="payment_term.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="paypal-payments-services">
+<span id="user-guide-payment-payment-providers-overview-paypal"></span><h1>PayPal Payments Services<a class="headerlink" href="#paypal-payments-services" title="Permalink to this headline">¶</a></h1>
+<p>PayPal is a fast, safe and reliable online global payment system that offers an easy online payments for businesses and individuals.</p>
+<p>Configure <a class="reference internal" href="../configuration/payment_methods/paypal_payflow_gateway.html#sys-integrations-manage-integrations-paypal-payflow-gateway"><span class="std std-ref">PayPal integration</span></a> to enable PayPal payment methods on the checkout.</p>
+<p>OroCommerce supports integration with PayPal to offer the following payment methods:</p>
+<ul class="simple">
+<li>PayPal Payflow Gateway</li>
+<li>PayPal Payments Pro</li>
+<li>PayPal Payflow Gateway Express Checkout</li>
+<li>PayPal Payments Pro Express Checkout</li>
+</ul>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#paypal-payflow-payment-gateway-vs-paypal-payments-pro" id="id1">PayPal Payflow Payment Gateway vs PayPal Payments Pro</a></li>
+<li><a class="reference internal" href="#ordinary-vs-express-checkout" id="id2">Ordinary vs Express Checkout</a></li>
+</ul>
+</div>
+<div class="section" id="paypal-payflow-payment-gateway-vs-paypal-payments-pro">
+<h2><a class="toc-backref" href="#id1">PayPal Payflow Payment Gateway vs PayPal Payments Pro</a><a class="headerlink" href="#paypal-payflow-payment-gateway-vs-paypal-payments-pro" title="Permalink to this headline">¶</a></h2>
+<p>PayPal Payflow is a secure payment gateway that receives information about payments via debit and credit cards, authorizations, captures, etc., processes this information and sends payment transactions to the external payment processor that handles the credit card payments.</p>
+<p>PayPal Payment Pro uses PayPal Payflow Payment Gateway and PayPal payment processor.</p>
+</div>
+<div class="section" id="ordinary-vs-express-checkout">
+<h2><a class="toc-backref" href="#id2">Ordinary vs Express Checkout</a><a class="headerlink" href="#ordinary-vs-express-checkout" title="Permalink to this headline">¶</a></h2>
+<p>For ordinary checkout, a customer user enters the card number, issue date, and, optionally, cvv code. This information is kept in their browser until it is sent directly to the payment gateway server (avoiding the website). Ordinary checkout in OroCommerce enables delayed payment capture.
+Express checkout helps the customer user complete payment immediately using the credit card payment capture form hosted by PayPal or via their paypal account.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/payment/payment_providers_overview/paypal.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Payment</a><ul>
+  <li><a href="index.html">Payment Methods and Providers</a><ul>
+      <li>Previous: <a href="payment_term.html" title="previous chapter">Payment Term Service</a></li>
+      <li>Next: <a href="authorizenet.html" title="next chapter">Authorize.Net Payments Services</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/payment/payment_providers_overview/paypal.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

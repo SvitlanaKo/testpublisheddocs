@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Checkout Workflow &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Alternative Checkout Workflow" href="alternative_checkout.html" />
+    <link rel="prev" title="RFQ Frontoffice Workflow" href="rfq_frontoffice.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="checkout-workflow">
+<span id="system-workflows-checkout-workflow"></span><h1>Checkout Workflow<a class="headerlink" href="#checkout-workflow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Checkout workflow represents a standard checkout procedure in the eCommerce environment. It is a <a class="reference internal" href="index.html#user-guide-system-workflow-management-system-custom"><span class="std std-ref">system workflow</span></a> that defines the sequence of <a class="reference internal" href="index.html#user-guide-system-workflow-management-steps-transitions"><span class="std std-ref">steps and transitions</span></a> that a user can go through when creating an order in the front store.</p>
+<p>To reach the workflow:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Workflows</strong> in the main menu.</li>
+<li>Click <strong>Checkout</strong> to open the flow.</li>
+</ol>
+<p>On the Checkout workflow page, you can perform the following actions:</p>
+<ul class="simple">
+<li>Clone the workflow - click <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> <strong>Clone</strong> to clone the workflow.</li>
+<li>Deactivate the workflow - click <i class="fa fa-close fa-lg" aria-hidden="true"></i> <strong>Deactivate</strong> to deactivate the workflow.</li>
+</ul>
+<img alt="../../../_images/CheckoutViewPageBackoffice.png" src="../../../_images/CheckoutViewPageBackoffice.png" />
+<p>Within the Workflows grid, you can perform the following actions for the Checkout workflow:</p>
+<ul class="simple">
+<li>Clone the workflow: <i class="fa fa-files-o fa-lg" aria-hidden="true"></i></li>
+<li>View the workflow: <i class="fa fa-eye fa-lg" aria-hidden="true"></i></li>
+<li>Deactivate the workflow: <i class="fa fa-close fa-lg" aria-hidden="true"></i></li>
+</ul>
+<img alt="../../../_images/CheckoutGridBackoffice.png" src="../../../_images/CheckoutGridBackoffice.png" />
+</div>
+<div class="section" id="steps-and-transitions">
+<h2>Steps and Transitions<a class="headerlink" href="#steps-and-transitions" title="Permalink to this headline">¶</a></h2>
+<p>The following table illustrates the steps and transitions that the Checkout workflow consists of:</p>
+<img alt="../../../_images/CheckoutWfTable.png" src="../../../_images/CheckoutWfTable.png" />
+<p>As an illustration, let us go through a sample flow to see how the Checkout workflow works:</p>
+<ol class="arabic">
+<li><p class="first">A product has been added to a shopping list. On opening the shopping list, you can create an order either by clicking <strong>Create Order</strong> on the right of the page next to Request Quote or by clicking on the <strong>Create Order</strong> button at the bottom of the page.</p>
+<img alt="../../../_images/CreateOrderButton.png" src="../../../_images/CreateOrderButton.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The <strong>Create Order</strong> button will only be available if the following conditions are met:</p>
+<ul class="last simple">
+<li>at least one <a class="reference internal" href="../../shipping/index.html#user-guide-shipping"><span class="std std-ref">shipping method</span></a> is available</li>
+<li>at least one <a class="reference internal" href="../../payment/index.html#user-guide-payment"><span class="std std-ref">payment method</span></a> is available</li>
+<li>there is at least one product with a price in the shopping list</li>
+<li>items to be purchased are available in the <a class="reference internal" href="../../inventory/index.html#user-guide-inventory"><span class="std std-ref">inventory</span></a> in the management console</li>
+</ul>
+</div>
+</li>
+</ol>
+<blockquote>
+<div>A warning message will be shown if for some reason you are unable to start the checkout process.</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Step 1: Billing Information</strong></p>
+<p>The order is open. The first step is to enter billing information for the order by selecting an existing address from the address book, or creating a new one.</p>
+<p>Checking <strong>Ship to this address</strong> will allow you to use the provided billing address as shipping.</p>
+<p>Clicking <strong>Continue</strong> will redirect you to the next step.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is possible to amend the order by clicking <strong>Edit the Order</strong> in the right corner of the Order Summary section. The Order Summary section will be available for Billing Information, Shipping Information, Shipping Method and Payment pages. Editing the order will remain possible throughout the checkout process until the order is submitted.</p>
+</div>
+<img alt="../../../_images/Checkout_BilInfo.png" src="../../../_images/Checkout_BilInfo.png" />
+</li>
+<li><p class="first"><strong>Step 2: Shipping Information</strong></p>
+<p>If the <strong>Ship to this address</strong> box has been checked in the Billing Information step, the provided address will be automatically selected in the Shipping Information step.</p>
+<p>To edit shipping information, clear the <strong>Use billing address</strong> box and provide a different shipping address for the order.</p>
+<img alt="../../../_images/UseBillingAddressBox.png" src="../../../_images/UseBillingAddressBox.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>It is possible to edit <em>the already provided</em> information (until the order is submitted) by clicking <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> on the left side of the page.</p>
+<img alt="../../../_images/EditInfo.png" class="last align-center" src="../../../_images/EditInfo.png" />
+</div>
+</li>
+<li><p class="first"><strong>Step 3: Shipping Method</strong></p>
+<p>At this stage, it is necessary to provide a <a class="reference internal" href="../../shipping/index.html#user-guide-shipping"><span class="std std-ref">shipping method</span></a> by selecting one from the list of the available methods.</p>
+<img alt="../../../_images/Shipping_Info.png" src="../../../_images/Shipping_Info.png" />
+</li>
+<li><p class="first"><strong>Step 4: Payment</strong></p>
+<p>Choose a suitable <a class="reference internal" href="../../payment/index.html#user-guide-payment"><span class="std std-ref">payment method</span></a> by selecting it from the list of all available methods.</p>
+<img alt="../../../_images/Payment.png" src="../../../_images/Payment.png" />
+</li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple" start="6">
+<li><strong>Step 5: Order Review</strong></li>
+</ol>
+<blockquote>
+<div><p>Once all the necessary information has been provided, it is possible to review the order in the Order Review section:</p>
+<ul class="simple">
+<li>View Options for the order:<ul>
+<li>Do not ship later than</li>
+<li>PO Number</li>
+<li>Notes</li>
+<li>Delete the shopping list</li>
+</ul>
+</li>
+<li>Check quantity, price, subtotal, shipping and total cost</li>
+<li>Edit the Order</li>
+<li>Edit the already provided information by clicking <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> on the left side of the page</li>
+</ul>
+<p>To submit the order, click <strong>Submit Order</strong> at the bottom of the page.</p>
+<img alt="../../../_images/Order_Review.png" src="../../../_images/Order_Review.png" />
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic" start="7">
+<li><p class="first">Once submitted, the order will be received and dealt with by the sales team.</p>
+<img alt="../../../_images/order_received.png" src="../../../_images/order_received.png" />
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/system/workflows/checkout.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">System Configuration</a><ul>
+  <li><a href="index.html">Workflow Management</a><ul>
+      <li>Previous: <a href="rfq_frontoffice.html" title="previous chapter">RFQ Frontoffice Workflow</a></li>
+      <li>Next: <a href="alternative_checkout.html" title="next chapter">Alternative Checkout Workflow</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/system/workflows/checkout.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

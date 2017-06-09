@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tax Rules &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="View and Filter Tax Rules" href="viewlist.html" />
+    <link rel="prev" title="Editing a Tax Jurisdiction" href="../tax_jurisdictions/edit.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tax-rules">
+<span id="id1"></span><h1>Tax Rules<a class="headerlink" href="#tax-rules" title="Permalink to this headline">¶</a></h1>
+<p>Tax rules help OroCommerce find the correct tax rate that should be used for the products listed in the purchase order by matching the product tax code that indicates tax status of the product, customer tax code that indicates tax status of the buying company, and tax jurisdiction where the tax is due. OroCommerce supports tax exemption mechanism: you can set zero tax rate for some customers and/or products.</p>
+<p>Basically, in OroCommerce, tax rule binds the following items:</p>
+<ul class="simple">
+<li>tax jurisdiction - an address, usually a state in a country that have defined taxation policies that determine when and how the company should pay their sales or VAT tax, and what rates should be used, depending on the tax status of the products you sell and  parties you sell to.</li>
+<li>customer tax code - a label for a customer or customer group that follow similar taxation rules in at least one tax jurisdictions.</li>
+<li>product tax code - a label for a group of products that have similar taxation rules in at least one tax jurisdictions.</li>
+<li>tax rate - the percentage of the sales income that should be payed as a tax in the particular tax jurisdiction for a certain type of products sold to a group of customers with the same tax status.</li>
+</ul>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#view-and-filter-tax-rules" id="id3">View and Filter Tax Rules</a></li>
+<li><a class="reference internal" href="#create-a-tax-rule" id="id4">Create a Tax Rule</a></li>
+<li><a class="reference internal" href="#view-tax-rule-details" id="id5">View Tax Rule Details</a></li>
+<li><a class="reference internal" href="#edit-a-tax-rule" id="id6">Edit a Tax Rule</a></li>
+</ul>
+</div>
+<div class="section" id="view-and-filter-tax-rules">
+<h2><a class="toc-backref" href="#id3">View and Filter Tax Rules</a><a class="headerlink" href="#view-and-filter-tax-rules" title="Permalink to this headline">¶</a></h2>
+<p>To view all Tax Rules, navigate to <strong>Taxes &gt; Tax Rules</strong> in the main menu.</p>
+<img alt="../../../_images/All_TaxRules_Taxes.png" class="with-border" src="../../../_images/All_TaxRules_Taxes.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To handle big volume of data, use page switcher, increase <em>View Per Page</em> or use filters to narrow down the list to just the codes you need.</p>
+</div>
+<p>The following information about the Tax Rules is available in the Tax Rules list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ACCOUNT TAX CODE</td>
+<td>None.</td>
+</tr>
+<tr class="row-odd"><td>PRODUCT TAX CODE</td>
+<td>None.</td>
+</tr>
+<tr class="row-even"><td>TAX JURISDICTION</td>
+<td>None.</td>
+</tr>
+<tr class="row-odd"><td>TAX</td>
+<td>None.</td>
+</tr>
+<tr class="row-even"><td>DESCRIPTION</td>
+<td>None.</td>
+</tr>
+<tr class="row-odd"><td>CREATED AT</td>
+<td>None.</td>
+</tr>
+<tr class="row-even"><td>UPDATED AT</td>
+<td>None.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next steps</strong></p>
+<p>You can perform the following actions with every item in the Tax Rules list:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><a class="reference external" href="view">View a Tax Rule details</a>: Click on the item to open its details page.</p>
+<p>OR</p>
+<p>Alternatively: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> to open its details page.</p>
+</li>
+<li><p class="first"><a class="reference external" href="edit">Edit a Tax Rule details</a>: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.</p>
+</li>
+<li><p class="first">Delete a Tax Rule: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-trash fa-lg" aria-hidden="true"></i> to remove the Tax Rule.</p>
+</li>
+<li><p class="first"><a class="reference external" href="create">Create Tax Rule</a>: Click <strong>Create Tax Rule</strong> to the top right from the list.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="create-a-tax-rule">
+<h2><a class="toc-backref" href="#id4">Create a Tax Rule</a><a class="headerlink" href="#create-a-tax-rule" title="Permalink to this headline">¶</a></h2>
+<p>To create tax rules for a particular tax jurisdiction:</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference external" href="./tax-jurisdictions/create">Create a tax jurisdiction</a> (country, state and a range of zip codes) where a special taxation rules apply.</p>
+</li>
+<li><p class="first">Create customer tax codes for every group of buyers that have fixed tax rates in this tax jurisdiction. <a class="reference internal" href="../link_a_tax_code_to_a_customer.html#user-guide-taxes-link-a-tax-code-to-a-customer"><span class="std std-ref">Link the customer groups to their respective tax codes</span></a>.</p>
+</li>
+<li><p class="first">Create product tax codes for every group of products that have fixed tax rates in this tax jurisdiction. Ensure that these tax codes are <a class="reference internal" href="../link_a_tax_code_to_a_product.html#user-guide-taxes-link-a-tax-code-to-a-product"><span class="std std-ref">assigned to the products</span></a>.</p>
+</li>
+<li><p class="first">Create all <a class="reference external" href="./taxes/create">the tax rates</a> defined by the tax jurisdiction for the customers you are serving and products you are selling.</p>
+</li>
+<li><p class="first">Finally, for every valid combination of the tax rates, product types and customer types, create a tax rule:</p>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p class="first">Navigate to <strong>Taxes &gt; Tax Rules</strong> and click <strong>Create Tax Rule</strong>.</p>
+<img alt="../../../_images/CreateTaxRule_TaxRules_Taxes_drop.png" src="../../../_images/CreateTaxRule_TaxRules_Taxes_drop.png" />
+</li>
+<li><p class="first">In the lists select the Account Tax Code (customer tax code), product tax code, tax jurisdiction, and tax (tax rate). Optionally, add description of the tax rate applied.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> or <strong>Save and Close</strong>.</p>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="view-tax-rule-details">
+<h2><a class="toc-backref" href="#id5">View Tax Rule Details</a><a class="headerlink" href="#view-tax-rule-details" title="Permalink to this headline">¶</a></h2>
+<p>To view a Tax Rule details:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Taxes &gt; Tax Rules</strong> in the main menu.</p>
+</li>
+<li><p class="first">Find the line with the necessary Tax Rule and click on it.</p>
+<p>The following information is available immediately:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Account Tax Code</li>
+<li>Product Tax Code</li>
+<li>Tax Jurisdiction</li>
+<li>Tax (rate)</li>
+<li>Description</li>
+</ul>
+</div></blockquote>
+<img alt="../../../_images/1View_TaxRules_Taxes.png" class="with-border" src="../../../_images/1View_TaxRules_Taxes.png" />
+</li>
+</ol>
+<p><strong>Next steps</strong></p>
+<p>You can perform the following actions with a Tax Rule:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="edit">Edit a Tax Rule details</a>: Click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> to the top right of the page.</li>
+<li>Delete a Tax Rule: Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong> to the top right of the page.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="edit-a-tax-rule">
+<h2><a class="toc-backref" href="#id6">Edit a Tax Rule</a><a class="headerlink" href="#edit-a-tax-rule" title="Permalink to this headline">¶</a></h2>
+<p>To edit the Tax Rule:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Taxes &gt; Tax Rules</strong> in the main menu.</li>
+<li>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.
+The following page opens:</li>
+</ol>
+<img alt="../../../_images/1Edit_TaxRules_Taxes.png" class="with-border" src="../../../_images/1Edit_TaxRules_Taxes.png" />
+<ol class="arabic simple">
+<li>Update the links between the tax rule and the tax rule components (tax rate, tax jurisdiction, customer tax code and product tax code) to modify the Tax Rule.</li>
+<li>Click <strong>Save</strong> on the top right of the page.</li>
+</ol>
+<p>The Tax Rule is updated.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/taxes/tax_rules/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Taxes</a><ul>
+      <li>Previous: <a href="../tax_jurisdictions/edit.html" title="previous chapter">Editing a Tax Jurisdiction</a></li>
+      <li>Next: <a href="viewlist.html" title="next chapter">View and Filter Tax Rules</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/taxes/tax_rules/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

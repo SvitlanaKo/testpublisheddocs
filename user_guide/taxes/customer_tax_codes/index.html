@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customer Tax Codes &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="View and Filter Customer Tax Codes" href="viewlist.html" />
+    <link rel="prev" title="Configure US Sales Tax for Digital Products" href="../configuration/us_sales_tax.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customer-tax-codes">
+<h1>Customer Tax Codes<a class="headerlink" href="#customer-tax-codes" title="Permalink to this headline">¶</a></h1>
+<p>Customer Tax Code is a label that is assigned to a customer and indicates the tax obligations and exemptions a customer has. The customer tax obligations are taken into account when a customer (user) submits an order.</p>
+<p>The sections below provide guidance on managing customer tax codes, using them to label customers and bind customers to a dedicated tax rules.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#view-and-filter-customer-tax-codes" id="id2">View and Filter Customer Tax Codes</a></li>
+<li><a class="reference internal" href="#create-a-customer-tax-code" id="id3">Create a Customer Tax Code</a></li>
+<li><a class="reference internal" href="#view-customer-tax-code-details-linked-customer-accounts-and-change-history" id="id4">View Customer Tax Code Details, Linked Customer Accounts and Change History</a></li>
+<li><a class="reference internal" href="#edit-customer-tax-code-details" id="id5">Edit Customer Tax Code Details</a><ul>
+<li><a class="reference internal" href="#association-of-the-customer-tax-code-with-the-customer" id="id6">Association of the Customer Tax Code with the Customer</a></li>
+<li><a class="reference internal" href="#association-of-the-customer-tax-code-with-the-tax-rule" id="id7">Association of the Customer Tax Code with the Tax Rule</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-and-filter-customer-tax-codes">
+<h2><a class="toc-backref" href="#id2">View and Filter Customer Tax Codes</a><a class="headerlink" href="#view-and-filter-customer-tax-codes" title="Permalink to this headline">¶</a></h2>
+<p>To view all Customer Tax Codes, navigate to <strong>Taxes &gt; Customer Tax Codes</strong> in the main menu.</p>
+<img alt="../../../_images/AllAccountTaxCodesTaxes.png" class="with-border" src="../../../_images/AllAccountTaxCodesTaxes.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To handle big volume of data, use page switcher, increase <em>View Per Page</em> or use filters to narrow down the list to just the codes you need.</p>
+</div>
+<p>The following information about the Customer Tax Codes is available in the Customer Tax Codes list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CODE</td>
+<td>The unique identifier of the Customer Tax Code.</td>
+</tr>
+<tr class="row-odd"><td>DESCRIPTION</td>
+<td>Detailed description of the Customer Tax Code.</td>
+</tr>
+<tr class="row-even"><td>CREATED AT</td>
+<td>Date when the Customer Tax Code was created.</td>
+</tr>
+<tr class="row-odd"><td>UPDATED AT</td>
+<td>Date when the Customer Tax Code was updated last.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next steps</strong></p>
+<p>You can perform the following actions with every item in the Customer Tax Codes list:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><a class="reference external" href="view">View a Customer Tax Code details</a>: Click on the item to open its details page.</p>
+<p>OR</p>
+<p>Aternatively: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> to open its details page.</p>
+</li>
+<li><p class="first"><a class="reference external" href="edit">Edit a Customer Tax Code details</a>: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.</p>
+</li>
+<li><p class="first">Delete a Customer Tax Code: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-trash fa-lg" aria-hidden="true"></i> to remove the Customer Tax Code.</p>
+</li>
+<li><p class="first"><a class="reference external" href="create">Create Account Tax Code</a>: Click <strong>Create Account Tax Code</strong> to the top right from the list.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="create-a-customer-tax-code">
+<h2><a class="toc-backref" href="#id3">Create a Customer Tax Code</a><a class="headerlink" href="#create-a-customer-tax-code" title="Permalink to this headline">¶</a></h2>
+<p>To create a new Customer Tax Code:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Taxes &gt; Customer Tax Codes</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Customer Tax Codes</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../../_images/CreateAccountTaxCodeAccountTaxCodesTaxes.png" class="with-border" src="../../../_images/CreateAccountTaxCodeAccountTaxCodesTaxes.png" />
+</li>
+<li><p class="first">Fill in <strong>Code</strong> and <strong>Description</strong> with information about the Customer Tax Code you are creating.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The new Customer Tax Code is created.</p>
+</div>
+<div class="section" id="view-customer-tax-code-details-linked-customer-accounts-and-change-history">
+<h2><a class="toc-backref" href="#id4">View Customer Tax Code Details, Linked Customer Accounts and Change History</a><a class="headerlink" href="#view-customer-tax-code-details-linked-customer-accounts-and-change-history" title="Permalink to this headline">¶</a></h2>
+<p>To view a Customer Tax Code details:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Taxes &gt; Customer Tax Codes</strong> in the main menu.</p>
+</li>
+<li><p class="first">Find the line with the necessary Customer Tax Code and click on it.</p>
+<p>The following information is available immediately:</p>
+<ul class="simple">
+<li>Code</li>
+<li>Decription</li>
+<li>List of customers with this customer tax code</li>
+<li>List of customer groups with this customer tax code</li>
+</ul>
+<img alt="../../../_images/FOREIGNGOVERNMENTSViewAccountTaxCodesTaxes1.png" class="with-border" src="../../../_images/FOREIGNGOVERNMENTSViewAccountTaxCodesTaxes1.png" />
+</li>
+</ol>
+<p><strong>Next steps</strong></p>
+<p>You can perform the following actions with a Customer Tax Code:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">View Change History: See the log of edits of this customer tax code by clicking on the <strong>Change History</strong> link to the tp right of the page.</p>
+<img alt="../../../_images/CustomerTaxCodeChangeHistory.png" class="with-border" src="../../../_images/CustomerTaxCodeChangeHistory.png" />
+</li>
+<li><p class="first">View details of the Customer who is linked to this customer tax code: Click on the line with the customer account details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can edit the customer details to remove link to this customer tax code, if necessary.</p>
+</div>
+<img alt="../../../_images/CustomerTaxCodeLinkedCustomerAccount.png" class="with-border" src="../../../_images/CustomerTaxCodeLinkedCustomerAccount.png" />
+</li>
+<li><p class="first"><a class="reference external" href="edit">Edit a Customer Tax Code details</a>: Click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> to the top right of the page.</p>
+</li>
+<li><p class="first">Delete a Customer Tax Code: Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong> to the top right of the page.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="edit-customer-tax-code-details">
+<h2><a class="toc-backref" href="#id5">Edit Customer Tax Code Details</a><a class="headerlink" href="#edit-customer-tax-code-details" title="Permalink to this headline">¶</a></h2>
+<p>To edit the Customer Tax Code value and description:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Taxes &gt; Customer Tax Codes</strong> in the main menu.</p>
+</li>
+<li><p class="first">Hower over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.
+The following page opens:</p>
+<img alt="../../../_images/FOREIGNGOVERNMENTSEditAccountTaxCodesTaxes.png" class="with-border" src="../../../_images/FOREIGNGOVERNMENTSEditAccountTaxCodesTaxes.png" />
+</li>
+<li><p class="first">Update the <strong>Code</strong> and <strong>Description</strong> with new information about the Customer Tax Code.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The Customer Tax Code is updated.</p>
+<div class="section" id="association-of-the-customer-tax-code-with-the-customer">
+<h3><a class="toc-backref" href="#id6">Association of the Customer Tax Code with the Customer</a><a class="headerlink" href="#association-of-the-customer-tax-code-with-the-customer" title="Permalink to this headline">¶</a></h3>
+<p>You can edit the association of the Customer Tax Code with the customer when <a class="reference external" href="../../customer/customers/edit">editing the customer details</a>.</p>
+<p>See information on <a class="reference external" href="../link-a-tax-code-to-a-customer">linking a tax code to a customer</a> for more information.</p>
+</div>
+<div class="section" id="association-of-the-customer-tax-code-with-the-tax-rule">
+<h3><a class="toc-backref" href="#id7">Association of the Customer Tax Code with the Tax Rule</a><a class="headerlink" href="#association-of-the-customer-tax-code-with-the-tax-rule" title="Permalink to this headline">¶</a></h3>
+<p>You can edit the association of the Customer Tax Code with the tax when <a class="reference external" href="../tax-rule/edit">editing the tax rule details</a> (see the respective topic for more information).</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/taxes/customer_tax_codes/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Taxes</a><ul>
+      <li>Previous: <a href="../configuration/us_sales_tax.html" title="previous chapter">Configure US Sales Tax for Digital Products</a></li>
+      <li>Next: <a href="viewlist.html" title="next chapter">View and Filter Customer Tax Codes</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/taxes/customer_tax_codes/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

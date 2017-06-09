@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Comments &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Attachments" href="activities_add_attachment.html" />
+    <link rel="prev" title="Notes" href="activities_add_note.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="comments">
+<span id="user-guide-activities-comments"></span><h1>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h1>
+<p>Interaction between users is an important part of successful work. In order to enable users to leave comments on records
+of an <a class="reference internal" href="../../system/glossary.html#term-entity"><span class="xref std std-term">entity</span></a> or on details of an <a class="reference internal" href="activities_overview.html#user-guide-activities"><span class="std std-ref">activity</span></a>, other than a contact request
+(e.g. leave some additional details of task, comment on an email sent or a call made, etc.) use the <strong>Add Comment</strong>
+action.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">By default, the list of activities available for each entity is determined by what is most commonly used by businesses. However, if your company&#8217;s work process requires it, you can always turn the desirable activity on for almost any entity (except technical ones). If you need particular activities to be enabled for an entity, contact your administrator, or see steps 4 and 5 of the <a class="reference internal" href="../../../admin_guide/entities/entity_actions.html#doc-entity-actions-create"><span class="std std-ref">Create an Entity</span></a> action description</p>
+</div>
+<div class="section" id="create-and-view-comments">
+<h2>Create and View Comments<a class="headerlink" href="#create-and-view-comments" title="Permalink to this headline">¶</a></h2>
+<p>Once a record or an activity have been created, a comment can be added to it from:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../records/data_management_view.html#user-guide-ui-components-view-pages"><span class="std std-ref">Record view page</span></a>.</li>
+<li><a class="reference internal" href="../records/data_management_form.html#user-guide-ui-components-create-pages"><span class="std std-ref">Record edit page</span></a>.</li>
+<li>View page of a record the activity is related to.</li>
+</ul>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">The ability to view and write comments depends on the permissions and role settings defined in the system for the
+Comment entity.</p>
+</div>
+<p>On these pages, the user should:</p>
+<ul class="simple">
+<li>Click the <span class="guilabel">Add Comment</span> button.</li>
+<li>Enter the comment into the the text-box.</li>
+<li>Click the <span class="guilabel">Choose File</span> button to add a file to the comments.</li>
+<li>Click the <span class="guilabel">Add Comment</span> button to save the comment.</li>
+</ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can <a class="reference internal" href="../../../admin_guide/entities/entity_actions.html#doc-entity-actions-edit"><span class="std std-ref">edit</span></a> the <strong>Comment</strong> entity and add new fields, if required.</p>
+</div>
+<p>For example, Ellen Rowel was a task &#8220;Email change needed&#8221;, which required her to change the email address of
+Mr. Jeffrey Maynard.</p>
+<ul class="simple">
+<li>First, Ellen Rowel opened the <strong>My Tasks</strong> grid.</li>
+</ul>
+<img alt="../../../_images/comments_01.png" src="../../../_images/comments_01.png" />
+<ul class="simple">
+<li>Then she went to the <a class="reference internal" href="../records/data_management_view.html#user-guide-ui-components-view-pages"><span class="std std-ref">view page</span></a> page of the task and left a comment.</li>
+</ul>
+<img alt="../../../_images/comments_02.png" src="../../../_images/comments_02.png" />
+<ul class="simple">
+<li>John Doe opened the task details on the View page of Jeffrey Maynard&#8217;s contact record.</li>
+</ul>
+<img alt="../../../_images/comments_03.png" src="../../../_images/comments_03.png" />
+<ul class="simple">
+<li>Then he left a comment and attached Maynard&#8217;s profile to it.</li>
+</ul>
+<img alt="../../../_images/comments_04.png" src="../../../_images/comments_04.png" />
+<ul>
+<li><p class="first">Michael Buckley from the Marketing department opened the Tasks grid and opened the task View page. He can see both
+comments made by Ellen Rowel and John Doe.</p>
+<img alt="../../../_images/comments_05.png" src="../../../_images/comments_05.png" />
+</li>
+</ul>
+</div>
+<div class="section" id="case-comments">
+<h2>Case Comments<a class="headerlink" href="#case-comments" title="Permalink to this headline">¶</a></h2>
+<p>Case comments work in a similar manner, except there is an additional <strong>Make Public</strong> check box. You can use it to
+define if the comment must be public on Zendesk.</p>
+<blockquote>
+<div><img alt="../../../_images/comments_case.png" src="../../../_images/comments_case.png" />
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/activities/activities_add_comment.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Getting Started with UI</a><ul>
+  <li><a href="index.html">Activities</a><ul>
+      <li>Previous: <a href="activities_add_note.html" title="previous chapter">Notes</a></li>
+      <li>Next: <a href="activities_add_attachment.html" title="next chapter">Attachments</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/activities/activities_add_comment.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Shipping Rules Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Expression Language for Shipping and Payment Rules" href="expression_lang.html" />
+    <link rel="prev" title="Common Shipping Integration Details" href="common_shipping_integration_details.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="shipping-rules-configuration">
+<span id="sys-shipping-rules"></span><h1>Shipping Rules Configuration<a class="headerlink" href="#shipping-rules-configuration" title="Permalink to this headline">¶</a></h1>
+<p>You can configure one or more shipping rules that enable the shipping methods for the provided destinations and set the customized shipping service price by adding a surchange per service option or globally for all options of the service provider.</p>
+<div class="section" id="shipping-rules-overview">
+<h2>Shipping Rules Overview<a class="headerlink" href="#shipping-rules-overview" title="Permalink to this headline">¶</a></h2>
+<p>On the checkout, when a customer user provides the shipping address, the OroCommerce evaluates shipping rules one by one following the Shipping Rules Sort Order. The matching shipping rule may enable one or more shipping method(s) in the shipping options on the checkout and set the shipping service fee components that are used in shipping cost calculation.</p>
+<p>To decide whether the shipping rule fits the order or not, OroCommerce uses the shipping destination and the shipping rule condition defined with the <a class="reference internal" href="expression_lang.html#payment-shipping-expression-lang"><span class="std std-ref">expression</span></a>. Condition may rely on the customer order context. When a shipping rule destination and condition matches the order details (e.g. customer, ordered products and the environment), the shipping rule enables it&#8217;s shipping options and shipping fee components.</p>
+<div class="section" id="stop-further-rule-processing-mode">
+<h3>Stop Further Rule Processing Mode<a class="headerlink" href="#stop-further-rule-processing-mode" title="Permalink to this headline">¶</a></h3>
+<p>When the OroCommerce gets to the shipping rule with the enabled <strong>Stop Further Rule Processing</strong> flag, the remaining rules are not taken into account and their shipping methods are not shown as the shipping options on the checkout. This is helpful when you would like to enforce the recommended shipping method for any location or other conditions it is technically applicable (e.g. use local shipping vendor for all addresses they handle or use the specific shipping vendor that has a VIP SLA with the particular customer). It is recommended to put this type of rules to the top (e.g. setting their sort order to 1).</p>
+</div>
+<div class="section" id="overlapping-shipping-methods-definition">
+<h3>Overlapping Shipping Methods Definition<a class="headerlink" href="#overlapping-shipping-methods-definition" title="Permalink to this headline">¶</a></h3>
+<p>When the shipping option is enabled by multiple shipping rules, only the first occurrence is shown to the customer user - the one from the shipping rule with the lower Sort Order value which means closer to the top of the list.</p>
+<p>For example:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="19%" />
+<col width="41%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Shipping Rule</th>
+<th class="head">Sort Order</th>
+<th class="head">Shipping Method</th>
+<th class="head">Surcharge</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>1</td>
+<td>UPS Worldwide Expedited</td>
+<td>+10$</td>
+</tr>
+<tr class="row-odd"><td>B</td>
+<td>2</td>
+<td>UPS Worldwide Expedited</td>
+<td>+15$</td>
+</tr>
+</tbody>
+</table>
+<p>When both shipping rules apply to an order, the customer user gets the <strong>UPS Worldwide Expedited</strong> with <strong>+10$</strong> surcharge.</p>
+</div>
+<div class="section" id="non-overlapping-shipping-method-definition">
+<h3>Non-overlapping Shipping Method Definition<a class="headerlink" href="#non-overlapping-shipping-method-definition" title="Permalink to this headline">¶</a></h3>
+<p>The shipping methods from the same service provide may be enabled in different shipping rules.</p>
+<p>In the enhanced example, shipping rules enable more diverse shipping methods:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="19%" />
+<col width="41%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Shipping Rule</th>
+<th class="head">Sort Order</th>
+<th class="head">Shipping Method</th>
+<th class="head">Surcharge</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>1</td>
+<td>UPS Worldwide Expedited</td>
+<td>+10$</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>UPS Worldwide Express</td>
+<td>+5$</td>
+</tr>
+<tr class="row-even"><td>B</td>
+<td>2</td>
+<td>UPS Worldwide Expedited</td>
+<td>+15$</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>UPS Next Day Air</td>
+<td>+5$</td>
+</tr>
+</tbody>
+</table>
+<p>When both shipping rules apply to an order, the customer user can choose from the following shipping options:</p>
+<ul class="simple">
+<li><strong>UPS Worldwide Expedited</strong> with <strong>+10$</strong> surcharge (enabled by shipping rule A).</li>
+<li><strong>UPS UPS Worldwide Express</strong> with <strong>+5$</strong> surcharge (enabled by shipping rule A).</li>
+<li><strong>UPS Next Day Air</strong> with <strong>+5$</strong> surcharge (enabled by shipping rule B).</li>
+</ul>
+</div>
+</div>
+<div class="section" id="create-a-shipping-rule">
+<h2>Create a Shipping Rule<a class="headerlink" href="#create-a-shipping-rule" title="Permalink to this headline">¶</a></h2>
+<p>To create a shipping rule:</p>
+<ol class="arabic">
+<li><p class="first">Ensure that the integration(s) for the shipping method(s) you plan to use (UPS, Flat Rate, etc) is already configured.</p>
+</li>
+<li><p class="first">Navigate to the list of shipping rules by clicking <strong>System &gt; Shipping Rules</strong> in the main menu.</p>
+<p>The following page opens:</p>
+<img alt="../../../_images/ShippingRule1.png" class="with-border" src="../../../_images/ShippingRule1.png" />
+</li>
+<li><p class="first">In the <strong>General Information</strong> section:</p>
+<ol class="loweralpha simple">
+<li>Tick the <strong>Enabled</strong> box to activate the shipping rule. You may keep it unselected while you are drafting and testing the conditions.</li>
+<li>Specify the shipping rule name and sort order to set the priority compared to other shipping rules.</li>
+<li>Select the shipping cost currency.</li>
+<li>Select the <strong>Stop Further Rule Processing</strong>, if you would like to prevent applying other shipping rules with lower priority.</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Destinations</strong> section, add one or more destinations to apply this shipping rule to.</p>
+<ol class="loweralpha">
+<li><p class="first">Click <strong>+ Add</strong>. The following box appears:</p>
+<img alt="../../../_images/ShippingRule_Destination.png" class="with-border" src="../../../_images/ShippingRule_Destination.png" />
+</li>
+<li><p class="first">Specify the destination (e.g. select a Country, or select a Country and State; for the most granularity you may provide a distinct list of Postal Codes to apply the shipping rule for.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Conditions</strong> section, specify the expression that describes the conditions when this shipping rule should be applied.</p>
+<img alt="../../../_images/ShippingRule2.png" class="with-border" src="../../../_images/ShippingRule2.png" />
+<p>For detailed information about the expression language used in the shipping and payment rules, please, see the <a class="reference internal" href="expression_lang.html#payment-shipping-expression-lang"><span class="std std-ref">Expression Language for Shipping and Payment Rules</span></a> guide.</p>
+</li>
+<li><p class="first">In the <em>Shipping Method Configurations</em> section, you may enable one or more shipping methods with this shipping rule. To add a shipping method, select it from the list and click <strong>+ Add</strong> and fill in the shipping price customization information tha may vary for different service providers.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Only one shipping method per integration may be selected in the shipping rule. For example, to enable several flat rate options with various delivery SLA and insurance, please create a separate shipping rule for every option.</p>
+</div>
+<ol class="loweralpha">
+<li><p class="first">For Flat Rate, provide the following information:</p>
+<ul class="simple">
+<li><strong>Price</strong> - shipping price based on your agreement with the shipping service provider. Final Shipping price depends on the Type option (Pre Item/Per Order).</li>
+<li><strong>Handling fee</strong> - additional cost for order processing by your company.</li>
+<li><strong>Type</strong> - the way shipping price is calculated for the order. Supported options:<ul>
+<li><strong>Per Item</strong> - shipping price is a multiplication of product line item quantities (e.g. 5 cups of coffee, 10 napkins, and 5 cookies give us total of 20 items) and Flat Rate price (e.g. 1$). Finally, we add a handling fee (e.g. 10$) on top of the resulting amount. The shipping cost for this order is 20*1$+10$=30$</li>
+<li><strong>Per Order</strong> - shipping price is an addition of the Flat Rate price (e.g. 1$) and a handling fee (e.g. 10$). The shipping cost for this order is 1$+10$=11$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Flat Rate service price configuration</strong></p>
+<a class="reference internal image-reference" href="../../../_images/flat_rate_in_a_shipping_rule.png"><img alt="../../../_images/flat_rate_in_a_shipping_rule.png" src="../../../_images/flat_rate_in_a_shipping_rule.png" style="width: 400px;" /></a>
+</li>
+<li><p class="first">For UPS, set <strong>Enabled</strong> for the necessary services and provide a surcharge next to the service to customize the shipping cost. If necessary, fill in the surcharge at the bottom to apply it to any enabled service on top of the per-service-surcharge.</p>
+<p><em>Service options and additional surcharge configuration for UPS</em></p>
+<a class="reference internal image-reference" href="../../../_images/UPS_in_shipping_rule1.png"><img alt="../../../_images/UPS_in_shipping_rule1.png" src="../../../_images/UPS_in_shipping_rule1.png" style="width: 582px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/UPS_in_shipping_rule2.png"><img alt="../../../_images/UPS_in_shipping_rule2.png" src="../../../_images/UPS_in_shipping_rule2.png" style="width: 516px;" /></a>
+</li>
+</ol>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="enable-a-shipping-rule">
+<h2>Enable a Shipping Rule<a class="headerlink" href="#enable-a-shipping-rule" title="Permalink to this headline">¶</a></h2>
+<p>To enable a shipping rule:</p>
+<ol class="arabic simple">
+<li>Navigate to the list of shipping rules by clicking <strong>System &gt; Shipping Rules</strong> in the main menu.</li>
+<li>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click <i class="fa fa-check fa-lg" aria-hidden="true"></i>.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/shipping/configuration/shipping_rules.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Shipping</a><ul>
+  <li><a href="index.html">Shipping Configuration</a><ul>
+      <li>Previous: <a href="common_shipping_integration_details.html" title="previous chapter">Common Shipping Integration Details</a></li>
+      <li>Next: <a href="expression_lang.html" title="next chapter">Expression Language for Shipping and Payment Rules</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/shipping/configuration/shipping_rules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

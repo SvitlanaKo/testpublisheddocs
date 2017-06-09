@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Datagrid &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Entity Configuration" href="entity_config.html" />
+    <link rel="prev" title="Dashboard" href="dashboards.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="datagrid">
+<h1>Datagrid<a class="headerlink" href="#datagrid" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Filename</td>
+<td><code class="docutils literal"><span class="pre">datagrids.yml</span></code></td>
+</tr>
+<tr class="row-even"><td>Root Node</td>
+<td><code class="docutils literal"><span class="pre">datagrids</span></code></td>
+</tr>
+<tr class="row-odd"><td>Options</td>
+<td><ul class="first last simple">
+<li><a class="reference internal" href="#actions">actions</a></li>
+<li><a class="reference internal" href="#action-configuration">action_configuration</a></li>
+<li><a class="reference internal" href="#reference-datagrid-columns"><span class="std std-ref">columns</span></a></li>
+<li><a class="reference internal" href="#extends">extends</a></li>
+<li><a class="reference internal" href="#filters">filters</a><ul>
+<li><a class="reference internal" href="#reference-datagrid-filters-columns"><span class="std std-ref">columns</span></a></li>
+<li><a class="reference internal" href="#reference-datagrid-filters-default"><span class="std std-ref">default</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#options">options</a><ul>
+<li><a class="reference internal" href="#base-datagrid-class">base_datagrid_class</a></li>
+<li><a class="reference internal" href="#export">export</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#properties">properties</a></li>
+<li><a class="reference internal" href="#sorters">sorters</a><ul>
+<li><a class="reference internal" href="#reference-datagrid-sorters-columns"><span class="std std-ref">columns</span></a></li>
+<li><a class="reference internal" href="#reference-datagrid-sorters-default"><span class="std std-ref">default</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source">source</a><ul>
+<li><a class="reference internal" href="#acl-resource">acl_resource</a></li>
+<li><a class="reference internal" href="#bind-parameters">bind_parameters</a></li>
+<li><a class="reference internal" href="#query">query</a></li>
+<li><a class="reference internal" href="#type">type</a></li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The datagrid configuration is a large file that is a map of datagrid names mapped to options that
+configure their behavior:</p>
+<div class="section" id="actions">
+<h2><code class="docutils literal"><span class="pre">actions</span></code><a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>This is a map of actions that can be performed from the datagrid. The keys are used to give unique
+identifiers inside the grid, but do not have a special meaning. For each action, a map must be
+passed configuring the action using the following options:</p>
+<p><code class="docutils literal"><span class="pre">icon</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The name of the Font Awesome icon that represents the action.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">label</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The action label that is displayed when the user hovers the icon. This will automatically be
+translated.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">link</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The name of a link to associate with this action which is configured in the <code class="docutils literal"><span class="pre">properties</span></code>
+section.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">rowAction</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">false</span></code>)</p>
+<blockquote>
+<div>When set to <code class="docutils literal"><span class="pre">true</span></code>, the user can click anywhere on the row to perform this action.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">type</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>This can either be <code class="docutils literal"><span class="pre">navigate</span></code> or <code class="docutils literal"><span class="pre">delete</span></code>. When the value is <code class="docutils literal"><span class="pre">delete</span></code>, an HTTP DELETE
+request will be performed to the configured URL, otherwise the resource will be requested
+with a GET request in the background and the response will be displayed.</div></blockquote>
+</div>
+<div class="section" id="action-configuration">
+<h2><code class="docutils literal"><span class="pre">action_configuration</span></code><a class="headerlink" href="#action-configuration" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>By default, all configured <a class="reference internal" href="#actions">actions</a> will be displayed for all entries of the data grid. If you
+need to hide or show some options depending on the data of the entry, you can create a service that
+decides whether or not an action is visible for an entry:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># src/Acme/DemoBundle/Resources/config/oro/datagrids.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">datagrids</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">grid-name</span><span class="p p-Indicator">:</span>
+        <span class="c1"># ...</span>
+        <span class="l l-Scalar l-Scalar-Plain">action_configuration</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;@acme_demo.datagrid_action_config&#39;</span><span class="p p-Indicator">,</span> <span class="nv">getActionPermissions</span><span class="p p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>The configured service method receives an instance of the
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.DataGridBundle.Datasource.ResultRecordInterface.html" title="Oro\Bundle\DataGridBundle\Datasource\ResultRecordInterface"><span class="pre">ResultRecordInterface</span></a></code> to access the value of the
+current datagrid row and must return an array in which each key refers to an action and the boolean
+value indicates whether or not the action will be shown.</p>
+</div>
+<div class="section" id="columns">
+<span id="reference-datagrid-columns"></span><h2><code class="docutils literal"><span class="pre">columns</span></code><a class="headerlink" href="#columns" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>Each key of the map corresponds to a property of a select entry that should be displayed in the
+grid. For each column you have to pass a map of options to configure how the column is shown:</p>
+<p><code class="docutils literal"><span class="pre">choices</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code>)</p>
+<blockquote>
+<div><p>When using the <code class="docutils literal"><span class="pre">select</span></code> type, this options provides a mapping of stored values to their
+human-readable representation.</p>
+<p>When the <code class="docutils literal"><span class="pre">type</span></code> option is set to <code class="docutils literal"><span class="pre">translatable</span></code>, this is treated as an expression that will
+be evaluated to gain the value&#8217;s translated representation.</p>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">frontend_type</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The widget type that renders the value. Available types that are shipped with OroPlatform by
+default are <code class="docutils literal"><span class="pre">currency</span></code>, <code class="docutils literal"><span class="pre">date</span></code>, <code class="docutils literal"><span class="pre">datetime</span></code>, <code class="docutils literal"><span class="pre">html</span></code>, <code class="docutils literal"><span class="pre">integer</span></code>, <code class="docutils literal"><span class="pre">select</span></code> and
+<code class="docutils literal"><span class="pre">string</span></code>.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">label</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The column headline which is a string that will be passed to the translator before being
+displayed.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">label</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>This option is only available when the <code class="docutils literal"><span class="pre">frontend_type</span></code> is <code class="docutils literal"><span class="pre">html</span></code>. Currently, only <code class="docutils literal"><span class="pre">twig</span></code>
+is supported as a value to indicate that a Twig template should be rendered.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">template</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>This option is only available when the <code class="docutils literal"><span class="pre">frontend_type</span></code> is <code class="docutils literal"><span class="pre">html</span></code> and the value of the
+<code class="docutils literal"><span class="pre">type</span></code> option is <code class="docutils literal"><span class="pre">twig</span></code>. Its value is a template reference.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">type</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div><p>When the <code class="docutils literal"><span class="pre">frontend_type</span></code> is <code class="docutils literal"><span class="pre">string</span></code>, this option can be set to <code class="docutils literal"><span class="pre">translatable</span></code> to provide
+translated values.</p>
+<p>When it is set to <code class="docutils literal"><span class="pre">twig</span></code>, the Twig template referenced to with the <code class="docutils literal"><span class="pre">template</span></code> option will
+be rendered.</p>
+</div></blockquote>
+</div>
+<div class="section" id="extends">
+<h2><code class="docutils literal"><span class="pre">extends</span></code><a class="headerlink" href="#extends" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>You can reuse existing datagrid configurations by passing their name here.</p>
+</div>
+<div class="section" id="filters">
+<h2><code class="docutils literal"><span class="pre">filters</span></code><a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>This option is used to configure how the datagrid can be filtered. Two options are available that
+define for which columns filter are available, how they look like, and which filter will be applied
+by default.</p>
+<div class="section" id="reference-datagrid-filters-columns">
+<span id="id1"></span><h3><code class="docutils literal"><span class="pre">columns</span></code><a class="headerlink" href="#reference-datagrid-filters-columns" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>For each column that can be filtered (the key of the map) a map of options can be given that
+specifies how the actual filter looks like. The available options are:</p>
+<p><code class="docutils literal"><span class="pre">data_name</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The name of the column from the data source whose values will be filtered.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">filter_by_having</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">bool</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">false</span></code>)</p>
+<blockquote>
+<div>When set to <code class="docutils literal"><span class="pre">true</span></code> the expression created by the configured filter will be used inside the
+having part of the query (this is needed, for example, when the configured <code class="docutils literal"><span class="pre">data_name</span></code> is
+the result of an aggregation function.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">label</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>By default, the label for the filter will be the same as the one configured in the
+<a class="reference internal" href="#reference-datagrid-columns"><span class="std std-ref">columns</span></a> section. However, you can use this option if you want to show
+a label that is different from the column headline or if you want to filter the grid by an
+attribute that is not shown in the grid.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">type</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The type of the filter to be used in the UI.</div></blockquote>
+</div>
+<div class="section" id="default">
+<span id="reference-datagrid-filters-default"></span><h3><code class="docutils literal"><span class="pre">default</span></code><a class="headerlink" href="#default" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>By default, all data will be shown in the grid. You can use the <code class="docutils literal"><span class="pre">default</span></code> option to define
+default filters for each column. The column names are mapped to another map that contains the
+configuration for the default value.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">When filtering datetime columns, you can use some special placeholders that are defined in the
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.FilterBundle.Provider.DateModifierInterface.html" title="Oro\Bundle\FilterBundle\Provider\DateModifierInterface"><span class="pre">DateModifierInterface</span></a></code> (the constants prefixed
+with <code class="docutils literal"><span class="pre">VAR_</span></code>) to work with dynamic default values.</p>
+</div>
+</div>
+</div>
+<div class="section" id="options">
+<h2><code class="docutils literal"><span class="pre">options</span></code><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>Available additional options are:</p>
+<div class="section" id="base-datagrid-class">
+<h3><code class="docutils literal"><span class="pre">base_datagrid_class</span></code><a class="headerlink" href="#base-datagrid-class" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">Oro\Bundle\DatagridBundle\Datagrid\Datagrid</span></code></p>
+<blockquote>
+<div>With this option, you can switch the datagrid class to a custom implementation.</div></blockquote>
+</div>
+<div class="section" id="export">
+<h3><code class="docutils literal"><span class="pre">export</span></code><a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">false</span></code></p>
+<blockquote>
+<div>When enabled, the user can export the datagrid in CSV format.</div></blockquote>
+</div>
+</div>
+<div class="section" id="properties">
+<h2><code class="docutils literal"><span class="pre">properties</span></code><a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>This is used for two things: configure how to determine the id of each row and configure links that
+will be reused in the actions.</p>
+<div class="section" id="id">
+<h3><code class="docutils literal"><span class="pre">id</span></code><a class="headerlink" href="#id" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">~</span></code></p>
+<blockquote>
+<div>The name of the property that acts as an identifier for each entry. By default, the <code class="docutils literal"><span class="pre">id</span></code>
+property is assumed.</div></blockquote>
+<p>To configure links, use a unique string as an identifier and pass it a map with the following
+options:</p>
+<p><code class="docutils literal"><span class="pre">callable</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>An expression that will be evaluated when the link is generated.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">params</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code>)</p>
+<blockquote>
+<div>Additional parameters that are passed to the URL generator together with the configured route
+name.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">route</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The name of the route to the controller action that should be called.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">type</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>Can be either <code class="docutils literal"><span class="pre">route</span></code> or <code class="docutils literal"><span class="pre">callable</span></code> to use a statically configured route or to dynamically
+generate a link.</div></blockquote>
+</div>
+</div>
+<div class="section" id="sorters">
+<h2><code class="docutils literal"><span class="pre">sorters</span></code><a class="headerlink" href="#sorters" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The options <code class="docutils literal"><span class="pre">columns</span></code> and <code class="docutils literal"><span class="pre">default</span></code> are used to configure the columns whose headlines can be
+clicked to let the user sort the result set and to define by which attributes the grid result is
+ordered by default.</p>
+<div class="section" id="reference-datagrid-sorters-columns">
+<span id="id2"></span><h3><code class="docutils literal"><span class="pre">columns</span></code><a class="headerlink" href="#reference-datagrid-sorters-columns" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>A map that contains an entry for each column the user can sort the grid by. Each key is the name of
+a column and its value is a map with the key <code class="docutils literal"><span class="pre">data_name</span></code> mapped to the data source column that
+will be used to sort the grid.</p>
+</div>
+<div class="section" id="reference-datagrid-sorters-default">
+<span id="id3"></span><h3><code class="docutils literal"><span class="pre">default</span></code><a class="headerlink" href="#reference-datagrid-sorters-default" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The <code class="docutils literal"><span class="pre">default</span></code> option can be used to control the default ordering of the result set. It is a map
+of column names to their respective sort direction (either <code class="docutils literal"><span class="pre">ASC</span></code> or <code class="docutils literal"><span class="pre">DESC</span></code>).</p>
+</div>
+</div>
+<div class="section" id="source">
+<h2><code class="docutils literal"><span class="pre">source</span></code><a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The data source that fetches the data to be shown in the grid. Several options control how data are
+fetched:</p>
+<div class="section" id="acl-resource">
+<h3><code class="docutils literal"><span class="pre">acl_resource</span></code><a class="headerlink" href="#acl-resource" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<blockquote>
+<div>An access control list the user must be granted access to in order to actually fetch any data.</div></blockquote>
+</div>
+<div class="section" id="bind-parameters">
+<h3><code class="docutils literal"><span class="pre">bind_parameters</span></code><a class="headerlink" href="#bind-parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>When using the ORM data source (by setting the <a class="reference internal" href="#type">type</a> option to <code class="docutils literal"><span class="pre">orm</span></code>), you can pass any data
+grid parameter as a parameter to the query builder by listing at with this option.</p>
+</div>
+<div class="section" id="query">
+<span id="reference-format-datagrid-type-orm"></span><h3><code class="docutils literal"><span class="pre">query</span></code><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>When using the ORM data source (by setting the <a class="reference internal" href="#type">type</a> option to <code class="docutils literal"><span class="pre">orm</span></code>), you have to configure
+all parts of the Doctrine query:</p>
+<p><code class="docutils literal"><span class="pre">select</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div>A list of properties to query for. You can use all expressions that you would use with the
+<code class="docutils literal"><span class="pre">from</span></code> method of Doctrine&#8217;s query builder.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">from</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div><p>The entities to query from. Each entry is a map that must contain the following keys:</p>
+<p><code class="docutils literal"><span class="pre">table</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The name of the entity, you can the <code class="docutils literal"><span class="pre">BundleName:EntityName</span></code> notation (for example,
+<code class="docutils literal"><span class="pre">AcmeDemoBundle:User</span></code>).</div></blockquote>
+<p><code class="docutils literal"><span class="pre">alias</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>A shortcut alias which you will use to refer to this entity in other parts of the query.</div></blockquote>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">join</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code>)</p>
+<blockquote>
+<div><p>You can use two keys under this option to configure left joins and inner joins:</p>
+<p><code class="docutils literal"><span class="pre">inner</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div>Each entry must a map containing the options <code class="docutils literal"><span class="pre">join</span></code> (the property of an already queried
+entity that holds the association or an entity), <code class="docutils literal"><span class="pre">alias</span></code> (the alias name you use to refer
+to the joined entity in other parts of the query, <code class="docutils literal"><span class="pre">conditionType</span></code> (is only needed when
+<code class="docutils literal"><span class="pre">join</span></code> refers to an entity name instead of an association and must be <code class="docutils literal"><span class="pre">WITH</span></code> in that
+case) and <code class="docutils literal"><span class="pre">condition</span></code> (a condition expression that will be used to perform the join
+instead of deriving it from the association when <code class="docutils literal"><span class="pre">conditionType</span></code> is set to <code class="docutils literal"><span class="pre">WITH</span></code>).</div></blockquote>
+<p><code class="docutils literal"><span class="pre">left</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div>The options being used here are the same as the ones in <code class="docutils literal"><span class="pre">inner</span></code> except that the join
+being performed will be a left join.</div></blockquote>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">where</span></code> (<code class="docutils literal"><span class="pre">type</span></code>: <code class="docutils literal"><span class="pre">map</span></code>)</p>
+<blockquote>
+<div><p>List conditions here that need to be fullfilled. How conditions must be met is defined by the
+key you used:</p>
+<p><code class="docutils literal"><span class="pre">and</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div>All conditions must be met.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">or</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div>Any of the given conditions must be met.</div></blockquote>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">groupBy</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The query result will be grouped by the given expression.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">orderBy</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code>)</p>
+<blockquote>
+<div><p>A list of properties to sort the result set by (user defined ordering that can be configured
+through the <a class="reference internal" href="#sorters">sorters</a> option will be applied on top of the order here). Each entry is a map
+that must contain the following keys:</p>
+<p><code class="docutils literal"><span class="pre">column</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The column name to sort by.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">dir</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>The sort direction: <code class="docutils literal"><span class="pre">ASC</span></code> (ascending) or <code class="docutils literal"><span class="pre">DESC</span></code> (descending).</div></blockquote>
+</div></blockquote>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can pass any datagrid parameter as a parameter to the generated query by listing it under
+the <a class="reference internal" href="#bind-parameters">bind_parameters</a> option on the same level as the <code class="docutils literal"><span class="pre">query</span></code> option.</p>
+</div>
+</div>
+<div class="section" id="type">
+<h3><code class="docutils literal"><span class="pre">type</span></code><a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<blockquote>
+<div><p>The type of data source. Currently, the only available types are <code class="docutils literal"><span class="pre">orm</span></code> and <code class="docutils literal"><span class="pre">search</span></code>, but
+you can also implement your own data source. Each data source may come with its own options to
+configure how the data is fetched.</p>
+<p>Usually, the only <code class="docutils literal"><span class="pre">type</span></code> value that you will use is <code class="docutils literal"><span class="pre">orm</span></code> (it offers a way to configure the
+query builder used to fetch the data, see the
+<a class="reference internal" href="#reference-format-datagrid-type-orm"><span class="std std-ref">query option</span></a> for a list of the available additional
+options).</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev_guide/reference/format/datagrids.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Developer Guide</a><ul>
+  <li><a href="../index.html">Annotation and Configuration Format</a><ul>
+  <li><a href="index.html">Configuration Format Reference</a><ul>
+      <li>Previous: <a href="dashboards.html" title="previous chapter">Dashboard</a></li>
+      <li>Next: <a href="entity_config.html" title="next chapter">Entity Configuration</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/dev_guide/reference/format/datagrids.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

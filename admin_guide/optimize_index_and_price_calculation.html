@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Optimize Website Indexation and Price Recalculation &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Community Guide" href="../community/index.html" />
+    <link rel="prev" title="How to Configure Price List Sharding" href="price_list_sharding.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="optimize-website-indexation-and-price-recalculation">
+<h1>Optimize Website Indexation and Price Recalculation<a class="headerlink" href="#optimize-website-indexation-and-price-recalculation" title="Permalink to this headline">¶</a></h1>
+<p>While website indexation and price recalculation background processes are vital
+for OroCommerce store, they may be time- and resource- consuming.</p>
+<p>This topic summarizes best practices and advice that helps you maximize the
+efficiency of these processes by tuning your software and hardware.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Price recalculation is required before the indexation.</p>
+</div>
+<div class="section" id="price-recalculation">
+<h2>Price Recalculation<a class="headerlink" href="#price-recalculation" title="Permalink to this headline">¶</a></h2>
+<p>The price list data may contain quite complex dependencies and
+formula. When price recalculation happens, all of the price list data is
+analyzed, recalculated if necessary, and saved to the simplified combine tables.
+This cache-like approach enables quicker data retrieval and increases the
+OroCommerce front store responsiveness.</p>
+<p>To launch the price recalculation process, run the following console command:</p>
+<p><code class="docutils literal"><span class="pre">app/console</span> <span class="pre">oro:price-lists:recalculation</span> <span class="pre">--all</span></code></p>
+<p>Execution time may vary from seconds on bare factory data to multiple hours for
+several hundred thousand product prices.</p>
+<p>To optimize the price recalculation, use the <code class="docutils literal"><span class="pre">--disable-triggers</span></code> parameter in
+the command above to disable the triggers and speed up the SQL insert execution.</p>
+</div>
+<div class="section" id="indexation">
+<h2>Indexation<a class="headerlink" href="#indexation" title="Permalink to this headline">¶</a></h2>
+<p>For faster search and access, the business data in the database should be
+indexed via an internal search engine. After indexation, the user gets prompt
+search and auto-complete results even for the extremely large amount of raw data.
+The engine indexes the information (prices, product descriptions, SEO, attributes
+etc.) and guarantees quick data retrieval leaving the original data untouched.</p>
+<p>OroCommerce search index may be persisted in the database layer (using ORM) or
+on the file system using the ElasticSearch (the latter is available in the
+Enterprise edition only).</p>
+<p>To launch the indexation process, use the following console command:</p>
+<p><code class="docutils literal"><span class="pre">app/console</span> <span class="pre">oro:website:reindex</span></code></p>
+<p>Execution time may range from few minutes to several hours, depending on the
+hardware and software configuration and the volume of data that is indexed.</p>
+<p>To speed up the indexation, you can:</p>
+<ul class="simple">
+<li>Use parallel (multi-thread) indexation. As a prerequisite, ensure that several MessageQueue consumers are running. Next, run the command above with the <code class="docutils literal"><span class="pre">--scheduled</span></code> parameter. Depending on the number of CPU cores and consumers running, this can drastically cut the indexation time.</li>
+<li>Use the <code class="docutils literal"><span class="pre">--product-id</span></code> switch together with <code class="docutils literal"><span class="pre">--scheduled</span></code> (multithreaded) indexation to control the amount of entities, indexed per message. This will control indexation load distribution among several consumers and allow scaling. Use an example value of <code class="docutils literal"><span class="pre">*/1000</span></code> to generate messages with 1000 products each.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/admin_guide/optimize_index_and_price_calculation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Administrator Guide</a><ul>
+      <li>Previous: <a href="price_list_sharding.html" title="previous chapter">How to Configure Price List Sharding</a></li>
+      <li>Next: <a href="../community/index.html" title="next chapter">Community Guide</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/admin_guide/optimize_index_and_price_calculation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tags &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tags">
+<span id="user-guide-tags"></span><h1>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h1>
+<p>Tags are non-hierarchical keywords or phrases that are assigned to records. They provide additional information about
+records and are visible to all the system users. Tags can be assigned to any records of any entity and used for
+filtering. They can also be used to create a report for only the records that
+have/don&#8217;t have a specific tag, and even generate targeted segments for mailings and marketing campaigns. Moreover, you
+can easily find all records that have a specific tag from anywhere in the system, even if you don&#8217;t know their other
+details, as described below.</p>
+<div class="section" id="add-a-tag-to-a-record">
+<h2>Add a Tag to a Record<a class="headerlink" href="#add-a-tag-to-a-record" title="Permalink to this headline">¶</a></h2>
+<p>You can add a tag from the grid or from a View page of a specific record.</p>
+<div class="section" id="add-a-tag-from-the-grid">
+<h3>Add a Tag from the Grid<a class="headerlink" href="#add-a-tag-from-the-grid" title="Permalink to this headline">¶</a></h3>
+<p>The tag column is available by default on the <a class="reference internal" href="records_grids.html#doc-grids"><span class="std std-ref">grids</span></a>. If they are not, you can
+<a class="reference internal" href="records_grids.html#doc-grids-actions-change-table"><span class="std std-ref">add the column</span></a>. Adding a tag is no
+different from <a class="reference internal" href="records_grids.html#doc-grids-actions-records-edit"><span class="std std-ref">editing other properties from a grid</span></a>:</p>
+<ol class="arabic simple">
+<li>Double-click the tag cell of the record.</li>
+<li>Select one or several of the existing tags from the list, and/or enter a new tag in the field.</li>
+</ol>
+<blockquote>
+<div><img alt="TagsfGrid" class="align-middle" src="../../../_images/tags_from_grid.png" /></div></blockquote>
+<ol class="arabic" start="3">
+<li><p class="first">Start entering the tag, and only matching tags will be left in the selector.</p>
+</li>
+<li><p class="first">If you have entered a new tag, it will also appear in the selector. Select it to add. This way you can add one or several tags that contain one or several words.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><img alt="TagsfGrid1" class="align-middle" src="../../../_images/tags_from_grid_1.png" /></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first">Confirm the action.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="add-a-tag-from-the-view-page">
+<span id="user-guide-tags-add"></span><h3>Add a Tag from the View page<a class="headerlink" href="#add-a-tag-from-the-view-page" title="Permalink to this headline">¶</a></h3>
+<p>In order to add a tag to a record from its <a class="reference internal" href="data_management_view.html#user-guide-ui-components-view-pages"><span class="std std-ref">View page</span></a> of a record:</p>
+<ul>
+<li><p class="first">Go to the <em>&#8220;Tags&#8221;</em> field.</p>
+<p><img alt="TagsfView" class="align-middle" src="../../../_images/tags_from_view.png" /></p>
+</li>
+<li><p class="first">Click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> icon, and the tag field will appear.</p>
+<p><img alt="TagsfView1" class="align-middle" src="../../../_images/tags_from_view_1.png" /></p>
+</li>
+<li><p class="first">Start entering the tag, and only matching tags will be left in the selector.</p>
+</li>
+<li><p class="first">If you have entered a new tag, it will also appear in the selector. Select it to add. This way you can add one or
+several tags that contain one or several words.</p>
+<p><img alt="TagsfView2" class="align-middle" src="../../../_images/tags_from_view_2.png" /></p>
+</li>
+<li><p class="first">Click the check to confirm the action.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="manage-tags">
+<h2>Manage Tags<a class="headerlink" href="#manage-tags" title="Permalink to this headline">¶</a></h2>
+<p>You can see all the tags available in the system, as well as the amount of times they were assigned to a record, in the
+Tags <a class="reference internal" href="records_grids.html#doc-grids"><span class="std std-ref">grid</span></a>.</p>
+<img alt="../../../_images/tags_from_grid.png" src="../../../_images/tags_from_grid.png" />
+<p>From the grid, you can:</p>
+<ul class="simple">
+<li>Get to the <a class="reference internal" href="data_management_form.html#user-guide-ui-components-create-pages"><span class="std std-ref">Create form</span></a> of the tag:<ul>
+<li>Click the <span class="guilabel">Create Tag</span> button.</li>
+<li>Define the tag <a class="reference internal" href="../../system/glossary.html#term-owner"><span class="xref std std-term">owner</span></a> and the tag itself.</li>
+</ul>
+</li>
+<li>Get to the <a class="reference internal" href="data_management_form.html#user-guide-ui-components-create-pages"><span class="std std-ref">Edit form</span></a> of the tag: <i class="fa fa-edit fa-lg" aria-hidden="true"></i></li>
+<li>Delete the tag: <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
+<li>View all the records that were marked with this tag: <i class="fa fa-search fa-lg" aria-hidden="true"></i></li>
+</ul>
+</div>
+<div class="section" id="search-by-tag">
+<h2>Search by Tag<a class="headerlink" href="#search-by-tag" title="Permalink to this headline">¶</a></h2>
+<p>In order to see all the records with a specific tag anywhere in the system.</p>
+<img alt="../../../_images/search_vip.png" src="../../../_images/search_vip.png" />
+<img alt="../../../_images/search_vip_1.png" src="../../../_images/search_vip_1.png" />
+<p>You will see the page similar to the search results. It will contain all the records with this tag.</p>
+<img alt="../../../_images/search_vip_2.png" src="../../../_images/search_vip_2.png" />
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>Tags are easy to add and can help manage the content of any record. They can be used to find records from anywhere
+within the system and can filter records for reports and segments.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/records/data_management_tags.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/records/data_management_tags.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

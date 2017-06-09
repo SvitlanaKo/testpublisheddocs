@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Importing Prices &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="importing-prices">
+<span id="import-price-lists"></span><h1>Importing Prices<a class="headerlink" href="#importing-prices" title="Permalink to this headline">¶</a></h1>
+<p>To streamline adding a large bulk of items, like customer information, products, prices or inventory information, you can import the bulk details from a .csv file.</p>
+<p>Import the product prices into the price list using the .csv file that follows the price details data structure.</p>
+<p><strong>Example of a prices bulk import template</strong></p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="21%" />
+<col width="14%" />
+<col width="21%" />
+<col width="21%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product SKU</th>
+<th class="head">Quantity</th>
+<th class="head">Unit Code</th>
+<th class="head">Price</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>sku_001</td>
+<td>42</td>
+<td>kg</td>
+<td>100</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The unit and currency should be created prior to the inventory levels import.</p>
+</div>
+<p>To import a bulk of price information:</p>
+<ol class="arabic simple">
+<li>Navigate to the <strong>Sales &gt; Price Lists</strong> and click on the price list which you would like to update using the bulk import.</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Get a sample:</strong> To download a sample .csv file with the necessary headers, click <strong>Download Data Template</strong> in the list next to <strong>Import</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Follow the on-screen guidance for any additional actions. For example, for the inventory template, select one of the options: a) inventory statuses only or b) detailed inventory levels.</p>
+</div>
+</li>
+<li><p class="first"><strong>Prepare data for import</strong>: Based on the downloaded file, create your bulk information in .csv format. Once your file is ready, click <strong>Import</strong>, select the prepared comma-separated values (.csv) file, and click <strong>Submit</strong>.</p>
+</li>
+<li><p class="first"><strong>Validate import results</strong>: Review import validation results. If there are any <em>Records with errors</em>, fix them in the .csv file prior to starting the import.</p>
+</li>
+<li><p class="first"><strong>Launch import:</strong> After successful validation, click <strong>Import</strong>.</p>
+</li>
+</ol>
+<p>Interactive status messages inform about the import progress and once the import is complete, the changes are reflected in the list upon refresh. Additionally, an email message with the import status is delivered to your mailbox.</p>
+<p>See this two minute demo of the import process:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shpqpFao6bA" frameborder="0" allowfullscreen></iframe></div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/common_actions/import_price_lists.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/common_actions/import_price_lists.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

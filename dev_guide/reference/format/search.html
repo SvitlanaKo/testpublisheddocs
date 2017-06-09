@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Search Index &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="System Configuration" href="system_configuration.html" />
+    <link rel="prev" title="Require.JS" href="requirejs.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="search-index">
+<h1>Search Index<a class="headerlink" href="#search-index" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Filename</td>
+<td><code class="docutils literal"><span class="pre">search.yml</span></code></td>
+</tr>
+<tr class="row-even"><td>Root Node</td>
+<td>search</td>
+</tr>
+<tr class="row-odd"><td>Options</td>
+<td><ul class="first last">
+<li><p class="first">The fully qualified class name the indexed entity
+* <a class="reference internal" href="#alias">alias</a>
+* <a class="reference internal" href="#fields">fields</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#reference-format-search-fields-name"><span class="std std-ref">name</span></a></li>
+<li><a class="reference internal" href="#relation-fields">relation_fields</a></li>
+<li><a class="reference internal" href="#relation-type">relation_type</a></li>
+<li><a class="reference internal" href="#target-fields">target_fields</a></li>
+<li><a class="reference internal" href="#target-type">target_type</a></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><a class="reference internal" href="#label">label</a></li>
+<li><a class="reference internal" href="#mode">mode</a></li>
+<li><a class="reference internal" href="#route">route</a><ul>
+<li><a class="reference internal" href="#reference-format-search-route-name"><span class="std std-ref">name</span></a></li>
+<li><a class="reference internal" href="#parameters">parameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#search-template">search_template</a></li>
+<li><a class="reference internal" href="#title-fields">title_fields</a>  (deprecated since 2.0)</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal"><span class="pre">search.yml</span></code> file is used to configure how your entities are indexed to make them usable by
+the internal search engine of the OroPlatform. A fully working example can look like this:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># src/Acme/DemoBundle/Resources/config/oro/search.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">search</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">Acme\DemoBundle\Entity\Product</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">demo_product</span>
+        <span class="l l-Scalar l-Scalar-Plain">search_template</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">AcmeDemoBundle:result.html.twig</span>
+        <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Demo products</span>
+        <span class="l l-Scalar l-Scalar-Plain">route</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">acme_demo_search_product</span>
+            <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">id</span>
+        <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">normal</span>
+        <span class="l l-Scalar l-Scalar-Plain">title_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">name</span><span class="p p-Indicator">]</span> <span class="c1"># deprecated since 2.0</span>
+        <span class="l l-Scalar l-Scalar-Plain">fields</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span>
+                <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+                <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+            <span class="p p-Indicator">-</span>
+                <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">description</span>
+                <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+                <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">description</span><span class="p p-Indicator">,</span> <span class="nv">another_index_name</span><span class="p p-Indicator">]</span>  <span class="l l-Scalar l-Scalar-Plain">parameter.</span>
+            <span class="p p-Indicator">-</span>
+                <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">manufacturer</span>
+                <span class="l l-Scalar l-Scalar-Plain">relation_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">many-to-one</span>
+                <span class="l l-Scalar l-Scalar-Plain">relation_fields</span><span class="p p-Indicator">:</span>
+                    <span class="p p-Indicator">-</span>
+                        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+                        <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+                        <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">manufacturer</span><span class="p p-Indicator">,</span> <span class="nv">all_data</span><span class="p p-Indicator">]</span>
+                    <span class="p p-Indicator">-</span>
+                        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">id</span>
+                        <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">integer</span>
+                        <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">manufacturer</span><span class="p p-Indicator">]</span>
+            <span class="p p-Indicator">-</span>
+                <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">categories</span>
+                <span class="l l-Scalar l-Scalar-Plain">relation_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">many-to-many</span>
+                <span class="l l-Scalar l-Scalar-Plain">relation_fields</span><span class="p p-Indicator">:</span>
+                    <span class="p p-Indicator">-</span>
+                        <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name</span>
+                        <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+                        <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">all_data</span><span class="p p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="alias">
+<h2><code class="docutils literal"><span class="pre">alias</span></code><a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>An alias used in the <code class="docutils literal"><span class="pre">from</span></code> keyword in <a class="reference internal" href="../../basics/search.html#advanced-search-api"><span class="std std-ref">advanced search</span></a>.</p>
+</div>
+<div class="section" id="fields">
+<span id="reference-format-search-fields"></span><h2><code class="docutils literal"><span class="pre">fields</span></code><a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>The list of fields that will be added to the search index. Each entry must be a map that can use
+the following keys to configure how the property value will be indexed:</p>
+<div class="section" id="name">
+<span id="reference-format-search-fields-name"></span><h3><code class="docutils literal"><span class="pre">name</span></code><a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The name of the entity property. This option is required.</p>
+</div>
+<div class="section" id="relation-fields">
+<h3><code class="docutils literal"><span class="pre">relation_fields</span></code><a class="headerlink" href="#relation-fields" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>When the field represents an association (i.e. a value is configured for <a class="reference internal" href="#relation-type">relation_type</a>), this is
+a list of fields from the target entity to index. For each entry all the options of the parent
+<a class="reference internal" href="#reference-format-search-fields"><span class="std std-ref">fields option</span></a> apply.</p>
+</div>
+<div class="section" id="relation-type">
+<h3><code class="docutils literal"><span class="pre">relation_type</span></code><a class="headerlink" href="#relation-type" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>When the property denotes an association with another entity, the type of association (one of
+<code class="docutils literal"><span class="pre">one-to-one</span></code>, <code class="docutils literal"><span class="pre">many-to-many</span></code>, <code class="docutils literal"><span class="pre">one-to-many</span></code>, or <code class="docutils literal"><span class="pre">many-to-one</span></code>) must be configured with this
+option.</p>
+</div>
+<div class="section" id="target-fields">
+<h3><code class="docutils literal"><span class="pre">target_fields</span></code><a class="headerlink" href="#target-fields" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>The <code class="docutils literal"><span class="pre">target_fields</span></code> option list the named indexes to which the property value will be added.</p>
+<p>For example, a contact may have the properties <code class="docutils literal"><span class="pre">firstName</span></code>, <code class="docutils literal"><span class="pre">lastName</span></code>, and <code class="docutils literal"><span class="pre">namePrefix</span></code> and
+all three properties should be searched when the user is loooking for a value in the virtual
+<code class="docutils literal"><span class="pre">name</span></code> field (when using the advanced search API). In this case, all three properties will list
+the <code class="docutils literal"><span class="pre">name</span></code> field in <code class="docutils literal"><span class="pre">target_fields</span></code>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">search</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">Acme\ContactBunde\Entity\Contact</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">fields</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstName</span>
+              <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+              <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">name</span><span class="p p-Indicator">]</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastName</span>
+              <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+              <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">name</span><span class="p p-Indicator">]</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">namePrefix</span>
+              <span class="l l-Scalar l-Scalar-Plain">target_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+              <span class="l l-Scalar l-Scalar-Plain">target_fields</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">name</span><span class="p p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>If the <code class="docutils literal"><span class="pre">target_type</span></code> is <code class="docutils literal"><span class="pre">text</span></code>, the data will also be stored in the <code class="docutils literal"><span class="pre">all_data</span></code> field
+implicitly.</p>
+<p>If the <code class="docutils literal"><span class="pre">target_fields</span></code> option is not given, the data is added to a virtual field whose name is
+the name as the field&#8217;s name (i.e. what is specified under the <code class="docutils literal"><span class="pre">name</span></code> key).</p>
+</div>
+<div class="section" id="target-type">
+<h3><code class="docutils literal"><span class="pre">target_type</span></code><a class="headerlink" href="#target-type" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The type of the virtual search field (possible values are <code class="docutils literal"><span class="pre">datetime</span></code>, <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">integer</span></code>,
+and <code class="docutils literal"><span class="pre">text</span></code>). This option is required.</p>
+</div>
+</div>
+<div class="section" id="label">
+<h2><code class="docutils literal"><span class="pre">label</span></code><a class="headerlink" href="#label" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A human readable label to identify the entity in the search results. The configured string will be
+passed to the translator.</p>
+</div>
+<div class="section" id="mode">
+<h2><code class="docutils literal"><span class="pre">mode</span></code><a class="headerlink" href="#mode" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code> <strong>default</strong>: normal</p>
+<p>The entity behavior for inheritance. For possible values and what they mean, have a look at the
+constants of the <code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.SearchBundle.Query.Mode.html" title="Oro\Bundle\SearchBundle\Query\Mode"><span class="pre">Mode</span></a></code> class.</p>
+</div>
+<div class="section" id="route">
+<span id="reference-format-search-route-name"></span><h2><code class="docutils literal"><span class="pre">route</span></code><a class="headerlink" href="#route" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The route for which a URL is generated when linking from the search result to a concrete entity.
+The available options are:</p>
+<div class="section" id="id1">
+<h3><code class="docutils literal"><span class="pre">name</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The name of the route.</p>
+</div>
+<div class="section" id="parameters">
+<h3><code class="docutils literal"><span class="pre">parameters</span></code><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The routing parameters, each key is the name of the routing parameter and the value is the name of
+one of the configured <a class="reference internal" href="#reference-format-search-fields"><span class="std std-ref">fields</span></a>.</p>
+</div>
+</div>
+<div class="section" id="search-template">
+<h2><code class="docutils literal"><span class="pre">search_template</span></code><a class="headerlink" href="#search-template" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+</div>
+<div class="section" id="title-fields">
+<h2><code class="docutils literal"><span class="pre">title_fields</span></code><a class="headerlink" href="#title-fields" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>Note: Usage of this field is deprecated since 2.0. Register an EntityNameProvider instead.
+The list of fields to build the title for the result set. The value used here denote to the
+<a class="reference internal" href="#reference-format-search-fields"><span class="std std-ref">configured fields</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev_guide/reference/format/search.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Developer Guide</a><ul>
+  <li><a href="../index.html">Annotation and Configuration Format</a><ul>
+  <li><a href="index.html">Configuration Format Reference</a><ul>
+      <li>Previous: <a href="requirejs.html" title="previous chapter">Require.JS</a></li>
+      <li>Next: <a href="system_configuration.html" title="next chapter">System Configuration</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/dev_guide/reference/format/search.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customer User Roles &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="View and Filter Customer User Roles" href="viewlist.html" />
+    <link rel="prev" title="Price List Management for a Customer Group" href="../customer_groups/pricelist.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customer-user-roles">
+<span id="user-guide-customers-customer-user-roles"></span><h1>Customer User Roles<a class="headerlink" href="#customer-user-roles" title="Permalink to this headline">¶</a></h1>
+<p>In Customer User Roles section, you can view, edit and create new customer roles to define the level of permissions and access to the actions and data in OroCommerce store frontend for the users of this role.</p>
+<p>The following roles are predefined and available for every customer by default:</p>
+<ul class="simple">
+<li>Administrator</li>
+<li>Buyer</li>
+<li>Non-authenticated user</li>
+</ul>
+<p>Any new role is labeled as customizable and may apply either to the customer specified in the role details or globally for all customers when the customer is not provided.</p>
+<p>With the Customer User Role you can manage the following access- and permissions-related settings:</p>
+<ul>
+<li><p class="first">Profile management permission: A user may be able to view and edit their user profile, when the <strong>Self-Managed</strong> option is enabled for their role.</p>
+</li>
+<li><p class="first">Permissions to view workflows and/or perform transitions through the workflow steps.</p>
+</li>
+<li><p class="first">Data access/management permissions and capabilities that are organized in the following groups:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Account Management</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Address (customer address)</li>
+<li>Customer</li>
+<li>Customer user</li>
+<li>Customer user address</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Account Management</strong> capabilities:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Access data audit</li>
+<li>Access system information</li>
+<li>Audit history for Customer User</li>
+<li>Enter the billing address manually</li>
+<li>Enter the shipping address manually</li>
+<li>Override customer payment term</li>
+<li>Use any billing address from the customer address book</li>
+<li>Use any billing address from the customer user&#8217;s address book</li>
+<li>Use any shipping address from the customer address book</li>
+<li>Use any shipping address from the customer user&#8217;s address book</li>
+<li>Use the default billing address from the customer user&#8217;s address book</li>
+<li>Use the default shipping address from the customer user&#8217;s address book</li>
+<li>Work with payments</li>
+<li>[Attribute] Create attribute</li>
+<li>[Attribute] Edit attribute</li>
+<li>[Attribute] Manage attributes</li>
+<li>[Attribute] Remove attribute</li>
+<li>[Attribute] Restore attribute</li>
+<li>[Product Family] Create Product Family</li>
+<li>[Product Family] Delete Product Family</li>
+<li>[Product Family] Edit Product Family</li>
+<li>[Product Family] Manage Product Families</li>
+<li>[Product Family] View Product Family</li>
+<li>[Quote] Enter the shipping address manually</li>
+<li>[Quote] Enter the shipping address manually</li>
+<li>[Quote] Override customer payment term</li>
+<li>[Quote] Use any shipping address from the customer address book</li>
+<li>[Quote] Use any shipping address from the customer address book</li>
+<li>[Quote] Use any shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use any shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use the default shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Shopping</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Product Price</li>
+<li>Shopping List</li>
+<li>Shopping List Line Item</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Quotes</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Quote</li>
+<li>Request for Quote</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Checkout</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Open Order</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Checkout</strong> capabilities:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Approve orders that exceed the allowable amount</li>
+<li>Enter the billing address manually</li>
+<li>Enter the shipping address manually</li>
+<li>Use any billing address from the customer address book</li>
+<li>Use any billing address from the customer user&#8217;s address book</li>
+<li>Use any shipping address from the customer address book</li>
+<li>Use any shipping address from the customer user&#8217;s address book</li>
+<li>Use the default billing address from the customer user&#8217;s address book</li>
+<li>Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Orders</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Invoice</li>
+<li>Order</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>System capabilities</strong>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Address</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Access address drop-downs</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Application</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Access job queue</li>
+<li>Access job queue</li>
+<li>Access personal configuration</li>
+<li>Access system configuration</li>
+<li>Assign/unassign tags</li>
+<li>Export grid view</li>
+<li>Manage Menus</li>
+<li>Manage passwords</li>
+<li>Select the assignee of the integration</li>
+<li>Share grid view</li>
+<li>Unassign other tags</li>
+<li>Unshare grid view</li>
+<li>Update User Profile</li>
+<li>View SQL query of a report/segment</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Calendar</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Manage organization calendar events</li>
+<li>Manage system calendar events</li>
+<li>Manage system calendars</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Entity</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Access entity management</li>
+<li>Export entity records</li>
+<li>Import entity records</li>
+<li>Merge entities</li>
+<li>Search</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Finally, in the customer role details, you may view customer users with this role assigned. If the role is global, this list contains users from all customer accounts.</p>
+<img alt="../../../_images/CustomerUserRoles.png" class="with-border" src="../../../_images/CustomerUserRoles.png" />
+<div class="section" id="create-a-customer-user-role">
+<h2>Create a Customer User Role<a class="headerlink" href="#create-a-customer-user-role" title="Permalink to this headline">¶</a></h2>
+<p>To create a new Customer User Role, navigate to <strong>Customers &gt; Customer User Roles</strong> in the main menu and click <strong>Create Customer User Role</strong>.</p>
+<p>Preview:</p>
+<img alt="../../../_images/CustomerUserRolesCreate.png" class="with-border" src="../../../_images/CustomerUserRolesCreate.png" />
+<p>You can perform the following actions at the customer user role creation page:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Cancel</li>
+<li>Save And Close</li>
+</ul>
+</div></blockquote>
+<p><strong>Related Information</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viewlist.html">View and Filter Customer User Roles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create.html">Create a Customer User Role</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/customers/customer_user_roles/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Customers and Customer Users</a><ul>
+      <li>Previous: <a href="../customer_groups/pricelist.html" title="previous chapter">Price List Management for a Customer Group</a></li>
+      <li>Next: <a href="viewlist.html" title="next chapter">View and Filter Customer User Roles</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/customers/customer_user_roles/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

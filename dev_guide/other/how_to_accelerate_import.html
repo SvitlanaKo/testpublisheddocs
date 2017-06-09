@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Accelerate Import &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to enable https" href="how_to_enable_https.html" />
+    <link rel="prev" title="How to... Articles" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-accelerate-import">
+<span id="index-0"></span><h1>How to Accelerate Import<a class="headerlink" href="#how-to-accelerate-import" title="Permalink to this headline">¶</a></h1>
+<p>This article contains several recommendation about import process acceleration.</p>
+<div class="section" id="make-sure-xdebug-is-disabled">
+<h2>Make Sure Xdebug is Disabled<a class="headerlink" href="#make-sure-xdebug-is-disabled" title="Permalink to this headline">¶</a></h2>
+<p>Xdebug is a very useful debug tool for PHP, but at the same time it adds lots of overhead, especially for heavy and long
+operations. Xdebug status can be checked with <code class="docutils literal"><span class="pre">php</span> <span class="pre">-m</span></code> command:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># xdebug is enabled</span>
+$ php -m <span class="p">|</span> grep xdebug
+xdebug
+
+<span class="c1"># xdebug is disabled (no result)</span>
+$ php -m <span class="p">|</span> grep xdebug
+</pre></div>
+</td></tr></table></div>
+<p>To disable it, a developer has to remove or comment inclusion of Xdebug library (usually this should be done in
+php.ini).</p>
+</div>
+<div class="section" id="run-import-operation-from-the-command-line">
+<h2>Run import Operation from the Command Line<a class="headerlink" href="#run-import-operation-from-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Import from the UI is good for relatively small amount of data (up to 1000 entities), but if you need to import thousands
+or millions of entities the command line is your best choice. The OroPlatform provides the CLI command <code class="docutils literal"><span class="pre">oro:import:csv</span></code>
+that allows to import records from the specified CSV file.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:import:csv --help
+Usage:
+ oro:import:csv <span class="o">[</span>--validation-processor<span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="o">]</span> <span class="o">[</span>--processor<span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="o">]</span> file
+
+Arguments:
+ file                    File name, to import CSV data from
+
+Options:
+ --validation-processor  Name of the processor <span class="k">for</span> the entity data validation contained in the CSV
+ --processor             Name of the processor <span class="k">for</span> the entity data contained in the CSV
+</pre></div>
+</td></tr></table></div>
+<p>Here is a small example of its usage:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:import:csv ~/Contact_2000.csv
+Choose Processor:
+  <span class="o">[</span><span class="m">0</span> <span class="o">]</span> orocrm_contact.add_or_replace
+  <span class="o">[</span><span class="m">1</span> <span class="o">]</span> orocrm_contact.add
+  <span class="o">[</span><span class="m">2</span> <span class="o">]</span> orocrm_account.add_or_replace
+  <span class="o">[</span><span class="m">3</span> <span class="o">]</span> oro_tracking.processor.data
+  <span class="o">[</span><span class="m">4</span> <span class="o">]</span> orocrm_sales_lead.add_or_replace
+  <span class="o">[</span><span class="m">5</span> <span class="o">]</span> orocrm_sales_opportunity.add_or_replace
+  <span class="o">[</span><span class="m">6</span> <span class="o">]</span> orocrm_sales_b2bcustomer
+  <span class="o">[</span><span class="m">7</span> <span class="o">]</span> orocrm_magento.add_or_update_newsletter_subscriber
+  <span class="o">[</span><span class="m">8</span> <span class="o">]</span> orocrm_magento.add_or_update_customer
+  <span class="o">[</span><span class="m">9</span> <span class="o">]</span> orocrm_magento.import_guest_customer
+  <span class="o">[</span><span class="m">10</span><span class="o">]</span> orocrm_magento.add_or_update_customer_address
+  <span class="o">[</span><span class="m">11</span><span class="o">]</span> orocrm_magento.add_or_update_region
+  <span class="o">[</span><span class="m">12</span><span class="o">]</span> orocrm_magento.add_or_update_cart
+  <span class="o">[</span><span class="m">13</span><span class="o">]</span> orocrm_magento.add_or_update_order
+  <span class="o">[</span><span class="m">14</span><span class="o">]</span> orocrm_magento.store
+  <span class="o">[</span><span class="m">15</span><span class="o">]</span> orocrm_magento.website
+  <span class="o">[</span><span class="m">16</span><span class="o">]</span> orocrm_magento.customer_group
+&gt; <span class="m">1</span>
+Choose Validation Processor:
+  <span class="o">[</span><span class="m">0</span><span class="o">]</span> orocrm_contact.add_or_replace
+  <span class="o">[</span><span class="m">1</span><span class="o">]</span> orocrm_contact.add
+  <span class="o">[</span><span class="m">2</span><span class="o">]</span> orocrm_account.add_or_replace
+  <span class="o">[</span><span class="m">3</span><span class="o">]</span> orocrm_sales_lead.add_or_replace
+  <span class="o">[</span><span class="m">4</span><span class="o">]</span> orocrm_sales_opportunity.add_or_replace
+  <span class="o">[</span><span class="m">5</span><span class="o">]</span> orocrm_sales_b2bcustomer
+&gt; <span class="m">1</span>
++---------------+-------+
+<span class="p">|</span> Results       <span class="p">|</span> Count <span class="p">|</span>
++---------------+-------+
+<span class="p">|</span> errors        <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> process       <span class="p">|</span> <span class="m">2000</span>  <span class="p">|</span>
+<span class="p">|</span> <span class="nb">read</span>          <span class="p">|</span> <span class="m">2000</span>  <span class="p">|</span>
+<span class="p">|</span> add           <span class="p">|</span> <span class="m">2000</span>  <span class="p">|</span>
+<span class="p">|</span> replace       <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> update        <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> delete        <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> error_entries <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
++---------------+-------+
+Do you want to proceed <span class="o">[</span>yes<span class="o">]</span>?
+File was successfully imported.
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="perform-import-in-the-prod-environment">
+<h2>Perform Import in the prod Environment<a class="headerlink" href="#perform-import-in-the-prod-environment" title="Permalink to this headline">¶</a></h2>
+<p>The default environment for CLI is dev. In dev environment the application stores lots of data generally not required for real-life usage.
+Therefore, it is recommended to run import in prod environment so it would finish much faster. To do so you should add
+the <code class="docutils literal"><span class="pre">--env=prod</span></code> option to your import command:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:import:csv ~/Contact_2000.csv --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="skip-import-file-validation">
+<h2>Skip Import File Validation<a class="headerlink" href="#skip-import-file-validation" title="Permalink to this headline">¶</a></h2>
+<p>During regular import operation, the validation process is performed twice: first, during the validation itself and then
+before saving imported entities (invalid entities will not be saved to the DB). Initial validation can be skipped and
+import can be performed without it. To do so, start the import command in no interaction mode with the <code class="docutils literal"><span class="pre">--no-interaction</span></code> option:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:import:csv ~/Contact_2000.csv --processor<span class="o">=</span>orocrm_contact.add --no-interaction --env<span class="o">=</span>prod
++---------------+-------+
+<span class="p">|</span> Results       <span class="p">|</span> Count <span class="p">|</span>
++---------------+-------+
+<span class="p">|</span> errors        <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> process       <span class="p">|</span> <span class="m">2000</span>  <span class="p">|</span>
+<span class="p">|</span> <span class="nb">read</span>          <span class="p">|</span> <span class="m">2000</span>  <span class="p">|</span>
+<span class="p">|</span> add           <span class="p">|</span> <span class="m">2000</span>  <span class="p">|</span>
+<span class="p">|</span> replace       <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> update        <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> delete        <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> error_entries <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
++---------------+-------+
+File was successfully imported.
+</pre></div>
+</td></tr></table></div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">This trick can be very useful if you need to perform import on regular basis (e.g. by cron using external source).</p>
+</div>
+</div>
+<div class="section" id="disable-optional-listeners">
+<h2>Disable Optional Listeners<a class="headerlink" href="#disable-optional-listeners" title="Permalink to this headline">¶</a></h2>
+<p>With the OroPlatform you can disable some event listeners for the command execution. The <code class="docutils literal"><span class="pre">oro:platform:optional-listeners</span></code>
+command shows the list of all such listeners:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ app/console oro:platform:optional-listeners
+List of optional doctrine listeners:
+  &gt; oro_dataaudit.listener.send_changed_entities_to_message_queue
+  &gt; oro_notification.docrine.event.listener
+  &gt; oro_search.index_listener
+  &gt; oro_workflow.listener.event_trigger_collector
+</pre></div>
+</td></tr></table></div>
+<p>To disable these listeners the <code class="docutils literal"><span class="pre">--disabled-listeners</span></code> option can be used. Also this option can receive value &#8220;all&#8221; -
+it will disable all optional listeners. Here is an example:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ app/console oro:import:csv ~/Contact_2000.csv --processor orocrm_contact.add --disabled-listeners all --no-interaction --env prod
+</pre></div>
+</td></tr></table></div>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Remember that disabling listeners actually disables a part of backend functionality, so before using it
+make sure this part is not required. E.g. if the <code class="docutils literal"><span class="pre">oro_search.index_listener</span></code> listener is disabled then
+imported entities will not be found by the search engine (however, this may be fixed by manual search reindex
+using the <code class="docutils literal"><span class="pre">oro:search:reindex</span></code> command).</p>
+</div>
+</div>
+<div class="section" id="write-custom-import-strategy">
+<h2>Write Custom Import Strategy<a class="headerlink" href="#write-custom-import-strategy" title="Permalink to this headline">¶</a></h2>
+<p>The OroPlatform provides <code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.ImportExportBundle.Strategy.Import.ConfigurableAddOrReplaceStrategy.html" title="Oro\Bundle\ImportExportBundle\Strategy\Import\ConfigurableAddOrReplaceStrategy"><span class="pre">ConfigurableAddOrReplaceStrategy</span></a></code>
+to be used as the default one. This strategy automatically handles field types, relations etc.
+However, all this functionality significantly slows down the import process and might perform
+operations and requests that are not required for some specific cases.</p>
+<p>To solve this issue, a developer can implement a custom strategy to perform required actions only.
+The following example shows services that should be created to add a new import strategy:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span># Custom strategy
+orocrm_contact.importexport.strategy.contact.add:
+    class: &quot;%orocrm_contact.importexport.strategy.contact.add.class%&quot;
+    parent: oro_importexport.strategy.add
+
+# Processor for custom strategy
+orocrm_contact.importexport.processor.import.add:
+    parent: oro_importexport.processor.import_abstract
+    calls:
+        - [setStrategy, [@orocrm_contact.importexport.strategy.contact.add]]
+    tags:
+        - { name: oro_importexport.processor, type: import, entity: &quot;%orocrm_contact.entity.class%&quot;, alias: orocrm_contact.add }
+        - { name: oro_importexport.processor, type: import_validation, entity: &quot;%orocrm_contact.entity.class%&quot;, alias: orocrm_contact.add }
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/other/how_to_accelerate_import.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">How to... Articles</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">How to... Articles</a></li>
+      <li>Next: <a href="how_to_enable_https.html" title="next chapter">How to enable https</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/other/how_to_accelerate_import.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

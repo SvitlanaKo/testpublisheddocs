@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>@Config &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="@ConfigField" href="config_field.html" />
+    <link rel="prev" title="@AclAncestor" href="acl_ancestor.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="config">
+<h1>&#64;Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h1>
+<p>This annotation is used to configure default values for configurable entity classes.</p>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="defaultvalues">
+<h3><code class="docutils literal"><span class="pre">defaultValues</span></code><a class="headerlink" href="#defaultvalues" title="Permalink to this headline">¶</a></h3>
+<p>Configures default values for particular config options on a per property basis:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @Config(</span>
+<span class="sd"> *      defaultValues={</span>
+<span class="sd"> *          &quot;dataaudit&quot;={</span>
+<span class="sd"> *              &quot;auditable&quot;=true</span>
+<span class="sd"> *          }</span>
+<span class="sd"> *      }</span>
+<span class="sd"> * )</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>This example sets the <code class="docutils literal"><span class="pre">auditable</span></code> option from the <code class="docutils literal"><span class="pre">dataaudit</span></code> scope to <code class="docutils literal"><span class="pre">true</span></code> for the
+<code class="docutils literal"><span class="pre">User</span></code> class.</p>
+</div>
+<div class="section" id="routename">
+<h3><code class="docutils literal"><span class="pre">routeName</span></code><a class="headerlink" href="#routename" title="Permalink to this headline">¶</a></h3>
+<p>The route name of view that shows the datagrid of available records:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @Config(</span>
+<span class="sd"> *      routeName=&quot;oro_user_index&quot;</span>
+<span class="sd"> * )</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="routeview">
+<h3><code class="docutils literal"><span class="pre">routeView</span></code><a class="headerlink" href="#routeview" title="Permalink to this headline">¶</a></h3>
+<p>The route name of a controller that shows a particular object:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @Config(</span>
+<span class="sd"> *      routeView=&quot;oro_user_view&quot;</span>
+<span class="sd"> * )</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="routecreate">
+<h3><code class="docutils literal"><span class="pre">routeCreate</span></code><a class="headerlink" href="#routecreate" title="Permalink to this headline">¶</a></h3>
+<p>The route name of a controller that creates an object:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="c1">// ...</span>
+    <span class="k">use</span> <span class="nx">Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @Config(</span>
+<span class="sd">     *      routeCreate=&quot;oro_user_create&quot;</span>
+<span class="sd">     * )</span>
+<span class="sd">     */</span>
+    <span class="k">class</span> <span class="nc">User</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="routeupdate">
+<h3><code class="docutils literal"><span class="pre">routeUpdate</span></code><a class="headerlink" href="#routeupdate" title="Permalink to this headline">¶</a></h3>
+<p>The route name of controller action that updates an object:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span>        <span class="c1">// ...</span>
+        <span class="k">use</span> <span class="nx">Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config</span><span class="p">;</span>
+
+        <span class="sd">/**</span>
+<span class="sd">         * @Config(</span>
+<span class="sd">         *      routeUpdate=&quot;oro_user_update&quot;</span>
+<span class="sd">         * )</span>
+<span class="sd">         */</span>
+        <span class="k">class</span> <span class="nc">User</span>
+        <span class="p">{</span>
+            <span class="c1">// ...</span>
+        <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev_guide/reference/annotation/config.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Developer Guide</a><ul>
+  <li><a href="../index.html">Annotation and Configuration Format</a><ul>
+  <li><a href="index.html">Annotation Reference</a><ul>
+      <li>Previous: <a href="acl_ancestor.html" title="previous chapter">&#64;AclAncestor</a></li>
+      <li>Next: <a href="config_field.html" title="next chapter">&#64;ConfigField</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/dev_guide/reference/annotation/config.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

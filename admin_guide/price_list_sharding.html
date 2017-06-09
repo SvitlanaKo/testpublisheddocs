@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Configure Price List Sharding &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimize Website Indexation and Price Recalculation" href="optimize_index_and_price_calculation.html" />
+    <link rel="prev" title="Administrator Guide" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-configure-price-list-sharding">
+<span id="admin-price-list-sharding"></span><h1>How to Configure Price List Sharding<a class="headerlink" href="#how-to-configure-price-list-sharding" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Data sharding allows to improve Oro Commerce operation and accelerate database performance when handling big volumes of data.</p>
+<p>In terms of price lists, data sharding is used to split one big table of price lists into smaller tables, i.e. one table per price list.</p>
+<p>By default, price list sharding is disabled.</p>
+<p>However, it is recommended to enable price list sharding if you are experiencing product performance degradation, or for high load deployments with a large number of price lists and products within them.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For PostgreSQL, make sure you have <a class="reference internal" href="../system_requirements.html#sys-requirements-postgre-config"><span class="std std-ref">PostgreSQL</span></a> uuid-ossp extension loaded.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Combined prices cannot be sharded at the moment.</p>
+</div>
+</div>
+<div class="section" id="configure-price-list-sharding">
+<h2>Configure Price List Sharding<a class="headerlink" href="#configure-price-list-sharding" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">To enable price list sharding, set the following paramenter in app/config/parameters.yml:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">enable_price_sharding:</span> <span class="pre">true</span></code></p>
+</div></blockquote>
+</li>
+<li><p class="first">To reorganize storage and shard the price table, run the following command:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">oro:price-lists:pl-storage-reorganize</span> <span class="pre">prices</span> <span class="pre">--strategy=sharding</span></code></p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="disable-price-sharding">
+<h2>Disable Price Sharding<a class="headerlink" href="#disable-price-sharding" title="Permalink to this headline">¶</a></h2>
+<p>To restore the default price storage structure:</p>
+<ol class="arabic">
+<li><p class="first">To disable price list sharding, change app/config/parameters.yml to set <code class="docutils literal"><span class="pre">enable_price_sharding:</span> <span class="pre">false</span></code>.</p>
+</li>
+<li><p class="first">To reorganize storage and join sharded price tables into one, run the following command:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">oro:price-lists:pl-storage-reorganize</span> <span class="pre">prices</span> <span class="pre">--strategy=base</span></code></p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/admin_guide/price_list_sharding.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Administrator Guide</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Administrator Guide</a></li>
+      <li>Next: <a href="optimize_index_and_price_calculation.html" title="next chapter">Optimize Website Indexation and Price Recalculation</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/admin_guide/price_list_sharding.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

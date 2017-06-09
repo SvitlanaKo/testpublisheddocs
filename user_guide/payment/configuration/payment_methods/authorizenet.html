@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Authorize.Net Integration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Check/Money Order Payment Method Integration" href="check_money_order.html" />
+    <link rel="prev" title="Payment Method Integration" href="../payment_method_integrations.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="authorize-net-integration">
+<span id="user-guide-payment-configuration-payment-method-integration-authorizenet-details"></span><h1>Authorize.Net Integration<a class="headerlink" href="#authorize-net-integration" title="Permalink to this headline">¶</a></h1>
+<p>To set up integration with Authorize.Net, complete the following:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>System &gt; Integrations &gt; Manage Integrations</strong>.</p>
+</li>
+<li><p class="first">On the <strong>Manage Integrations</strong> page, click <span class="guilabel">Create Integration</span> in the upper-right corner of the page.</p>
+</li>
+<li><p class="first">On the <strong>Create Integration</strong> page, provide the following information:</p>
+<img alt="../../../../_images/integrations_authorizenet.png" src="../../../../_images/integrations_authorizenet.png" />
+<ul>
+<li><p class="first"><strong>Basic Information</strong>:</p>
+<ul class="simple">
+<li><strong>Name</strong>, <strong>Type</strong>—See <a class="reference internal" href="common_payment_integration_details.html#user-guide-payment-configuration-payment-method-integration-common-details"><span class="std std-ref">Common Payment Integration Details</span></a> for the description of these fields. For <strong>Type</strong>, select <em>Authorize.Net</em>.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Display Options</strong>:</p>
+<ul class="simple">
+<li><strong>Label</strong> and <strong>Short label</strong>—See <a class="reference internal" href="common_payment_integration_details.html#user-guide-payment-configuration-payment-method-integration-common-details"><span class="std std-ref">Common Payment Integration Details</span></a> for the description of these fields.</li>
+<li><strong>Allowed Credit Card Types</strong>—Select one or more items from the list of the credit card types. Supported types are Visa, Mastercard, Discover, American Express. Press and hold the <span class="guilabel">Ctrl</span> or <span class="guilabel">Shift</span> key and click on the items to select.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Integration</strong>:</p>
+<ul>
+<li><p class="first"><strong>API Login ID</strong>—An identifier that helps authenticate your account on the Authorize.Net payment gateway. See <a class="reference internal" href="../../prerequisites/authorizenet.html#user-guide-payment-prerequisites-authorizenet-credentials"><span class="std std-ref">Get Authorize.Net Credentials Required for Integration with OroCommerce</span></a> for how to find it.</p>
+</li>
+<li><p class="first"><strong>Transaction Key</strong>—A secret key that helps secure transactions to and from the Authorize.Net payment gateway. See <a class="reference internal" href="../../prerequisites/authorizenet.html#user-guide-payment-prerequisites-authorizenet-credentials"><span class="std std-ref">Get Authorize.Net Credentials Required for Integration with OroCommerce</span></a> for how to find it.</p>
+</li>
+<li><p class="first"><strong>Client Key</strong>—A public key that helps secure transactions to and from the Authorize.Net payment gateway. See <a class="reference internal" href="../../prerequisites/authorizenet.html#user-guide-payment-prerequisites-authorizenet-credentials"><span class="std std-ref">Get Authorize.Net Credentials Required for Integration with OroCommerce</span></a> for how to find it.</p>
+</li>
+<li><p class="first"><strong>Require CVV Entry</strong>—When this check box is selected, a buyer is prompted to enter a CVV code during checkout.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Select this check box only if you turned on the Card Code Verification (CCV) security feature on your Authorize.Net merchant interface. If a card code is not required, hiding the CVV field from buyers helps them keep their card code safe.</p>
+</div>
+</li>
+<li><p class="first"><strong>Test Mode</strong>—Select this check box to use Authorize.Net in the test mode that enables you to use the connection to the gateway without sending transaction information to a processing institution. See <a class="reference internal" href="../../prerequisites/authorizenet.html#user-guide-payment-prerequisites-authorizenet-testing"><span class="std std-ref">Using Authorize.Net in Test Mode</span></a> for more information.</p>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Advanced Settings</strong>:</p>
+<ul>
+<li><p class="first"><strong>Payment Actions</strong>—Select one of the options:</p>
+<ul>
+<li><p class="first"><em>Authorize</em>—The payment gateway checks with the cardholder&#8217;s issuing bank that the submitted card is valid and that there are sufficient funds to cover the transaction. The required amount is placed on hold on the card but not yet charged. To charge the amount, you must perform the <em>capture</em> action in the order details. This is usually done after the order is shipped or ready to be shipped.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You have 30 days to capture the payment.</p>
+</div>
+</li>
+<li><p class="first"><em>Authorize and Charge</em>—The payment gateway checks the card with the cardholder&#8217;s issuing bank and, if everything is OK, initiates a money transfer from the card to your account. This payment action is recommended when the order is fulfilled immediately after the purchase (e.g. for digital goods sales).</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Other</strong>:</p>
+<ul class="simple">
+<li><strong>Status</strong> and <strong>Default Owner</strong>—See <a class="reference internal" href="common_payment_integration_details.html#user-guide-payment-configuration-payment-method-integration-common-details"><span class="std std-ref">Common Payment Integration Details</span></a> for the description of these fields.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Click <span class="guilabel">Save</span>.</p>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user_guide/payment/configuration/payment_methods/authorizenet.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">User Guide</a><ul>
+  <li><a href="../../index.html">Payment</a><ul>
+  <li><a href="../index.html">Payment Configuration</a><ul>
+  <li><a href="../payment_method_integrations.html">Payment Method Integration</a><ul>
+      <li>Previous: <a href="../payment_method_integrations.html" title="previous chapter">Payment Method Integration</a></li>
+      <li>Next: <a href="check_money_order.html" title="next chapter">Check/Money Order Payment Method Integration</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../../_sources/user_guide/payment/configuration/payment_methods/authorizenet.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

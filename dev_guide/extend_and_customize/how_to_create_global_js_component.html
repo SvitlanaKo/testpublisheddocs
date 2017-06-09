@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Create a Global JavaScript Component &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to Replace Inline-Javascript with a Component" href="how_to_replace_inline-javascript_with_component.html" />
+    <link rel="prev" title="How to Add Custom User Validation Constraints" href="user_custom_validation_constraints.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-create-a-global-javascript-component">
+<h1>How to Create a Global JavaScript Component<a class="headerlink" href="#how-to-create-a-global-javascript-component" title="Permalink to this headline">¶</a></h1>
+<p>A global component or global view is an instance that exists beyond the content area and is not
+re-created in the course of navigation between different pages. A good example of a global
+component is the Pin Bar:</p>
+<img alt="../../_images/global-component-of-pin-bar.png" src="../../_images/global-component-of-pin-bar.png" />
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">You can find more information about global components and global views and learn about
+the App Module from the <a class="reference internal" href="../basics/frontend_architecture.html"><span class="doc">Frontend Architecture chapter</span></a>
+and from the <a class="reference external" href="https://github.com/orocrm/platform/blob/master/src/Oro/Bundle/UIBundle/Resources/doc/reference/page-component.md">Page Component documentation</a>.</p>
+</div>
+<div class="section" id="creating-the-page-component-module">
+<h2>Creating the Page Component Module<a class="headerlink" href="#creating-the-page-component-module" title="Permalink to this headline">¶</a></h2>
+<p>First of all, you need to define the Page Component module in your bundle, which has to extend the
+<code class="docutils literal"><span class="pre">BaseComponent</span></code> class from the OroUIBundle. If the Page Component module is named
+<code class="docutils literal"><span class="pre">MyComponent</span></code>, its code has to be placed in a file named <code class="docutils literal"><span class="pre">my-component.js</span></code> that lives in the
+<code class="docutils literal"><span class="pre">Resources/public/js/app/components</span></code> directory of your bundle:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Acme/DemoBundle/Resources/public/js/app/components/my-component.js</span>
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">MyComponent</span><span class="p">,</span>
+        <span class="nx">BaseComponent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;oroui/js/app/components/base/component&#39;</span><span class="p">);</span>
+
+    <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">BaseComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;MyComponent is initialized&#39;</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="nx">MyComponent</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<p>You can implement all the desired functionality inside the component.</p>
+<p>The component performs the role of a controller. It is responsible for the following things:</p>
+<blockquote>
+<div><ul class="simple">
+<li>create necessary views, collections, models and even sub-components</li>
+<li>handle environment events</li>
+<li>dispose obsolete internal instances</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="creating-an-app-module">
+<h2>Creating an App Module<a class="headerlink" href="#creating-an-app-module" title="Permalink to this headline">¶</a></h2>
+<p>To boot your component together with the application, you need to create an App Module:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// src/Acme/DemoBundle/Resources/public/js/app/modules/my-module.js</span>
+<span class="nx">require</span><span class="p">([</span>
+    <span class="s1">&#39;oroui/js/app/controllers/base/controller&#39;</span>
+<span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">BaseController</span><span class="p">)</span> <span class="p">{</span>
+    <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+    <span class="nx">BaseController</span><span class="p">.</span><span class="nx">loadBeforeAction</span><span class="p">([</span>
+        <span class="s1">&#39;acmedemo/js/app/components/my-component&#39;</span>
+    <span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">MyComponent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* add composition to reuse between controller actions */</span>
+        <span class="nx">BaseController</span><span class="p">.</span><span class="nx">addToReuse</span><span class="p">(</span><span class="s1">&#39;myComponent&#39;</span><span class="p">,</span> <span class="nx">MyComponent</span><span class="p">,</span> <span class="p">{</span>
+            <span class="cm">/* define options for your component here, like: */</span>
+            <span class="nx">keepServerConnection</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
+<p>The example above advises the controller to load your Page Component before the first action and
+will re-use its composition between actions. The following three arguments define the composition:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the name of the composition</li>
+<li>the constructor</li>
+<li>options of the constructor</li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">You can find more information about compositions in the <a class="reference external" href="http://docs.chaplinjs.org/chaplin.composer.html">Chaplin.Composer documentation</a>.</p>
+</div>
+</div>
+<div class="section" id="declaring-the-app-module">
+<h2>Declaring the App Module<a class="headerlink" href="#declaring-the-app-module" title="Permalink to this headline">¶</a></h2>
+<p>The final step is to register your App Module in the RequireJS config:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># src/Acme/DemoBundle/Resources/config/requirejs.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+        <span class="s">&#39;acmedemo/js/app/modules/my-module&#39;</span><span class="p p-Indicator">:</span> <span class="s">&#39;bundles/acmedemo/js/app/modules/my-module.js&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">appmodules</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">acmedemo/js/app/modules/my-module</span>
+</pre></div>
+</td></tr></table></div>
+<p>First, the <code class="docutils literal"><span class="pre">my-module</span></code> module name is added to the <code class="docutils literal"><span class="pre">config.paths</span></code> section to let the building
+script know about its location. This way, the building script can trace the dependency and add it
+to the build-file (<code class="docutils literal"><span class="pre">oro.min.js</span></code>). Once the source file was added to the configuration,
+<code class="docutils literal"><span class="pre">my-module</span></code> is added to the list of modules that are invoked at the application start using the
+<code class="docutils literal"><span class="pre">appmodules</span></code> key.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>To see your component in action you need to do a few more things:</p>
+<ul class="last">
+<li><p class="first">Clear the Symfony application cache to update the cache and the included RequireJS config:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console cache:clear
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">Reinstall your assets if you don&#8217;t deploy them via symlinks:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:assets:install
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">In production mode, you also have to rebuild the JavaScript code:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:requirejs:build
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/extend_and_customize/how_to_create_global_js_component.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">Customizing Oro Features</a><ul>
+      <li>Previous: <a href="user_custom_validation_constraints.html" title="previous chapter">How to Add Custom User Validation Constraints</a></li>
+      <li>Next: <a href="how_to_replace_inline-javascript_with_component.html" title="next chapter">How to Replace Inline-Javascript with a Component</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/extend_and_customize/how_to_create_global_js_component.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

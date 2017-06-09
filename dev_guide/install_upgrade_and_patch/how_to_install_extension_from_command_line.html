@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Manage OroPlatform Extensions &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to Upgrade to a New Version" href="how_to_upgrade_to_new_version.html" />
+    <link rel="prev" title="Extension and Patch Installation" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-manage-oroplatform-extensions">
+<span id="index-0"></span><h1>How to Manage OroPlatform Extensions<a class="headerlink" href="#how-to-manage-oroplatform-extensions" title="Permalink to this headline">¶</a></h1>
+<p><em>Used application: OroPlatform 1.*</em></p>
+<div class="section" id="installing-an-extension">
+<h2>Installing an Extension<a class="headerlink" href="#installing-an-extension" title="Permalink to this headline">¶</a></h2>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Before installing an extension it is recommended to back up the database and the application
+source code. There is no simple way to uninstall an extension.</p>
+</div>
+<p>There are two ways to install extensions from the command-line:</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#cookbook-extensions-package-manager"><span class="std std-ref">Use the package manager</span></a> if the extension is
+available via the <a class="reference external" href="http://marketplace.orocrm.com/">OroCRM Marketplace</a>.</li>
+<li>Alternatively, <a class="reference internal" href="#cookbook-extensions-composer"><span class="std std-ref">you can use Composer</span></a> to download an
+extension.</li>
+</ol>
+<div class="section" id="using-the-package-manager">
+<span id="cookbook-extensions-package-manager"></span><h3>Using the Package Manager<a class="headerlink" href="#using-the-package-manager" title="Permalink to this headline">¶</a></h3>
+<p>First, clear the cache to make sure that the package reads the list of packages from the server:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console cache:clear --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+<p>Then use the <code class="docutils literal"><span class="pre">oro:package:install</span></code> command to install the extension:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:package:install &lt;extension name&gt; &lt;extension-version&gt; --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+<p>Finish the installation by clearing the cache again:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console cache:clear --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="using-composer">
+<span id="cookbook-extensions-composer"></span><h3>Using Composer<a class="headerlink" href="#using-composer" title="Permalink to this headline">¶</a></h3>
+<p>Start with upgrading Composer to the latest version. This may be needed in case the extension to be
+installed uses some bleeding edge feature in its <code class="docutils literal"><span class="pre">composer.json</span></code> file:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ composer self-update
+<span class="c1"># add and download extension</span>
+</pre></div>
+</td></tr></table></div>
+<p>Then, install the extension&#8217;s Composer package using the Composer <code class="docutils literal"><span class="pre">require</span></code> command:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ composer require &lt;extension name&gt;:&lt;extension-version&gt; --prefer-dist --update-no-dev
+</pre></div>
+</td></tr></table></div>
+<p>Repeat this for any other extension you want to install. When you are finished with adding new
+packages, use the <code class="docutils literal"><span class="pre">oro:platform:update</span></code> command to make the application aware of the newly
+installed extensions:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:platform:update --env<span class="o">=</span>prod --force
+</pre></div>
+</td></tr></table></div>
+<p>Finally, make sure to properly clean the cache:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console cache:clear --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="querying-extension-information">
+<h2>Querying Extension Information<a class="headerlink" href="#querying-extension-information" title="Permalink to this headline">¶</a></h2>
+<p>There are two commands that can help you get an overview of the extension.</p>
+<p>The <code class="docutils literal"><span class="pre">oro:package:available</span></code> command can be used to retrieve a list of all available extensions:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:package:available --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+<p>If you are only interested in the currently installed extensions, run the <code class="docutils literal"><span class="pre">oro:package:installed</span></code>
+command:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ php app/console oro:package:installed --env<span class="o">=</span>prod
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/install_upgrade_and_patch/how_to_install_extension_from_command_line.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">Extension and Patch Installation</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Extension and Patch Installation</a></li>
+      <li>Next: <a href="how_to_upgrade_to_new_version.html" title="next chapter">How to Upgrade to a New Version</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/install_upgrade_and_patch/how_to_install_extension_from_command_line.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

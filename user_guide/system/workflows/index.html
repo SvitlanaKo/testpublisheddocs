@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Workflow Management &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Quote Backoffice Workflow" href="quote_management_workflow.html" />
+    <link rel="prev" title="Edit Front Store Menu" href="../websites/edit_frontend_menu.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="user-guide-system-workflow-management"></span><div class="section" id="workflow-management">
+<h1>Workflow Management<a class="headerlink" href="#workflow-management" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
+<li><a class="reference internal" href="#system-vs-custom-workflow" id="id3">System vs Custom Workflow</a></li>
+<li><a class="reference internal" href="#workflow-steps-transitions-and-attributes" id="id4">Workflow Steps, Transitions, and Attributes</a></li>
+<li><a class="reference internal" href="#create-a-workflow" id="id5">Create a Workflow</a><ul>
+<li><a class="reference internal" href="#using-workflow-designer" id="id6">Using Workflow Designer</a><ul>
+<li><a class="reference internal" href="#add-a-step" id="id7">Add a Step</a></li>
+<li><a class="reference internal" href="#add-a-transition" id="id8">Add a Transition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ui-limitations-for-workflow-creation" id="id9">UI Limitations for Workflow Creation</a></li>
+<li><a class="reference internal" href="#workflow-visualization" id="id10">Workflow Visualization</a></li>
+<li><a class="reference internal" href="#multiple-active-workflows" id="id11">Multiple Active Workflows</a></li>
+<li><a class="reference internal" href="#id1" id="id12">Workflow Management</a><ul>
+<li><a class="reference internal" href="#system-workflows" id="id13">System Workflows</a></li>
+<li><a class="reference internal" href="#custom-workflows" id="id14">Custom Workflows</a></li>
+<li><a class="reference internal" href="#workflow-activation" id="id15">Workflow Activation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#user-permissions-for-individual-workflows" id="id16">User Permissions for Individual Workflows</a></li>
+<li><a class="reference internal" href="#workflow-translations" id="id17">Workflow Translations</a></li>
+<li><a class="reference internal" href="#detailed-information-about-system-workflows" id="id18">Detailed Information About System Workflows</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In OroCommerce, a workflow is a business process that involves multiple user interactions or sequential phases. It may trigger other workflows and change the status of the items involved in a business process.</p>
+<p>In OroCommerce Front Store, workflows organize and direct users’ work (e.g. during the checkout), making them follow particular steps in a pre-defined order (e.g. provide shipping address, then select shipping method from the options supported for the destination), or preventing them from performing actions that either contradict or conflict with the logical steps of a process (e.g. a customer may not be able to submit an order without their manager&#8217;s approval).</p>
+<p>In OroCommerce Management Console, workflow help users follow standard procedures that may be of a non-linear nature with alternating flow that depends on the available information, related items status, connectivity with integrated solutions, etc.</p>
+</div>
+<div class="section" id="system-vs-custom-workflow">
+<span id="user-guide-system-workflow-management-system-custom"></span><h2><a class="toc-backref" href="#id3">System vs Custom Workflow</a><a class="headerlink" href="#system-vs-custom-workflow" title="Permalink to this headline">¶</a></h2>
+<p>In Oro applications, any workflow may be classified as either <strong>system</strong> or <strong>custom</strong>. <em>System</em> workflow modification is limited in order to keep core functionality operational. However, if you create a <em>Custom</em> workflow from scratch or clone the existing system workflow, you can tailor it for your needs without any restrictions.</p>
+<p>The following system workflows are provided out of the box in OroCommerce:</p>
+<ul class="simple">
+<li><a class="reference internal" href="checkout.html#system-workflows-checkout-workflow"><span class="std std-ref">Checkout</span></a></li>
+<li><a class="reference internal" href="alternative_checkout.html#system-workflows-alternative-checkout-workflow"><span class="std std-ref">Alternative Checkout</span></a></li>
+<li><a class="reference internal" href="quote_management_workflow.html#system-workflows-quote-backoffice-workflow"><span class="std std-ref">Quote Backoffice</span></a></li>
+<li><a class="reference internal" href="rfq_backoffice.html#system-workflows-rfq-backoffice-workflow"><span class="std std-ref">RFQ Backoffice</span></a></li>
+<li><a class="reference internal" href="rfq_frontoffice.html#system-workflows-rfq-frontoffice-workflow"><span class="std std-ref">RFQ Frontoffice</span></a></li>
+</ul>
+</div>
+<div class="section" id="workflow-steps-transitions-and-attributes">
+<span id="user-guide-system-workflow-management-steps-transitions"></span><h2><a class="toc-backref" href="#id4">Workflow Steps, Transitions, and Attributes</a><a class="headerlink" href="#workflow-steps-transitions-and-attributes" title="Permalink to this headline">¶</a></h2>
+<p>Each process or action applied to a record is called a <strong>Workflow Transition</strong>. On the interface, transitions take a form of a button. There are two types of transitions:</p>
+<ul class="simple">
+<li>Transitions that take a user from one state to another and connect to each step in the workflow.</li>
+<li>Self-transitions that do not change steps in the workflow.</li>
+</ul>
+<p><strong>Workflow Step</strong> is the state of a record before and after a transition.</p>
+<p>Every workflow has a <strong>Start</strong> transition that launches the workflow.</p>
+<p>A transition can be defined as soon as there is at least one step besides <strong>Start</strong>. However, it is often simpler to define all workflow steps and then all the transitions between them.</p>
+<img alt="../../../_images/1_transitions_steps.png" src="../../../_images/1_transitions_steps.png" />
+<p><strong>Attributes</strong> are characteristics of the record. For example, a ZIP code and a street name are attributes of an address. In the course of each transition, you can change some attributes of the processed record.</p>
+<p>If enabled (see the section below), the <strong>Workflow Widget</strong> displays the process steps defined in workflow configuration on the record view page. Multiple workflow widgets can be displayed for one record at the same time.</p>
+<img alt="../../../_images/2_wf_steps_new.png" src="../../../_images/2_wf_steps_new.png" />
+</div>
+<div class="section" id="create-a-workflow">
+<h2><a class="toc-backref" href="#id5">Create a Workflow</a><a class="headerlink" href="#create-a-workflow" title="Permalink to this headline">¶</a></h2>
+<p>To create a workflow for an entity:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>System &gt; Workflows</strong>.</p>
+</li>
+<li><p class="first">Click <strong>Create Workflow</strong> in the top right corner.</p>
+<img alt="../../../_images/3_create_wf_button.png" src="../../../_images/3_create_wf_button.png" />
+</li>
+<li><p class="first">On the <strong>Create Workflow</strong> page, specify the details of your workflow in the <strong>General</strong> section.</p>
+<img alt="../../../_images/4_create_wfpng.png" src="../../../_images/4_create_wfpng.png" />
+</li>
+</ol>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Name</strong></td>
+<td>The name of the workflow.</td>
+</tr>
+<tr class="row-odd"><td><strong>Related Entity</strong></td>
+<td>A related entity is the entity for which the workflow is created. When the workflow is active, it can be launched and executed on the records of its related entity.</td>
+</tr>
+<tr class="row-even"><td><strong>Default Step</strong></td>
+<td>Specifying the default steps launches the workflow in a particular step by default. For instance, when you activate Opportunity Management Flow, a newly created opportunity will appear as <strong>open</strong>, if <strong>Open</strong> was specified as the default step. If no step is selected, all newly created records will have no workflow associated with them, and it must be launched with one of the starting transitions.</td>
+</tr>
+<tr class="row-odd"><td><strong>Display Steps Ordered</strong></td>
+<td>Display Steps Ordered box is disabled by default. <strong>If checked</strong>, all workflow steps are displayed in the workflow widget. <strong>If not checked</strong>, only the steps that have actually been performed are displayed.</td>
+</tr>
+<tr class="row-even"><td><strong>Exclusive Active Groups</strong></td>
+<td>Exclusive Active Groups is a list of group names for which the current workflow should be active exclusively. Determining Exclusive Record Groups allows to set up mutually exclusive workflows in order to configure how they each correlate in the system. This makes it possible for only one workflow to be active, or for an entity record to use only one workflow from the group at a time.</td>
+</tr>
+<tr class="row-odd"><td><strong>Exclusive Record Groups</strong></td>
+<td>Exclusive Record Groups specify how workflows apply to certain sets of records in order to limit their applicability. This lets users create specific workflows for specific segments (subsets) of records. For example, no concurrent transitions are possible among workflows in same exclusive record group.</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li>Once the details in the General section have been specified, add steps and transitions in the Designer section to model your business process. For detailed guidance on <a class="reference internal" href="#using-workflow-designer">Using Workflow Designer</a> below.</li>
+<li>When done, click <strong>Save</strong>.</li>
+</ol>
+<div class="section" id="using-workflow-designer">
+<h3><a class="toc-backref" href="#id6">Using Workflow Designer</a><a class="headerlink" href="#using-workflow-designer" title="Permalink to this headline">¶</a></h3>
+<p>The Designer section consists of a <strong>table and an interactive chart</strong> representations of a workflow, as illustrated below:</p>
+<blockquote>
+<div><img alt="../../../_images/5_table_chart_example.png" src="../../../_images/5_table_chart_example.png" />
+</div></blockquote>
+<p><strong>Within the table</strong>, you can perform the following actions for a <strong>transition</strong>:</p>
+<ul class="simple">
+<li><strong>Update</strong> (clicking on the transition name opens an Edit Transition form).</li>
+<li><strong>Clone</strong> (clicking <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> opens a Clone Transition form).</li>
+<li><strong>Delete</strong> (launches a Delete Confirmation popup).</li>
+</ul>
+<p><strong>For a step</strong>, you can:</p>
+<ul class="simple">
+<li><strong>Add a transition to a step</strong> (clicking <strong>+</strong> opens an Add New Transition form)</li>
+<li><strong>Update</strong> (clicking <i class="fa fa-edit fa-lg" aria-hidden="true"></i> opens an Edit Step form).</li>
+<li><strong>Clone</strong> (clicking <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> opens a Clone Step form).</li>
+<li><strong>Delete</strong> (launches a Delete Confirmation popup).</li>
+</ul>
+<img alt="../../../_images/designer_table.gif" src="../../../_images/designer_table.gif" />
+<p><strong>Within the chart</strong>, you can:</p>
+<ul class="simple">
+<li><strong>Add transition</strong> (opens an Add Transition form).</li>
+<li><strong>Add step</strong> (opens an Add Step form).</li>
+<li><strong>Rearrange the chart</strong> for clearer workflow view.</li>
+<li><strong>Autosort</strong> (automatically shapes your chart).</li>
+</ul>
+<img alt="../../../_images/auto_sort.gif" src="../../../_images/auto_sort.gif" />
+<ul class="simple">
+<li><strong>Zoom in/out</strong> (zooms the chart in/out).</li>
+<li><strong>Show Transition Labels</strong> (checking the box displays transition labels in the chart).</li>
+<li><strong>Drag transitions from one step to another</strong> (drag an arrow from one of four corners of the step box).</li>
+</ul>
+<img alt="../../../_images/drag_transition.gif" src="../../../_images/drag_transition.gif" />
+<ul class="simple">
+<li><strong>Undo/Redo changes</strong> (reverts or restores changes made to the chart).</li>
+<li><strong>Edit/Clone/Delete</strong> a step/transition by clicking on the arrow on the step/transition button.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All actions available for transitions and steps in the table are available in the chart as well.</p>
+</div>
+<img alt="../../../_images/6_manage_chart.png" src="../../../_images/6_manage_chart.png" />
+<p>As an example, we are going to create an <strong>Opportunity Support Flow</strong> to show how a workflow is configured and visualized.</p>
+<div class="section" id="add-a-step">
+<h4><a class="toc-backref" href="#id7">Add a Step</a><a class="headerlink" href="#add-a-step" title="Permalink to this headline">¶</a></h4>
+<p>To add a step to a workflow, click <span class="guilabel">Add Step</span> in the top right corner of the chart.</p>
+<img alt="../../../_images/7_add_step.png" src="../../../_images/7_add_step.png" />
+<p>In the Add Step form, complete the following fields:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Name</strong></td>
+<td>The name of the step that will be displayed on the entity record.</td>
+</tr>
+<tr class="row-odd"><td><strong>Position</strong></td>
+<td>A number that determines the position of the step in the workflow. The higher the number, the further the step is from the start.</td>
+</tr>
+<tr class="row-even"><td><strong>Final</strong></td>
+<td>This option marks the step as the logical <em>end</em> or the <em>outcome</em> of the workflow. This is a purely logical property required for distinguishing steps for the funnel charts or creating reports with the workflow data. Marking the step final has no effect on the flow itself.</td>
+</tr>
+</tbody>
+</table>
+<p>For the sample Opportunity Support flow, we will start off by creating two steps: <strong>No Complaints</strong> and <strong>Complaint Received</strong>.</p>
+<img alt="../../../_images/8_add_step_form.png" src="../../../_images/8_add_step_form.png" />
+<img alt="../../../_images/9_add_step_form_2.png" src="../../../_images/9_add_step_form_2.png" />
+<p>Click <span class="guilabel">Apply</span> to save the step.</p>
+<p>Next, we are going to apply a transition for these steps.</p>
+</div>
+<div class="section" id="add-a-transition">
+<h4><a class="toc-backref" href="#id8">Add a Transition</a><a class="headerlink" href="#add-a-transition" title="Permalink to this headline">¶</a></h4>
+<p>To add a step to a workflow, click <span class="guilabel">Add Transition</span> in the top right corner of the chart.</p>
+<img alt="../../../_images/10_add_transition.png" src="../../../_images/10_add_transition.png" />
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Name</strong></td>
+<td>The name of the transition that will be displayed on its button.</td>
+</tr>
+<tr class="row-odd"><td><strong>From Step</strong></td>
+<td>The workflow step, for which the transition button should appear on the entity page.</td>
+</tr>
+<tr class="row-even"><td><strong>To Step</strong></td>
+<td>The step to which the workflow will progress after the transition is performed.</td>
+</tr>
+<tr class="row-odd"><td><strong>View Form</strong></td>
+<td>Transition attributes can appear in one of two available forms: in the <em>popup window</em>, which is a default transition behavior suitable for most cases, or on the <em>separate page</em>, which should be used with care and only for attribute-heavy transitions.</td>
+</tr>
+<tr class="row-even"><td><strong>Warning Message</strong></td>
+<td>If you want to show a warning popup message to the user before a transition is executed, put the text of the warning into this field.</td>
+</tr>
+<tr class="row-odd"><td><strong>Button Icon</strong></td>
+<td>An icon that will appear on the transition button before the transition name.</td>
+</tr>
+<tr class="row-even"><td><strong>Button Style</strong></td>
+<td>This control specifies the visual style of the transition button.</td>
+</tr>
+<tr class="row-odd"><td><strong>Button Preview</strong></td>
+<td>This is the live preview of the transition button as it will appear on the entity page.</td>
+</tr>
+</tbody>
+</table>
+<img alt="../../../_images/11_add_transition_form.png" src="../../../_images/11_add_transition_form.png" />
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Self-transitions do not change steps in workflows (e.g. it can be a transition that launches an Edit form of a record within the same step).</p>
+</div>
+<p>Define the following fields in the <strong>Attributes</strong> section of the <strong>Add New Transition form</strong>:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Entity Field</strong></td>
+<td>This is the field of the workflow entity or its related entities that will appear on the view form of the transition. Use these if you want a user to add or edit some entity data in the transition.</td>
+</tr>
+<tr class="row-odd"><td><strong>Label</strong></td>
+<td>Use the field if you want to change the way it is displayed in the UI. The system label value of the entity is used by default.</td>
+</tr>
+<tr class="row-even"><td><strong>Required</strong></td>
+<td>Check the <span class="guilabel">Required</span> box if definition of the attribute should be mandatory for the transition.</td>
+</tr>
+<tr class="row-odd"><td><strong>+Add</strong></td>
+<td>Click <span class="guilabel">+Add</span> to add a new attribute.</td>
+</tr>
+</tbody>
+</table>
+<p>Click <span class="guilabel">Apply</span> to save the attribute(s) in the system.</p>
+<p>The following is an example of an attribute added for the <strong>Register a Complaint</strong> transition in the sample <strong>Opportunity Support Flow</strong>. The entity selected for the attribute is Additional Comments. Its label has been changed to <strong>Specify the Complaint</strong>.</p>
+<img alt="../../../_images/12_specify_complaint.png" src="../../../_images/12_specify_complaint.png" />
+<img alt="../../../_images/13_attribute_saved.png" src="../../../_images/13_attribute_saved.png" />
+<p>In the same manner, specify steps, transitions and attributes required for your custom workflow.</p>
+<p>The sample Opportunity Support Flow has been configured the following way:</p>
+<img alt="../../../_images/14_sample_flow_saved.png" src="../../../_images/14_sample_flow_saved.png" />
+</div>
+</div>
+</div>
+<div class="section" id="ui-limitations-for-workflow-creation">
+<h2><a class="toc-backref" href="#id9">UI Limitations for Workflow Creation</a><a class="headerlink" href="#ui-limitations-for-workflow-creation" title="Permalink to this headline">¶</a></h2>
+<p>Oro workflows can be created from both the server-side and the UI. However, there is a number of functions that can be defined for a workflow only from the server-side logics in the course of integration. More information on workflow implementation can be found <a class="reference external" href="https://github.com/orocrm/platform/blob/master/src/Oro/Bundle/WorkflowBundle/Resources/doc/reference/workflow/index.md">on this GitHub page</a>   <a class="reference external" href="../../book/workflow">and here</a></p>
+</div>
+<div class="section" id="workflow-visualization">
+<h2><a class="toc-backref" href="#id10">Workflow Visualization</a><a class="headerlink" href="#workflow-visualization" title="Permalink to this headline">¶</a></h2>
+<p>Once the workflow has been configured and saved, you can see how it is visualized for the records:</p>
+<ul class="simple">
+<li>Transition buttons will be displayed in the top right corner of the entity record page.</li>
+<li>All the steps will be located at the top on the entity record page within the workflow widget.</li>
+</ul>
+<p>The sample Opportunity Support Flow has been saved and activated.</p>
+<p>As you can see from the screenshots below, the opportunity is currently in the No Complaints step. Clicking <span class="guilabel">Register a Complaint</span> will prompt an attribute we have configured for this transition:</p>
+<img alt="../../../_images/15_osf_ui_1.png" src="../../../_images/15_osf_ui_1.png" />
+<img alt="../../../_images/16_osf_ui_2.png" src="../../../_images/16_osf_ui_2.png" />
+<p>Submitting a complaint will launch an opportunity page with <strong>Resolve, Request Feedback and Close</strong> transition buttons activated.</p>
+<img alt="../../../_images/17_osf_ui_3.png" src="../../../_images/17_osf_ui_3.png" />
+<p>Clicking each of these buttons will pass the user on to the next step specified in the workflow:</p>
+<img alt="../../../_images/18_osf_ui_4.png" src="../../../_images/18_osf_ui_4.png" />
+<p><strong>Completed steps</strong> are green, <strong>the step in progress</strong> is white, <strong>the step to follow</strong> is grey. The completed workflow cycle will have all steps highlighted in green:</p>
+<img alt="../../../_images/19_osf_ui.png" src="../../../_images/19_osf_ui.png" />
+<p>As an illustration, we have unchecked the <span class="guilabel">Display Steps Ordered</span> box in the edit mode for the same workflow. Here is what the steps look like in this case:</p>
+<img alt="../../../_images/20_osf_ui_5.png" src="../../../_images/20_osf_ui_5.png" />
+<p>The workflow widget now displays only the current step that the opportunity is in.</p>
+<img alt="../../../_images/21_osf_ui_5.png" src="../../../_images/21_osf_ui_5.png" />
+<img alt="../../../_images/22_osf_ui_5.png" src="../../../_images/22_osf_ui_5.png" />
+<p>The current step of a workflow is displayed in the <strong>Step</strong> column within the entity grid, as in the example below:</p>
+<img alt="../../../_images/23_open_opps_steps.png" src="../../../_images/23_open_opps_steps.png" />
+</div>
+<div class="section" id="multiple-active-workflows">
+<h2><a class="toc-backref" href="#id11">Multiple Active Workflows</a><a class="headerlink" href="#multiple-active-workflows" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to have multiple active workflows for the same record. If you have more than one active workflow, you can separately activate each of them. In the following example, two workflows are available for one record:</p>
+<img alt="../../../_images/24_multiple_wfs.jpg" src="../../../_images/24_multiple_wfs.jpg" />
+<p>Workflows are expandable and can be collapsed, if necessary, by clicking <strong>+</strong> on the left of the Workflow, as illustrated below:</p>
+<img alt="../../../_images/25_collapse_flow.jpg" src="../../../_images/25_collapse_flow.jpg" />
+<img alt="../../../_images/26_collapse_flow_2.jpg" src="../../../_images/26_collapse_flow_2.jpg" />
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id12">Workflow Management</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="system-workflows">
+<h3><a class="toc-backref" href="#id13">System Workflows</a><a class="headerlink" href="#system-workflows" title="Permalink to this headline">¶</a></h3>
+<p>Since System workflows are pre-implemented in the system, their management from the UI is limited. From the grid, you can perform the following actions for system workflows:</p>
+<ul class="simple">
+<li><strong>Clone</strong>:<i class="fa fa-files-o fa-lg" aria-hidden="true"></i> (copy the workflow to be able to customize it).</li>
+<li><strong>View</strong>: <i class="fa fa-eye fa-lg" aria-hidden="true"></i> (Go to the view page of the workflow).</li>
+<li><strong>Activate/Deactivate</strong>: <i class="fa fa-check fa-lg" aria-hidden="true"></i> / <i class="fa fa-close fa-lg" aria-hidden="true"></i> (activate/deactivate the workflow).</li>
+</ul>
+<img alt="../../../_images/27_manage_wf_2.png" src="../../../_images/27_manage_wf_2.png" />
+</div>
+<div class="section" id="custom-workflows">
+<h3><a class="toc-backref" href="#id14">Custom Workflows</a><a class="headerlink" href="#custom-workflows" title="Permalink to this headline">¶</a></h3>
+<p>Cloned system workflows and workflows created in the UI from scratch are custom workflows.
+You can perform the following actions for them:</p>
+<ul class="simple">
+<li><strong>Clone</strong>: <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> (copy the workflow to be able to customize it).</li>
+<li><strong>View</strong>: <i class="fa fa-eye fa-lg" aria-hidden="true"></i> (Go to the view page of the workflow).</li>
+<li><strong>Activate/Deactivate</strong>:<i class="fa fa-check fa-lg" aria-hidden="true"></i> / <i class="fa fa-close fa-lg" aria-hidden="true"></i> (activate/deactivate the workflow).</li>
+<li><strong>Edit</strong>: <i class="fa fa-edit fa-lg" aria-hidden="true"></i> (open the edit form of the workflow).</li>
+<li><strong>Delete</strong>: <i class="fa fa-trash fa-lg" aria-hidden="true"></i> (delete the workflow from the system).</li>
+</ul>
+<img alt="../../../_images/28_manage_wf_1.png" src="../../../_images/28_manage_wf_1.png" />
+</div>
+<div class="section" id="workflow-activation">
+<h3><a class="toc-backref" href="#id15">Workflow Activation</a><a class="headerlink" href="#workflow-activation" title="Permalink to this headline">¶</a></h3>
+<p>You can activate a workflow by clicking on the corresponding button on the view page of the workflow:</p>
+<img alt="../../../_images/29_activate_wf.png" src="../../../_images/29_activate_wf.png" />
+<p>Optionally, you can select certain workflows to be deactivated. If you do not, leave the field empty and click <span class="guilabel">Activate</span>.</p>
+<img alt="../../../_images/30_activate_wf_2.png" src="../../../_images/30_activate_wf_2.png" />
+<p>Similarly, click <span class="guilabel">Deactivate</span> if you wish to deactivate the selected workflow:</p>
+<img alt="../../../_images/31_deactivate_wf.png" src="../../../_images/31_deactivate_wf.png" />
+<img alt="../../../_images/32_deactivate_wf_2.png" src="../../../_images/32_deactivate_wf_2.png" />
+<p>Activating workflows does not happen automatically for all entities. Once the flow has been activated in <strong>System&gt;Workflows</strong>, you need to start it manually for the required entities:</p>
+<img alt="../../../_images/33_start_wf_manually.png" src="../../../_images/33_start_wf_manually.png" />
+<p>It is possible to activate/deactivate workflows from the grid. See the previous section of this guide on Workflow Management to learn more about workflow grids.</p>
+</div>
+</div>
+<div class="section" id="user-permissions-for-individual-workflows">
+<h2><a class="toc-backref" href="#id16">User Permissions for Individual Workflows</a><a class="headerlink" href="#user-permissions-for-individual-workflows" title="Permalink to this headline">¶</a></h2>
+<p>Multiple workflows functionality requires an ability to manage user permissions to run individual workflows. You can configure the following workflow permissions in <strong>System&gt;User Management&gt;Roles</strong>:</p>
+<ul class="simple">
+<li>Visibility of the entire workflow and its steps/current step</li>
+<li>Ability to run workflow transactions</li>
+<li>Ability to run every individual transaction.</li>
+</ul>
+<img alt="../../../_images/34_roles_wfs.png" src="../../../_images/34_roles_wfs.png" />
+</div>
+<div class="section" id="workflow-translations">
+<h2><a class="toc-backref" href="#id17">Workflow Translations</a><a class="headerlink" href="#workflow-translations" title="Permalink to this headline">¶</a></h2>
+<p>All workflow labels can be translated into other languages, providing better localizations for users from different countries. Click on the corresponding icon to get redirected to the translation grid.</p>
+<img alt="../../../_images/35_translations.png" src="../../../_images/35_translations.png" />
+</div>
+<div class="section" id="detailed-information-about-system-workflows">
+<h2><a class="toc-backref" href="#id18">Detailed Information About System Workflows</a><a class="headerlink" href="#detailed-information-about-system-workflows" title="Permalink to this headline">¶</a></h2>
+<p>See the following sections to get more information about the system workflows in OroCommerce:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quote_management_workflow.html">Quote Backoffice Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rfq_backoffice.html">RFQ Backoffice Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rfq_frontoffice.html">RFQ Frontoffice Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checkout.html">Checkout Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternative_checkout.html">Alternative Checkout Workflow</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/system/workflows/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">System Configuration</a><ul>
+      <li>Previous: <a href="../websites/edit_frontend_menu.html" title="previous chapter">Edit Front Store Menu</a></li>
+      <li>Next: <a href="quote_management_workflow.html" title="next chapter">Quote Backoffice Workflow</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/system/workflows/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

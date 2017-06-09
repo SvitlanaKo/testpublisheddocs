@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>My Menus Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="My Calendar" href="my_user_calendar.html" />
+    <link rel="prev" title="My Configuration" href="my_user_system_config.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="my-menus-configuration">
+<span id="doc-my-user-menus"></span><h1>My Menus Configuration<a class="headerlink" href="#my-menus-configuration" title="Permalink to this headline">¶</a></h1>
+<p>This page describes how you can personalize menus of your Oro application. The changes that you make via your personal menus page do not affect other users. If you are an administrator and want to configure menus for the whole system, please see the <a class="reference internal" href="../../system/menu/index.html#doc-config-menus"><span class="std std-ref">System Menus Configuration</span></a> guide.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#menus-page" id="id1">Menus Page</a><ul>
+<li><a class="reference internal" href="#view-a-menu" id="id2">View a Menu</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#menu-configuration" id="id3">Menu Configuration</a><ul>
+<li><a class="reference internal" href="#hide-show-the-left-menu-panel" id="id4">Hide / Show the Left Menu Panel</a></li>
+<li><a class="reference internal" href="#expand-collapse-a-menu" id="id5">Expand / Collapse a Menu</a></li>
+<li><a class="reference internal" href="#find-a-menu-item" id="id6">Find a Menu Item</a></li>
+<li><a class="reference internal" href="#view-edit-a-menu-item" id="id7">View / Edit a Menu Item</a></li>
+<li><a class="reference internal" href="#add-a-menu-item" id="id8">Add a Menu Item</a></li>
+<li><a class="reference internal" href="#add-a-divider" id="id9">Add a Divider</a></li>
+<li><a class="reference internal" href="#rearrange-menu-items-dividers" id="id10">Rearrange Menu Items / Dividers</a></li>
+<li><a class="reference internal" href="#delete-a-menu-item-divider" id="id11">Delete a Menu Item / Divider</a></li>
+<li><a class="reference internal" href="#hide-a-menu-item" id="id12">Hide a Menu Item</a></li>
+<li><a class="reference internal" href="#show-a-menu-item" id="id13">Show a Menu Item</a></li>
+<li><a class="reference internal" href="#reset-a-menu" id="id14">Reset a Menu</a><ul>
+<li><a class="reference internal" href="#see-also" id="id15">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="menus-page">
+<span id="doc-menus-menuspage"></span><h2><a class="toc-backref" href="#id1">Menus Page</a><a class="headerlink" href="#menus-page" title="Permalink to this headline">¶</a></h2>
+<p>This page contains a list of menus that you can configure.</p>
+<img alt="../../../_images/my_user_menus.png" src="../../../_images/my_user_menus.png" />
+<ul>
+<li><p class="first"><strong>application_menu</strong>—This is the main menu of the application (also called <code class="docutils literal"><span class="pre">navigation</span> <span class="pre">bar</span></code> in the application settings). Via it you can navigate through Oro application. It is always displayed on every page. Subject to the configuration, it may be displayed horizontally or vertically. In the latter case, the menu items are displayed as icons. For more information, see <a class="reference internal" href="../intro_navigation.html#user-guide-navigation-menu"><span class="std std-ref">Main Menu</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/nav_bar_top.png" src="../../../_images/nav_bar_top.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first"><strong>shortcuts</strong>—You can find this menu in the top panel of the application, next to the organization name. Via it you can quickly perform common actions from anywhere. It is always displayed on every page. For more information, see <a class="reference internal" href="../intro_nav_shortcuts.html#user-guide-getting-started-shortcuts"><span class="std std-ref">Shortcuts</span></a>.</p>
+<img alt="../../../_images/shortcut_full.png" src="../../../_images/shortcut_full.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first"><strong>usermenu</strong>—This is the menu that you can access by clicking on your name in the upper-right corner of the application. Via it you can access your profile, emails, tasks and events. It is always displayed on every page. For more information, see <a class="reference internal" href="../intro_nav_user_menu.html#user-guide-getting-started-user-menu"><span class="std std-ref">User Menu</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/user_menu1.png" src="../../../_images/user_menu1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first"><strong>calendar_menu</strong>—This is a specialized menu that you can find on the <strong>My Calendar</strong> page. Via it you can change the displayed calendar color, hide or remove a calendar from view. For more information, see <a class="reference internal" href="../activities/calendars_overview.html#doc-activities-events-manage-calendar-items"><span class="std std-ref">Add and Manage Calendar Items Displayed</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/calendar_menu.png" src="../../../_images/calendar_menu.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+</ul>
+<div class="section" id="view-a-menu">
+<span id="doc-menus-actions-viewmenu"></span><h3><a class="toc-backref" href="#id2">View a Menu</a><a class="headerlink" href="#view-a-menu" title="Permalink to this headline">¶</a></h3>
+<p>To view a menu, click the corresponding row or the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> <strong>View</strong> icon.</p>
+</div>
+</div>
+<div class="section" id="menu-configuration">
+<span id="doc-menus-configuration"></span><h2><a class="toc-backref" href="#id3">Menu Configuration</a><a class="headerlink" href="#menu-configuration" title="Permalink to this headline">¶</a></h2>
+<p>When you open a menu configuration, you can see a list of menu items in the left panel of the page. A menu can be multi-level (as a default main menu, for example) with child menu items nested under a parent menu items (e.g. <strong>Reports</strong>, <strong>Manage Custom</strong> reports are child menu items of the <strong>Reports&amp;Segments</strong> menu item in the main menu).
+Menu items in a menu can be visually separated by a divider (a horizontal line). Dividers help you logically organize menu items.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some menus (or some menu levels) cannot display dividers. For example, if you add a divider to the first level of the main menu (<strong>application_menu</strong>), this divider will not be displayed.</p>
+</div>
+<img alt="../../../_images/my_user_menus_application.png" src="../../../_images/my_user_menus_application.png" />
+<div class="section" id="hide-show-the-left-menu-panel">
+<span id="doc-menus-actions-hideorshowpanel"></span><h3><a class="toc-backref" href="#id4">Hide / Show the Left Menu Panel</a><a class="headerlink" href="#hide-show-the-left-menu-panel" title="Permalink to this headline">¶</a></h3>
+<p>To minimize or maximize the left menu panel, click a double arrow in the upper-right corner of the panel.</p>
+<img alt="../../../_images/my_user_menus_application_showpanel.png" src="../../../_images/my_user_menus_application_showpanel.png" />
+</div>
+<div class="section" id="expand-collapse-a-menu">
+<span id="doc-menus-actions-expandorcollapse"></span><h3><a class="toc-backref" href="#id5">Expand / Collapse a Menu</a><a class="headerlink" href="#expand-collapse-a-menu" title="Permalink to this headline">¶</a></h3>
+<p>To expand / collapse a parent menu item, click an arrow in front of it.</p>
+<img alt="../../../_images/my_user_menus_application_expand.png" src="../../../_images/my_user_menus_application_expand.png" />
+<p>To expand / collapse all menu items, click the ellipses dropdown menu in the upper-right corner of the left panel and click <strong>Expand All</strong> or <strong>Collapse All</strong>.</p>
+<img alt="../../../_images/my_user_menus_application_expall.png" src="../../../_images/my_user_menus_application_expall.png" />
+</div>
+<div class="section" id="find-a-menu-item">
+<span id="doc-menus-actions-search"></span><h3><a class="toc-backref" href="#id6">Find a Menu Item</a><a class="headerlink" href="#find-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<p>To quickly find a menu item, enter its name into the search field and click the <i class="fa fa-search fa-lg" aria-hidden="true"></i> <strong>Search</strong> icon or press <span class="guilabel">Enter</span>.</p>
+<img alt="../../../_images/my_user_menus_application_search.png" src="../../../_images/my_user_menus_application_search.png" />
+</div>
+<div class="section" id="view-edit-a-menu-item">
+<span id="doc-menus-actions-viewandedit"></span><h3><a class="toc-backref" href="#id7">View / Edit a Menu Item</a><a class="headerlink" href="#view-edit-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item that you want to view / edit.</li>
+<li>In the right part of the page, review / edit the menu item settings. See step 3 of the <a class="reference internal" href="#doc-menus-actions-addmenuitem"><span class="std std-ref">Add a Menu Item</span></a> action description for information about menu item fields.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You cannot edit URI for default menu items.</p>
+</div>
+</div>
+<div class="section" id="add-a-menu-item">
+<span id="doc-menus-actions-addmenuitem"></span><h3><a class="toc-backref" href="#id8">Add a Menu Item</a><a class="headerlink" href="#add-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">In the left panel, click a menu item which will be parent for the menu item that you create.</p>
+</li>
+<li><p class="first">Click the <span class="guilabel">Create</span> dropdown in the upper-right corner of the page and click <span class="guilabel">Create Menu Item</span> on the list.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/my_user_menus_createmenuitem.png" src="../../../_images/my_user_menus_createmenuitem.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The created menu item will appear as the last one on the list of children of the same parent item. You can move it to the position that you need as described in the <a class="reference internal" href="#doc-menus-actions-draganddrop"><span class="std std-ref">Rearrange Menu Items / Dividers</span></a> action description.</p>
+</li>
+<li><p class="first">In the right part of the page, specify the following information:</p>
+<ul>
+<li><p class="first"><strong>Title</strong>—A name for the menu item. This is how this menu item will be represented in the menu.</p>
+<p>Click the <i class="fa fa-folder-o fa-lg" aria-hidden="true"></i> <strong>Translations</strong> icon to provide spelling for different languages. Click the <i class="fa fa-folder fa-lg" aria-hidden="true"></i> <strong>Default Language</strong> icon to return to the single-language view.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/my_user_menus_actions_create_translations.png" src="../../../_images/my_user_menus_actions_create_translations.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first"><strong>URI</strong>—An web address of the page or resource that this menu item opens.</p>
+<p>You can specify an absolute URI or one relative to the application URI (as specified in Application Settings).</p>
+<p>If this menu item will serve as a non-clickable parent that does not link itself to any resource (like <strong>Customers</strong> in the default main menu), type <em>#</em>.</p>
+</li>
+<li><p class="first"><strong>Icon</strong>—From the list, select the icon that will denote the menu item.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sometimes menus (or menu levels) may not be supposed to display icons. For example, icons added to the first level of the main menu (<strong>application_menu</strong>) are displayed only when this menu is set to appear on the left.</p>
+</div>
+</li>
+<li><p class="first"><strong>Description</strong>—Type a short but meaningful description of the menu item.</p>
+<p>Click the <i class="fa fa-folder-o fa-lg" aria-hidden="true"></i> <strong>Translations</strong> icon to provide spelling for different languages. Click the <i class="fa fa-folder fa-lg" aria-hidden="true"></i> <strong>Default Language</strong> icon to return to the single-language view.</p>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/my_user_menus_actions_create_general.png" src="../../../_images/my_user_menus_actions_create_general.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+<li><p class="first">Click <span class="guilabel">Save</span> or, if you want to start immediately create another menu item, <span class="guilabel">Save and New</span> in the upper-right corner of the page.</p>
+</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="add-a-divider">
+<span id="doc-menus-actions-adddivider"></span><h3><a class="toc-backref" href="#id9">Add a Divider</a><a class="headerlink" href="#add-a-divider" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item which will be parent for the menu divider that you create.</li>
+<li>Click the <span class="guilabel">Create</span> dropdown in the upper-right corner of the page and click <span class="guilabel">Create Divider</span> on the list.</li>
+</ol>
+<img alt="../../../_images/my_user_menus_createdivider.png" src="../../../_images/my_user_menus_createdivider.png" />
+<p>The created divider will appear as the last one on the list of children of the same parent item. You can move it to the position that you need as described in the <a class="reference internal" href="#doc-menus-actions-draganddrop"><span class="std std-ref">Rearrange Menu Items / Dividers</span></a> action description.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some menus (or some menu levels) cannot display dividers. For example, if you add a divider to the first level of the main menu (<strong>application_menu</strong>), this divider will not be displayed.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="rearrange-menu-items-dividers">
+<span id="doc-menus-actions-draganddrop"></span><h3><a class="toc-backref" href="#id10">Rearrange Menu Items / Dividers</a><a class="headerlink" href="#rearrange-menu-items-dividers" title="Permalink to this headline">¶</a></h3>
+<p>You can change the position of an item / divider in a menu by dragging and dropping it in the left panel. You can change the order of menu items at the same level as well as move an item / divider to the higher or lower level.</p>
+<p>When you drag-and-drop items, pay attention to the arrow that shows where the item will be placed:</p>
+<ul>
+<li><p class="first">If an arrow points to the place between items, that is where the moved item will be placed.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/my_user_menus_actions_d&amp;dsame.png" src="../../../_images/my_user_menus_actions_d&amp;dsame.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>If and arrow appears in front of a menu item, then the moved item will become a child of the item that the arrow points to.</li>
+</ul>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/my_user_menus_actions_d&amp;dunder.png" src="../../../_images/my_user_menus_actions_d&amp;dunder.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="delete-a-menu-item-divider">
+<span id="doc-menus-actions-delete"></span><h3><a class="toc-backref" href="#id11">Delete a Menu Item / Divider</a><a class="headerlink" href="#delete-a-menu-item-divider" title="Permalink to this headline">¶</a></h3>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ul class="last simple">
+<li>You cannot delete default menu items.</li>
+<li>When you delete a menu item that has child items, they will not be deleted but moved to the parent of the menu item that you delete.</li>
+</ul>
+</div>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item / divider that you want to delete.</li>
+<li>Click the <span class="guilabel">Delete</span> button in the upper-right corner of the page.</li>
+<li>In the <strong>Delete Confirmation</strong> dialog box, click <span class="guilabel">Yes, Delete</span>.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="hide-a-menu-item">
+<span id="doc-menus-actions-hide"></span><h3><a class="toc-backref" href="#id12">Hide a Menu Item</a><a class="headerlink" href="#hide-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<p>If you do not want one of the default menu items to be visible on the interface, you can hide it.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ul class="last simple">
+<li>If a menu that you hide has child items, they will be hidden too.</li>
+<li>You cannot hide non-default menu items.</li>
+</ul>
+</div>
+<p>To hide a menu item, perform as follows:</p>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item that you want to hide.</li>
+<li>Click the <span class="guilabel">Hide</span> button in the upper-right corner of the page.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="show-a-menu-item">
+<span id="doc-menus-actions-show"></span><h3><a class="toc-backref" href="#id13">Show a Menu Item</a><a class="headerlink" href="#show-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<p>To show a previously hidden menu item, perform as follows:</p>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item that you want to show.</li>
+<li>Click the <span class="guilabel">Show</span> button in the upper-right corner of the page.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a menu item that you want to show has a parent, it will become visible too.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="reset-a-menu">
+<span id="doc-menus-actions-reset"></span><h3><a class="toc-backref" href="#id14">Reset a Menu</a><a class="headerlink" href="#reset-a-menu" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the left panel, click a menu name.</li>
+<li>Click the guilabel:<cite>Reset</cite> button in the upper-right corner of the page.</li>
+<li>In the <strong>Reset Confirmation</strong> dialog box, click <span class="guilabel">Yes, Reset</span>.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+<div class="section" id="see-also">
+<h4><a class="toc-backref" href="#id15">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p><a class="reference internal" href="my_user_page.html#doc-my-user-view-page"><span class="std std-ref">My User Page</span></a></p>
+<p><a class="reference internal" href="my_user_actions.html#doc-my-user-actions"><span class="std std-ref">Actions with My User</span></a></p>
+<p><a class="reference internal" href="my_user_system_config.html#doc-my-user-configuration"><span class="std std-ref">My System Configuration</span></a></p>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/my_oro/my_user_menus_config.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Getting Started with UI</a><ul>
+  <li><a href="index.html">My Oro</a><ul>
+  <li><a href="my_user_page.html">My User</a><ul>
+      <li>Previous: <a href="my_user_system_config.html" title="previous chapter">My Configuration</a></li>
+      <li>Next: <a href="my_user_calendar.html" title="next chapter">My Calendar</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/my_oro/my_user_menus_config.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

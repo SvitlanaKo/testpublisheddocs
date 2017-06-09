@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Web Catalogs &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Create a Web Catalog" href="create.html" />
+    <link rel="prev" title="Shipping in the Checkout (Front Store)" href="../shipping/shipping_checkout.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="web-catalogs">
+<span id="user-guide-web-catalog"></span><h1>Web Catalogs<a class="headerlink" href="#web-catalogs" title="Permalink to this headline">¶</a></h1>
+<p>This topic contains the following sections:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
+<li><a class="reference internal" href="#configuration" id="id2">Configuration</a></li>
+<li><a class="reference internal" href="#create-a-web-catalog" id="id3">Create a Web Catalog</a><ul>
+<li><a class="reference internal" href="#set-up-a-root-content-node" id="id4">Set Up a Root Content Node</a></li>
+<li><a class="reference internal" href="#set-up-a-content-node-for-menu-or-sub-menu-item" id="id5">Set Up a Content Node for Menu or Sub-Menu Item</a></li>
+<li><a class="reference internal" href="#content-variants-configuration-for-the-content-node" id="id6">Content Variants Configuration for the Content Node</a><ul>
+<li><a class="reference internal" href="#system-page" id="id7">System Page</a></li>
+<li><a class="reference internal" href="#product-page" id="id8">Product Page</a></li>
+<li><a class="reference internal" href="#category" id="id9">Category</a></li>
+<li><a class="reference internal" href="#landing-page" id="id10">Landing Page</a></li>
+<li><a class="reference internal" href="#product-collection" id="id11">Product Collection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Web catalog is a content management tool that helps build highly personalized custom versions of your websites by mixing in category pages, product pages, landing pages and pre-existing system pages in different variations based on the customer account information, their customer group or language preference.</p>
+<p>With OroCommerce web catalog and content tree, you can organize the target web site structure to gain improved purchasing experience and use a set of in-place SEO tools to make it reachable for your target audience.</p>
+<p>The Web Catalog content nodes may be of the following types:</p>
+<ul class="simple">
+<li>System page - one of the standard eCommerce website pages (e.g. sign in, user profile, open orders, etc).</li>
+<li>Product - direct link to <a class="reference internal" href="../index.html#user-guide-products-products"><span class="std std-ref">product</span></a> details.</li>
+<li>Product Collection - a dynamically generated group of products that are stored as data segment.</li>
+<li>Category - a category of the <a class="reference internal" href="../index.html#user-guide-products-master-catalog"><span class="std std-ref">master catalog</span></a>.</li>
+<li>Landing page - a custom <a class="reference internal" href="../marketing_landing_pages/index.html#user-guide-landing-pages"><span class="std std-ref">landing page</span></a> created in the <strong>Marketing &gt; Landing Pages</strong> section.</li>
+</ul>
+<p>To view all Web Catalogs, navigate to <strong>Marketing &gt; Web Catalogs</strong> in the main menu.</p>
+<img alt="../../_images/WebCatalogs.png" class="with-border" src="../../_images/WebCatalogs.png" />
+</div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#id2">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>You can control the frequency of the product collections indexation. By default, product collections are indexed every hour.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Indexing simple filters that rely only on the product attributes happens via the message queue. Indexing task is queued immediately after the product collection node is saved. After the index task is processed, the product collection (or the part of product collection) is available on the Front Store immediately.</p>
+<p class="last">Indexing more complex filters (e.g. those that involve relationships with other entities) is separated from the common reindexation process and happens on a dedicated schedule via cron.</p>
+</div>
+<p>To change the default product collections indexation frequency:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Product &gt; Product Collections</strong> in the menu to the left.</p>
+</li>
+<li><p class="first">To customize the Indexation Cron Schedule:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> box next to the option.</li>
+<li>Select the desired frequency from the list.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="create-a-web-catalog">
+<h2><a class="toc-backref" href="#id3">Create a Web Catalog</a><a class="headerlink" href="#create-a-web-catalog" title="Permalink to this headline">¶</a></h2>
+<p>To create a new Web Catalog:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Marketing &gt; Web Catalogs</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Web Catalog</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/WebCatalogCreate1.png" class="with-border" src="../../_images/WebCatalogCreate1.png" />
+</li>
+<li><p class="first">Fill in <strong>Name</strong> and <strong>Description</strong> for the Web Catalog you are creating.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The new Web Catalog is created.</p>
+<img alt="../../_images/WebCatalogCreate_demo.png" class="with-border" src="../../_images/WebCatalogCreate_demo.png" />
+<p>Now you are ready to organize catalog content into the desired structure that will define the navigation and menu look and feel on the OroCommerce store frontend:</p>
+<ol class="arabic">
+<li><p class="first">Click the <i class="fa fa-sitemap fa-lg" aria-hidden="true"></i> <strong>Edit Content Tree</strong> on the top right of the page.</p>
+<img alt="../../_images/WebCatalogCreate2.png" class="with-border" src="../../_images/WebCatalogCreate2.png" />
+</li>
+<li><p class="first">Create the root node of the web catalog as described in the <a class="reference internal" href="#set-up-a-root-content-node">Set Up a Root Content Node</a> section. It is recommended to use Oro Frontend Root system page as a root node of your web catalog.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+<p>Once the web catalog root node is saved, create the nested nodes on the second level that will be shown as main menu items on the OroCommerce Store Front:</p>
+<ol class="arabic">
+<li><p class="first">Ensure that the root node is selected in the content nodes structure to the left.</p>
+</li>
+<li><p class="first">Click <strong>Create Content Node</strong> on the top right of the page.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/WebCatalogCreate_demo.png" class="with-border" src="../../_images/WebCatalogCreate_demo.png" />
+</li>
+<li><p class="first">Set up the node as described in the <a class="reference internal" href="#set-up-a-content-node-for-menu-or-sub-menu-item">Set Up a Content Node for Menu or Sub-Menu Item</a> section.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+<p>Set up as many sub-menu nodes as you need.</p>
+<p>To enable sub-menu and populate it with links to the content variants:</p>
+<ol class="arabic simple">
+<li>Select a second level node in the Content Nodes tree to the left.</li>
+<li>Click <strong>Create Content Node</strong> on the top right of the page and follow the process described in the <a class="reference internal" href="#set-up-a-content-node-for-menu-or-sub-menu-item">Set Up a Content Node for Menu or Sub-Menu Item</a> section.</li>
+</ol>
+<p>Set up as many sub-menu nodes as you need.</p>
+</li>
+</ol>
+</li>
+</ol>
+<div class="section" id="set-up-a-root-content-node">
+<h3><a class="toc-backref" href="#id4">Set Up a Root Content Node</a><a class="headerlink" href="#set-up-a-root-content-node" title="Permalink to this headline">¶</a></h3>
+<p>To map an entry point for the web catalog content tree:</p>
+<ol class="arabic">
+<li><p class="first">In the <em>General</em> section, fill in root content node title that serves as a container for the nodes added later in the Content Variants section.</p>
+<p>If necessary, translate the title into the languages supported in your OroCommerce configuration. To manage title translations, click next to the Titles box and follow the <a class="reference internal" href="../getting_started/common_actions/manage_translation.html#config-guide-translations"><span class="std std-ref">guidance here</span></a>).</p>
+</li>
+<li><p class="first">Set <strong>Rewrite Variant Title</strong> to force override the native title of the content you are mapping to this catalog node.</p>
+</li>
+<li><p class="first">In the <em>SEO</em> section, fill in the meta description and meta keywords to help search engines show your web content to the relevant audience. similar to the title, you can translate the meta information.</p>
+</li>
+<li><p class="first">In the <em>Restriction section</em>, define the visibility of the web catalog.</p>
+<p>By default, the web catalog is displayed for any localization, on any website, and for any customer.</p>
+<p>To make OroCommerce apply a web catalog to the Store Front only for the particular combination of these facts, create a restriction by selecting all or some of the following: target localization, website, and customer or customer group.</p>
+</li>
+<li><p class="first">In the <em>Content Variants</em> section, model the desired Store Front menu structure:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Select a type of content node from the list on the right.</p>
+<img alt="../../_images/WebCatalogCreateContentVariants.png" class="with-border" src="../../_images/WebCatalogCreateContentVariants.png" />
+</li>
+<li><p class="first">Configure the content node as described in the <a class="reference internal" href="#content-variants-configuration-for-the-content-node">Content Variants Configuration for the Content Node</a> section below.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The first content variant that is added to the node is marked as default variant. When you add more content variants, please, specify the restrictions next to the content variant details, that limits the use of this content variant to just some particular cases.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="set-up-a-content-node-for-menu-or-sub-menu-item">
+<h3><a class="toc-backref" href="#id5">Set Up a Content Node for Menu or Sub-Menu Item</a><a class="headerlink" href="#set-up-a-content-node-for-menu-or-sub-menu-item" title="Permalink to this headline">¶</a></h3>
+<p>To set up the mapping of the content to the web catalog content tree:</p>
+<ol class="arabic">
+<li><p class="first">In the <em>General</em> section, fill in content node title that will show as a caption in your OroCommerce Store Front menu or submenu (depending on the level in the content tree.</p>
+<p>If necessary, translate the title into the languages supported in your OroCommerce configuration. To manage title translations, click next to the Titles box and follow the <a class="reference external" href="./../getting-started/common-actions/manage-translation">content translation guidance here</a>).</p>
+</li>
+<li><p class="first">Set <strong>Rewrite Variant Title</strong> to force override the native title of the content you are mapping to this catalog node.</p>
+</li>
+<li><p class="first">Click on the <strong>Slug Prototypes</strong> box. The default slug prototype will be autogenerated. Edit the value to customize the default.</p>
+<p>To ensure that slug prototype translation is localization-friendly, manage slug prototype translations: click next to the Slug Prototypes box and follow the guidance on <a class="reference external" href="./../getting-started/common-actions/manage-translation">content translation</a>).</p>
+</li>
+<li><p class="first">In the <em>SEO</em> section, fill in the meta description and meta keywords to help search engines show your web content to the relevant audience. similar to the title, you can translate the meta information.</p>
+</li>
+<li><p class="first">In the <em>Restriction section</em>, define the visibility of the web catalog.</p>
+<p>By default, the web catalog node inherits the settings from the root node or its parent node. However, you can adjust it to be displayed for particular localization, on a specific website, and/or for the selected customer(s).</p>
+<p>To modify the inherited default settings, clear the <strong>Inherit Parent</strong> box, and specify the restrictions by selecting all or some of the following: target localization, website, and customer or customer group.</p>
+</li>
+<li><p class="first">In the <em>Content Variants</em> section, add the default content item that shows on OroCommerce store frontend when no restriction conditions are met:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Select a type of content note from the list on the right.</p>
+<img alt="../../_images/WebCatalogCreateContentVariants.png" class="with-border" src="../../_images/WebCatalogCreateContentVariants.png" />
+</li>
+<li><p class="first">Configure the content node as described in the <a class="reference internal" href="#content-variants-configuration-for-the-content-node">Content Variants Configuration for the Content Node</a> section below.</p>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">If necessary, create alternative content variants by selecting a content type from the list on the top right of the <em>Content Variants</em> section and providing the set of conditions (localization, website, customer or customer group) to restrict this variant just for those cases. To switch the default content variant to a different item, select it using an option to the left of the content variant name.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> once you have configured the content node.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="content-variants-configuration-for-the-content-node">
+<h3><a class="toc-backref" href="#id6">Content Variants Configuration for the Content Node</a><a class="headerlink" href="#content-variants-configuration-for-the-content-node" title="Permalink to this headline">¶</a></h3>
+<p>This section provides an overview of the content node types and a brief guidance on their set up.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The first content variant that is added to the node is marked as default variant. When you add more content variants, please, specify the restrictions next to the content variant details, that limits the use of this content variant to just some particular cases.</p>
+</div>
+<img alt="../../_images/WebCatalogCreate_demo4.png" class="with-border" src="../../_images/WebCatalogCreate_demo4.png" />
+<div class="section" id="system-page">
+<h4><a class="toc-backref" href="#id7">System Page</a><a class="headerlink" href="#system-page" title="Permalink to this headline">¶</a></h4>
+<p>System page is one of the standard pre-designed pages of OroCommerce Store Front (e.g. Requests for Quotes, Open Orders).</p>
+<p>To add a system page to the menu on the OroCommerce Store Front:</p>
+<ol class="arabic">
+<li><p class="first">Select the <strong>Add System Page</strong> in the Content Variants list.</p>
+<p>The following section shows:</p>
+<img alt="../../_images/WebCatalogCreateContentVariantsSystemPage.png" class="with-border" src="../../_images/WebCatalogCreateContentVariantsSystemPage.png" />
+</li>
+<li><p class="first">Select the system page from the list.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> when you are done filling in the web catalog content node or keep adding the content variants.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="product-page">
+<h4><a class="toc-backref" href="#id8">Product Page</a><a class="headerlink" href="#product-page" title="Permalink to this headline">¶</a></h4>
+<p>Product page node is a direct link to the product details in OroCommerce Store Front.</p>
+<p>To add a product page node to the menu on the OroCommerce Store Front:</p>
+<ol class="arabic">
+<li><p class="first">Select the <strong>Add Product Page</strong> in the Content Variants list.</p>
+<p>The following section shows:</p>
+<img alt="../../_images/WebCatalogCreateContentVariantsProductPage.png" class="with-border" src="../../_images/WebCatalogCreateContentVariantsProductPage.png" />
+</li>
+<li><p class="first">Select the product from the list. To use search, start typing the product name or SKU in the box. To use filtering, click on the <strong>bars</strong>, and select the filtering conditions in the <em>Manage filters</em> section.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> when you are done filling in the web catalog content node or keep adding the content variants.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="category">
+<h4><a class="toc-backref" href="#id9">Category</a><a class="headerlink" href="#category" title="Permalink to this headline">¶</a></h4>
+<p>Category node is a direct link to the product category with the list of products in OroCommerce Store Front.</p>
+<p>To add a category node to the menu on the OroCommerce Store Front:</p>
+<ol class="arabic">
+<li><p class="first">Select the <strong>Add Category</strong> in the Content Variants list.</p>
+<p>The following section shows:</p>
+<img alt="../../_images/WebCatalogCreateContentVariantsCategory.png" class="with-border" src="../../_images/WebCatalogCreateContentVariantsCategory.png" />
+</li>
+<li><p class="first">Select the category from the product catalog tree. To use search, start typing the category name in the box. Use <strong>&gt;</strong> and <strong>v</strong> to expand/collapse the tree node.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> when you are done filling in the web catalog content node or keep adding the content variants.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="landing-page">
+<h4><a class="toc-backref" href="#id10">Landing Page</a><a class="headerlink" href="#landing-page" title="Permalink to this headline">¶</a></h4>
+<p>Landing Page node is a link to the <a class="reference external" href="./marketing-landing-pages">custom content page</a> created in the <strong>Marketing &gt; Landing Pages</strong> section.</p>
+<p>To add a landing page node to the menu on the OroCommerce Store Front:</p>
+<ol class="arabic">
+<li><p class="first">Select the <strong>Add Landing Page</strong> in the Content Variants list.</p>
+<p>The following section shows:</p>
+<img alt="../../_images/WebCatalogCreateContentVariantsLandingPage.png" class="with-border" src="../../_images/WebCatalogCreateContentVariantsLandingPage.png" />
+</li>
+<li><p class="first">Select the existing landing page from the list. To use search, start typing the product name or SKU in the box. To use filtering, click on the <strong>bars</strong>, and select the filtering conditions in the <em>Manage filters</em> section. Alternatively, you can create a new landing page:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Click <strong>+</strong> to the right from the Landing page list.</p>
+<p>The Create Landing Page pops up.</p>
+</li>
+<li><p class="first">Fill in the landing page details and contents as described <a class="reference external" href="./marketing-landing-pages/create">here</a>.</p>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong> when you are done filling in the web catalog content node or keep adding the content variants.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="product-collection">
+<h4><a class="toc-backref" href="#id11">Product Collection</a><a class="headerlink" href="#product-collection" title="Permalink to this headline">¶</a></h4>
+<p>Product Collection is a filter-based segment that helps you display a custom and dynamic set of products in the web catalog similarly to the category contents.</p>
+<p>To add a product collection node to the menu on the OroCommerce Store Front:</p>
+<ol class="arabic">
+<li><p class="first">Select the <strong>Add Product Collection</strong> in the Content Variants list.</p>
+<p>The following section shows:</p>
+<img alt="../../_images/WebCatalogCreateContentVariantsProductCollection.png" class="with-border" src="../../_images/WebCatalogCreateContentVariantsProductCollection.png" />
+</li>
+<li><p class="first">Set up a filter to limit the products list and include only the necessary products.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Click <strong>Reset</strong> to clear the filter configuration.</p>
+<p class="last">Click <strong>Apply Query</strong> to preview the filtered product collection.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you save the web catalog node with the product collection without applying changed filters, you will be prompted to confirm the changes. It is recommended to preview and double-check the changes to ensure the results meet your expectations.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save</strong> when you are done filling in the web catalog content node or keep adding the content variants.</p>
+</li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/marketing_web_catalog/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+      <li>Previous: <a href="../shipping/shipping_checkout.html" title="previous chapter">Shipping in the Checkout (Front Store)</a></li>
+      <li>Next: <a href="create.html" title="next chapter">Create a Web Catalog</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/marketing_web_catalog/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Calendar Event View Page &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Manage Calendar Events" href="activities_events_actions.html" />
+    <link rel="prev" title="All Calendar Events Grid" href="activities_events_grid.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="calendar-event-view-page">
+<span id="doc-activities-events-view-page"></span><h1>Calendar Event View Page<a class="headerlink" href="#calendar-event-view-page" title="Permalink to this headline">¶</a></h1>
+<img alt="../../../../_images/activities_events_viewpage.png" src="../../../../_images/activities_events_viewpage.png" />
+<div class="section" id="page-top">
+<h2>Page Top<a class="headerlink" href="#page-top" title="Permalink to this headline">¶</a></h2>
+<p>On the upper-left of the page, you can see the calendar event title. Next to it you can see the calendar event status—whether it has been accepted, tentatively accepted, or declined.</p>
+<p>The next row contains a list of contexts associated with this calendar event. To delete a calendar event context, click the <strong>x</strong> icon next to it. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-contextdel"><span class="std std-ref">Remove a Context from a Calendar Event</span></a> action description.</p>
+<p>The following set of action buttons is available in the upper-right part of the page:</p>
+<ul class="simple">
+<li><span class="guilabel">Add Context</span>—Click this button to add a context to a calendar event. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-contextadd"><span class="std std-ref">Add a Context to a Calendar Event</span></a> action description.</li>
+<li><span class="guilabel">Edit</span>—Click this button to edit a calendar event. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-edit"><span class="std std-ref">Edit a Calendar Event</span></a> action description.</li>
+<li><span class="guilabel">Delete</span>—Click this button to delete a calendar event. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-delete"><span class="std std-ref">Delete a Calendar Event</span></a> action description.</li>
+<li><span class="guilabel">Start Hangout</span>—Click this button to start a Hangout meeting. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-hangout"><span class="std std-ref">Start a Hangout Meeting</span></a> action description.</li>
+</ul>
+</div>
+<div class="section" id="general-section">
+<h2>General Section<a class="headerlink" href="#general-section" title="Permalink to this headline">¶</a></h2>
+<p>This section contains the main information about a calendar event.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="93%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Title</td>
+<td>The event name.</td>
+</tr>
+<tr class="row-odd"><td>Description</td>
+<td>What the event deals with, what is it about.</td>
+</tr>
+<tr class="row-even"><td>Start</td>
+<td>The day and time when the event starts.</td>
+</tr>
+<tr class="row-odd"><td>End</td>
+<td>The day and time when the event ends.</td>
+</tr>
+<tr class="row-even"><td>All-Day Event</td>
+<td>Whether the event takes the whole day.</td>
+</tr>
+<tr class="row-odd"><td>Guests</td>
+<td>Users that are invited to the event. Click a user name to open the user view page. The icon before the user name shows how the guest has responded to the invitation. See <a class="reference internal" href="#doc-activities-events-response-status"><span class="std std-ref">Response Status Icons</span></a></td>
+</tr>
+<tr class="row-even"><td>Going</td>
+<td>Whether you a going to the meeting. You can respond to the invitation in this field. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-respond"><span class="std std-ref">Respond to a Calendar Event</span></a> action description.</td>
+</tr>
+<tr class="row-odd"><td>Recurrence</td>
+<td>The schedule of the repeating event.</td>
+</tr>
+<tr class="row-even"><td>Call Via Hangout</td>
+<td>Whether the event is a Google Hangout meeting.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="response-status-icons">
+<span id="doc-activities-events-response-status"></span><h3>Response Status Icons<a class="headerlink" href="#response-status-icons" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><i class="fa fa-reply fa-lg" aria-hidden="true"></i> <strong>Not Responded</strong>—This is a basic status of the invitation. It appears in the following cases:<ul>
+<li>You have not given any response to the invitation.</li>
+<li>You are an event owner and are not required to respond.</li>
+</ul>
+</li>
+<li><i class="fa fa-check fa-lg" aria-hidden="true"></i> <strong>Accepted</strong>—You have agreed to attend an event (you have responded <strong>Yes</strong> to an event invitation).</li>
+<li><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i> <strong>Tentatively Accepted</strong>—You are not sure whether you are going to visit an event (you have responded <strong>Maybe</strong> to an event invitation).</li>
+<li>There will be no icon in the following cases:<ul>
+<li>You are not going to attend an event and have declined the invitation (you have responded <strong>No</strong> to an event invitation).</li>
+<li>This is the event from the system calendar.</li>
+<li>The calendar record represents a task.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>In this section you can find comments made by users for a calendar event.</p>
+<p>Click the <span class="guilabel">Comment</span> button to add your comment. For more information, see the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-comment"><span class="std std-ref">Comment a Calendar Event</span></a> action description.</p>
+</div>
+</div>
+<div class="section" id="see-also">
+<h1>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="index.html#doc-activities-events"><span class="std std-ref">Calendar Events Overview</span></a></p>
+<p><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions"><span class="std std-ref">Manage Calendar Events</span></a></p>
+<p><a class="reference internal" href="activities_events_grid.html#doc-activities-events-grid"><span class="std std-ref">Calendar Events Grid</span></a></p>
+<p><a class="reference internal" href="../../my_oro/my_user_calendar.html#doc-my-oro-calendar"><span class="std std-ref">My Calendar Page</span></a></p>
+<p><a class="reference internal" href="../../widgets_today_calendar.html#doc-widgets-today-calendar"><span class="std std-ref">Today&#8217;s Calendar Widget</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user_guide/getting_started/activities/calendar_events/activities_events_viewpage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">User Guide</a><ul>
+  <li><a href="../../index.html">Getting Started with UI</a><ul>
+  <li><a href="../index.html">Activities</a><ul>
+  <li><a href="index.html">Calendar Events</a><ul>
+      <li>Previous: <a href="activities_events_grid.html" title="previous chapter">All Calendar Events Grid</a></li>
+      <li>Next: <a href="activities_events_actions.html" title="next chapter">Manage Calendar Events</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../../_sources/user_guide/getting_started/activities/calendar_events/activities_events_viewpage.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

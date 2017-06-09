@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Workflow &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Using and Managing Entities" href="../../entities/index.html" />
+    <link rel="prev" title="System Configuration" href="system_configuration.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="workflow">
+<h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Filename</td>
+<td><code class="docutils literal"><span class="pre">workflows.yml</span></code></td>
+</tr>
+<tr class="row-even"><td>Root Node</td>
+<td><code class="docutils literal"><span class="pre">workflows</span></code></td>
+</tr>
+<tr class="row-odd"><td>Sections</td>
+<td><ul class="first last simple">
+<li><a class="reference internal" href="#attributes">attributes</a><ul>
+<li><a class="reference internal" href="#reference-workflow-attributes-entity-acl"><span class="std std-ref">entity_acl</span></a></li>
+<li><a class="reference internal" href="#reference-workflow-attributes-label"><span class="std std-ref">label</span></a></li>
+<li><a class="reference internal" href="#options">options</a></li>
+<li><a class="reference internal" href="#property-path">property_path</a></li>
+<li><a class="reference internal" href="#type">type</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#entity">entity</a></li>
+<li><a class="reference internal" href="#entity-attribute">entity_attribute</a></li>
+<li><a class="reference internal" href="#is-system">is_system</a></li>
+<li><a class="reference internal" href="#reference-workflow-label"><span class="std std-ref">label</span></a></li>
+<li><a class="reference internal" href="#start-step">start_step</a></li>
+<li><a class="reference internal" href="#steps">steps</a><ul>
+<li><a class="reference internal" href="#allowed-transitions">allowed_transitions</a></li>
+<li><a class="reference internal" href="#reference-workflow-steps-entity-acl"><span class="std std-ref">entity_acl</span></a></li>
+<li><a class="reference internal" href="#reference-workflow-steps-label"><span class="std std-ref">label</span></a></li>
+<li><a class="reference internal" href="#is-final">is_final</a></li>
+<li><a class="reference internal" href="#order">order</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#steps-display-ordered">steps_display_ordered</a></li>
+<li><a class="reference internal" href="#transition-definitions">transition_definitions</a></li>
+<li><a class="reference internal" href="#transitions">transitions</a><ul>
+<li><a class="reference internal" href="#acl-message">acl_message</a></li>
+<li><a class="reference internal" href="#acl-resource">acl_resource</a></li>
+<li><a class="reference internal" href="#dialog-template">dialog_template</a></li>
+<li><a class="reference internal" href="#display-type">display_type</a></li>
+<li><a class="reference internal" href="#form-options">form_options</a></li>
+<li><a class="reference internal" href="#frontend-options">frontend_options</a></li>
+<li><a class="reference internal" href="#is-hidden">is_hidden</a></li>
+<li><a class="reference internal" href="#is-start">is_start</a></li>
+<li><a class="reference internal" href="#is-unavailable-hidden">is_unavailable_hidden</a></li>
+<li><a class="reference internal" href="#message">message</a></li>
+<li><a class="reference internal" href="#page-template">page_template</a></li>
+<li><a class="reference internal" href="#step-to">step_to</a></li>
+<li><a class="reference internal" href="#transition-definition">transition_definition</a></li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="attributes">
+<h2>attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>During each step transition, a set of entity attributes can be shown to the user for which they can
+enter values. Each entry in this map is the name of an attribute which can be configured with a map
+that can contain the following options:</p>
+<div class="section" id="entity-acl">
+<span id="reference-workflow-attributes-entity-acl"></span><h3><code class="docutils literal"><span class="pre">entity_acl</span></code><a class="headerlink" href="#entity-acl" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>There are two keys that can be used with this option: If the <code class="docutils literal"><span class="pre">delete</span></code> key is set to <code class="docutils literal"><span class="pre">true</span></code>, the
+attribute is treated as the name of an ACL that is evaluated to check if the user is allowed to
+delete the underlying entity. If <code class="docutils literal"><span class="pre">update</span></code> is set to <code class="docutils literal"><span class="pre">true</span></code>, the ACL is used to check for update
+permissions.</p>
+</div>
+<div class="section" id="label">
+<span id="reference-workflow-attributes-label"></span><h3><code class="docutils literal"><span class="pre">label</span></code><a class="headerlink" href="#label" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The label shown next to the attribute form in the UI.</p>
+</div>
+<div class="section" id="options">
+<h3><code class="docutils literal"><span class="pre">options</span></code><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>There two options which must be configured based on the chosen <code class="docutils literal"><span class="pre">type</span></code>:</p>
+<p><code class="docutils literal"><span class="pre">class</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code>)</p>
+<blockquote>
+<div>A fully qualified class name which is needed when the attribute type is <code class="docutils literal"><span class="pre">entity</span></code> or
+<code class="docutils literal"><span class="pre">object</span></code>.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">multiple</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code>)</p>
+<blockquote>
+<div>When the type is <code class="docutils literal"><span class="pre">entity</span></code>, this option control whether or not multiple entities can be
+selected.</div></blockquote>
+</div>
+<div class="section" id="property-path">
+<span id="reference-format-workflow-attributes-property-path"></span><h3><code class="docutils literal"><span class="pre">property_path</span></code><a class="headerlink" href="#property-path" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>An optional property path used to access the attribute&#8217;s value (if this is set, the other options
+can be guessed). You can refer to the underlying entity by a variable whose name is controled with
+the <a class="reference internal" href="#reference-format-workflow-entity-attribute"><span class="std std-ref">entity_attribute option</span></a> (its default value
+is <code class="docutils literal"><span class="pre">entity</span></code>).</p>
+</div>
+<div class="section" id="type">
+<h3><code class="docutils literal"><span class="pre">type</span></code><a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The attribute&#8217;s type can be any scalar (<code class="docutils literal"><span class="pre">boolean</span></code>/<code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">int</span></code>/<code class="docutils literal"><span class="pre">integer</span></code>,
+<code class="docutils literal"><span class="pre">string</span></code>), <code class="docutils literal"><span class="pre">array</span></code> (list of scalars or objects that are serializable), <code class="docutils literal"><span class="pre">object</span></code> (a
+serializable object) or <code class="docutils literal"><span class="pre">entity</span></code> (FCQN of a Doctrine entity).</p>
+</div>
+</div>
+<div class="section" id="entity">
+<h2>entity<a class="headerlink" href="#entity" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The fully qualified class name of the entity the workflow is associated with (a workflow can only
+be used with exactly one entity type).</p>
+</div>
+<div class="section" id="entity-attribute">
+<span id="reference-format-workflow-entity-attribute"></span><h2>entity_attribute<a class="headerlink" href="#entity-attribute" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">entity</span></code></p>
+<p>Name of an attribute used to store main entity.</p>
+</div>
+<div class="section" id="is-system">
+<h2>is_system<a class="headerlink" href="#is-system" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code></p>
+<p>If this option is set to <code class="docutils literal"><span class="pre">true</span></code>, the workflow is treated as built-in which means that it cannot
+be modified or removed in the UI.</p>
+</div>
+<div class="section" id="reference-workflow-label">
+<span id="id1"></span><h2>label<a class="headerlink" href="#reference-workflow-label" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A human readable string that is used in the UI to distinguish workflows.</p>
+</div>
+<div class="section" id="start-step">
+<h2>start_step<a class="headerlink" href="#start-step" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The name of the workflow&#8217;s start step. The value must refer to one of the steps configured with the
+<a class="reference internal" href="#steps">steps</a> option.</p>
+</div>
+<div class="section" id="steps">
+<h2>steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>The <code class="docutils literal"><span class="pre">steps</span></code> option configured the states a workflow can have. The keys are step names and each
+value is a map that contains options that configure the particular step:</p>
+<div class="section" id="allowed-transitions">
+<h3><code class="docutils literal"><span class="pre">allowed_transitions</span></code><a class="headerlink" href="#allowed-transitions" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">sequence</span></code></p>
+<p>A list of <a class="reference internal" href="#transitions">transitions</a> that can be applied at this stage.</p>
+</div>
+<div class="section" id="reference-workflow-steps-entity-acl">
+<span id="id2"></span><h3><code class="docutils literal"><span class="pre">entity_acl</span></code><a class="headerlink" href="#reference-workflow-steps-entity-acl" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>Two options can be configured under this key to control which kind of actions can be performed in
+this step:</p>
+<p><code class="docutils literal"><span class="pre">delete</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code>)</p>
+<blockquote>
+<div>If <code class="docutils literal"><span class="pre">true</span></code>, the entity can be removed.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">update</span></code> (<strong>type</strong>: <code class="docutils literal"><span class="pre">bolean</span></code>)</p>
+<blockquote>
+<div>If <code class="docutils literal"><span class="pre">true</span></code>, the entity can be modified.</div></blockquote>
+</div>
+<div class="section" id="reference-workflow-steps-label">
+<span id="id3"></span><h3><code class="docutils literal"><span class="pre">label</span></code><a class="headerlink" href="#reference-workflow-steps-label" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A human-readable string to identify the step in the UI.</p>
+</div>
+<div class="section" id="is-final">
+<h3><code class="docutils literal"><span class="pre">is_final</span></code><a class="headerlink" href="#is-final" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code></p>
+<p>This option must be set to <code class="docutils literal"><span class="pre">true</span></code> to identify final workflow states.</p>
+</div>
+<div class="section" id="order">
+<h3><code class="docutils literal"><span class="pre">order</span></code><a class="headerlink" href="#order" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">integer</span></code></p>
+<p>Steps are ordered by this value in the workflow steps widget.</p>
+</div>
+</div>
+<div class="section" id="steps-display-ordered">
+<h2>steps_display_ordered<a class="headerlink" href="#steps-display-ordered" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code></p>
+<p>If set to <code class="docutils literal"><span class="pre">true</span></code>, all steps will be shown in the workflow step widget in the UI. Otherwise, only
+steps that have an <a class="reference internal" href="#order">order</a> value less than or equal to the current step will be shown. This is
+useful to indicate the following steps of an entity.</p>
+</div>
+<div class="section" id="transition-definitions">
+<h2>transition_definitions<a class="headerlink" href="#transition-definitions" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+</div>
+<div class="section" id="transitions">
+<h2>transitions<a class="headerlink" href="#transitions" title="Permalink to this headline">¶</a></h2>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>Transitions define how one step is transformed into another using the following options:</p>
+<div class="section" id="acl-message">
+<h3><code class="docutils literal"><span class="pre">acl_message</span></code><a class="headerlink" href="#acl-message" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A message that will be shown in case the user does not have access granted through the access
+control list configured with the <a class="reference internal" href="#acl-resource">acl_resource</a> option. This option will be translated before
+being shown in the UI.</p>
+</div>
+<div class="section" id="acl-resource">
+<h3><code class="docutils literal"><span class="pre">acl_resource</span></code><a class="headerlink" href="#acl-resource" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The id of an access control list a user must be granted access to to perform the transition.</p>
+</div>
+<div class="section" id="dialog-template">
+<h3><code class="docutils literal"><span class="pre">dialog_template</span></code><a class="headerlink" href="#dialog-template" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">OroWorkflowBundle:Widget:widget/transitionForm.html.twig</span></code></p>
+<p>When the <a class="reference internal" href="#display-type">display_type</a> is <code class="docutils literal"><span class="pre">dialog</span></code>, this template will be used to create the page displayed in
+the front-end. The template being referenced here should extend the default
+<code class="docutils literal"><span class="pre">OOroWorkflowBundle:Widget:widget/transitionForm.html.twig</span></code> template.</p>
+</div>
+<div class="section" id="display-type">
+<h3><code class="docutils literal"><span class="pre">display_type</span></code><a class="headerlink" href="#display-type" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The type of the widget to be shown when the transition is performed. This can be either <code class="docutils literal"><span class="pre">dialog</span></code>
+or <code class="docutils literal"><span class="pre">page</span></code>. When the <code class="docutils literal"><span class="pre">page</span></code> value is used, the <a class="reference internal" href="#form-options">form_options</a> must be configured too.</p>
+</div>
+<div class="section" id="form-options">
+<h3><code class="docutils literal"><span class="pre">form_options</span></code><a class="headerlink" href="#form-options" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+<p>Form options that will be passed to the created form type when the <a class="reference internal" href="#display-type">display_type</a> option is set to
+<code class="docutils literal"><span class="pre">page</span></code>.</p>
+</div>
+<div class="section" id="frontend-options">
+<h3><code class="docutils literal"><span class="pre">frontend_options</span></code><a class="headerlink" href="#frontend-options" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">map</span></code></p>
+</div>
+<div class="section" id="is-hidden">
+<h3><code class="docutils literal"><span class="pre">is_hidden</span></code><a class="headerlink" href="#is-hidden" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code></p>
+<p>If <code class="docutils literal"><span class="pre">true</span></code>, this transition is hidden from the front-end.</p>
+</div>
+<div class="section" id="is-start">
+<h3><code class="docutils literal"><span class="pre">is_start</span></code><a class="headerlink" href="#is-start" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code></p>
+<p>If set to <code class="docutils literal"><span class="pre">true</span></code>, this transition can be applied when a workflow is not in a start step. There
+must be at least on transition having this option set to <code class="docutils literal"><span class="pre">true</span></code> if the workflow does not have at
+least one start step.</p>
+</div>
+<div class="section" id="is-unavailable-hidden">
+<h3><code class="docutils literal"><span class="pre">is_unavailable_hidden</span></code><a class="headerlink" href="#is-unavailable-hidden" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">boolean</span></code></p>
+<p>When the user is not allowed to perform this transition, it will not be displayed in the front-end
+when this option is set to <code class="docutils literal"><span class="pre">true</span></code>.</p>
+</div>
+<div class="section" id="message">
+<h3><code class="docutils literal"><span class="pre">message</span></code><a class="headerlink" href="#message" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A notification message that will be shown in the front-end before the transition is performed. This
+message will be translated before being shown in the UI.</p>
+</div>
+<div class="section" id="page-template">
+<h3><code class="docutils literal"><span class="pre">page_template</span></code><a class="headerlink" href="#page-template" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code> <strong>default</strong>: <code class="docutils literal"><span class="pre">OroWorkflowBundle:Workflow:transitionForm.html.twig</span></code></p>
+<p>When the <a class="reference internal" href="#display-type">display_type</a> is <code class="docutils literal"><span class="pre">page</span></code>, this template will be used to create the page displayed in
+the front-end. The template being referenced here should extend the default
+<code class="docutils literal"><span class="pre">OroWorkflowBundle:Workflow:transitionForm.html.twig</span></code> template.</p>
+</div>
+<div class="section" id="step-to">
+<h3><code class="docutils literal"><span class="pre">step_to</span></code><a class="headerlink" href="#step-to" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>The name of the step the workflow is transformed to (this must be one of the keys used in the
+<a class="reference internal" href="#steps">steps</a> option.</p>
+</div>
+<div class="section" id="transition-definition">
+<h3><code class="docutils literal"><span class="pre">transition_definition</span></code><a class="headerlink" href="#transition-definition" title="Permalink to this headline">¶</a></h3>
+<p><strong>type</strong>: <code class="docutils literal"><span class="pre">string</span></code></p>
+<p>A transition definition to be applied to this transition.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev_guide/reference/format/workflows.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Developer Guide</a><ul>
+  <li><a href="../index.html">Annotation and Configuration Format</a><ul>
+  <li><a href="index.html">Configuration Format Reference</a><ul>
+      <li>Previous: <a href="system_configuration.html" title="previous chapter">System Configuration</a></li>
+      <li>Next: <a href="../../entities/index.html" title="next chapter">Using and Managing Entities</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/dev_guide/reference/format/workflows.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

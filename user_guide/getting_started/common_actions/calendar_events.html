@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Add and Assign Calendar Events &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="add-and-assign-calendar-events">
+<span id="user-guide-activities-events"></span><h1>Add and Assign Calendar Events<a class="headerlink" href="#add-and-assign-calendar-events" title="Permalink to this headline">¶</a></h1>
+<p>In order to fix some meeting, conference or another arrangement in your OroCommerce account, create a &#8220;<em>Calendar Event&#8221;</em>
+record (&#8220;calendar event&#8221; or &#8220;event&#8221;).</p>
+<div class="section" id="create-an-event">
+<span id="user-guide-activities-create-events"></span><h2>Create an Event<a class="headerlink" href="#create-an-event" title="Permalink to this headline">¶</a></h2>
+<p>There are several ways to create an event:</p>
+<ul class="simple">
+<li>Add an event for a related entity record and define the users-participants.</li>
+<li>Assign an event directly to the user and add other users-participants.</li>
+<li>Create an event from the Events grid and add other users-participants.</li>
+</ul>
+<div class="section" id="add-an-event-for-a-related-record">
+<h3>Add an Event for a Related Record<a class="headerlink" href="#add-an-event-for-a-related-record" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Add Event</em> action will be available for records of entities with &#8220;Calendar Events&#8221; activity enabled in the <a class="reference external" href="../system/entities/entity">entity settings</a>.</p>
+<ol class="arabic simple">
+<li>Open the View page of a record the event is related to.</li>
+<li>Click <span class="guilabel">Add Event</span> in the actions tab.</li>
+<li>The &#8220;Add Event&#8221; form will appear. The form has the following fields:</li>
+</ol>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Title*</strong></td>
+<td>The event name. Must be defined.</td>
+</tr>
+<tr class="row-odd"><td><strong>Start*</strong></td>
+<td>Time the event starts. Must be specified.</td>
+</tr>
+<tr class="row-even"><td><strong>End*</strong></td>
+<td>Time the event ends. Must be specified.</td>
+</tr>
+<tr class="row-odd"><td><strong>All day event</strong></td>
+<td>Defines whether the event will take place for a whole day.</td>
+</tr>
+<tr class="row-even"><td><strong>Color</strong></td>
+<td>Defines the color to be used in the user&#8217;s calendar.</td>
+</tr>
+<tr class="row-odd"><td><strong>Guests</strong></td>
+<td>Defines users, for whom the event is created. Choose the user records from the drop-down menu. Any
+amount of users can be chosen.</td>
+</tr>
+<tr class="row-even"><td><strong>Reminders</strong></td>
+<td><p class="first">Defines if a message must be sent to the users defined in the <em>Guests</em> field before the event.
+Click the <span class="guilabel">Add</span> button to add a reminder.</p>
+<ul class="last simple">
+<li>Define if the message must be an email or a flash message, as well as and how long before the time defined in the
+<em>Start</em> it must be sent.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For example, we want Ellen Rowell from the sales team and Michael Buckley from the marketing team to be present at a
+meeting with a new contact from the Cal Stereo company. We have chosen a red color to display the event in the users&#8217;
+calendars.</p>
+<img alt="../../../_images/add_event_ex.png" src="../../../_images/add_event_ex.png" />
+<ol class="arabic simple" start="4">
+<li>Click the <span class="guilabel">Save</span> button and the event will be added.</li>
+</ol>
+</div>
+<div class="section" id="assign-an-event-to-a-user">
+<h3>Assign an Event to a User<a class="headerlink" href="#assign-an-event-to-a-user" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Go to the View page of the user record, for which the event is assigned.</p>
+</li>
+<li><p class="first">Click <span class="guilabel">Assign Event</span> in the actions tab of the user.</p>
+</li>
+<li><p class="first">The &#8220;Assign Event to {user name}&#8221; form will appear.</p>
+<p>The form has the same fields as the &#8220;Add Event&#8221; form. The &#8220;Guest&#8221; field in this case relates to attendees other
+than the user and may be left empty.</p>
+</li>
+</ol>
+<p>For example, we also need Ellen Rowell to visit a sales conference on April 8th.</p>
+<img alt="../../../_images/assign_event_ex.png" src="../../../_images/assign_event_ex.png" />
+<ol class="arabic simple" start="4">
+<li>Click the <span class="guilabel">Save</span> button and the event will be saved.</li>
+</ol>
+</div>
+<div class="section" id="create-an-event-from-the-events-grid">
+<h3>Create an Event from the Events Grid<a class="headerlink" href="#create-an-event-from-the-events-grid" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to <em>Activities → Calendar Events</em> or click the :guilable`Events` button above your calendar.</li>
+<li>Click the <span class="guilabel">Create Calendar Event</span> button.</li>
+<li>The &#8220;Create Calendar Event&#8221; form will appear.</li>
+</ol>
+<img alt="../../../_images/create_event.png" src="../../../_images/create_event.png" />
+<p>The form has the same fields as the &#8220;Add Event&#8221; form. The &#8220;Guest&#8221; field relates to attendees other than
+the user and may be left empty.</p>
+</div>
+<div class="section" id="view-and-manage-events">
+<h3>View and Manage Events<a class="headerlink" href="#view-and-manage-events" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">All the events  added  for a record are displayed and can be reached from the <em>Record Activities</em> section on the
+View page:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+</ul>
+<img alt="../../../_images/add_event_view.png" src="../../../_images/add_event_view.png" />
+<ul>
+<li><p class="first">To see the details, click on the event title or the <span class="guilabel">+</span> to the left from it.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</li>
+</ul>
+<img alt="../../../_images/add_event_view_detailed.png" src="../../../_images/add_event_view_detailed.png" />
+<ul class="simple">
+<li>All your calendar events assigned to you are displayed and can be reached from the Events grid.</li>
+<li>In order to see the events assigned to another user on the Events grid:<ul>
+<li>Go to &#8220;My Calendar&#8221;.</li>
+</ul>
+</li>
+</ul>
+<img alt="../../../_images/assign_events_cal.png" src="../../../_images/assign_events_cal.png" />
+<ul class="simple">
+<li>Choose the user in the drop-down on the left.</li>
+</ul>
+<img alt="../../../_images/assign_events_cal_add.png" src="../../../_images/assign_events_cal_add.png" />
+<ul class="simple">
+<li>From any of the grids above, you can manage the events using the action icons:<ul>
+<li>Delete the task: <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
+<li>Edit the event: <i class="fa fa-edit fa-lg" aria-hidden="true"></i></li>
+<li>View the event details:  <i class="fa fa-eye fa-lg" aria-hidden="true"></i></li>
+</ul>
+</li>
+<li>You can also manage your events from the calendar:<ul>
+<li>Click on the task in the calendar to get to its information tab.</li>
+<li>Use the buttons at the bottom to manage the task.</li>
+</ul>
+</li>
+</ul>
+<img alt="../../../_images/my_tasks_info1.png" src="../../../_images/my_tasks_info1.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/common_actions/calendar_events.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/common_actions/calendar_events.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

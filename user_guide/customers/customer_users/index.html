@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customer Users &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="View and Filter Customer Users" href="viewlist.html" />
+    <link rel="prev" title="Create a Customer User Role" href="../customer_user_roles/create.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customer-users">
+<span id="user-guide-customers-customer-users"></span><h1>Customer Users<a class="headerlink" href="#customer-users" title="Permalink to this headline">¶</a></h1>
+<p>Customer users act on behalf of the company and may have a limited set of permissions in OroCommerce, depending on their function in the customer organization.</p>
+<p>For customer user management, navigate to <strong>Customers &gt; Customer Users</strong> in the main menu.</p>
+<p>In Customer Users section, you can:</p>
+<ul>
+<li><p class="first">View, edit and create new customer users</p>
+</li>
+<li><p class="first">Select their roles in OroCommerce to define their level of permissions and access to the actions and data in OroCommerce store frontend</p>
+</li>
+<li><p class="first">Manage customer user information:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Name</li>
+<li>Birthday</li>
+<li>Email address</li>
+<li>Billing and shipping address and phone number (using <a class="reference internal" href="../../getting_started/common_actions/manage_address_book.html#user-guide-getting-started-address-book"><span class="std std-ref">address book</span></a>)</li>
+<li>Customer user role(s)</li>
+<li>Website to redirect the customer upon login</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">View requests for quotes, sales orders, quotes created or submitted by the customer user</p>
+</li>
+<li><p class="first">View communication with the customer that happened using email, notes or scheduled events</p>
+</li>
+<li><p class="first">View additional information attached to customer user</p>
+</li>
+<li><p class="first">Enable and disable the customer</p>
+</li>
+<li><p class="first">Reset the customer user password</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can delegate this function to the customer who will access user and role management in the OroCommmerce front store (see <a class="reference external" href="./../user-guide/customers/delegate">Delegating Users and Role Management to the Customer section</a> for more information).</p>
+</div>
+<p><strong>Customer Account Confirmation</strong></p>
+<p>Upon registration, customer user receives an email confirmation request. Once they follow up with the requested action, their account is marked as confirmed.</p>
+<img alt="../../../_images/CustomerUsers1.png" class="with-border" src="../../../_images/CustomerUsers1.png" />
+<div class="section" id="create-a-customer-users">
+<h2>Create a Customer Users<a class="headerlink" href="#create-a-customer-users" title="Permalink to this headline">¶</a></h2>
+<p>To create a new Customer:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Customers &gt; Customer Users</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Customer User</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../../_images/CustomerUsersCreate.png" class="with-border" src="../../../_images/CustomerUsersCreate.png" />
+</li>
+<li><p class="first">Fill in customer <strong>Name</strong> and other personal information.</p>
+</li>
+<li><p class="first">Select a customer this user represents.</p>
+</li>
+<li><p class="first">If you are adding a subsidiary of the existing customer, select Parent Customer.</p>
+</li>
+<li><p class="first">Assign a sales representative who will be assisting this customer user. By default, the customer sales representative applies to the customer user.</p>
+</li>
+<li><p class="first">Check the <strong>Generate Password</strong> and <strong>Send Welcome Email</strong> boxes.</p>
+</li>
+<li><p class="first">Select the Website the customer user will be redirected to upon the login. See <a class="reference external" href="./../../system/websites">Managing Websites</a> for more information.</p>
+</li>
+<li><p class="first">Add billing and shipping address as described in <a class="reference external" href="./../common_actions/manage-address-book">Address Book section</a>.</p>
+</li>
+<li><p class="first">In the <em>Roles</em> section, select the roles that should apply to the customer user. When several roles are selected, granted permissions are accumulated from all the assigned roles. See <a class="reference external" href="./customer_user_roles">Managing Customer User Roles</a> for more information.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The new Customer User is created.</p>
+</div>
+<div class="section" id="export">
+<h2>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h2>
+<p>You can export the customer user details in the .csv format:</p>
+<ol class="arabic simple">
+<li>Select the items to export using check boxes at the beginning of the corresponding rows. You can filter the list and use the <strong>Select All</strong> option in the table header, if necessary.</li>
+<li>Click <strong>Export</strong>.</li>
+</ol>
+<p>Later you can import the updated or processed customer information using import as described below.</p>
+</div>
+<div class="section" id="import">
+<h2>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h2>
+<p>To streamline adding, editing, and deleting a large bulk of items, like customer information, products, prices or inventory information, you can import the bulk details from a .csv file.</p>
+<p>Import the customer user information using the .csv file that follows the customer user details data structure.</p>
+<p><strong>Example of customer user bulk import template</strong></p>
+<div class="scroll-table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="10%" />
+<col width="5%" />
+<col width="10%" />
+<col width="10%" />
+<col width="5%" />
+<col width="10%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Name Prefix</th>
+<th class="head">First Name</th>
+<th class="head">Middle Name</th>
+<th class="head">Last Name</th>
+<th class="head">Name Suffix</th>
+<th class="head">Birthday</th>
+<th class="head">Email Address</th>
+<th class="head">Customer Id</th>
+<th class="head">Customer Name</th>
+<th class="head">Roles 1 Role</th>
+<th class="head">Enabled</th>
+<th class="head">Confirmed</th>
+<th class="head">Owner Id</th>
+<th class="head">Website Id</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&nbsp;</td>
+<td>Mr</td>
+<td>Jerry</td>
+<td>John</td>
+<td>Coleman</td>
+<td>Jr.</td>
+<td>04/19/1987</td>
+<td><a class="reference external" href="mailto:example&#37;&#52;&#48;email&#46;com">example<span>&#64;</span>email<span>&#46;</span>com</a></td>
+<td>&nbsp;</td>
+<td>Oro Inc.</td>
+<td>ROLE_FRONTEND_BUYER</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To import a bulk of customer users information:</p>
+<ol class="arabic simple">
+<li>Navigate to the <strong>Customers &gt; Customer Users</strong>.</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Get a sample:</strong> To download a sample .csv file with the necessary headers, click <strong>Download Data Template</strong> in the list next to <strong>Import</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Follow the on-screen guidance for any additional actions. For example, for the inventory template, select one of the options: a) inventory statuses only or b) detailed inventory levels.</p>
+</div>
+</li>
+<li><p class="first"><strong>Prepare data for import</strong>: Based on the downloaded file, create your bulk information in .csv format. Once your file is ready, click <strong>Import</strong>, select the prepared comma-separated values (.csv) file, and click <strong>Submit</strong>.</p>
+</li>
+<li><p class="first"><strong>Validate import results</strong>: Review import validation results. If there are any <em>Records with errors</em>, fix them in the .csv file prior to starting the import.</p>
+</li>
+<li><p class="first"><strong>Launch import:</strong> After successful validation, click <strong>Import</strong>.</p>
+</li>
+</ol>
+<p>Interactive status messages inform about the import progress and once the import is complete, the changes are reflected in the list upon refresh. Additionally, an email message with the import status is delivered to your mailbox.</p>
+<p>See this two minute demo of the import process:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shpqpFao6bA" frameborder="0" allowfullscreen></iframe><p><strong>Related Information</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viewlist.html">View and Filter Customer Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create.html">Create a Customer Users</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/customers/customer_users/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Customers and Customer Users</a><ul>
+      <li>Previous: <a href="../customer_user_roles/create.html" title="previous chapter">Create a Customer User Role</a></li>
+      <li>Next: <a href="viewlist.html" title="next chapter">View and Filter Customer Users</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/customers/customer_users/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

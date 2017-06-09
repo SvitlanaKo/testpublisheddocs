@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>The post on <a class="reference external" href="https://www.orocommerce.com/blog/price-list-management-in-orocommerce">price list management</a> triggered a number of questions around the optimal and easy-to-build price list configuration and specifically the steps it takes in Oro Commerce to set up a price list that is flexible, adjustable and exactly matches your pricing strategy.</p>
+<p>For most B2B eCommerce users, getting a price list that is automatically adjusted whenever there is a change to the key indicators, like product availability, recommended price, and cost, is a must-have option. However, this is not always easy and usually triggers a time consuming and sometimes error-prone process of export, conversion, and import of the price information.</p>
+<p>In the worst case scenario, someone&#8217;s daily duty is to adjust prices manually, and while it still can be tangible for a small online shop selling directly to their customers, the corporate commerce serving businesses can hardly afford this lack of automation.</p>
+<p>While a custom script-based or workflow-based automation usually can well do the necessary adjustments to the prices, this in-house project with all the maintenance and eventual updates to meet the price strategy fluctuations promises to be quite expensive.</p>
+<p>In Oro Commerce, price list generation and updates are moved to a whole new level. You get the complete price list for thousands and millions of items ready in literally no time. Products automatically get into the price list whenever they match the special criteria - a price list&#8217;s product assignment rule. You can set up flexible pricing rules, for example, to meet the price regulations requirements, maintain an international location aware price list, or to stimulate the demand and update the price following the in stock availability trends.</p>
+<p>Additionally, automated pricing rules are a single source of truth for your price list. You can easily trace what impacts the price change, share the vision of the pricing strategy and make sure the price is absolutely correct and meets the demanding needs of your pricing policies.</p>
+<div class="section" id="automating-a-price-list">
+<h2>Automating a price list<a class="headerlink" href="#automating-a-price-list" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note:</strong> We&#8217;ll use this simplified product catalog in the examples below:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="18%" />
+<col width="19%" />
+<col width="12%" />
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>B</td>
+<td>Pen</td>
+<td>yes</td>
+<td>2</td>
+<td>0.5</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-even"><td>C</td>
+<td>Office chair</td>
+<td>yes</td>
+<td>3</td>
+<td>300</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>EUR</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Office shelve</td>
+<td>yes</td>
+<td>4</td>
+<td>250</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>To automatically generate a price list in Oro Commerce:</p>
+<ol class="arabic">
+<li><p class="first">Open the price list or create a brand new one in <strong>Sales &gt; Price Lists</strong>.</p>
+</li>
+<li><p class="first"><strong>Set up the product list</strong></p>
+<p>With a <a class="reference external" href="http://symfony.com/doc/current/components/expression_language/syntax.html">Symfony2 expression language</a>, set up  criteria to filter products in the catalog. Once you enter the expression into the Products Assignment box, the filtered products get into the price list.</p>
+<p>For example, to include all products in categories 1 and 5, use the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>product.category == 1 and product.category == 5
+</pre></div>
+</td></tr></table></div>
+<p>For the sample catalog, this will generate the following product list:</p>
+<p><strong>Price list A</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="12%" />
+<col width="21%" />
+<col width="13%" />
+<col width="15%" />
+<col width="9%" />
+<col width="8%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>Another example, that filters products in stock with list price (also known as manufacturer’s suggested retail price - MSRP) that is higher than 100 USD per item:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>product.msrp.value &gt; 100 and product.msrp.currency == ‘USD’ and
+product.msrp.unit == ‘item’ and product.inventory_status == ‘in_stock’
+</pre></div>
+</td></tr></table></div>
+<p>This will result in the following product list:</p>
+<p><strong>Price list B</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="18%" />
+<col width="19%" />
+<col width="12%" />
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Office shelve</td>
+<td>yes</td>
+<td>4</td>
+<td>250</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>You are welcome to customize the automatically generated price list and add more products manually.</p>
+<p><strong>Note:</strong> For more information, see <a class="reference internal" href="#filtering-expression-syntax">Filtering Expression Syntax</a> and <a class="reference internal" href="#using-custom-properties-in-price-list-generation">Using custom properties in price list generation</a>.</p>
+</li>
+<li><p class="first"><strong>Set up the price</strong></p>
+<p>To enable outstanding pricing flexibility, Oro Commerce introduced a new option for the price list that automatically calculates the price for the automatically listed products.</p>
+<p>The pricing behavior is configured in the Price Calculation Rule box, using the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   Rule: (price formula), Condition: (product filtering expression)
+</pre></div>
+</td></tr></table></div>
+<p>In this expression, the (price formula) may contain product (and/or it’s children) properties of the numeric type, numbers and arithmetic operations, and (product filtering expression) is a <a class="reference external" href="http://symfony.com/doc/current/components/expression_language/syntax.html">Symfony2 expression</a> that additionally filters the list of products that were generated in step two to limit the products this price shall apply to.</p>
+<p>For example, to set the price (per one item) for all products in category 1 to 99 USD, use the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   Rule: 99, Condition: product.category == 1
+</pre></div>
+</td></tr></table></div>
+<p>In our sample, this will set the following scene:</p>
+<p><strong>Price list A</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="11%" />
+<col width="20%" />
+<col width="13%" />
+<col width="15%" />
+<col width="10%" />
+<col width="8%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><strong>99</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>Alternatively, to set the price (for one item in US dollars) to be 5 US dollars more than the target margin (custom property of the product), use the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   product.msrp.value * product.category.margin + 5
+</pre></div>
+</td></tr></table></div>
+<p><strong>Price list B</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="16%" />
+<col width="15%" />
+<col width="11%" />
+<col width="13%" />
+<col width="9%" />
+<col width="11%" />
+<col width="6%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List price</th>
+<th class="head">Margin</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td>1.2</td>
+<td><strong>3005</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Office shelve</td>
+<td>yes</td>
+<td>4</td>
+<td>250</td>
+<td>1.5</td>
+<td><strong>380</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</div>
+<div class="section" id="quick-facts">
+<h2>Quick facts<a class="headerlink" href="#quick-facts" title="Permalink to this headline">¶</a></h2>
+<p><strong>Funnel effect:</strong> Condition filter is applied only to the products assigned to the price list on step two in the process above, and not the complete catalog.</p>
+<p><strong>Default units and currency:</strong> If the currency and unit are not specified as filtering criteria, Oro Commerce applies the <em>USD</em> as default currency and <em>item</em> as a default unit. When currency and unit values are included in the filtering criteria, they override the default values.</p>
+<p><strong>Automatic updates:</strong> Oro Commerce automatically updates the price lists and recalculates prices whenever the product-related data is updated. Trigger could be a new product, category structure changes, or the product that moved to another category.</p>
+<p><strong>Matching units:</strong> During price generation, Oro Commerce precisely matches the rule units and product units to ensure calculations are correct. For example, when you sell stuffed toys and the supported units are items and bundles of 10 items, your price calculation rule that is configured only for kilograms will not apply and the price will not be generated.</p>
+<p><strong>Multiple price rules targeting the same product:</strong> When several price calculation rules apply to the same product in the price list, Oro Commerce uses the rule with the highest priority.</p>
+<p><strong>Enforcing the price:</strong> Prices that were provided manually have higher priority than the automatically generated ones. Once you manually set the price for the automatically assigned product, it will not change after price recalculation anymore.</p>
+</div>
+<div class="section" id="using-custom-properties-in-price-list-generation">
+<h2>Using custom properties in price list generation<a class="headerlink" href="#using-custom-properties-in-price-list-generation" title="Permalink to this headline">¶</a></h2>
+<p>Imagine your customer’s marketing department needs a price list with all products of yellow color where the price is increased by 10% to prepare for the ‘go yellow’ promo next month, when the price will drop down.</p>
+<p>As a prerequisite, you ensured that the product entity has the ‘color’ attribute. It was not there originally, but you added it as a custom property.</p>
+<p><strong>Note:</strong> To add custom properties to the product or category entity, use entity management (<strong>System &gt; Entities &gt; Entity Management</strong>) (Only table properties are supported). Update the schema to apply changes.</p>
+<p>Next, you entered the actual color for every product, and some of them indeed were yellow.</p>
+<p>Here is the product assignment rule that builds a price list of all yellow items in the catalog:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>product.color == “yellow”
+</pre></div>
+</td></tr></table></div>
+<p>and price rule that adds 10% to the list price.</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Rule: product.msrp.value * 1.1
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="filtering-expression-syntax">
+<h2>Filtering expression syntax<a class="headerlink" href="#filtering-expression-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Filtering expression for product assignment rule, as well as the price calculation condition, follow the <a class="reference external" href="http://symfony.com/doc/current/components/expression_language/syntax.html">Symfony2 expression language</a> syntax and may contain the following elements:</p>
+<ul class="simple">
+<li>Entity properties, including:</li>
+</ul>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Product properties</strong>: product.id, product.sku, product.status, product.createdAt, product.updatedAt, product.inventory_status, etc.</p>
+</li>
+<li><p class="first">Properties of product’s children entities, like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Category properties</strong>: product.category.id, product.category.left, product.category.right, product.category.level, product.category.root, product.category.createdAt, and product.category.updatedAt</li>
+<li><strong>Price properties</strong>: product.price.value, product.price.unit, product.price.quantity, and product.price.currency</li>
+<li>Any <strong>custom properties</strong> added to the product entity (e.g. product.awesomeness), or to the product children entity (e.g. product.category.priority and product.price.season)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Relations</strong> (for example, product.owner, product.organization, product.primaryUnitPrecision, product.category, and any virtual relations created in Oro Commerce for entities of product and its children. <strong>Notes:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>To keep the filter behavior predictable, Oro Commerce enforces the following limitation in regards to using relations in the filtering criteria: you can only use parameters residing on the “one” side of “one-to-many” relation (including the custom ones).</li>
+<li>When using relation, the id is assumed and may be omitted (e.g. “product.category == 1” expression means the same as “product.category.id == 1”).</li>
+<li>Generally, any product, price and category entity attribute is accessible by field name.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><strong>Operators:</strong> +, -,  <em>,  / , %, *</em>, ==, ===, !=, !==, &lt;, &gt;, &lt;=, &gt;=, matches (regexp), and, or, not, ~ (concatenation), in, not in, and .. (range).</li>
+<li><strong>Literals:</strong> You can use strings (e.g. <em>&#8216;hello&#8217;</em>), numbers (e.g. <em>345</em>), arrays (e.g. <em>[7, 8, 9]</em> ), hashes (e.g. <em>{ property_name: &#8216;property_value&#8217; }</em>), <em>true</em>, <em>false</em> and <em>null</em>.</li>
+</ul>
+</div>
+<div class="section" id="developer-notice">
+<h2>Developer notice<a class="headerlink" href="#developer-notice" title="Permalink to this headline">¶</a></h2>
+<p>The expression is converted into internal Nodes tree. This tree is converted into QueryBuilder which is used in Insert From Select to fill prices and assignment with one query. Virtual relations and virtual fields are managed by AbstractQueryConverter, that is also used to join all required relations and generate unique table aliases. Generated query builder is cached along with its parameters. Each rule and assignment rules has their own cache by ID. When assignment rule or rule is changed, the cached QueryBuilder is recalculated.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/overview/sales/price_lists_overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/overview/sales/price_lists_overview.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

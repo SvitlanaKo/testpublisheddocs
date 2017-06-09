@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tax Jurisdictions &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="View and Filter Tax Jurisdictions" href="viewlist.html" />
+    <link rel="prev" title="Edit Product Tax Code Details" href="../product_tax_codes/edit.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tax-jurisdictions">
+<h1>Tax Jurisdictions<a class="headerlink" href="#tax-jurisdictions" title="Permalink to this headline">¶</a></h1>
+<p>Tax Jurisdiction is a georgaphical address of the area that is governed by the same tax laws and regulations and that requires a dedicated set of tax calculation rules in OroCommerce: the tax rates for taxable/tax-exempt types of customers and products.</p>
+<p>The sections below provide guidance on managing tax jurisdictions and assigning a dedicated tax rules for these tax jurisdictions.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#view-and-filter-tax-jurisdictions" id="id2">View and Filter Tax Jurisdictions</a></li>
+<li><a class="reference internal" href="#create-a-tax-jurisdiction" id="id3">Create a Tax Jurisdiction</a></li>
+<li><a class="reference internal" href="#view-tax-jurisdiction-details" id="id4">View Tax Jurisdiction Details</a></li>
+<li><a class="reference internal" href="#editing-a-tax-jurisdiction" id="id5">Editing a Tax Jurisdiction</a><ul>
+<li><a class="reference internal" href="#association-of-the-tax-jurisdiction-with-the-tax-rule" id="id6">Association of the Tax Jurisdiction with the Tax Rule</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-and-filter-tax-jurisdictions">
+<h2><a class="toc-backref" href="#id2">View and Filter Tax Jurisdictions</a><a class="headerlink" href="#view-and-filter-tax-jurisdictions" title="Permalink to this headline">¶</a></h2>
+<p>To view all Tax Jurisdictions, navigate to <strong>Taxes &gt; Tax Jurisdictions</strong> in the main menu.</p>
+<img alt="../../../_images/TaxJurisdictions.png" class="with-border" src="../../../_images/TaxJurisdictions.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To handle big volume of data, use page switcher, increase <em>View Per Page</em> or use filters to narrow down the list to just the codes you need.</p>
+</div>
+<p>The following information about the Tax Jurisdictions is available in the Tax Jurisdictions list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CODE</td>
+<td>The unique identifier of the Tax Jurisdiction.</td>
+</tr>
+<tr class="row-odd"><td>DESCRIPTION</td>
+<td>Detailed description of the Tax Jurisdiction.</td>
+</tr>
+<tr class="row-even"><td>CREATED AT</td>
+<td>Date when the Tax Jurisdiction was created.</td>
+</tr>
+<tr class="row-odd"><td>UPDATED AT</td>
+<td>Date when the Tax Jurisdiction was updated last.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next steps</strong></p>
+<p>You can perform the following actions with every item in the Tax Jurisdictions list:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><a class="reference external" href="view">View a Tax Jurisdiction details</a>: Click on the item to open its details page.</p>
+<p>OR</p>
+<p>Aternatively: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> to open its details page.</p>
+</li>
+<li><p class="first"><a class="reference external" href="edit">Edit a Tax Jurisdiction details</a>: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.</p>
+</li>
+<li><p class="first">Delete a Tax Jurisdiction: Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-trash fa-lg" aria-hidden="true"></i> to remove the Tax Jurisdiction.</p>
+</li>
+<li><p class="first"><a class="reference external" href="create">Create Tax Jurisdiction</a>: Click <strong>Create Tax Jurisdiction</strong> to the top right from the list.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="create-a-tax-jurisdiction">
+<h2><a class="toc-backref" href="#id3">Create a Tax Jurisdiction</a><a class="headerlink" href="#create-a-tax-jurisdiction" title="Permalink to this headline">¶</a></h2>
+<p>To create a new Tax Jurisdiction:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Taxes &gt; Tax Jurisdictions</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Tax Jurisdiction</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../../_images/TaxJurisdictionsCreate.png" class="with-border" src="../../../_images/TaxJurisdictionsCreate.png" />
+</li>
+<li><p class="first">Fill in <strong>Code</strong>, <strong>Description</strong>.</p>
+</li>
+<li><p class="first">Select the country from the list.</p>
+</li>
+<li><p class="first">Select the state from the list.</p>
+</li>
+<li><p class="first">Type in the Zip code ranges that should be covered by this tax jurisdiction (click <strong>+Add</strong> to capture additional range).</p>
+<img alt="../../../_images/LOS_ANGELES_COUNTY_Edit_TaxJurisdictions_Taxes.png" class="with-border" src="../../../_images/LOS_ANGELES_COUNTY_Edit_TaxJurisdictions_Taxes.png" />
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The new Tax Jurisdiction is created.</p>
+</div>
+<div class="section" id="view-tax-jurisdiction-details">
+<h2><a class="toc-backref" href="#id4">View Tax Jurisdiction Details</a><a class="headerlink" href="#view-tax-jurisdiction-details" title="Permalink to this headline">¶</a></h2>
+<p>To view a Tax Jurisdiction details:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Taxes &gt; Tax Jurisdictions</strong> in the main menu.</p>
+</li>
+<li><p class="first">Find the line with the necessary Tax Jurisdiction and click on it.</p>
+<p>The following information is available immediately:</p>
+<ul class="simple">
+<li>Code</li>
+<li>Decription</li>
+<li>State</li>
+<li>Country</li>
+<li>Zip Codes</li>
+</ul>
+<img alt="../../../_images/LOS_ANGELES_COUNTY_View_TaxJurisdictions_Taxes.png" class="with-border" src="../../../_images/LOS_ANGELES_COUNTY_View_TaxJurisdictions_Taxes.png" />
+</li>
+</ol>
+<p><strong>Next steps</strong></p>
+<p>You can perform the following actions with a Tax Jurisdiction:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="edit">Edit a Tax Jurisdiction details</a>: Click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> to the top right of the page.</li>
+<li>Delete a Tax Jurisdiction: Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong> to the top right of the page.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="editing-a-tax-jurisdiction">
+<h2><a class="toc-backref" href="#id5">Editing a Tax Jurisdiction</a><a class="headerlink" href="#editing-a-tax-jurisdiction" title="Permalink to this headline">¶</a></h2>
+<p>To edit the Tax Jurisdiction details:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Taxes &gt; Tax Jurisdictions</strong> in the main menu.</li>
+<li>Hower over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.
+The following page opens:</li>
+</ol>
+<img alt="../../../_images/LOS_ANGELES_COUNTY_Edit_TaxJurisdictions_Taxes.png" class="with-border" src="../../../_images/LOS_ANGELES_COUNTY_Edit_TaxJurisdictions_Taxes.png" />
+<ol class="arabic simple">
+<li>Update the <strong>Code</strong>, <strong>Description</strong>, and the covered adresses includign the zip codes to modify the Tax Jurisdiction.</li>
+<li>Click <strong>Save</strong> on the top right of the page.</li>
+</ol>
+<p>The Tax Jurisdiction is updated.</p>
+<div class="section" id="association-of-the-tax-jurisdiction-with-the-tax-rule">
+<h3><a class="toc-backref" href="#id6">Association of the Tax Jurisdiction with the Tax Rule</a><a class="headerlink" href="#association-of-the-tax-jurisdiction-with-the-tax-rule" title="Permalink to this headline">¶</a></h3>
+<p>You can edit the association of the Tax Jurisdiction with other tax components when <a class="reference external" href="../tax_rule/edit">editing the tax rule details</a> (see the respective topic for more information).</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/taxes/tax_jurisdictions/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Taxes</a><ul>
+      <li>Previous: <a href="../product_tax_codes/edit.html" title="previous chapter">Edit Product Tax Code Details</a></li>
+      <li>Next: <a href="viewlist.html" title="next chapter">View and Filter Tax Jurisdictions</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/taxes/tax_jurisdictions/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

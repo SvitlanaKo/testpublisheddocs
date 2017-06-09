@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contributing to Documentation &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contacting Support and Reporting Issues" href="issues/index.html" />
+    <link rel="prev" title="Contributing to Translatiion" href="translations.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="contributing-to-documentation">
+<h1>Contributing to Documentation<a class="headerlink" href="#contributing-to-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#before-you-begin" id="id2">Before You Begin</a></li>
+<li><a class="reference internal" href="#fork-documentation-project" id="id3">Fork Documentation Project</a></li>
+<li><a class="reference internal" href="#update-documentation" id="id4">Update Documentation</a><ul>
+<li><a class="reference internal" href="#documentation-structure-and-topic-organization" id="id5">Documentation Structure and Topic Organization</a></li>
+<li><a class="reference internal" href="#basic-rst-syntax" id="id6">Basic Rst Syntax</a><ul>
+<li><a class="reference internal" href="#headings" id="id7">Headings</a></li>
+<li><a class="reference internal" href="#inline-markup" id="id8">Inline Markup</a></li>
+<li><a class="reference internal" href="#bulleted-list" id="id9">Bulleted List</a></li>
+<li><a class="reference internal" href="#numbered-list" id="id10">Numbered List</a></li>
+<li><a class="reference internal" href="#auto-enumerated-list" id="id11">Auto Enumerated List</a></li>
+<li><a class="reference internal" href="#text-blocks" id="id12">Text Blocks</a><ul>
+<li><a class="reference internal" href="#attention-block" id="id13">Attention Block</a></li>
+<li><a class="reference internal" href="#caution-block" id="id14">Caution Block</a></li>
+<li><a class="reference internal" href="#warning-block" id="id15">Warning Block</a></li>
+<li><a class="reference internal" href="#hint-block" id="id16">Hint Block</a></li>
+<li><a class="reference internal" href="#note-block" id="id17">Note Block</a></li>
+<li><a class="reference internal" href="#tip-block" id="id18">Tip Block</a></li>
+<li><a class="reference internal" href="#important-block" id="id19">Important Block</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tables" id="id20">Tables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced-rst-syntax" id="id21">Advanced Rst Syntax</a></li>
+<li><a class="reference internal" href="#file-naming-conventions" id="id22">File Naming Conventions</a></li>
+<li><a class="reference internal" href="#add-a-new-topic" id="id23">Add a New Topic</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submit-documentation-updates" id="id24">Submit Documentation Updates</a></li>
+</ul>
+</div>
+<p>We use <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> markup language to write the documentation and <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> generator to prepare it for the web publication at <a class="reference external" href="http://www.orocommerce.com/documentation">http://www.orocommerce.com/documentation</a>. You can find more information about the syntax on the Sphinx website by reading <a class="reference external" href="http://sphinx-doc.org/rest.html">reStructuredText Primer</a>. The most important information is provided in the sections below.</p>
+<p>Documentation source files are maintained in the dedicated <a class="reference external" href="https://github.com/orocommerce/documentation">github repository</a>.</p>
+<p>If you are willing to contribute - you are totally welcome. The information below should help you understand the documentation structure and topic organization, useful rst directives and a simple workflow that helps quickly publish a new topic.</p>
+<div class="section" id="before-you-begin">
+<h2><a class="toc-backref" href="#id2">Before You Begin</a><a class="headerlink" href="#before-you-begin" title="Permalink to this headline">¶</a></h2>
+<p>Before submitting your documentation changes in a pull request, please sign our <a class="reference external" href="http://www.orocommerce.com/contributor-license-agreement">Contributor License Agreement</a> (CLA). The CLA must be signed for any code or documentation changes to be accepted.</p>
+</div>
+<div class="section" id="fork-documentation-project">
+<h2><a class="toc-backref" href="#id3">Fork Documentation Project</a><a class="headerlink" href="#fork-documentation-project" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re just making a small change, you can use the &#8220;Edit this file&#8221; button directly in the GitHub UI. It will automatically create a fork of our documentation repository and allow for the creation and submission of a new pull request with your modifications once you are done editing:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/orocrm/documentation">OroPlatform and OroCRM documentation</a></li>
+<li><a class="reference external" href="https://github.com/orocommerce/documentation">OroCommerce documentation</a></li>
+</ul>
+<p>For large volume of  updates, fixes, and enhancements please use the following process:
+#. <a class="reference external" href="https://help.github.com/articles/fork-a-repo">Fork</a> a documentation repository.</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://help.github.com/articles/cloning-a-repository/">Clone</a> the forked repository.</li>
+<li>Update your local copy of documentation (see <a class="reference internal" href="#update-documentation">Update Documentation</a> for more information on the process and formatting).</li>
+<li>Build and test the documentation before submitting a pull request to be sure you haven&#8217;t accidentally introduced any layout or formatting issues.</li>
+</ol>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>To build Sphinx documentation, set up a local Sphinx build environment:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Install <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a>.</li>
+<li>Install the required Sphinx extensions: <code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span></code>.</li>
+</ul>
+</div></blockquote>
+<p class="last">To test your changes before you commit them, run <code class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></code> and check the generated documentation in the <code class="docutils literal"><span class="pre">_build</span></code> directory.</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="update-documentation">
+<h2><a class="toc-backref" href="#id4">Update Documentation</a><a class="headerlink" href="#update-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This section is intended to provide you with the basic information of simple text formatting using reStructuredText (reST) markup language. Just enough to update and create new documentation files in OroCommerce documentation.</p>
+<p>For more information, please refer to the sphinx&#8217;s <a class="reference external" href="http://sphinx-doc.org/rest.html">reStructuredText Primer</a> and to the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">Quick reStructuredText</a> by <a class="reference external" href="http://docutils.sourceforge.net">docutils</a>.</p>
+<p>The most complete information is available in the <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html">reStructureText specificaion</a>.</p>
+<div class="section" id="documentation-structure-and-topic-organization">
+<h3><a class="toc-backref" href="#id5">Documentation Structure and Topic Organization</a><a class="headerlink" href="#documentation-structure-and-topic-organization" title="Permalink to this headline">¶</a></h3>
+<p>In OroCommerce, documentation is organized into the tree hierarchy of sections using toctree directive in the index.rst. Sections of the same level reside in the same folder which simplifies navigation and sibling reference.</p>
+<p>Sample file structure:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>+ user-guide:
+    + img:
+        - Demo.png
+    - topic_1.rst
+    - topic_2.rst
+    - topic_3.rst
+    - index.rst
++ admin-guide:
+    - index.rst
+    + integration
+        - email.rst
+        - LDAP.rst
++ img:
+    - Architecture.png
+- index.rst
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="basic-rst-syntax">
+<h3><a class="toc-backref" href="#id6">Basic Rst Syntax</a><a class="headerlink" href="#basic-rst-syntax" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="headings">
+<h4><a class="toc-backref" href="#id7">Headings</a><a class="headerlink" href="#headings" title="Permalink to this headline">¶</a></h4>
+<p>Use the following markup for the headings to split your topic into sections, subsections, and more granular bits:</p>
+<p>Use an underline with =, -, ^, ~, &#8221; to mark up the sections.</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Section 1
+=========
+
+Section 1.1
+-----------
+
+Section 1.1.1
+^^^^^^^^^^^^^
+
+Section 1.1.1.1
+~~~~~~~~~~~~~~~
+
+Paragraph Title
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+</pre></div>
+</td></tr></table></div>
+<p>Preview:</p>
+<img alt="../_images/write.png" src="../_images/write.png" />
+<p>Preserve the same level of indentation for all lines of the paragraph. More information is available <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#paragraphs">here</a>.</p>
+</div>
+<div class="section" id="inline-markup">
+<h4><a class="toc-backref" href="#id8">Inline Markup</a><a class="headerlink" href="#inline-markup" title="Permalink to this headline">¶</a></h4>
+<p>Surround the text with one asterisk (*) for <em>italic</em> text, with two asterisks (**) for <strong>bold</strong> text, and with double back quotes (``) for <code class="docutils literal"><span class="pre">Preformatted</span></code> text. to use these symbols in the text without affecting the text style, escape them with the backslash (\).</p>
+</div>
+<div class="section" id="bulleted-list">
+<h4><a class="toc-backref" href="#id9">Bulleted List</a><a class="headerlink" href="#bulleted-list" title="Permalink to this headline">¶</a></h4>
+<p>To form a bullet list, start the line with *, +, or - followed by whitespace:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>* Item A
+* Item B
+
+    - Item C
+    - Item D
+
+        + Item E
+        + Item F
+</pre></div>
+</td></tr></table></div>
+<p>Preview:</p>
+<ul>
+<li><p class="first">Item A</p>
+</li>
+<li><p class="first">Item B</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Item C</p>
+</li>
+<li><p class="first">Item D</p>
+<blockquote>
+<div><ul class="simple">
+<li>Item E</li>
+<li>Item F</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="numbered-list">
+<h4><a class="toc-backref" href="#id10">Numbered List</a><a class="headerlink" href="#numbered-list" title="Permalink to this headline">¶</a></h4>
+<p>To form a numbered list, start the line with Arabic numerals (1,2,3), upper- or lowercase alphabet letters (A,B,C, or a,b,c), upper- or lowercase Roman numerals (I, II, III, or i, ii, iii). You can automatically enumerate the list by starting the lines with a hash sign (#).</p>
+<p>Simple numbered list:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>1. Item A
+2. Item B
+
+     a) Item C
+     b) Item D
+
+          i. Item E
+          ii. Item F
+</pre></div>
+</td></tr></table></div>
+<p>Preview:</p>
+<ol class="arabic">
+<li><p class="first">Item A</p>
+</li>
+<li><p class="first">Item B</p>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p class="first">Item C</p>
+</li>
+<li><p class="first">Item D</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li>Item E</li>
+<li>Item F</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="auto-enumerated-list">
+<h4><a class="toc-backref" href="#id11">Auto Enumerated List</a><a class="headerlink" href="#auto-enumerated-list" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>1. Item A
+#. Item B
+
+     a) Item C
+     #) Item D
+
+          i. Item E
+          #. Item F
+</pre></div>
+</td></tr></table></div>
+<p>Preview:</p>
+<ol class="arabic">
+<li><p class="first">Item A</p>
+</li>
+<li><p class="first">Item B</p>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p class="first">Item C</p>
+</li>
+<li><p class="first">Item D</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li>Item E</li>
+<li>Item F</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="text-blocks">
+<h4><a class="toc-backref" href="#id12">Text Blocks</a><a class="headerlink" href="#text-blocks" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attention-block">
+<h5><a class="toc-backref" href="#id13">Attention Block</a><a class="headerlink" href="#attention-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. attention:: The message text.</cite></p>
+<p>Preview:</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">The message text.</p>
+</div>
+</div>
+<div class="section" id="caution-block">
+<h5><a class="toc-backref" href="#id14">Caution Block</a><a class="headerlink" href="#caution-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. caution:: The caution message.</cite></p>
+<p>Preview:</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">The caution message.</p>
+</div>
+</div>
+<div class="section" id="warning-block">
+<h5><a class="toc-backref" href="#id15">Warning Block</a><a class="headerlink" href="#warning-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. warning:: The warning message.</cite></p>
+<p>Preview:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The warning message.</p>
+</div>
+</div>
+<div class="section" id="hint-block">
+<h5><a class="toc-backref" href="#id16">Hint Block</a><a class="headerlink" href="#hint-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. hint:: The hint message.</cite></p>
+<p>Preview:</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The hint message.</p>
+</div>
+</div>
+<div class="section" id="note-block">
+<h5><a class="toc-backref" href="#id17">Note Block</a><a class="headerlink" href="#note-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. note:: The note message.</cite></p>
+<p>Preview:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The note message.</p>
+</div>
+</div>
+<div class="section" id="tip-block">
+<h5><a class="toc-backref" href="#id18">Tip Block</a><a class="headerlink" href="#tip-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. tip:: The tip message.</cite></p>
+<p>Preview:</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The tip message.</p>
+</div>
+</div>
+<div class="section" id="important-block">
+<h5><a class="toc-backref" href="#id19">Important Block</a><a class="headerlink" href="#important-block" title="Permalink to this headline">¶</a></h5>
+<p>Syntax in Rst: <cite>.. important:: The important message.</cite></p>
+<p>Preview:</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The important message.</p>
+</div>
+</div>
+</div>
+<div class="section" id="tables">
+<h4><a class="toc-backref" href="#id20">Tables</a><a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>+------------+------------+-----------+
+| Header 1   | Header 2   | Header 3  |
++============+============+===========+
+| Cell 1.1   | Cell 1.2   | Cell 1.3  |
++------------+------------+-----------+
+| Cell 2.1   | Cell 2.2   | Cell 2.3  |
++------------+------------+-----------+
+</pre></div>
+</td></tr></table></div>
+<p>Preview:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="34%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header 1</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Cell 1.1</td>
+<td>Cell 1.2</td>
+<td>Cell 1.3</td>
+</tr>
+<tr class="row-odd"><td>Cell 2.1</td>
+<td>Cell 2.2</td>
+<td>Cell 2.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="advanced-rst-syntax">
+<h3><a class="toc-backref" href="#id21">Advanced Rst Syntax</a><a class="headerlink" href="#advanced-rst-syntax" title="Permalink to this headline">¶</a></h3>
+<p>Temporarily, the information resides <a class="reference external" href="https://magecore.atlassian.net/wiki/display/OD/RST+syntax+in+Oro+Documentation">on Confluence</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">References to the section titles in the doc are enabled with the &#8216;sphinx.ext.autosectionlabel&#8217; plugin.</p>
+</div>
+</div>
+<div class="section" id="file-naming-conventions">
+<h3><a class="toc-backref" href="#id22">File Naming Conventions</a><a class="headerlink" href="#file-naming-conventions" title="Permalink to this headline">¶</a></h3>
+<p>Please follow the recommendations below when naming the new documenation file:</p>
+<ul class="simple">
+<li>Use a topic-based approach (e.g. assign_user_management_permissions_to_the_organization.rst).</li>
+<li>Use lowercase letters and Arabic numbers only.</li>
+<li>Replace whitespace symbols with underscores (e.g. file_naming_conventions.rst).</li>
+<li>Avoid special symbols (/,$,#, etc).</li>
+<li>Save the file with .rst extension</li>
+</ul>
+</div>
+<div class="section" id="add-a-new-topic">
+<h3><a class="toc-backref" href="#id23">Add a New Topic</a><a class="headerlink" href="#add-a-new-topic" title="Permalink to this headline">¶</a></h3>
+<p>1. Create topic contents using Restructured Text format and save it following the <cite>File Naming Conventions</cite>
+_.</p>
+<ol class="arabic" start="2">
+<li><p class="first">To link a topic to the global documentation table of contents:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Identify the best location for the reference to your new topic in the documentation structure.</li>
+<li>Move the newly created file to the selected folder.</li>
+<li>Append the relative document name (without the rst extension) to the toctree definition in the potential parent topic.</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p>For example, when we create a new topic with additional information about price list management in the <em>additional_pricelist_management_info.rst</em> file. To include it into the document structure at the <strong>user-guide/pricing</strong> level, we&#8217;ll update the <em>index.rst</em> file in the <em>user-guide/pricing</em> directory like in the following example:</p>
+<p><strong>Before:</strong></p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>.. toctree::
+   :maxdepth: 1
+
+   price_attributes
+
+   price_list_management
+</pre></div>
+</td></tr></table></div>
+<p><strong>After:</strong></p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>.. toctree::
+   :maxdepth: 1
+
+   price_attributes
+
+   price_list_management
+
+   additional_pricelist_management_info
+</pre></div>
+</td></tr></table></div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If your are adding more than one topic and your new topics cover the same domain, consider grouping them into a folder.
+For better navigation, it is recommended to create a dedicated index.rst file with an overview and references to the topics in the new folder (using .. toctree:: directive).
+To attach your newly created group of topics into the general structure, add the reference to the index.rst to the appropriate loaction in the documetnation hierarchy (e.g. <em>documentation-structure-and-topic-organization.rst</em> and <em>file_naming_conventions.rst</em> may be saved to the <em>user_guide/writing</em> folder, may be added to the toctree of the dedicated <em>user_guide/writing/index.rst</em>.
+Finally, <em>user_guide/writing/index.rst</em> may be added into the <em>user_guide/index.rst</em> toctree to attach the newly created files into the global documentation structure).</p>
+</div>
+</div>
+</div>
+<div class="section" id="submit-documentation-updates">
+<h2><a class="toc-backref" href="#id24">Submit Documentation Updates</a><a class="headerlink" href="#submit-documentation-updates" title="Permalink to this headline">¶</a></h2>
+<p>Once you are ready, create a pull request in the <a class="reference external" href="https://github.com/orocommerce/documentation">OroCommerce documentation</a> repository with changes from your forked repository.</p>
+<p>After documentation review, your changes will be merged to the OroCommerce documentation and will be published on the <a class="reference external" href="http://www.orocommerce.com/documentation">OroCommerce website</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/community/write.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Community Guide</a><ul>
+      <li>Previous: <a href="translations.html" title="previous chapter">Contributing to Translatiion</a></li>
+      <li>Next: <a href="issues/index.html" title="next chapter">Contacting Support and Reporting Issues</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/community/write.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

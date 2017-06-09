@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Authorize.Net Payments Services &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Wirecard Payments Services" href="wirecard.html" />
+    <link rel="prev" title="PayPal Payments Services" href="paypal.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="authorize-net-payments-services">
+<span id="user-guide-payment-payment-providers-overview-authorizenet"></span><h1>Authorize.Net Payments Services<a class="headerlink" href="#authorize-net-payments-services" title="Permalink to this headline">¶</a></h1>
+<p>Authorize.Net is one of the world&#8217;s most popular payment gateways. It provides services for businesses based in the United States, Canada, United Kingdom, Europe, and Australia. It ensures secure and reliable money transactions and offers a wide range of additional services.</p>
+<p>Integration of OroCommerce with Authorize.Net enables you to accept credit and debit cards on your OroCommerce website.</p>
+<p>While your business must be based in one of the aforementioned countries, you can accept payments from the buyers worldwide.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Note that to accept card payments, business must have a <em>merchant account</em>. This is a special bank account to which payments are transferred as soon as they are received from buyers. In next step, money is transferred from the merchant account to your regular bank account, from which you can withdraw it.</p>
+<p class="last">You may acquire a merchant account on your own or obtain it from Authorize.Net.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See <a class="reference internal" href="../prerequisites/authorizenet.html#user-guide-payment-prerequisites-authorizenet"><span class="std std-ref">Prerequisites for Authorize.Net Integration</span></a> topic for pre-integration steps.
+See <a class="reference internal" href="../configuration/payment_methods/authorizenet.html#user-guide-payment-configuration-payment-method-integration-authorizenet-details"><span class="std std-ref">Authorize.Net Integration</span></a> topic for detailed integration steps.</p>
+</div>
+<div class="section" id="security">
+<h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
+<p>OroCommerce server never stores buyer&#8217;s sensitive payment information (complete card number, expiration date, and cvv code), this information is directly sent to Authorize.Net.</p>
+<p>As Authorize.Net servers are PCI DSS complaint, this ensures that you provide to your buyers the security of payments that meets requirements of the controlling organizations.</p>
+<p>OroCommerce uses <a class="reference external" href="https://developer.authorize.net/api/reference/features/acceptjs.html">Authorize.Net Accept.js</a> library to process buyer&#8217;s sensitive information in their web browser.</p>
+<p>Transaction response from the payment gateway also does not contain sensitive information about a buyer&#8217;s card. It serves as an identifier of the initial authorization that is solely handled by the payment gateway.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/payment/payment_providers_overview/authorizenet.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">User Guide</a><ul>
+  <li><a href="../index.html">Payment</a><ul>
+  <li><a href="index.html">Payment Methods and Providers</a><ul>
+      <li>Previous: <a href="paypal.html" title="previous chapter">PayPal Payments Services</a></li>
+      <li>Next: <a href="wirecard.html" title="next chapter">Wirecard Payments Services</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/payment/payment_providers_overview/authorizenet.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

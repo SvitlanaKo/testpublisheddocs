@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Shipping Configuration per Quote &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Shipping in the Checkout (Front Store)" href="shipping_checkout.html" />
+    <link rel="prev" title="Product Shipping Information" href="shipping_attributes.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="shipping-configuration-per-quote">
+<h1>Shipping Configuration per Quote<a class="headerlink" href="#shipping-configuration-per-quote" title="Permalink to this headline">¶</a></h1>
+<p>When editing the quote, a sales person may limit the shipping methods visible to customer.</p>
+<p>To limit the shipping methods per quote:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Quotes</strong> in the main menu.</p>
+</li>
+<li><p class="first">Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the necessary quote and click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.</p>
+</li>
+<li><p class="first">In the <strong>Shipping Information</strong> section, configure the shipping options available for the customer:</p>
+<ol class="loweralpha">
+<li><p class="first">In the <strong>Shipping Methods</strong> list, tick the boxes next to the shipping methods that you would like the customer to use for this order delivery.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When none of the methods are selected, the customer can use any of the listed methods.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Once you change the existing settings, the previous configuration will be saved for your information in the <em>Previously Selected Shipping Method</em> log above the list of the shipping methods.</p>
+</div>
+</li>
+<li><p class="first">If necessary, select the preferred shipping method from the <strong>Default Shipping Method</strong> list. The customer will be able to change the option to any other available shipping method.</p>
+</li>
+<li><p class="first">Optionally, enter the <strong>Overriden Shipping Cost Amount, USD</strong> - a custom shipping cost that will be used instead of the one dynamically generated based on the shipping method selection.</p>
+</li>
+<li><p class="first">To enforce using only the default Shipping method, enable <strong>Shipping Method Locked</strong> flag.</p>
+</li>
+<li><p class="first">Tick the <strong>Allow Unlisted Shipping Methods</strong> box to allow using the shipping method that is already selected as a default one, even if it is disabled in this quote configuration.</p>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/shipping/shipping_options_in_quotes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+  <li><a href="index.html">Shipping</a><ul>
+      <li>Previous: <a href="shipping_attributes.html" title="previous chapter">Product Shipping Information</a></li>
+      <li>Next: <a href="shipping_checkout.html" title="next chapter">Shipping in the Checkout (Front Store)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/shipping/shipping_options_in_quotes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

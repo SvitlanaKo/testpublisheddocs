@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Payment &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Payment Methods and Providers" href="payment_providers_overview/index.html" />
+    <link rel="prev" title="Edit a Quote" href="../quotes/edit.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="payment">
+<span id="user-guide-payment"></span><h1>Payment<a class="headerlink" href="#payment" title="Permalink to this headline">¶</a></h1>
+<p>To facilitate global B2B sales, OroCommerce administrator enables valid payment methods for particular locations and integrates local payment providers or the best payment options whenever it is possible.</p>
+<p>When submitting an order, the customer may have several payment options to choose from. They depend on the payment address that is collected at the checkout. Once address is provided, OroCommerce evaluates payment methods against the special payment rules and exposes only the options recommended for the particular location and/or based on other order details. After the customer user has selected the payment method, they are prompted to enter payment details and proceed to the checkout.</p>
+<p>Depending on the payment method, payment may be processed immediately or may be delayed for the pre-configured period of time, or until a particular event (e.g. until the order is ready for delivery).</p>
+<p>After the payment details were provided, the sales person can view the payment history, and capture the delayed payment.</p>
+<p>When the payment term is selected, the payment is considered to be captured in full and the payment information is not available.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="payment_providers_overview/index.html">Payment Methods and Providers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="payment_providers_overview/money_order.html">Check/Money Order Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="payment_providers_overview/payment_term.html">Payment Term Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="payment_providers_overview/paypal.html">PayPal Payments Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/paypal.html#paypal-payflow-payment-gateway-vs-paypal-payments-pro">PayPal Payflow Payment Gateway vs PayPal Payments Pro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/paypal.html#ordinary-vs-express-checkout">Ordinary vs Express Checkout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payment_providers_overview/authorizenet.html">Authorize.Net Payments Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/authorizenet.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payment_providers_overview/wirecard.html">Wirecard Payments Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/wirecard.html#credit-and-debit-cards">Credit and Debit Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/wirecard.html#paypal">PayPal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/wirecard.html#sepa-direct-debit">SEPA Direct Debit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payment_providers_overview/wirecard.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="payment_providers_overview/infinitepay.html">InfinitePay Payment Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites/index.html">Payment Integration Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/paypal.html">Prerequisites for PayPal Services Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/paypal.html#register-a-business-account-with-paypal">Register a Business Account with PayPal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/paypal.html#create-a-sandbox-test-account">Create a Sandbox Test Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/paypal.html#register-a-paypal-payflow-gateway-account">Register a PayPal Payflow Gateway Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/paypal.html#configure-paypal-manager-account-to-accept-payments">Configure PayPal Manager Account to Accept Payments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/paypal.html#configure-paypal-manager-account-to-work-with-express-checkout">Configure PayPal Manager Account to Work with Express Checkout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/paypal.html#create-an-api-transaction-user">Create an API Transaction User</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/authorizenet.html">Prerequisites for Authorize.Net Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/authorizenet.html#get-authorize-net-credentials-required-for-integration-with-orocommerce">Get Authorize.Net Credentials Required for Integration with OroCommerce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/authorizenet.html#test-authorize-net-integration">Test Authorize.Net Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/wirecard.html">Prerequisites for Wirecard Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/wirecard.html#test-wirecard-integration">Test Wirecard Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/infinitepay.html">Prerequisites for InfinitePay Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration/index.html">Payment Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../system/commerce_configuration/payment_configuration.html">System Configuration: Merchant Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/payment_method_integrations.html">Payment Method Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration/payment_method_integrations.html#generic-payment-end-to-end-flow-in-orocommerce">Generic Payment End-to-End Flow in OroCommerce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/payment_method_integrations.html#create-an-integration-with-a-payment-method-provider">Create an Integration with a Payment Method Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/payment_method_integrations.html#delete-an-integration-with-a-payment-method-provider">Delete an Integration with a Payment Method Provider</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/payment_rules.html">Payment Rules Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration/payment_rules.html#create-a-payment-rule">Create a Payment Rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/payment_rules.html#enable-a-payment-rule">Enable a Payment Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="checkout/index.html">Checkout: Payment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#paypal-payflow-gateway-with-no-cvv-required">PayPal Payflow Gateway with no CVV Required</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#paypal-payments-pro-with-require-cvv-entry-enabled">PayPal Payments Pro with Require CVV Entry Enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#paypal-payments-pro-express-checkout">PayPal Payments Pro Express Checkout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#authorize-net">Authorize.Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#wirecard-credit-card">Wirecard Credit Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#wirecard-paypal">Wirecard PayPal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checkout/index.html#wirecard-sepa-direct-debit">Wirecard SEPA Direct Debit</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/payment/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+      <li>Previous: <a href="../quotes/edit.html" title="previous chapter">Edit a Quote</a></li>
+      <li>Next: <a href="payment_providers_overview/index.html" title="next chapter">Payment Methods and Providers</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/payment/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

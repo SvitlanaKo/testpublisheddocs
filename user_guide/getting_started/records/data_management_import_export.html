@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Import and Export Data &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="import-and-export-data">
+<span id="user-guide-export-import"></span><h1>Import and Export Data<a class="headerlink" href="#import-and-export-data" title="Permalink to this headline">¶</a></h1>
+<p>OroCRM&#8217;s import and export functionality is a simple way of working with multiple records in the .CSV format.</p>
+<p>If the functionality is enabled for an entity, <span class="guilabel">Export</span> and <span class="guilabel">Import</span> buttons are displayed
+in the top right corner of the page.
+If a grid can be exported the <span class="guilabel">Export</span> button will appear on the left, just above the grid. What records
+can be exported/imported and what field will be used as a record identifier during update, is defined by the system
+administrator.</p>
+<div class="section" id="import">
+<span id="user-guide-import"></span><h2>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Click <i class="fa fa-caret-down fa-lg" aria-hidden="true"></i> on the  <span class="guilabel">Import</span> button.</li>
+<li>Choose <span class="guilabel">Download Data Template</span>.</li>
+</ul>
+<img alt="../../../_images/download_data_template.png" src="../../../_images/download_data_template.png" />
+<ul class="simple">
+<li>Make a .csv file in compliance with the template.</li>
+</ul>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Mandatory fields of the entity <strong>must</strong> be specified</p>
+</div>
+<ul class="simple">
+<li>Click the  <span class="guilabel">Import</span> button.</li>
+<li>Click <span class="guilabel">Choose File</span> and choose a .csv file to import.</li>
+<li>Click <span class="guilabel">Submit</span>.</li>
+</ul>
+<img alt="../../../_images/leads_import.png" src="../../../_images/leads_import.png" />
+<ul class="simple">
+<li>Carefully read through the submission form.</li>
+</ul>
+<img alt="../../../_images/leads_import_validation_results.png" src="../../../_images/leads_import_validation_results.png" />
+<ul class="simple">
+<li>Click the <span class="guilabel">Back</span> button to choose another file or <span class="guilabel">Import</span> button to go on with the import<ul>
+<li>First, the <em>&#8220;Validation started. Please wait.&#8221;</em> message will appear.</li>
+<li>When the import has finished, the <em>&#8220;File is successfully imported.&#8221;</em> message will appear.</li>
+</ul>
+</li>
+</ul>
+<p>Once import is over, the new entity records will appear in the <a class="reference internal" href="records_grids.html#doc-grids"><span class="std std-ref">grid</span></a>.</p>
+</div>
+<div class="section" id="export">
+<span id="user-guide-export"></span><h2>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Go to the grid and<ul>
+<li>Click the <span class="guilabel">Export</span> button.</li>
+<li>The <em>&#8220;Export started. Please wait.&#8221;</em> message will appear at the top of the screen.</li>
+<li>As soon as the export is over, the message will change to: <em>&#8220;Export performed successfully, [number]
+downloads exported. Download result file.&#8221;</em></li>
+</ul>
+</li>
+<li>Click the <em>&#8220;Download result file</em>&#8221; link at the end of the message, and the download will be performed subject to your
+browser settings.</li>
+</ul>
+<div class="section" id="export-grid">
+<h3>Export Grid<a class="headerlink" href="#export-grid" title="Permalink to this headline">¶</a></h3>
+<p>In a similar way, you can export records of specific grid (subject to all the adjustments and filters applied). To do
+so, click the  Click the <span class="guilabel">Export Grid</span> button and select <em>&#8220;CSV&#8221;</em> below it. The download will start and the
+file will be save in compliance to your browser settings.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that scope of record details exported, their names and position in the .csv file depend on the
+<a class="reference internal" href="../../../admin_guide/entities/entity_field_properties.html#user-guide-entity-management-export-import-common"><span class="std std-ref">Import&amp;Export settings</span></a> of the entity fields.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/records/data_management_import_export.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/records/data_management_import_export.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

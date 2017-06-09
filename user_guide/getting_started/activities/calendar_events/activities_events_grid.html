@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>All Calendar Events Grid &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Calendar Event View Page" href="activities_events_viewpage.html" />
+    <link rel="prev" title="Calendar Events" href="index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="all-calendar-events-grid">
+<span id="doc-activities-events-grid"></span><h1>All Calendar Events Grid<a class="headerlink" href="#all-calendar-events-grid" title="Permalink to this headline">¶</a></h1>
+<img alt="../../../../_images/activities_events.png" src="../../../../_images/activities_events.png" />
+<div class="section" id="page-top">
+<h2>Page Top<a class="headerlink" href="#page-top" title="Permalink to this headline">¶</a></h2>
+<p>On the upper-left of the page, you can see the name of the selected grid view. The only grid view available by default for calendar events is <strong>All Calendar Events</strong> (all available calendar events are displayed).</p>
+<p>In the upper-right part of the page, you can see the <span class="guilabel">Create Calendar Event</span> action button. Click it to make a new calendar entry. See the <a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-add"><span class="std std-ref">Add a Calendar Event</span></a> action descriptions.</p>
+<p>The other grid controls are common for all grids in the application. See the <a class="reference internal" href="../../records/records_grids.html#doc-grids"><span class="std std-ref">Grids</span></a> guide for more information on grids.</p>
+</div>
+<div class="section" id="grid">
+<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TITLE</td>
+<td>The event name.</td>
+</tr>
+<tr class="row-odd"><td>CALENDAR</td>
+<td>Which calendar this event belongs to.</td>
+</tr>
+<tr class="row-even"><td>START</td>
+<td>The day and time when the event starts.</td>
+</tr>
+<tr class="row-odd"><td>END</td>
+<td>The day and time when the event ends.</td>
+</tr>
+<tr class="row-even"><td>RECURRENT</td>
+<td>Whether the event takes place more than once, repeats regularly.</td>
+</tr>
+<tr class="row-odd"><td>RECURRENCE</td>
+<td>The schedule of the repeating event.</td>
+</tr>
+<tr class="row-even"><td>INVITATION STATUS</td>
+<td>Whether the invitation for the event has been accepted.</td>
+</tr>
+</tbody>
+</table>
+<p>Inline editing within the grid is not available for calendar events. If you wish to change the details of a record, you should first open it and then make the necessary changes on the record edit page.</p>
+<div class="section" id="access-a-calendar-event">
+<h3>Access a Calendar Event<a class="headerlink" href="#access-a-calendar-event" title="Permalink to this headline">¶</a></h3>
+<p>To respond to a calendar event, view, edit, or delete it, click the ellipsis menu at the end of the row, and then click the corresponding icon.</p>
+<p>To view a calendar event, you can also click the corresponding row itself.</p>
+<img alt="../../../../_images/activities_events_grid_actions.png" src="../../../../_images/activities_events_grid_actions.png" />
+<p>See the action descriptions:</p>
+<ul class="simple">
+<li><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-respond"><span class="std std-ref">Respond to a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-view"><span class="std std-ref">View a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-edit"><span class="std std-ref">Edit a Calendar Event</span></a></li>
+<li><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions-delete"><span class="std std-ref">Delete a Calendar Event</span></a></li>
+</ul>
+</div>
+<div class="section" id="mass-actions">
+<h3>Mass Actions<a class="headerlink" href="#mass-actions" title="Permalink to this headline">¶</a></h3>
+<p>You can delete multiple calendar events from this page. See the <a class="reference internal" href="actions/delete.html#doc-activities-eventss-actions-massdelete"><span class="std std-ref">Delete Multiple Calendar Events</span></a> action description.</p>
+</div>
+</div>
+</div>
+<div class="section" id="see-also">
+<h1>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="index.html#doc-activities-events"><span class="std std-ref">Calendar Events Overview</span></a></p>
+<p><a class="reference internal" href="activities_events_actions.html#doc-activities-events-actions"><span class="std std-ref">Manage Calendar Events</span></a></p>
+<p><a class="reference internal" href="activities_events_viewpage.html#doc-activities-events-view-page"><span class="std std-ref">Calendar Event View Page</span></a></p>
+<p><a class="reference internal" href="../../my_oro/my_user_calendar.html#doc-my-oro-calendar"><span class="std std-ref">My Calendar Page</span></a></p>
+<p><a class="reference internal" href="../../widgets_today_calendar.html#doc-widgets-today-calendar"><span class="std std-ref">Today&#8217;s Calendar Widget</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user_guide/getting_started/activities/calendar_events/activities_events_grid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">User Guide</a><ul>
+  <li><a href="../../index.html">Getting Started with UI</a><ul>
+  <li><a href="../index.html">Activities</a><ul>
+  <li><a href="index.html">Calendar Events</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Calendar Events</a></li>
+      <li>Next: <a href="activities_events_viewpage.html" title="next chapter">Calendar Event View Page</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../../_sources/user_guide/getting_started/activities/calendar_events/activities_events_grid.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Log Call &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="log-call">
+<h1>Log Call<a class="headerlink" href="#log-call" title="Permalink to this headline">¶</a></h1>
+<p>Calls logging helps to keep a record of the outgoing and incoming calls.</p>
+<p>There are two ways to log a call in OroCommerce:</p>
+<ul class="simple">
+<li>Log a call related to a record of an entity.</li>
+<li>Log a call from the <em>&#8220;Calls&#8221;</em> grid.</li>
+</ul>
+<div class="section" id="log-a-call-related-to-another-entity-record">
+<h2>Log a Call Related to Another Entity Record<a class="headerlink" href="#log-a-call-related-to-another-entity-record" title="Permalink to this headline">¶</a></h2>
+<p>The <em>&#8220;Log Call&#8221;</em> action will be available for records of entities with the <em>&#8220;Calls&#8221;</em> activity enabled in the <a class="reference external" href="../system/entities/entity">entity settings</a>.</p>
+<ol class="arabic simple">
+<li>Go to the View page of the record, for which the call has been made.</li>
+<li>Click <span class="guilabel">Log Call</span> in the actions tab of the record.</li>
+<li>The &#8220;Log Call&#8221; form will appear. The form has the following fields:</li>
+</ol>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Owner*</strong></td>
+<td><p class="first">Limits the list of users that can manage the log (view, edit) to users,  whose
+<a class="reference external" href="../../system/user-management/roles">roles</a> allow managing
+calls assigned to the owner (e.g. the owner, members of the same business unit, system administrator, etc.).</p>
+<p>By default, it is set to the user logging the call.</p>
+<p>To clear the field, click the <span class="guilabel">x</span> button.</p>
+<p class="last">You can choose another owner from the list.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Subject*</strong></td>
+<td>Topic of the call.</td>
+</tr>
+<tr class="row-even"><td><strong>Additional comments</strong></td>
+<td>Record any meaningful call details.</td>
+</tr>
+<tr class="row-odd"><td><strong>Call date &amp; time*</strong></td>
+<td>Time when the call was made. By default, it is set to the time when the call was logged.</td>
+</tr>
+<tr class="row-even"><td><strong>Phone number*</strong></td>
+<td><p class="first">Number the call was made to.</p>
+<p>The field is by default filled with the phone number of one of the contacts assigned to the record (if any).</p>
+<p class="last">To clear the field, click the <span class="guilabel">x</span> button.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Direction*</strong></td>
+<td>Defines whether the call was outgoing or ingoing. By default, the field is set to <em>Outgoing</em>.</td>
+</tr>
+<tr class="row-even"><td><strong>Duration</strong></td>
+<td>Define how long the call was.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, we have called Mr. Maynard to verify the email address:</p>
+<ul class="simple">
+<li>The &#8220;Owner&#8221; field was automatically filled with the user John Doe.</li>
+<li>We&#8217;ve defined the call subject and briefly described the call results in the &#8220;Additional comments&#8221; section.</li>
+<li>We&#8217;ve specified the call duration (5 minutes).</li>
+</ul>
+<img alt="../../../_images/log_call_ex.png" src="../../../_images/log_call_ex.png" />
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">&#8220;Call date &amp; time&#8221;, &#8220;Phone number&#8221; and &#8220;Direction&#8221; fields are filled in automatically, but you can change their
+values as required.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li>Click the <span class="guilabel">Log Call</span> button and the call will be logged.</li>
+</ol>
+</div>
+<div class="section" id="log-call-from-the-calls-grid">
+<h2>Log Call from the Calls Grid<a class="headerlink" href="#log-call-from-the-calls-grid" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to <em>Activities → Calls</em>.</li>
+<li>Click the <span class="guilabel">Log Call</span> button.</li>
+<li>The &#8220;Log Call&#8221; form will appear.</li>
+</ol>
+<img alt="../../../_images/log_call_form.png" src="../../../_images/log_call_form.png" />
+<p>The form has the same fields. By default, no phone number is defined.</p>
+<div class="section" id="view-and-manage-calls">
+<h3>View and Manage Calls<a class="headerlink" href="#view-and-manage-calls" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>All the calls can be viewed from the Calls grid.</li>
+<li>All the calls logged for a record are displayed and can be reached from the <em>Record Activities</em> section on the
+View page:</li>
+</ul>
+<img alt="../../../_images/log_call_view.png" src="../../../_images/log_call_view.png" />
+<ul>
+<li><p class="first">To see the details, click on the call title or the <span class="guilabel">+</span> to the left of it.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>From any of the grids above, you can manage the tasks using the action icons:</p>
+<ul class="simple">
+<li>Delete the call: <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
+<li>Edit the logged call: <i class="fa fa-edit fa-lg" aria-hidden="true"></i></li>
+<li>View the logged call details:  <i class="fa fa-eye fa-lg" aria-hidden="true"></i></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user_guide/getting_started/common_actions/log_calls.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/getting_started/common_actions/log_calls.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customers and Customer Users &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Customer Groups" href="customer_groups/index.html" />
+    <link rel="prev" title="Create a Warehouse" href="../inventory/warehouses/create.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customers-and-customer-users">
+<h1>Customers and Customer Users<a class="headerlink" href="#customers-and-customer-users" title="Permalink to this headline">¶</a></h1>
+<p>This topic contains the following sections:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id5">Overview</a></li>
+<li><a class="reference internal" href="#system-wide-customer-configuration" id="id6">System-wide Customer Configuration</a></li>
+<li><a class="reference internal" href="#customer-accounts" id="id7">Customer Accounts</a></li>
+<li><a class="reference internal" href="#customer-user-management" id="id8">Customer User Management</a></li>
+<li><a class="reference internal" href="#customer-roles-and-permissions-management" id="id9">Customer Roles and Permissions Management</a></li>
+<li><a class="reference internal" href="#customer-organization-structure-and-account-hierarchy" id="id10">Customer Organization Structure and Account Hierarchy</a></li>
+<li><a class="reference internal" href="#customer-groups" id="id11">Customer Groups</a></li>
+<li><a class="reference internal" href="#delegate-account-management-to-a-customer-user" id="id12">Delegate Account Management to a Customer User</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id5">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In OroCommerce terminology, customers are companies who buy your products using OroCommerce store frontend.</p>
+<p>Customer users act on behalf of the company and may have a limited set of permissions in OroCommerce, depending on their function in the customer organization. You can manage customer users and roles in the OroCommerce administration interface (see <a class="reference internal" href="customer_users/index.html#user-guide-customers-customer-users"><span class="std std-ref">Managing Customer Users</span></a> and <a class="reference internal" href="customer_user_roles/index.html#user-guide-customers-customer-user-roles"><span class="std std-ref">Managing Customer Roles</span></a> for more information), or you can delegate this function to the customer who will access user and role management in the OroCommmerce front store (see <a class="reference external" href="../customers/delegate">Delegating Users and Role Management to the Customer</a> for more information).</p>
+<p>You can assign dedicated sales representatives to support the company purchase process. They can <a class="reference external" href="../pricing">assign custom price lists</a> that are visible to a customer user on the OroCommerce web front instead of the standard prices enabled generally. Assigned sales people can assist with requests for quote, quotes, and orders made by customer users. Sales people can <a class="reference external" href="../getting-started/common-actions/add-notes">add notes</a> and <a class="reference external" href="../getting-started/common-actions/add-attachments">attachments</a> to share additional information about the customer, their needs or any related information.</p>
+<p>You can set specific payment terms that match the payment terms agreement with the company, and label a customer with a tax code that impacts the method of tax calculation in the customer order (e.g. a special tax code should be used for tax-exempt companies, to discard any tax during the checkout). For more information, please see <a class="reference external" href="../customers/customers">Managing Customers</a> section.</p>
+<p>When several divisions of a company are using OroCommerce, you can organize them into the two-level organization structure using the parent customer option. Parent company aggregates information from its children, which may be convenient for monitoring and controlling divisions activities. For more information, please see <a class="reference external" href="../customers/customers/organize">Managing Customer Hierarchy</a> section.</p>
+<p>Companies may be organized into groups to simplify sharing configuration, payment and tax-related settings, and price lists among multiple customers, for example those with the same service level. See <a class="reference external" href="../customers/customer-groups">Managing Customer Groups</a> for more information.</p>
+</div>
+<div class="section" id="system-wide-customer-configuration">
+<h2><a class="toc-backref" href="#id6">System-wide Customer Configuration</a><a class="headerlink" href="#system-wide-customer-configuration" title="Permalink to this headline">¶</a></h2>
+<p>OroCommerce groups customer configuration options into the following categories:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#customer-users">Customer Users</a></li>
+<li><a class="reference internal" href="#visibility">Visibility</a></li>
+</ul>
+<div class="section" id="customer-users">
+<h3>Customer Users<a class="headerlink" href="#customer-users" title="Permalink to this headline">¶</a></h3>
+<p>You can enable or disable customer user registration, requesting confirmation after registration and the way OroCommerce treats password security.</p>
+<p>To change the default settings:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Customer &gt; Customer Users</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../_images/CustomerUsers.png" class="with-border" src="../../_images/CustomerUsers.png" />
+<p>The following table describes the options available on the page:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default Customer Owner</td>
+<td>Service information that governs which user has full access to managing and viewing the customer information. Usually this is a default customer administrator or administrator assigned to the customer.</td>
+</tr>
+<tr class="row-odd"><td>Registration Allowed</td>
+<td>Enables/disables new customers registration from the Store Frontend login screen.</td>
+</tr>
+<tr class="row-even"><td>Confirmation Required</td>
+<td>Enables/disables email confirmation step after the user registration.</td>
+</tr>
+<tr class="row-odd"><td>Send Plain Text Password In Welcome Emails</td>
+<td>Please, disable this option in production environment .</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> box next to the option.</li>
+<li>Type in the updated quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="visibility">
+<h3>Visibility<a class="headerlink" href="#visibility" title="Permalink to this headline">¶</a></h3>
+<p>You can control default visibility settings (e.g. visible or hidden) for products and product categories for customer users.</p>
+<p>To change the default product and category visibility settings:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Customer &gt; Visibility</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../_images/Visibility.png" class="with-border" src="../../_images/Visibility.png" />
+</li>
+<li><p class="first">To customize any of the options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> box next to the option.</li>
+<li>Select the updated setting (e.g. visible or hidden).</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="customer-accounts">
+<h2><a class="toc-backref" href="#id7">Customer Accounts</a><a class="headerlink" href="#customer-accounts" title="Permalink to this headline">¶</a></h2>
+<p>In Customer section you can manage the customers who represent a group of buyers related to the same business organization: add a new customer and view, edit and delete existing customers, and access the aggregated information about customer users activities and eCommerce operations (requests for quotes, quotes, and sales orders).</p>
+<p>You can also quickly get to the <a class="reference internal" href="customers/organize.html#user-guide-customers-customers-organize"><span class="std std-ref">customer organization structure</span></a>, <a class="reference internal" href="../getting_started/common_actions/manage_address_book.html#user-guide-getting-started-address-book"><span class="std std-ref">an address book</span></a> with a preview on the map, <a class="reference internal" href="customer_users/index.html#user-guide-customers-customer-users"><span class="std std-ref">customer users</span></a>:, <a class="reference internal" href="customer_groups/pricelist.html#user-guide-customers-customer-groups-pricelist"><span class="std std-ref">price lists</span></a> enabled for the customer, and overview of <a class="reference internal" href="../index.html#user-guide-sales-requests-for-quote"><span class="std std-ref">requests for quote</span></a>, <a class="reference internal" href="../index.html#user-guide-sales-orders"><span class="std std-ref">sales orders</span></a>, <a class="reference internal" href="../quotes/index.html#user-guide-sales-quotes"><span class="std std-ref">quotes</span></a> created by and for customer users. Finally, you can get to a summary of activity from every operation triggered by the customer users.</p>
+<img alt="../../_images/Customers.png" class="with-border" src="../../_images/Customers.png" />
+<div class="section" id="create-a-customer">
+<h3>Create a Customer<a class="headerlink" href="#create-a-customer" title="Permalink to this headline">¶</a></h3>
+<p>To create a new Customer:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Customers &gt; Customers</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Customer</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/CustomersCreate.png" class="with-border" src="../../_images/CustomersCreate.png" />
+</li>
+<li><p class="first"><em>Optionally</em>, select an existing <a class="reference external" href="https://www.orocrm.com/documentation/current/user-guide/customer-management/common-features-accounts">account</a> to help tracking sales actions and metrics for the customer that is a member of bigger customer organization. When remains empty, the new account is created for the new customer automatically.</p>
+</li>
+<li><p class="first">Fill in the customer <strong>Name</strong>.</p>
+</li>
+<li><p class="first">Optionally, add a customer to a customer group if you already have a group with the settings and configuration that fits the new customer.</p>
+</li>
+<li><p class="first">If you are adding a subsidiary of the existing customer, select Parent Customer.</p>
+</li>
+<li><p class="first">Assign a sales representative who will be assisting customer users.</p>
+</li>
+<li><p class="first">Select <strong>Tax Code</strong> that will label the customer group taxation schema.</p>
+</li>
+<li><p class="first">Add a billing and shipping address as described in <a class="reference external" href="./../getting-started/common-actions/manage-address-book">the address book</a> section.</p>
+</li>
+<li><p class="first">In the <em>Additional</em> section, select a Payment term to be used as a payment option available to the customer users during on the checkout.</p>
+</li>
+<li><p class="first">In the <strong>Price Lists</strong> section, add pricelists and prioritize them as described in <a class="reference external" href="./customer-groups/pricelist">Price List Management for a Customer Group</a> section.</p>
+</li>
+<li><p class="first">When OroCommerce is deployed with InfinitePay payments support, the customer&#8217;s VAT Id shall be captured for their credit worthiness verification. VAT Id should be valid and the billing address should match the one provided for the VAT registration. These are prere   uisites to enable payments via <a class="reference internal" href="../payment/prerequisites/infinitepay.html#user-guide-payment-prerequisites-infinitepay"><span class="std std-ref">InfinitePay</span></a> for the customer users.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> in the top right right corner of the page.</p>
+</li>
+</ol>
+<p>A new Customer is created.</p>
+</div>
+<div class="section" id="export">
+<h3>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<p>You can export the customer details in the .csv format:</p>
+<ol class="arabic simple">
+<li>Select the items to export using check boxes at the beginning of the corresponding rows. You can filter the list and use the <strong>Select All</strong> option in the table header, if necessary.</li>
+<li>Click <strong>Export</strong>.</li>
+</ol>
+<p>Later you can import the updated or processed customer information using import as described below.</p>
+</div>
+<div class="section" id="import">
+<h3>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h3>
+<p>To streamline adding a large bulk of items, like customer information, products, prices or inventory information, you can import the bulk details from a .csv file.</p>
+<p>Import the customer information using the .csv file that follows the customer details data structure.</p>
+<p>To import a bulk of customer information:</p>
+<ol class="arabic simple">
+<li>Navigate to the <strong>Customers &gt; Customers</strong>.</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Get a sample:</strong> To download a sample .csv file with the necessary headers, click <strong>Download Data Template</strong> in the list next to <strong>Import</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Follow the on-screen guidance for any additional actions. For example, for the inventory template, select one of the options: a) inventory statuses only or b) detailed inventory levels.</p>
+</div>
+</li>
+<li><p class="first"><strong>Prepare data for import</strong>: Based on the downloaded file, create your bulk information in .csv format. Once your file is ready, click <strong>Import</strong>, select the prepared comma-separated values (.csv) file, and click <strong>Submit</strong>.</p>
+</li>
+<li><p class="first"><strong>Validate import results</strong>: Review import validation results. If there are any <em>Records with errors</em>, fix them in the .csv file prior to starting the import.</p>
+</li>
+<li><p class="first"><strong>Launch import:</strong> After successful validation, click <strong>Import</strong>.</p>
+</li>
+</ol>
+<p>Interactive status messages inform about the import progress and once the import is complete, the changes are reflected in the list upon refresh. Additionally, an email message with the import status is delivered to your mailbox.</p>
+<p>See this two minute demo of the import process:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shpqpFao6bA" frameborder="0" allowfullscreen></iframe></div>
+</div>
+<div class="section" id="customer-user-management">
+<h2><a class="toc-backref" href="#id8">Customer User Management</a><a class="headerlink" href="#customer-user-management" title="Permalink to this headline">¶</a></h2>
+<p>Customer users act on behalf of the company and may have a limited set of permissions in OroCommerce, depending on their function in the customer organization.</p>
+<p>For customer user management, navigate to <strong>Customers &gt; Customer Users</strong> in the main menu.</p>
+<p>In Customer Users section, you can:</p>
+<ul>
+<li><p class="first">View, edit and create new customer users</p>
+</li>
+<li><p class="first">Select their roles in OroCommerce to define their level of permissions and access to the actions and data in OroCommerce store frontend</p>
+</li>
+<li><p class="first">Manage customer user information:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Name</li>
+<li>Birthday</li>
+<li>Email address</li>
+<li>Billing and shipping address and phone number (using <a class="reference internal" href="../getting_started/common_actions/manage_address_book.html#user-guide-getting-started-address-book"><span class="std std-ref">address book</span></a>)</li>
+<li>Customer user role(s)</li>
+<li>Website to redirect the customer upon login</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">View requests for quotes, sales orders, quotes created or submitted by the customer user</p>
+</li>
+<li><p class="first">View communication with the customer that happened using email, notes or scheduled events</p>
+</li>
+<li><p class="first">View additional information attached to customer user</p>
+</li>
+<li><p class="first">Enable and disable the customer</p>
+</li>
+<li><p class="first">Reset the customer user password</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can delegate this function to the customer who will access user and role management in the OroCommmerce front store (see <a class="reference external" href="./../user-guide/customers/delegate">Delegating Users and Role Management to the Customer section</a> for more information).</p>
+</div>
+<p><strong>Customer Account Confirmation</strong></p>
+<p>Upon registration, customer user receives an email confirmation request. Once they follow up with the requested action, their account is marked as confirmed.</p>
+<img alt="../../_images/CustomerUsers1.png" class="with-border" src="../../_images/CustomerUsers1.png" />
+<div class="section" id="create-a-customer-users">
+<h3>Create a Customer Users<a class="headerlink" href="#create-a-customer-users" title="Permalink to this headline">¶</a></h3>
+<p>To create a new Customer:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Customers &gt; Customer Users</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Customer User</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/CustomerUsersCreate.png" class="with-border" src="../../_images/CustomerUsersCreate.png" />
+</li>
+<li><p class="first">Fill in customer <strong>Name</strong> and other personal information.</p>
+</li>
+<li><p class="first">Select a customer this user represents.</p>
+</li>
+<li><p class="first">If you are adding a subsidiary of the existing customer, select Parent Customer.</p>
+</li>
+<li><p class="first">Assign a sales representative who will be assisting this customer user. By default, the customer sales representative applies to the customer user.</p>
+</li>
+<li><p class="first">Check the <strong>Generate Password</strong> and <strong>Send Welcome Email</strong> boxes.</p>
+</li>
+<li><p class="first">Select the Website the customer user will be redirected to upon the login. See <a class="reference external" href="./../../system/websites">Managing Websites</a> for more information.</p>
+</li>
+<li><p class="first">Add billing and shipping address as described in <a class="reference external" href="./../common_actions/manage-address-book">Address Book section</a>.</p>
+</li>
+<li><p class="first">In the <em>Roles</em> section, select the roles that should apply to the customer user. When several roles are selected, granted permissions are accumulated from all the assigned roles. See <a class="reference external" href="./customer_user_roles">Managing Customer User Roles</a> for more information.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The new Customer User is created.</p>
+</div>
+<div class="section" id="id1">
+<h3>Export<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>You can export the customer user details in the .csv format:</p>
+<ol class="arabic simple">
+<li>Select the items to export using check boxes at the beginning of the corresponding rows. You can filter the list and use the <strong>Select All</strong> option in the table header, if necessary.</li>
+<li>Click <strong>Export</strong>.</li>
+</ol>
+<p>Later you can import the updated or processed customer information using import as described below.</p>
+</div>
+<div class="section" id="id2">
+<h3>Import<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>To streamline adding, editing, and deleting a large bulk of items, like customer information, products, prices or inventory information, you can import the bulk details from a .csv file.</p>
+<p>Import the customer user information using the .csv file that follows the customer user details data structure.</p>
+<p><strong>Example of customer user bulk import template</strong></p>
+<div class="scroll-table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="10%" />
+<col width="5%" />
+<col width="10%" />
+<col width="10%" />
+<col width="5%" />
+<col width="10%" />
+<col width="10%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ID</th>
+<th class="head">Name Prefix</th>
+<th class="head">First Name</th>
+<th class="head">Middle Name</th>
+<th class="head">Last Name</th>
+<th class="head">Name Suffix</th>
+<th class="head">Birthday</th>
+<th class="head">Email Address</th>
+<th class="head">Customer Id</th>
+<th class="head">Customer Name</th>
+<th class="head">Roles 1 Role</th>
+<th class="head">Enabled</th>
+<th class="head">Confirmed</th>
+<th class="head">Owner Id</th>
+<th class="head">Website Id</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&nbsp;</td>
+<td>Mr</td>
+<td>Jerry</td>
+<td>John</td>
+<td>Coleman</td>
+<td>Jr.</td>
+<td>04/19/1987</td>
+<td><a class="reference external" href="mailto:example&#37;&#52;&#48;email&#46;com">example<span>&#64;</span>email<span>&#46;</span>com</a></td>
+<td>&nbsp;</td>
+<td>Oro Inc.</td>
+<td>ROLE_FRONTEND_BUYER</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To import a bulk of customer users information:</p>
+<ol class="arabic simple">
+<li>Navigate to the <strong>Customers &gt; Customer Users</strong>.</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Get a sample:</strong> To download a sample .csv file with the necessary headers, click <strong>Download Data Template</strong> in the list next to <strong>Import</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Follow the on-screen guidance for any additional actions. For example, for the inventory template, select one of the options: a) inventory statuses only or b) detailed inventory levels.</p>
+</div>
+</li>
+<li><p class="first"><strong>Prepare data for import</strong>: Based on the downloaded file, create your bulk information in .csv format. Once your file is ready, click <strong>Import</strong>, select the prepared comma-separated values (.csv) file, and click <strong>Submit</strong>.</p>
+</li>
+<li><p class="first"><strong>Validate import results</strong>: Review import validation results. If there are any <em>Records with errors</em>, fix them in the .csv file prior to starting the import.</p>
+</li>
+<li><p class="first"><strong>Launch import:</strong> After successful validation, click <strong>Import</strong>.</p>
+</li>
+</ol>
+<p>Interactive status messages inform about the import progress and once the import is complete, the changes are reflected in the list upon refresh. Additionally, an email message with the import status is delivered to your mailbox.</p>
+<p>See this two minute demo of the import process:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shpqpFao6bA" frameborder="0" allowfullscreen></iframe></div>
+</div>
+<div class="section" id="customer-roles-and-permissions-management">
+<h2><a class="toc-backref" href="#id9">Customer Roles and Permissions Management</a><a class="headerlink" href="#customer-roles-and-permissions-management" title="Permalink to this headline">¶</a></h2>
+<p>In Customer User Roles section, you can view, edit and create new customer roles to define the level of permissions and access to the actions and data in OroCommerce store frontend for the users of this role.</p>
+<p>The following roles are predefined and available for every customer by default:</p>
+<ul class="simple">
+<li>Administrator</li>
+<li>Buyer</li>
+<li>Non-authenticated user</li>
+</ul>
+<p>Any new role is labeled as customizable and may apply either to the customer specified in the role details or globally for all customers when the customer is not provided.</p>
+<p>With the Customer User Role you can manage the following access- and permissions-related settings:</p>
+<ul>
+<li><p class="first">Profile management permission: A user may be able to view and edit their user profile, when the <strong>Self-Managed</strong> option is enabled for their role.</p>
+</li>
+<li><p class="first">Permissions to view workflows and/or perform transitions through the workflow steps.</p>
+</li>
+<li><p class="first">Data access/management permissions and capabilities that are organized in the following groups:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Account Management</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Address (customer address)</li>
+<li>Customer</li>
+<li>Customer user</li>
+<li>Customer user address</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Account Management</strong> capabilities:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Access data audit</li>
+<li>Access system information</li>
+<li>Audit history for Customer User</li>
+<li>Enter the billing address manually</li>
+<li>Enter the shipping address manually</li>
+<li>Override customer payment term</li>
+<li>Use any billing address from the customer address book</li>
+<li>Use any billing address from the customer user&#8217;s address book</li>
+<li>Use any shipping address from the customer address book</li>
+<li>Use any shipping address from the customer user&#8217;s address book</li>
+<li>Use the default billing address from the customer user&#8217;s address book</li>
+<li>Use the default shipping address from the customer user&#8217;s address book</li>
+<li>Work with payments</li>
+<li>[Attribute] Create attribute</li>
+<li>[Attribute] Edit attribute</li>
+<li>[Attribute] Manage attributes</li>
+<li>[Attribute] Remove attribute</li>
+<li>[Attribute] Restore attribute</li>
+<li>[Product Family] Create Product Family</li>
+<li>[Product Family] Delete Product Family</li>
+<li>[Product Family] Edit Product Family</li>
+<li>[Product Family] Manage Product Families</li>
+<li>[Product Family] View Product Family</li>
+<li>[Quote] Enter the shipping address manually</li>
+<li>[Quote] Enter the shipping address manually</li>
+<li>[Quote] Override customer payment term</li>
+<li>[Quote] Use any shipping address from the customer address book</li>
+<li>[Quote] Use any shipping address from the customer address book</li>
+<li>[Quote] Use any shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use any shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use the default shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Shopping</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Product Price</li>
+<li>Shopping List</li>
+<li>Shopping List Line Item</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Quotes</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Quote</li>
+<li>Request for Quote</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Checkout</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Open Order</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Checkout</strong> capabilities:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Approve orders that exceed the allowable amount</li>
+<li>Enter the billing address manually</li>
+<li>Enter the shipping address manually</li>
+<li>Use any billing address from the customer address book</li>
+<li>Use any billing address from the customer user&#8217;s address book</li>
+<li>Use any shipping address from the customer address book</li>
+<li>Use any shipping address from the customer user&#8217;s address book</li>
+<li>Use the default billing address from the customer user&#8217;s address book</li>
+<li>Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Orders</strong> permissions to view, create, edit, delete, and, optionally, assign the following items:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Invoice</li>
+<li>Order</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>System capabilities</strong>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Address</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Access address drop-downs</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Application</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Access job queue</li>
+<li>Access job queue</li>
+<li>Access personal configuration</li>
+<li>Access system configuration</li>
+<li>Assign/unassign tags</li>
+<li>Export grid view</li>
+<li>Manage Menus</li>
+<li>Manage passwords</li>
+<li>Select the assignee of the integration</li>
+<li>Share grid view</li>
+<li>Unassign other tags</li>
+<li>Unshare grid view</li>
+<li>Update User Profile</li>
+<li>View SQL query of a report/segment</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Calendar</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Manage organization calendar events</li>
+<li>Manage system calendar events</li>
+<li>Manage system calendars</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Entity</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Access entity management</li>
+<li>Export entity records</li>
+<li>Import entity records</li>
+<li>Merge entities</li>
+<li>Search</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Finally, in the customer role details, you may view customer users with this role assigned. If the role is global, this list contains users from all customer accounts.</p>
+<img alt="../../_images/CustomerUserRoles.png" class="with-border" src="../../_images/CustomerUserRoles.png" />
+<div class="section" id="create-a-customer-user-role">
+<h3>Create a Customer User Role<a class="headerlink" href="#create-a-customer-user-role" title="Permalink to this headline">¶</a></h3>
+<p>To create a new Customer User Role, navigate to <strong>Customers &gt; Customer User Roles</strong> in the main menu and click <strong>Create Customer User Role</strong>.</p>
+<p>Preview:</p>
+<img alt="../../_images/CustomerUserRolesCreate.png" class="with-border" src="../../_images/CustomerUserRolesCreate.png" />
+<p>You can perform the following actions at the customer user role creation page:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Cancel</li>
+<li>Save And Close</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="customer-organization-structure-and-account-hierarchy">
+<h2><a class="toc-backref" href="#id10">Customer Organization Structure and Account Hierarchy</a><a class="headerlink" href="#customer-organization-structure-and-account-hierarchy" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For customer management, navigate to the <strong>Customers &gt; Customers</strong> in the main menu.</p>
+</div>
+<p>You can create a hierarchy of business units or customer divisions by providing a parent company when editing the company details.</p>
+<img alt="../../_images/CustomersCreateParent_cust.png" src="../../_images/CustomersCreateParent_cust.png" />
+<p>Navigate to the parent company and to the subsidiaries by clicking on the company name next to the parent</p>
+<img alt="../../_images/CustomersViewParent_cust.png" src="../../_images/CustomersViewParent_cust.png" />
+<p>or in the subsidiary hierarchy.</p>
+<img alt="../../_images/CustomersViewSubsidiary_cust.png" src="../../_images/CustomersViewSubsidiary_cust.png" />
+</div>
+<div class="section" id="customer-groups">
+<h2><a class="toc-backref" href="#id11">Customer Groups</a><a class="headerlink" href="#customer-groups" title="Permalink to this headline">¶</a></h2>
+<p>In Customer Group section, you can organize customers into groups and share the price lists, payment and tax-related settings between several customers.</p>
+<img alt="../../_images/CustomerGroups.png" class="with-border" src="../../_images/CustomerGroups.png" />
+<div class="contents local topic" id="id3">
+<ul class="simple">
+<li><a class="reference internal" href="#create-a-customer-group" id="id13">Create a Customer Group</a></li>
+<li><a class="reference internal" href="#id4" id="id14">Price List Management for a Customer Group</a></li>
+</ul>
+</div>
+<div class="section" id="create-a-customer-group">
+<h3><a class="toc-backref" href="#id13">Create a Customer Group</a><a class="headerlink" href="#create-a-customer-group" title="Permalink to this headline">¶</a></h3>
+<p>To create a new Customer Groups:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Customers &gt; Customer Groups</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Customer Groups</strong>.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/CustomerGroupsCreate.png" class="with-border" src="../../_images/CustomerGroupsCreate.png" />
+</li>
+<li><p class="first">Fill in the customer <strong>Name</strong>.</p>
+</li>
+<li><p class="first">Select <strong>Tax Code</strong> that will label the customer group taxation schema.</p>
+</li>
+<li><p class="first">In the <em>Additional</em> section, select a Payment term to be used as a payment option available to the customer users during on the checkout.</p>
+</li>
+<li><p class="first">In the <em>Customers</em> section, check the customers to add them to the customer group.</p>
+</li>
+<li><p class="first">In the <strong>Price Lists</strong> section as described in the <a class="reference external" href="./customer-groups/pricelist">pricelist management</a> section.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> in the top right corner of the page.</p>
+</li>
+</ol>
+<p>A new Customer Group is created.</p>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id14">Price List Management for a Customer Group</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>To configure the price list priority and controlled merge for the customer group:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Customers &gt; Customer Groups</strong> in the main menu.</p>
+</li>
+<li><p class="first">Find the necessary Customer Group in the list, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu in the line and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing the customer group details.</p>
+</li>
+<li><p class="first">In the <strong>Price Lists</strong> section, you can build an aggregated price list for every website you have configured in OroCommerce. Use tabs to switch between the websites, e.g. Default, US, Australia, etc. in the example below.</p>
+<img alt="../../_images/CustomerGroupsPrices.png" class="with-border" src="../../_images/CustomerGroupsPrices.png" />
+<p>To form an aggregated price list:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Set up the fallback option to provide the price source if the price is not available in the directly configured price lists.</p>
+</li>
+<li><p class="first">Select the price list to enable it for the customer group.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can add more than one price list:</p>
+<ul class="last simple">
+<li>Click <strong>+ Add Price List</strong>.</li>
+<li>Select the additional price list from the list.</li>
+<li>Set the numeric priority. OroCommerce searches for the product price in the higher priority price lists first.</li>
+<li>Enable price lists merge, if necessary. When the merge is enabled, the unit prices may be merged from the lower priority price lists, when they are missing in the higher priority ones.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong> once you are happy with the price list set up.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="delegate-account-management-to-a-customer-user">
+<h2><a class="toc-backref" href="#id12">Delegate Account Management to a Customer User</a><a class="headerlink" href="#delegate-account-management-to-a-customer-user" title="Permalink to this headline">¶</a></h2>
+<p>You may want delegate some the customer user management capabilities to the customer users with administrator role by enabling <em>Account Management</em> permissions and capabilities. See <a class="reference external" href="./../customer_user_roles">Customer User Role</a> section for more information about permission and capability management.</p>
+<img alt="../../_images/CustomerUserRolesManageAccounts_cust.png" src="../../_images/CustomerUserRolesManageAccounts_cust.png" />
+<p><strong>Related Information</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="customer_groups/index.html">Customer Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer_user_roles/index.html">Customer User Roles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer_users/index.html">Customer Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customers/index.html">Customers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delegate.html">Delegate Account Management to a Customer User</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/customers/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+      <li>Previous: <a href="../inventory/warehouses/create.html" title="previous chapter">Create a Warehouse</a></li>
+      <li>Next: <a href="customer_groups/index.html" title="next chapter">Customer Groups</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/customers/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

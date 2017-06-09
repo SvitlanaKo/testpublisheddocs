@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Upgrade to a New Version &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to apply patch" href="how_to_apply_patch.html" />
+    <link rel="prev" title="How to Manage OroPlatform Extensions" href="how_to_install_extension_from_command_line.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-upgrade-to-a-new-version">
+<span id="index-0"></span><h1>How to Upgrade to a New Version<a class="headerlink" href="#how-to-upgrade-to-a-new-version" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="checkout-from-the-github-repository">
+<h2>1. Checkout from the GitHub Repository<a class="headerlink" href="#checkout-from-the-github-repository" title="Permalink to this headline">¶</a></h2>
+<p>To retrieve a new version and upgrade your OroCRM instance, please execute the following steps:</p>
+<p><strong>1</strong>. <code class="docutils literal"><span class="pre">cd</span></code> to the crm root folder and switch the application to the maintenance mode.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/application
+$ sudo -uwww-data app/console lexik:maintenance:lock --env prod
+</pre></div>
+</td></tr></table></div>
+<p><strong>2</strong>. Stop the cron tasks.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ crontab -e -uwww-data
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">www-data can be changed to user under which your web server runs</p>
+</div>
+<p>Comment this line.</p>
+<div class="highlight-text"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span> */1 * * * * /usr/bin/php /path/to/application/app/console --env=prod oro:cron &gt;&gt; /dev/null
+</pre></div>
+</td></tr></table></div>
+<p><strong>3</strong>. Stop all running consumers.</p>
+<p><strong>4</strong>. Create backups of your Database and Code.</p>
+<p><strong>5</strong>. Pull changes from the repository.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>If you have any customization or third party extensions installed, make sure that:</dt>
+<dd><ul class="first last simple">
+<li>your changes to &#8220;app/AppKernel.php&#8221; file are merged to the new file.</li>
+<li>your changes to &#8220;src/&#8221; folder are merged and it contains the custom files.</li>
+<li>your changes to &#8220;composer.json&#8221; file are merged to the new file.</li>
+<li>your changes to configuration files in &#8220;app/config/&#8221; folder are merged to the new files.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -uwww-data git pull
+$ sudo -uwww-data git checkout &lt;VERSION TO UPGRADE&gt;
+</pre></div>
+</td></tr></table></div>
+<p><strong>6</strong>. Upgrade the composer dependency and set up the right owner to the retrieved files.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo php composer.phar install --prefer-dist --no-dev
+$ sudo chown www-data:www-data -R ./*
+</pre></div>
+</td></tr></table></div>
+<p><strong>7</strong>. Remove old caches.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo rm -rf app/cache/*
+</pre></div>
+</td></tr></table></div>
+<p><strong>8</strong>. Upgrade the platform.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -u www-data php app/console oro:platform:update --env<span class="o">=</span>prod --force
+</pre></div>
+</td></tr></table></div>
+<p><strong>9</strong>. Remove the caches.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -u www-data app/console cache:clear --env prod
+</pre></div>
+</td></tr></table></div>
+<p>or, as alternative:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo rm -rf app/cache/*
+$ sudo -u www-data app/console cache:warmup --env prod
+</pre></div>
+</td></tr></table></div>
+<p><strong>10</strong>. Run the consumer(s).</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -u www-data app/console oro:message-queue:consume --env prod
+</pre></div>
+</td></tr></table></div>
+<p><strong>11</strong>. Enable cron.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ crontab -e -uwww-data
+</pre></div>
+</td></tr></table></div>
+<p>Uncomment this line.</p>
+<div class="highlight-text"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span> */1 * * * * /usr/bin/php /path/to/application/app/console --env=prod oro:cron &gt;&gt; /dev/null
+</pre></div>
+</td></tr></table></div>
+<p><strong>12</strong>. Switch your application back to normal mode from the maintenance mode.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -uwww-data app/console lexik:maintenance:unlock --env prod
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If PHP bytecode cache tools (e.g. opcache) are used, PHP-FPM (or Apache web server) should be restarted
+after the uprgade to flush cached bytecode from the previous installation.</p>
+</div>
+</div>
+<div class="section" id="download-the-source-code-archive">
+<h2>2. Download the Source Code Archive<a class="headerlink" href="#download-the-source-code-archive" title="Permalink to this headline">¶</a></h2>
+<p>To retrieve a new version and upgrade your OroCRM instance, please execute the following steps:</p>
+<p><strong>1</strong>. <code class="docutils literal"><span class="pre">cd</span></code> to the crm root folder and switch the application to the maintenance mode.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /path/to/application
+$ sudo -uwww-data app/console lexik:maintenance:lock --env prod
+</pre></div>
+</td></tr></table></div>
+<p><strong>2</strong> Stop the cron tasks.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ crontab -e -uwww-data
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">www-data can be changed to user under which your web server runs</p>
+</div>
+<p>Comment this line.</p>
+<div class="highlight-text"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>*/1 * * * * /usr/bin/php /path/to/application/app/console --env=prod oro:cron &gt;&gt; /dev/null
+</pre></div>
+</td></tr></table></div>
+<p><strong>3</strong>. Stop all running consumers.</p>
+<p><strong>4</strong>. Create backups of your Database and Code.</p>
+<dl class="docutils">
+<dt><strong>5</strong>. Download the latest OroCRM version from the <a class="reference external" href="https://www.orocommerce.com/download">download section</a> on <a class="reference external" href="http://www.orocrm.com/">orocrm.com</a> , unpack</dt>
+<dd>archive and overwrite existing system files.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>If you have any customization or third party extensions installed, make sure that:</dt>
+<dd><ul class="first simple">
+<li>your changes to &#8220;app/AppKernel.php&#8221; file are merged to the new file.</li>
+<li>your changes to &#8220;src/&#8221; folder are merged and it contains the custom files.</li>
+<li>your changes to &#8220;composer.json&#8221; file are merged to the new file.</li>
+<li>your changes to configuration files in &#8220;app/config/&#8221; folder are merged to the new files.</li>
+<li>upgrade the composer dependency and set up right owner to the retrieved files.</li>
+</ul>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>$ sudo php composer.phar update --prefer-dist --no-dev
+$ sudo chown www-data:www-data -R ./*
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<p><strong>6</strong>. Remove old caches.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo rm -rf app/cache/*
+</pre></div>
+</td></tr></table></div>
+<p><strong>7</strong>. Upgrade the platform.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -u www-data php app/console oro:platform:update --env<span class="o">=</span>prod --force
+</pre></div>
+</td></tr></table></div>
+<p><strong>8</strong>. Remove the caches.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -u www-data app/console cache:clear --env prod
+</pre></div>
+</td></tr></table></div>
+<p>or, as alternative:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo rm -rf app/cache/*
+$ sudo -u www-data app/console cache:warmup --env prod
+</pre></div>
+</td></tr></table></div>
+<p><strong>9</strong>. Run the consumer(s).</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -u www-data app/console oro:message-queue:consume --env prod
+</pre></div>
+</td></tr></table></div>
+<p><strong>10</strong>. Enable cron.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ crontab -e -uwww-data
+</pre></div>
+</td></tr></table></div>
+<p>Uncomment this line.</p>
+<div class="highlight-text"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>*/1 * * * * /usr/bin/php /path/to/application/app/console --env=prod oro:cron &gt;&gt; /dev/null
+</pre></div>
+</td></tr></table></div>
+<p><strong>11</strong>. Switch your application back to normal mode from the maintenance mode.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ sudo -uwww-data app/console lexik:maintenance:unlock --env prod
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If PHP bytecode cache tools (e.g. opcache) are used, PHP-FPM (or Apache web server) should be restarted
+after the uprgade to flush cached bytecode from the previous installation.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/install_upgrade_and_patch/how_to_upgrade_to_new_version.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">Extension and Patch Installation</a><ul>
+      <li>Previous: <a href="how_to_install_extension_from_command_line.html" title="previous chapter">How to Manage OroPlatform Extensions</a></li>
+      <li>Next: <a href="how_to_apply_patch.html" title="next chapter">How to apply patch</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/install_upgrade_and_patch/how_to_upgrade_to_new_version.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Add an Extension to the OroCRM Marketplace &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Customizing Data Grid" href="customizing_data_grid_in_orocommerce.html" />
+    <link rel="prev" title="Extending Entities to Support Bulk Import and Export" href="customizing_import_export.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-add-an-extension-to-the-orocrm-marketplace">
+<span id="index-0"></span><h1>How to Add an Extension to the OroCRM Marketplace<a class="headerlink" href="#how-to-add-an-extension-to-the-orocrm-marketplace" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://platform-marketplace.orocrm.com/">OroPlatform Marketplace</a> is the place where developers can publish their extensions and customers can obtain them.</p>
+<p>There are two types of extensions in the OroCRM Marketplace: free and paid. Free extensions are distributed directly
+from the Marketplace, whereas paid extensions must be purchased from the publisher’s website.</p>
+<div class="section" id="package-preparation">
+<h2>Package Preparation<a class="headerlink" href="#package-preparation" title="Permalink to this headline">¶</a></h2>
+<p>Before you add an extension to the Marketplace you have to prepare the package and upload it to some repository.</p>
+<p>Paid extensions can be published anywhere. Their publishers are fully responsible for proper packaging, distribution
+and payment processing.</p>
+<p>All free extensions can be published on any publicly available git repository (GitHub, BitBucket, etc.).
+We strongly recommend to publish all releases with tags – this will allow our packagist application
+to pick up release notes, version history and contents of the <code class="docutils literal"><span class="pre">readme.md</span></code> file.</p>
+<p>Every package must contain a <code class="docutils literal"><span class="pre">composer.json</span></code> file in the root catalogue. This file in turn must contain
+information about the application, its author and distribution license, as shown in the example below:</p>
+<div class="highlight-json"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;oro/crm-application&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The OroCRM distribution&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;homepage&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/orocrm/crm-application.git&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;OSL-3.0&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>We only accept extensions under OSL-3 or MIT licenses.</p>
+</div>
+<div class="section" id="adding-an-extension">
+<h2>Adding an Extension<a class="headerlink" href="#adding-an-extension" title="Permalink to this headline">¶</a></h2>
+<p>To be able to add an extension you have to be logged in to tho OroCRM Marketplace website. The Add Extension page
+can be reached via the user menu in the top right corner of the page or via link on the My Marketplace page.</p>
+<p>First thing you have to do is to choose an extension type: paid or free.
+Free extensions also require the repository URL. Then click Next to proceed to the second step of adding an extension.</p>
+</div>
+<div class="section" id="paid-extensions">
+<h2>Paid Extensions<a class="headerlink" href="#paid-extensions" title="Permalink to this headline">¶</a></h2>
+<p>For paid extensions the following information must be specified.</p>
+<p><strong>Extension Name</strong> – Name of the extension as it will appear in the Marketplace.</p>
+<p><strong>Web URL</strong> – the user will be navigated to this URL when he clicks Get Extension button on the application view
+in the Marketplace. Usually this is an extension page on publisher’s website.</p>
+<p><strong>Price</strong> – the price of the extension in US dollars. Note that we do not process any payments
+in the Marketplace and the publisher is fully responsible for keeping the price up to date.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to charge your customers in currency other than USD, please
+write about it in the Pricing Info (see below) and care to update the
+price along with exchange rate fluctuations to avoid customer confusion.</p>
+</div>
+<p><strong>Pricing Info</strong> – any additional information about pricing of the extension you want to provide.
+This field is optional.</p>
+<p><strong>Short Description</strong> – a short overview of the extension that will appear on its page in the Marketplace.
+This is also an optional field.</p>
+<p><strong>Choose default image</strong> – you may add up to 8 images to your extension and choose the default one
+that will appear along to its name in the Marketplace and on the extension page. The images must be
+in JPEG, PNG, or GIF formats, up to 1MB in size.</p>
+<p><strong>Marketplace and Category selection</strong> – each extension must belong to at least one marketplace
+(e.g. OroCRM or OroPlatform), and belong to at least one category. If you do not see a proper category
+to put your extension in, you can request for creation of a new one in the form on the right.</p>
+<p><strong>Description, Release Notes, and Previous Versions</strong> – These fields are optional and are supposed
+to contain more detailed information about the application and its releases.</p>
+</div>
+<div class="section" id="free-extensions">
+<h2>Free Extensions<a class="headerlink" href="#free-extensions" title="Permalink to this headline">¶</a></h2>
+<p>If an extension package has been properly created according to our specification,
+most of extension information attributes will be automatically processed
+by our Packagist application and taken from GitHub, though you will still be able to edit them if you want to.
+Here is the list of fields and their sources:</p>
+<ul class="simple">
+<li><strong>Extension Key</strong> – taken from name in the composer.json file</li>
+<li><strong>Short Description</strong> – taken from description</li>
+<li><strong>Description</strong> – taken from the contents of readme.md on GitHub</li>
+<li><strong>Release Notes</strong> – taken from GitHub Release Notes (if tags are used)</li>
+<li><strong>Previous Versions</strong> – taken from version history on GitHub (if tags are used)</li>
+</ul>
+<p>This means you will only have to specify the <em>Extension Name</em>, choose a <em>default image</em>,
+and specify <em>marketplaces and categories</em>.</p>
+<p>After you have published the application it will appear on the My Marketplace page in Pending status.
+The status will be changed shortly after our administrator reviews the extension and allows it to the Marketplace.
+Note that admin review is necessary only for the initial publication; all subsequent changes
+will not require admin approbation and will be published immediately.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://platform-marketplace.orocrm.com/">OroPlatform Marketplace</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev_guide/extend_and_customize/how_to_add_an_extension_to_oro_marketplace.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Developer Guide</a><ul>
+  <li><a href="index.html">Customizing Oro Features</a><ul>
+      <li>Previous: <a href="customizing_import_export.html" title="previous chapter">Extending Entities to Support Bulk Import and Export</a></li>
+      <li>Next: <a href="customizing_data_grid_in_orocommerce.html" title="next chapter">Customizing Data Grid</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/extend_and_customize/how_to_add_an_extension_to_oro_marketplace.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

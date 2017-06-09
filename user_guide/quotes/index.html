@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quotes &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Create a Quote" href="create.html" />
+    <link rel="prev" title="Delegate Account Management to a Customer User" href="../customers/delegate.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="quotes">
+<span id="user-guide-sales-quotes"></span><h1>Quotes<a class="headerlink" href="#quotes" title="Permalink to this headline">¶</a></h1>
+<p>This topic contains the following sections:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
+<li><a class="reference internal" href="#configuration" id="id3">Configuration</a></li>
+<li><a class="reference internal" href="#create-a-quote" id="id4">Create a Quote</a><ul>
+<li><a class="reference internal" href="#create-a-quote-from-scratch" id="id5">Create a Quote From Scratch</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#edit-a-quote" id="id6">Edit a Quote</a></li>
+<li><a class="reference internal" href="#quote-in-use" id="id7">Quote in Use</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>A quote in OroCommerce is used to negotiate with the customer (e.g. offer better price, more convenient quantities and additional services). A quote may be created in response to a customer request for quote, or as a result of the direct communication with the customer.  Once the customer is happy with the offer in the quote and is ready to proceed with their order, they accept the quote.</p>
+</div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#id3">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Quote management and their use in many ways depend on the following:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../shipping/index.html#user-guide-shipping"><span class="std std-ref">Shipping Configuration</span></a>:<ul>
+<li>Create one or more shipping methods by configuring <a class="reference internal" href="../shipping/configuration/shipping_method_integrations.html#sys-integrations-manage-integrations-ups-flat-rate"><span class="std std-ref">integrations with the shipping providers</span></a>.</li>
+<li>Set up <a class="reference internal" href="../shipping/configuration/shipping_rules.html#sys-shipping-rules"><span class="std std-ref">shipping rules</span></a> that enable shipping methods for quotes/orders created with the specific destination areas and/or limit shipping availability via custom conditions.</li>
+<li>Other. See the <a class="reference internal" href="../shipping/index.html#user-guide-shipping"><span class="std std-ref">Shipping Configuration</span></a> guide for more detailed information.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="../payment/index.html#user-guide-payment"><span class="std std-ref">Payment Configuration</span></a>:<ul>
+<li>Create one or more payment methods by configuring <a class="reference internal" href="../payment/configuration/payment_method_integrations.html#sys-integrations-manage-integrations-payment-methods"><span class="std std-ref">integrations with the payment providers</span></a>.</li>
+<li>Set up <a class="reference internal" href="../payment/configuration/payment_rules.html#sys-payment-rules"><span class="std std-ref">payment rules</span></a> that enable payment methods for orders created with the specific destination areas and/or limit payment availability via custom conditions.</li>
+<li>Other. See the <a class="reference internal" href="../payment/index.html#user-guide-payment"><span class="std std-ref">Payment Configuration</span></a> guide for more detailed information.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="../system/workflows/quote_management_workflow.html#system-workflows-quote-backoffice-workflow"><span class="std std-ref">Quote Workflow</span></a> - the flow of possible sequential actions that lead to quote state transitions. The workflow defines the way a sales manager can handle a quote in a particular state.</li>
+</ul>
+</div>
+<div class="section" id="create-a-quote">
+<h2><a class="toc-backref" href="#id4">Create a Quote</a><a class="headerlink" href="#create-a-quote" title="Permalink to this headline">¶</a></h2>
+<p>You can create a quote based on the customer request for quote, or from scratch, based on the customer interaction outside OroCommerce.</p>
+<div class="section" id="create-a-quote-from-scratch">
+<h3><a class="toc-backref" href="#id5">Create a Quote From Scratch</a><a class="headerlink" href="#create-a-quote-from-scratch" title="Permalink to this headline">¶</a></h3>
+<p>To create a new quote from scratch:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Quotes</strong> in the main menu.</p>
+<img alt="../../_images/Quotes.png" class="with-border" src="../../_images/Quotes.png" />
+</li>
+<li><p class="first">Click <strong>Create Quote</strong>.</p>
+<img alt="../../_images/create_quote_general.png" src="../../_images/create_quote_general.png" />
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>General</strong> section:</p>
+<ol class="loweralpha simple">
+<li>Select a <strong>Customer</strong> and <strong>Customer User</strong> to create a quote for.</li>
+<li>Enter the quote expiration information in the <strong>Valid Until</strong> date and time boxes.</li>
+<li>Optionally, enter a <strong>PO Number</strong> for the customer reference.</li>
+<li>If necessary, set the <strong>Do Not Ship Later Than</strong> date, to limit the order validity based on the information from the customer.</li>
+<li>Select an order fulfilment officer in the <strong>Assigned To</strong> box.</li>
+<li>Select the assigned customer user that will receive the order delivery in the <strong>Assigned Customer</strong> box.</li>
+<li>Select a <strong>Website</strong> to make this quote visible only on the specified website.</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Line Items</strong> section:</p>
+<img alt="../../_images/create_quote_line_items.png" src="../../_images/create_quote_line_items.png" />
+<ol class="loweralpha">
+<li><p class="first">Add products as quote line items.</p>
+<p>Use Select Product and Free-form entry link to switch between the following product entry modes:</p>
+<p><strong>Select a Product</strong>: Select the product using search (v) or from the product list (=).</p>
+<p><strong>Free-Form Entry</strong>: Type in the SKU and/or Product Name.</p>
+</li>
+<li><p class="first">Fill in the offer:</p>
+<ol class="arabic simple">
+<li>Provide quantity and select a product unit measurement.</li>
+</ol>
+<ol class="arabic simple" start="3">
+<li>Check <strong>or more</strong> to allow the customer to increase the quantity in the order.</li>
+<li>Type in the unit price and select a currency.</li>
+</ol>
+<p>To offer alternative quantity and prices, use <strong>+ Add Offer</strong>.</p>
+<p>Add notes to the quote line, if necessary: click <strong>Add notes</strong> in the Seller Notes section.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To delete any quote line, click <strong>Delete</strong> on the right of the line item information group.</p>
+</div>
+</li>
+</ol>
+<p>Add more products, if necessary, by clicking <strong>+ Add Products</strong> below the existing product lines.</p>
+</li>
+<li><p class="first">In the <strong>Shipping Address</strong> section, enter the shipping address, organization name and name of the person the future order should be shipped to.</p>
+<img alt="../../_images/create_quote_address.png" src="../../_images/create_quote_address.png" />
+</li>
+<li><p class="first">In the <strong>Shipping Information</strong> section, configure the recommended shipping options for the customer:</p>
+<img alt="../../_images/create_quote_shipping.png" src="../../_images/create_quote_shipping.png" />
+<ol class="loweralpha simple">
+<li>In the <strong>Shipping Methods</strong> list, select the recommended (default) shipping method that will be pre-selected when the customer gets to the shipping configuration on the checkout.</li>
+</ol>
+<ol class="loweralpha simple" start="3">
+<li>Optionally, enter the <strong>Overridden Shipping Cost Amount, USD</strong> - a custom shipping cost that will be used instead of the one dynamically generated based on the shipping method selection.</li>
+<li>To enforce using only the default Shipping method selected earlier, enable the <strong>Shipping Method Locked</strong> flag. When the shippig method is locked, the buyer does not see any other payment options but the default one.</li>
+<li>Tick the <strong>Allow Unlisted Shipping Methods</strong> box to allow using the shipping method that is already selected as a default one, even if it is disabled by the shipping rule configuration.</li>
+</ol>
+</li>
+<li><p class="first">Optionally, select a <strong>Payment Term</strong> as an available payment method.</p>
+</li>
+</ol>
+<ol class="arabic simple" start="9">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="edit-a-quote">
+<h2><a class="toc-backref" href="#id6">Edit a Quote</a><a class="headerlink" href="#edit-a-quote" title="Permalink to this headline">¶</a></h2>
+<p>To edit the Quote:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Sales &gt; Quotes</strong> in the main menu.</li>
+<li>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.</li>
+<li>Update the <em>Quote General Information</em>, <em>Line Items</em>, <em>Shipping Address</em>, or <em>Shipping Information</em>. See <a class="reference external" href="create">Create a Quote</a> section for detailed information on the available options.</li>
+<li>Click <strong>Save</strong> on the top right of the page.</li>
+</ol>
+<p>The quote is updated.</p>
+</div>
+<div class="section" id="quote-in-use">
+<h2><a class="toc-backref" href="#id7">Quote in Use</a><a class="headerlink" href="#quote-in-use" title="Permalink to this headline">¶</a></h2>
+<p>As an illustration, let us see the quote in action and walk through the steps buyer and sales manager may follow to communicate or negotiate for the sale:</p>
+<ol class="arabic">
+<li><p class="first">Once a quote is created, it is automatically moved to the <strong>Draft</strong> step with the possibility to edit, clone, delete and send the quote to a customer.</p>
+<img alt="../../_images/Illustration_1.png" src="../../_images/Illustration_1.png" />
+</li>
+<li><p class="first">The quote with an offer valid until 19 April is sent to a customer.</p>
+<img alt="../../_images/Illustration_2.png" src="../../_images/Illustration_2.png" />
+</li>
+</ol>
+<blockquote>
+<div><p>The quote transitions from <strong>Draft</strong> state into <strong>Sent to Customer</strong>. Now it is possible to cancel, expire, delete, create a quote, or mark it as declined by customer.</p>
+<img alt="../../_images/Illustration_3.png" src="../../_images/Illustration_3.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a customer generates an order based on the quote, you can leave the quote in the <strong>Sent to Customer</strong> state so that customer user could reuse it for future orders, or expire it to disable orders based on this quote.</p>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>The customer provided no feedback on the quote before 19 April, and the quote is expired by the sales personnel, leaving it in the <strong>Closed</strong> step.</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/Illustration_4.png" src="../../_images/Illustration_4.png" />
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>The offer has been reconsidered and validation date was extended until 21 April. The quote is reopened. It is moved back to the draft step with the possibility to edit, clone, delete and send the quote to a customer. The quote number is changed (in our case, from 22 to 23).</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/Illustration_5.png" src="../../_images/Illustration_5.png" />
+</div></blockquote>
+<p>See more information about the <a class="reference internal" href="../system/workflows/quote_management_workflow.html#system-workflows-quote-backoffice-workflow"><span class="std std-ref">Quote Workflow</span></a> for details on the steps and actions available at every step.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user_guide/quotes/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">User Guide</a><ul>
+      <li>Previous: <a href="../customers/delegate.html" title="previous chapter">Delegate Account Management to a Customer User</a></li>
+      <li>Next: <a href="create.html" title="next chapter">Create a Quote</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/quotes/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
