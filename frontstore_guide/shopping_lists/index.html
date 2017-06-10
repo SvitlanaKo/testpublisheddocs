@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Shopping Lists &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Administrator Guide" href="../../admin_guide/index.html" />
+    <link rel="prev" title="Quotes" href="../quotes/index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation for... </p>
+                    </div>
+                    <div id="navbar" class="navbar-left">
+                        <div class="navbar-collapse collapse">
+                            <div class="menu-header-menu-container">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">All Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/segments/index.html">Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/system/index.html">System Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">B2B Buyer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../navigation/index.html">Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../profile/index.html">My Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users_roles/index.html">My Organization Users and Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Shopping Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/website/index.html">Website Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Admin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/extend_and_customize/index.html">Customizing Oro Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/integration/index.html">Web Services API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../community/contribute.html">Contributing to Oro Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/translations.html">Contributing to Translatiion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/write.html">Contributing to Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/issues/index.html">Contacting Support and Reporting Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/question.html">Submitting a Question</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/release.html">Release Process</a></li>
+</ul>
+</li>
+</ul>
+
+
+                                <!--
+                                <ul class="nav">
+                                    <li><a href="#">Installation</a></li>
+                                    <li><a href="#">Configuration</a></li>
+                                    <li><a href="#">Use <i class="fa fa-search search-complete__icon"></i></a>
+                                        <ul class="sub-nav">
+                                            <li class="sub-menu" ><a href="#">HTML</a>
+                                            </li>
+                                            <li class="sub-menu" ><a
+                                                   href="#">CSS</a>
+                                                <ul class="sub-nav">
+                                                    <li class="sub-menu"><a
+                                                           href="#">Resets</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">Grids</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">Frameworks</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="sub-menu" href="#">Development</a>
+                                                <ul class="sub-nav">
+                                                    <li class="sub-menu"><a
+                                                           href="#">Ajax</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">jQuery</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Contribution</a>
+                                        <ul class="sub-nav">
+                                            <li class="sub-menu"><a href="#">Themes</a>
+                                            </li>
+                                            <li class="sub-menu"><a href="#">Plugins</a>
+                                            </li>
+                                            <li class="sub-menu"><a href="#">Custom
+                                                Post Types</a>
+                                                <ul class="sub-nav">
+                                                    <li class="sub-menu"><a
+                                                           href="#">Portfolios</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">Testimonials</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="sub-menu"><a href="#">Options</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="shopping-lists">
+<span id="frontstore-guide-shopping-lists"></span><h1>Shopping Lists<a class="headerlink" href="#shopping-lists" title="Permalink to this headline">¶</a></h1>
+<p>The following guide will describe how shopping lists can be used in OroCommerce front store.</p>
+<p>In OroCommerce, shopping lists are much more than merely a list of items in a cart. For one, in OroCommerce customers can create and manage note just one, but multiple shopping lists. This is useful when customers have to work on many projects that need different products for various needs.</p>
+<p id="frontstore-guide-shopping-lists-create">On the front store, shopping lists are located in the top right corner and can be easily spotted.</p>
+<img alt="../../_images/ShoppingLists.png" src="../../_images/ShoppingLists.png" />
+<p>The shopping lists button displays the number of shopping lists that have been created.</p>
+<p>Clicking on the <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i> icon next to the button will open a dropdown with all available shopping lists, the number of items in each of them, and a button to create a new shopping list.</p>
+<img alt="../../_images/ShoppingListsDropdown.png" src="../../_images/ShoppingListsDropdown.png" />
+<div class="section" id="create-shopping-list">
+<h2>Create Shopping List<a class="headerlink" href="#create-shopping-list" title="Permalink to this headline">¶</a></h2>
+<p>Shopping lists can be created using several flows.</p>
+<p><strong>First</strong></p>
+<ol class="arabic simple">
+<li>Click <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i> next to <strong>Shopping Lists</strong> on the top right of the page.</li>
+<li>Click <strong>Create New List</strong> on the bottom of the dropdown window.</li>
+<li>Give the list a name and click <strong>Create</strong>.</li>
+</ol>
+<img alt="../../_images/ShoppingListName.png" src="../../_images/ShoppingListName.png" />
+<p><strong>Second</strong></p>
+<ol class="arabic simple">
+<li>Click on the dropdown icon <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i> located in the <strong>Add to</strong> button next to each product.</li>
+<li>Select <strong>Create New Shopping List</strong>.</li>
+<li>Give the list a name and click <strong>Create</strong>.</li>
+</ol>
+<img alt="../../_images/CreateShoppingListItem.png" src="../../_images/CreateShoppingListItem.png" />
+<p><strong>Third</strong></p>
+<ol class="arabic simple">
+<li>Click <strong>Quick Order Form</strong> on the top right of the page.</li>
+<li>Enter product details in the provided fields.</li>
+<li>Click <strong>Add to</strong> on the bottom of the Quick Order page.</li>
+<li>Select <strong>Create New Shopping List</strong>.</li>
+<li>Give the list a name and click <strong>Create</strong>.</li>
+</ol>
+<p><strong>Fourth</strong></p>
+<ol class="arabic simple">
+<li>In the Quick Order Form, enter product SKU(s) and quantity.</li>
+<li>Click <strong>Verify Order</strong>.</li>
+<li>In the Verify Order window, Click <strong>Add to</strong> on the top.</li>
+<li>Select <strong>Create New Shopping List</strong>.</li>
+<li>Give the list a name and click <strong>Create</strong>.</li>
+</ol>
+<img alt="../../_images/CreateShoppingListQuickOrder.png" src="../../_images/CreateShoppingListQuickOrder.png" />
+<p><strong>Fifth</strong></p>
+<ol class="arabic simple">
+<li>Open <a class="reference internal" href="../orders/index.html#frontstore-guide-orders-matrix"><span class="std std-ref">Matrix Ordering Form</span></a>.</li>
+</ol>
+<img alt="../../_images/HatProductPage.png" src="../../_images/HatProductPage.png" />
+<ol class="arabic simple" start="2">
+<li>Enter the number of items for each category.</li>
+</ol>
+<img alt="../../_images/MatrixForm.png" src="../../_images/MatrixForm.png" />
+<ol class="arabic simple" start="4">
+<li>Click on the dropdown icon <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i> located in the <strong>Add to</strong> button next to each product.</li>
+<li>Select <strong>Create New Shopping List</strong>.</li>
+</ol>
+<img alt="../../_images/MatrixFormShoppngList.png" src="../../_images/MatrixFormShoppngList.png" />
+<ol class="arabic simple" start="7">
+<li>Give the list a name and click <strong>Create</strong>.</li>
+</ol>
+</div>
+<div class="section" id="view-shopping-list">
+<span id="frontstore-guide-shopping-lists-view"></span><h2>View Shopping List<a class="headerlink" href="#view-shopping-list" title="Permalink to this headline">¶</a></h2>
+<p>The shopping list view page contains the following information and options:</p>
+<ol class="arabic simple">
+<li>Customer name (dropdown)</li>
+<li>Item name</li>
+<li>Availability</li>
+<li>Quantity</li>
+<li>Price</li>
+<li>Subtotal</li>
+<li>Total</li>
+<li>A list of all shopping lists available</li>
+</ol>
+<p>Here you can add a note to the current shopping list, as well as each of the items within this list, by enabling the <strong>Add a Note to This Shopping List</strong> checkbox.</p>
+<img alt="../../_images/AddNoteShoppingList.png" src="../../_images/AddNoteShoppingList.png" />
+</div>
+<div class="section" id="manage-shopping-list">
+<span id="frontstore-guide-shopping-lists-manage"></span><h2>Manage Shopping List<a class="headerlink" href="#manage-shopping-list" title="Permalink to this headline">¶</a></h2>
+<p>To edit the shopping list name from within its view page:</p>
+<ol class="arabic simple">
+<li>Clicking <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> next to the shopping list name.</li>
+</ol>
+<img alt="../../_images/SHEditName.png" src="../../_images/SHEditName.png" />
+<ol class="arabic simple" start="2">
+<li>Enter a new name and click <strong>Save</strong>.</li>
+</ol>
+<img alt="../../_images/SHEditName2.png" src="../../_images/SHEditName2.png" />
+<p>To delete the shopping list:</p>
+<ol class="arabic simple">
+<li>Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete.</li>
+<li>Confirm deletion by clicking <strong>Yes, Delete</strong> in the confirmation window.</li>
+</ol>
+<img alt="../../_images/SHDelete.png" src="../../_images/SHDelete.png" />
+<p>To create an order from the shopping list:</p>
+<ol class="arabic simple">
+<li>Click <strong>Create Order</strong> on the bottom of the view page.</li>
+<li>Click <strong>Create Order</strong> on the top right of the view page.</li>
+</ol>
+<img alt="../../_images/SHCreateOrder.png" src="../../_images/SHCreateOrder.png" />
+<p>To create a request for quote from the shopping list:</p>
+<ol class="arabic simple">
+<li>Click <strong>Request Quote</strong> on the top right of the view page.</li>
+<li>Click <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i> next to the <strong>Create Order</strong> button on the bottom of the view page.</li>
+<li>Click <strong>Request Quote</strong>.</li>
+</ol>
+<div class="section" id="related-topics">
+<h3>Related Topics<a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="../getting_started/index.html"><span class="doc">Getting Started</span></a></li>
+<li><a class="reference internal" href="../navigation/index.html"><span class="doc">Navigation</span></a></li>
+<li><a class="reference internal" href="../profile/index.html"><span class="doc">My Profile</span></a></li>
+<li><a class="reference internal" href="../users_roles/index.html"><span class="doc">My Organization Users and Roles</span></a></li>
+<li><a class="reference internal" href="../rfq/index.html"><span class="doc">Request for Quote</span></a></li>
+<li><a class="reference internal" href="../quotes/index.html"><span class="doc">Quotes</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul>
+<li><a class="reference internal" href="#">Shopping Lists</a><ul>
+<li><a class="reference internal" href="#create-shopping-list">Create Shopping List</a></li>
+<li><a class="reference internal" href="#view-shopping-list">View Shopping List</a></li>
+<li><a class="reference internal" href="#manage-shopping-list">Manage Shopping List</a><ul>
+<li><a class="reference internal" href="#related-topics">Related Topics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">B2B Buyer&#8217;s Guide</a><ul>
+      <li>Previous: <a href="../quotes/index.html" title="previous chapter">Quotes</a></li>
+      <li>Next: <a href="../../admin_guide/index.html" title="next chapter">Administrator Guide</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+    <form class="search" action="../../search.html" method="get">
+      <div><i class="fa fa-search search-complete__icon"></i>&nbsp;<input class="search_text" type="text" placeholder="Search in documentation " name="q" />
+      <input class="submit" type="submit" value="Search" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Inc. All rights reserved.
+           
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>My Organization Users and Roles &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Orders" href="../orders/index.html" />
+    <link rel="prev" title="My Profile" href="../profile/index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation for... </p>
+                    </div>
+                    <div id="navbar" class="navbar-left">
+                        <div class="navbar-collapse collapse">
+                            <div class="menu-header-menu-container">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">All Users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/segments/index.html">Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/system/index.html">System Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">B2B Buyer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../navigation/index.html">Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../profile/index.html">My Profile</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">My Organization Users and Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/website/index.html">Website Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Admin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/extend_and_customize/index.html">Customizing Oro Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/integration/index.html">Web Services API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../community/contribute.html">Contributing to Oro Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/translations.html">Contributing to Translatiion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/write.html">Contributing to Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/issues/index.html">Contacting Support and Reporting Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/question.html">Submitting a Question</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/release.html">Release Process</a></li>
+</ul>
+</li>
+</ul>
+
+
+                                <!--
+                                <ul class="nav">
+                                    <li><a href="#">Installation</a></li>
+                                    <li><a href="#">Configuration</a></li>
+                                    <li><a href="#">Use <i class="fa fa-search search-complete__icon"></i></a>
+                                        <ul class="sub-nav">
+                                            <li class="sub-menu" ><a href="#">HTML</a>
+                                            </li>
+                                            <li class="sub-menu" ><a
+                                                   href="#">CSS</a>
+                                                <ul class="sub-nav">
+                                                    <li class="sub-menu"><a
+                                                           href="#">Resets</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">Grids</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">Frameworks</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="sub-menu" href="#">Development</a>
+                                                <ul class="sub-nav">
+                                                    <li class="sub-menu"><a
+                                                           href="#">Ajax</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">jQuery</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Contribution</a>
+                                        <ul class="sub-nav">
+                                            <li class="sub-menu"><a href="#">Themes</a>
+                                            </li>
+                                            <li class="sub-menu"><a href="#">Plugins</a>
+                                            </li>
+                                            <li class="sub-menu"><a href="#">Custom
+                                                Post Types</a>
+                                                <ul class="sub-nav">
+                                                    <li class="sub-menu"><a
+                                                           href="#">Portfolios</a>
+                                                    </li>
+                                                    <li class="sub-menu"><a
+                                                           href="#">Testimonials</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="sub-menu"><a href="#">Options</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="my-organization-users-and-roles">
+<span id="frontstore-guide-users-roles"></span><h1>My Organization Users and Roles<a class="headerlink" href="#my-organization-users-and-roles" title="Permalink to this headline">¶</a></h1>
+<p>This section of the guide will provide information on how front store users and roles are assigned in OroCommerce front store.</p>
+<p>The frontsore user, role and permissions provide users with access to data and the ability to perform tasks based on their business responsibilities and the company guidelines.  The ability to do this is crucial for both the buyer and the seller, as it helps support the various operations of their businesses. OroCommerce comes out of the box with the capabilities to allow buyers and sellers to specify the exact roles and permissions each user requires in order to do their job as efficiently as possible, eliminate mistakes and save money.</p>
+<div class="section" id="users">
+<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<p>To locate users:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Account</strong> in the <a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-user-menu"><span class="std std-ref">user menu</span></a>.</li>
+<li>Click <strong>Users</strong> in the menu on the left.</li>
+</ol>
+<img alt="../../_images/Users.png" src="../../_images/Users.png" />
+<p>On the All Users page, you can view and edit the existing users, or create new ones.</p>
+<p>The users table shows the following data:</p>
+<ul class="simple">
+<li>First Name</li>
+<li>Last Name</li>
+<li>Email Address</li>
+<li>Enabled</li>
+<li>Confirmed</li>
+<li>More Actions (View, Edit, Enable/Disable, Delete).</li>
+</ul>
+<img alt="../../_images/UsersActions.png" src="../../_images/UsersActions.png" />
+<p>Within the table you have the following <a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-action-buttons"><span class="std std-ref">actions buttons</span></a> available:</p>
+<ol class="arabic simple">
+<li>Refresh the view table: click <i class="fa fa-undo fa-lg" aria-hidden="true"></i> to update the view table.</li>
+<li>Reset the view table: click <i class="fa fa-refresh fa-lg" aria-hidden="true"></i> to clear view table customization and return to default settings. Reset applies to all filters, records per page and sorting changes that you have made.</li>
+<li>Table settings: click <i class="fa fa-cog fa-lg" aria-hidden="true"></i> to define which columns to show in the table.</li>
+<li><a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-filters"><span class="std std-ref">Filters</span></a>.</li>
+</ol>
+<div class="section" id="customer-user-view-page">
+<h3>Customer User View Page<a class="headerlink" href="#customer-user-view-page" title="Permalink to this headline">¶</a></h3>
+<p>The Customer User View Page has the name of the selected user in the page header.</p>
+<img alt="../../_images/CustomerUser.png" src="../../_images/CustomerUser.png" />
+<p>The page has two sections:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../profile/index.html#frontstore-guide-profile-account"><span class="std std-ref">Account Info</span></a></li>
+<li><a class="reference internal" href="../profile/index.html#frontstore-guide-profile-default-addresses"><span class="std std-ref">Default Addresses</span></a></li>
+</ul>
+</div>
+<div class="section" id="create-a-new-user">
+<h3>Create a New User<a class="headerlink" href="#create-a-new-user" title="Permalink to this headline">¶</a></h3>
+<p>To create a new user, click <strong>+Create User</strong> on the top right of the page, next to the view table name.</p>
+<p>A form will emerge with the following data to provide:</p>
+<ul class="simple">
+<li>Customer</li>
+<li>Enabled checkbox</li>
+<li>Email Address</li>
+<li>Name Prefix</li>
+<li>First Name</li>
+<li>Middle Name</li>
+<li>Last Name</li>
+<li>Name Suffix</li>
+<li>Send Welcome Email checkbox</li>
+<li>Birthday</li>
+<li>Password</li>
+<li>Confirm Password</li>
+<li>Generate Password checkbox</li>
+<li>Roles: administrator/buyer checkboxes</li>
+</ul>
+</div>
+</div>
+<div class="section" id="roles">
+<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h2>
+<p>Roles are predefined sets of permissions. In the Roles section, you can view, edit and create new roles to define the level of permissions and access to the actions and data in OroCommerce front store for the users of a specific role.</p>
+<p>To locate roles:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Account</strong> in the <a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-user-menu"><span class="std std-ref">user menu</span></a>.</li>
+<li>Click <strong>Roles</strong> in the menu on the left.</li>
+</ol>
+<img alt="../../_images/Roles.png" src="../../_images/Roles.png" />
+<p>On the All Roles page you will be able to see the list of roles available in the system. By default, the following roles are predefined and available for every customer</p>
+<ul class="simple">
+<li>Administrator</li>
+<li>Buyer</li>
+</ul>
+<p>The roles table shows the following data:</p>
+<ul class="simple">
+<li>Role</li>
+<li>Type (Predefined, Customizable)</li>
+<li>More Actions (View, Edit, Delete)</li>
+</ul>
+<p>Within the table you have the following <a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-action-buttons"><span class="std std-ref">actions buttons</span></a> available:</p>
+<ol class="arabic simple">
+<li>Refresh the view table: click <i class="fa fa-undo fa-lg" aria-hidden="true"></i> to update the view table.</li>
+<li>Reset the view table: click <i class="fa fa-refresh fa-lg" aria-hidden="true"></i> to clear view table customization and return to default settings. Reset applies to all filters, records per page and sorting changes that you have made.</li>
+<li>Table settings: click <i class="fa fa-cog fa-lg" aria-hidden="true"></i> to define which columns to show in the table.</li>
+<li><a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-filters"><span class="std std-ref">Filters</span></a> <i class="fa fa-filter fa-lg" aria-hidden="true"></i>.</li>
+</ol>
+<div class="section" id="role-view-page">
+<h3>Role View Page<a class="headerlink" href="#role-view-page" title="Permalink to this headline">¶</a></h3>
+<p>To open a specific role: click on the selected role in the view table.</p>
+<p>To edit a specific role from its view page: click <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> <strong>Edit Role</strong> on the right of the page.</p>
+<img alt="../../_images/BuyerEditRole.png" src="../../_images/BuyerEditRole.png" />
+<p>To delete a specific customizable role from its view page: click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the role is predefined, it cannot be deleted. Neither can it be deleted if it is assigned to a user/users. Reassign the assigned users to a different role to be able to delete it.</p>
+</div>
+<img alt="../../_images/CustomizableRoleDelete.png" src="../../_images/CustomizableRoleDelete.png" />
+</div>
+<div class="section" id="create-a-new-user-role">
+<h3>Create a New User Role<a class="headerlink" href="#create-a-new-user-role" title="Permalink to this headline">¶</a></h3>
+<p>To create a new user role, click <strong>+Create Customer User Role</strong> on the top right of the page, next to the table name.</p>
+<p>A form will emerge with the following data to provide:</p>
+<ul class="simple">
+<li>Customer</li>
+<li>Role Title</li>
+<li>Access- and permissions-related settings</li>
+</ul>
+<img alt="../../_images/CreateRole.png" src="../../_images/CreateRole.png" />
+<p>The following permissions are available:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Permission</th>
+<th class="head">Level</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><ul class="first last simple">
+<li>View</li>
+<li>Create</li>
+<li>Edit</li>
+<li>Delete</li>
+<li>Assign</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>None</li>
+<li>Department Level (Same Level)</li>
+<li>Corporate (All Levels).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>With the Customer User Role you can manage the following access- and permissions-related settings and capabilities:</p>
+<img alt="../../_images/AccessPermissions.png" src="../../_images/AccessPermissions.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="13%" />
+<col width="25%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Entities</th>
+<th class="head">Capabilities (Checkboxes)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>All</strong></td>
+<td>Address, Customer User, Customer User Address, Customer User Roles, Grid (Table) View</td>
+<td><p class="first">Account Management:</p>
+<ul class="simple">
+<li>Audit history for Customer User</li>
+<li>[Quote] Enter the shipping address manually</li>
+<li>[Quote] Use any shipping address from the customer address book.</li>
+<li>[Quote] Use any shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+<p>Checkout:</p>
+<ul class="simple">
+<li>Approve orders that exceed the allowable amount</li>
+<li>Enter the billing address manually</li>
+<li>Enter the shipping address manually</li>
+<li>Use any billing address from the customer address book</li>
+<li>Use any billing address from the customer user&#8217;s address book</li>
+<li>Use any shipping address from the customer address book</li>
+<li>Use any shipping address from the customer user&#8217;s address book</li>
+<li>Use the default billing address from the customer user&#8217;s address book</li>
+<li>Use the default shipping address from the customer user&#8217;s address book.</li>
+</ul>
+<p>Application:</p>
+<ul class="last simple">
+<li>Share Data View.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Account Management</strong></td>
+<td>Address, Customer User, Customer User Address, Customer User Role, Grid View</td>
+<td><ul class="first last simple">
+<li>Audit history for Customer User</li>
+<li>[Quote] Enter the shipping address manually</li>
+<li>[Quote] Use any shipping address from the customer address book.</li>
+<li>[Quote] Use any shipping address from the customer user&#8217;s address book</li>
+<li>[Quote] Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Shopping</strong></td>
+<td>Shopping List</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-odd"><td><strong>Quotes</strong></td>
+<td>Quote, Request For Quote</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td><strong>Checkout</strong></td>
+<td>Checkout</td>
+<td><ul class="first last simple">
+<li>Approve orders that exceed the allowable amount</li>
+<li>Enter the billing address manually</li>
+<li>Enter the shipping address manually</li>
+<li>Use any billing address from the customer address book</li>
+<li>Use any billing address from the customer user&#8217;s address book</li>
+<li>Use any shipping address from the customer address book</li>
+<li>Use any shipping address from the customer user&#8217;s address book</li>
+<li>Use the default billing address from the customer user&#8217;s address book</li>
+<li>Use the default shipping address from the customer user&#8217;s address book</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Orders</strong></td>
+<td>Invoice, Order</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td><strong>System capabilities</strong></td>
+<td>&#8212;</td>
+<td>Share Data View</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Predefined roles cannot be edited directly. All the original data is copied so that you can save it as a new user role for your organization. All users will be moved from the original role to this new role after you click <strong>Save</strong>.</p>
+</div>
+<p>To apply a role to a specific user:</p>
+<ol class="arabic simple">
+<li>Scroll down to the bottom of the Edit Role page.</li>
+<li>Enable the chackbox next to the selected user.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<img alt="../../_images/RolesAllUsers.png" src="../../_images/RolesAllUsers.png" />
+<div class="section" id="related-topics">
+<h4>Related Topics<a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference internal" href="../getting_started/index.html"><span class="doc">Getting Started</span></a></li>
+<li><a class="reference internal" href="../navigation/index.html"><span class="doc">Navigation</span></a></li>
+<li><a class="reference internal" href="../profile/index.html"><span class="doc">My Profile</span></a></li>
+<li><a class="reference internal" href="../rfq/index.html"><span class="doc">Request for Quote</span></a></li>
+<li><a class="reference internal" href="../quotes/index.html"><span class="doc">Quotes</span></a></li>
+<li><a class="reference internal" href="../shopping_lists/index.html"><span class="doc">Shopping Lists</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul>
+<li><a class="reference internal" href="#">My Organization Users and Roles</a><ul>
+<li><a class="reference internal" href="#users">Users</a><ul>
+<li><a class="reference internal" href="#customer-user-view-page">Customer User View Page</a></li>
+<li><a class="reference internal" href="#create-a-new-user">Create a New User</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#roles">Roles</a><ul>
+<li><a class="reference internal" href="#role-view-page">Role View Page</a></li>
+<li><a class="reference internal" href="#create-a-new-user-role">Create a New User Role</a><ul>
+<li><a class="reference internal" href="#related-topics">Related Topics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">B2B Buyer&#8217;s Guide</a><ul>
+      <li>Previous: <a href="../profile/index.html" title="previous chapter">My Profile</a></li>
+      <li>Next: <a href="../orders/index.html" title="next chapter">Orders</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+    <form class="search" action="../../search.html" method="get">
+      <div><i class="fa fa-search search-complete__icon"></i>&nbsp;<input class="search_text" type="text" placeholder="Search in documentation " name="q" />
+      <input class="submit" type="submit" value="Search" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Inc. All rights reserved.
+           
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
