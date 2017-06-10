@@ -6,7 +6,7 @@ Join Oro community and contribute to the open-source OroCommerce Community Editi
 Contribute to the Open Source Development
 -----------------------------------------
 
-Are you eager to contribute to a free OroCommerce Community Edition open source code? Then you might like the `Contribute as a Developer <code>` topic.
+Are you eager to contribute to a free OroCommerce Community Edition open source code? Then you might like the :ref:`Contribute as a Developer <source_code>` topic.
 
 Contribute to the Localization Project
 --------------------------------------
@@ -33,6 +33,7 @@ Learn about Oro Product versions, release and support cycles, and upgrade recomm
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
    
    contribute
 

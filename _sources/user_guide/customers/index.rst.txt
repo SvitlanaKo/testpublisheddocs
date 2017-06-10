@@ -1,9 +1,9 @@
 Customers and Customer Users
 ============================
 
-This topic contains the following sections:
+.. This topic contains the following sections:
 
-.. contents::
+.. .. contents::
    :local:
    :depth: 1
 

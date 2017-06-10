@@ -3,7 +3,9 @@
 Checkout: Payment
 -----------------
 
-.. contents:: :local:
+.. .. contents:: :local:
+
+.. begin
 
 After the integration is complete, the customer user may select one of the payment methods that are shown after the connectivity check and payment rules evaluation.
 
@@ -46,6 +48,8 @@ Authorize.Net
 .. special order # (matches InfinitePay one)
 
 .. paid in full
+
+.. finish
 
 .. _doc--payment--checkout-wirecard:
 

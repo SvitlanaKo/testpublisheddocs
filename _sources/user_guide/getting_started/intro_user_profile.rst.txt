@@ -1,7 +1,7 @@
 View and Set up Your User Profile
 =================================
 
-.. contents:: :local:
+.. .. contents:: :local:
 
 .. _user-guide-getting-started-my-user:
 

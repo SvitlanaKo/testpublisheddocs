@@ -1,4 +1,4 @@
-.. _code:
+.. _source_code:
 
 Contributing to Oro Source Code
 ===============================

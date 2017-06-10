@@ -3,7 +3,7 @@
 Navigation Basics
 =================
 
-.. contents:: :local:
+.. .. contents:: :local:
 
 OroCommerce provides a broad set of navigation tools that allow you to easily access necessary information and tools. The system helps to ensure that frequent actions can be performed with minimal effort by keeping required information at hand. This means no important updates are missed.
 

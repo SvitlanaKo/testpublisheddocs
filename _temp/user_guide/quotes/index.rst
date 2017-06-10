@@ -3,9 +3,9 @@
 Quotes
 ======
 
-This topic contains the following sections:
+.. This topic contains the following sections:
 
-.. contents:: :local:
+.. .. contents:: :local:
    :depth: 2
 
 Overview

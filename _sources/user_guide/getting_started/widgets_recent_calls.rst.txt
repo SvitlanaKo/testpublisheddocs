@@ -11,7 +11,7 @@ This widget displays the list of recently logged calls.
 .. image:: /user_guide/img/getting_started/activities/activities_calls2.png
 
 
-.. contents:: :local:
+.. .. contents:: :local:
   :depth: 3
 
 Widget's Header

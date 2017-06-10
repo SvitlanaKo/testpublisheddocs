@@ -210,39 +210,8 @@ materialdropdown.addEventListener('click', function() {
             
   <div class="section" id="taxes">
 <h1>Taxes<a class="headerlink" href="#taxes" title="Permalink to this headline">¶</a></h1>
-<p>This topic contains the following sections:</p>
-<div class="contents local topic" id="contents">
-<ul class="simple">
-<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
-<li><a class="reference internal" href="#before-you-begin-taxation-configuration" id="id3">Before You Begin: Taxation Configuration</a><ul>
-<li><a class="reference internal" href="#tax-calculation" id="id4">Tax Calculation</a><ul>
-<li><a class="reference internal" href="#configure-tax-calculation" id="id5">Configure Tax Calculation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#us-sales-tax-for-digital-products" id="id6">US Sales Tax for Digital Products</a></li>
-<li><a class="reference internal" href="#eu-vat-tax-for-digital-products" id="id7">EU VAT Tax for Digital Products</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#manage-tax-rules" id="id8">Manage Tax Rules</a><ul>
-<li><a class="reference internal" href="#create-a-tax-rule" id="id9">Create a Tax Rule</a><ul>
-<li><a class="reference internal" href="#id1" id="id10">Create a Tax Jurisdiction</a></li>
-<li><a class="reference internal" href="#create-a-tax-rate" id="id11">Create a Tax Rate</a></li>
-<li><a class="reference internal" href="#create-a-product-tax-code" id="id12">Create a Product Tax Code</a></li>
-<li><a class="reference internal" href="#create-a-customer-tax-code" id="id13">Create a Customer Tax Code</a></li>
-<li><a class="reference internal" href="#link-a-tax-code-to-a-customer-or-customer-group" id="id14">Link a Tax Code to a Customer or Customer Group</a><ul>
-<li><a class="reference internal" href="#customer" id="id15">Customer</a></li>
-<li><a class="reference internal" href="#customer-group" id="id16">Customer Group</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#link-a-tax-code-to-a-product" id="id17">Link a Tax Code to a Product</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>An international B2B selling business has certain international tax obligations, like a sales tax in the U.S. and Value Added Tax (VAT) in EU and other countries. In addition to that, some products are tax-free or have lower tax rates and some of your customers may be eligible for tax exemption.</p>
 <p>Tax management in OroCommerce helps you ensure compliance with the tax rules and regulations in global B2B online sales. With built in tax rules and tax reports you get timely and precise information for your sales tax, goods and services tax, or value added tax payment. You may inform your buyer about the volume of tax included into their order or quote, or may include the tax in the product price they see placing an order.</p>
 <p>The following sections provide information and guidance on the following topics:</p>
@@ -257,7 +226,7 @@ materialdropdown.addEventListener('click', function() {
 </ul>
 </div>
 <div class="section" id="before-you-begin-taxation-configuration">
-<h2><a class="toc-backref" href="#id3">Before You Begin: Taxation Configuration</a><a class="headerlink" href="#before-you-begin-taxation-configuration" title="Permalink to this headline">¶</a></h2>
+<h2>Before You Begin: Taxation Configuration<a class="headerlink" href="#before-you-begin-taxation-configuration" title="Permalink to this headline">¶</a></h2>
 <p>OroCommerce groups taxation configuration options into the following categories:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#tax-calculation">Tax Calculation</a></li>
@@ -265,7 +234,7 @@ materialdropdown.addEventListener('click', function() {
 <li><a class="reference internal" href="#eu-vat-tax-for-digital-products">EU VAT Tax for Digital Products</a></li>
 </ul>
 <div class="section" id="tax-calculation">
-<h3><a class="toc-backref" href="#id4">Tax Calculation</a><a class="headerlink" href="#tax-calculation" title="Permalink to this headline">¶</a></h3>
+<h3>Tax Calculation<a class="headerlink" href="#tax-calculation" title="Permalink to this headline">¶</a></h3>
 <p>By default, OroCommerce calculates tax using a rate defined in the built-in tax rule for the default shipping origin address.</p>
 <p>You can modify the following configuration settings that impact the way OroCommerce implies tax in the Purchase Order or Quote (see <a class="reference internal" href="#configure-tax-calculation">Configure Tax Calculation</a> for detailed guidance):</p>
 <ul class="simple">
@@ -280,7 +249,7 @@ materialdropdown.addEventListener('click', function() {
 <li>Configure a shipping origin address that will be used system-wide for origin-based tax. When the shipping origin is a core jurisdiction, OroCommerce will use the address provided here to find the matching built-in tax jurisdiction rules for tax calculation.</li>
 </ul>
 <div class="section" id="configure-tax-calculation">
-<h4><a class="toc-backref" href="#id5">Configure Tax Calculation</a><a class="headerlink" href="#configure-tax-calculation" title="Permalink to this headline">¶</a></h4>
+<h4>Configure Tax Calculation<a class="headerlink" href="#configure-tax-calculation" title="Permalink to this headline">¶</a></h4>
 <p>To customize tax calculation in OroCommerce:</p>
 <ol class="arabic">
 <li><p class="first">Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</p>
@@ -341,7 +310,7 @@ materialdropdown.addEventListener('click', function() {
 </div>
 </div>
 <div class="section" id="us-sales-tax-for-digital-products">
-<h3><a class="toc-backref" href="#id6">US Sales Tax for Digital Products</a><a class="headerlink" href="#us-sales-tax-for-digital-products" title="Permalink to this headline">¶</a></h3>
+<h3>US Sales Tax for Digital Products<a class="headerlink" href="#us-sales-tax-for-digital-products" title="Permalink to this headline">¶</a></h3>
 <p>When the digital product is purchased from the shipping origin address in the state with zero tax rate for digital products, the tax is calculated based on the shipping destination, and the global system tax calculation rules are ignored.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -357,7 +326,7 @@ materialdropdown.addEventListener('click', function() {
 </ol>
 </div>
 <div class="section" id="eu-vat-tax-for-digital-products">
-<h3><a class="toc-backref" href="#id7">EU VAT Tax for Digital Products</a><a class="headerlink" href="#eu-vat-tax-for-digital-products" title="Permalink to this headline">¶</a></h3>
+<h3>EU VAT Tax for Digital Products<a class="headerlink" href="#eu-vat-tax-for-digital-products" title="Permalink to this headline">¶</a></h3>
 <p>The EU VAT tax is applied when the digital goods&#8217; buyer is located in EU. The tax is calculated based on the shipping destination, and the global system tax calculation rules are ignored.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -377,7 +346,7 @@ materialdropdown.addEventListener('click', function() {
 </div>
 </div>
 <div class="section" id="manage-tax-rules">
-<h2><a class="toc-backref" href="#id8">Manage Tax Rules</a><a class="headerlink" href="#manage-tax-rules" title="Permalink to this headline">¶</a></h2>
+<h2>Manage Tax Rules<a class="headerlink" href="#manage-tax-rules" title="Permalink to this headline">¶</a></h2>
 <p>Tax rules help OroCommerce find the correct tax rate that should be used for the products listed in the purchase order by matching the product tax code that indicates tax status of the product, customer tax code that indicates tax status of the buying company, and tax jurisdiction where the tax is due. OroCommerce supports tax exemption mechanism: you can set zero tax rate for some customers and/or products.</p>
 <p>Basically, in OroCommerce, tax rule binds the following items:</p>
 <ul class="simple">
@@ -388,7 +357,7 @@ materialdropdown.addEventListener('click', function() {
 </ul>
 <img alt="../../_images/All_TaxRules_Taxes.png" class="with-border" src="../../_images/All_TaxRules_Taxes.png" />
 <div class="section" id="create-a-tax-rule">
-<h3><a class="toc-backref" href="#id9">Create a Tax Rule</a><a class="headerlink" href="#create-a-tax-rule" title="Permalink to this headline">¶</a></h3>
+<h3>Create a Tax Rule<a class="headerlink" href="#create-a-tax-rule" title="Permalink to this headline">¶</a></h3>
 <p>To create tax rules for a particular tax jurisdiction:</p>
 <ol class="arabic">
 <li><p class="first"><a class="reference external" href="./tax-jurisdictions/create">Create a tax jurisdiction</a> (country, state and a range of zip codes) where a special taxation rules apply.</p>
@@ -414,7 +383,7 @@ materialdropdown.addEventListener('click', function() {
 </li>
 </ol>
 <div class="section" id="id1">
-<h4><a class="toc-backref" href="#id10">Create a Tax Jurisdiction</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<h4>Create a Tax Jurisdiction<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>To create a new Tax Jurisdiction:</p>
 <ol class="arabic">
 <li><p class="first">Navigate to <strong>Taxes &gt; Tax Jurisdictions</strong> in the main menu.</p>
@@ -438,7 +407,7 @@ materialdropdown.addEventListener('click', function() {
 <p>The new Tax Jurisdiction is created.</p>
 </div>
 <div class="section" id="create-a-tax-rate">
-<h4><a class="toc-backref" href="#id11">Create a Tax Rate</a><a class="headerlink" href="#create-a-tax-rate" title="Permalink to this headline">¶</a></h4>
+<h4>Create a Tax Rate<a class="headerlink" href="#create-a-tax-rate" title="Permalink to this headline">¶</a></h4>
 <p>To create a new Tax Rate:</p>
 <ol class="arabic">
 <li><p class="first">Navigate to <strong>Taxes &gt; Taxes</strong> in the main menu.</p>
@@ -455,7 +424,7 @@ materialdropdown.addEventListener('click', function() {
 <p>The new Tax Rate is created.</p>
 </div>
 <div class="section" id="create-a-product-tax-code">
-<h4><a class="toc-backref" href="#id12">Create a Product Tax Code</a><a class="headerlink" href="#create-a-product-tax-code" title="Permalink to this headline">¶</a></h4>
+<h4>Create a Product Tax Code<a class="headerlink" href="#create-a-product-tax-code" title="Permalink to this headline">¶</a></h4>
 <p>To create a new Product Tax Code:</p>
 <ol class="arabic">
 <li><p class="first">Navigate to <strong>Taxes &gt; Product Tax Codes</strong> in the main menu.</p>
@@ -472,7 +441,7 @@ materialdropdown.addEventListener('click', function() {
 <p>The new Product Tax Code is created.</p>
 </div>
 <div class="section" id="create-a-customer-tax-code">
-<h4><a class="toc-backref" href="#id13">Create a Customer Tax Code</a><a class="headerlink" href="#create-a-customer-tax-code" title="Permalink to this headline">¶</a></h4>
+<h4>Create a Customer Tax Code<a class="headerlink" href="#create-a-customer-tax-code" title="Permalink to this headline">¶</a></h4>
 <p>To create a new Customer Tax Code:</p>
 <ol class="arabic">
 <li><p class="first">Navigate to <strong>Taxes &gt; Customer Tax Codes</strong> in the main menu.</p>
@@ -489,9 +458,9 @@ materialdropdown.addEventListener('click', function() {
 <p>The new Customer Tax Code is created.</p>
 </div>
 <div class="section" id="link-a-tax-code-to-a-customer-or-customer-group">
-<h4><a class="toc-backref" href="#id14">Link a Tax Code to a Customer or Customer Group</a><a class="headerlink" href="#link-a-tax-code-to-a-customer-or-customer-group" title="Permalink to this headline">¶</a></h4>
+<h4>Link a Tax Code to a Customer or Customer Group<a class="headerlink" href="#link-a-tax-code-to-a-customer-or-customer-group" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="customer">
-<h5><a class="toc-backref" href="#id15">Customer</a><a class="headerlink" href="#customer" title="Permalink to this headline">¶</a></h5>
+<h5>Customer<a class="headerlink" href="#customer" title="Permalink to this headline">¶</a></h5>
 <p>To link a tax code to a customer:</p>
 <ol class="arabic simple">
 <li>Navigate to the necessary customer and open it for editing (e.g. click <strong>Customers &gt; Customers</strong> in the main menu, filter customers to find the one you need, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details).</li>
@@ -505,7 +474,7 @@ materialdropdown.addEventListener('click', function() {
 <img alt="../../_images/AccountTaxCode_view.png" class="with-border" src="../../_images/AccountTaxCode_view.png" />
 </div>
 <div class="section" id="customer-group">
-<h5><a class="toc-backref" href="#id16">Customer Group</a><a class="headerlink" href="#customer-group" title="Permalink to this headline">¶</a></h5>
+<h5>Customer Group<a class="headerlink" href="#customer-group" title="Permalink to this headline">¶</a></h5>
 <p>A tax code assigned to a customer group is by default applied to the customers in a group, until they have the overriding tax association in their details.</p>
 <p>To link a tax code to a customer group:</p>
 <ol class="arabic simple">
@@ -521,7 +490,7 @@ materialdropdown.addEventListener('click', function() {
 </div>
 </div>
 <div class="section" id="link-a-tax-code-to-a-product">
-<h4><a class="toc-backref" href="#id17">Link a Tax Code to a Product</a><a class="headerlink" href="#link-a-tax-code-to-a-product" title="Permalink to this headline">¶</a></h4>
+<h4>Link a Tax Code to a Product<a class="headerlink" href="#link-a-tax-code-to-a-product" title="Permalink to this headline">¶</a></h4>
 <p>To link a tax code to a product:</p>
 <ol class="arabic">
 <li><p class="first">Navigate to the necessary product (e.g. click <strong>Products &gt; Products</strong> in the main menu, filter products to find the one you need).</p>

@@ -1,9 +1,9 @@
 Taxes
 =====
 
-This topic contains the following sections:
+.. This topic contains the following sections:
 
-.. contents:: :local:
+.. .. contents:: :local:
 
 Overview
 --------

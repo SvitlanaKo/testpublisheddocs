@@ -3,7 +3,7 @@
 User Menu
 =========
 
-.. contents:: :local:
+.. .. contents:: :local:
 
 On the right side of the screen, under your username, you will find the User Menu drop-down. It provides a fast way to
 access your user profile, calendar, mailbox, and task list. It is also used to log out of the system.

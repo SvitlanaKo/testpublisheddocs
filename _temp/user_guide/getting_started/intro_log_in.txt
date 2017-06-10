@@ -5,7 +5,7 @@
 Login
 =====
 
-.. contents:: :local:
+.. .. contents:: :local:
 
 To get to your OroCommerce account, enter the OroCommerce instance url.
 

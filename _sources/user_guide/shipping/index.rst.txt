@@ -3,17 +3,17 @@
 Shipping
 ========
 
-.. contents:: :local:
+.. .. contents:: :local:
    :depth: 3
 
-Shipping Overview
------------------
+Overview
+--------
 
 .. include:: /user_guide/shipping/shipping_overview.rst
    :start-after: begin
 
-Shipping Configuration
-----------------------
+Configuration
+-------------
 
 .. include:: /user_guide/shipping/configuration/index.rst
    :start-after: begin

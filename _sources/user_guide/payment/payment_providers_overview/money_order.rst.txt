@@ -1,3 +1,5 @@
+.. _money_order_overview:
+
 Check/Money Order Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
