@@ -346,6 +346,7 @@ div.admonition {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     -moz-osx-font-smoothing: grayscale;
+    z-index: 100;
 
 }
 
@@ -988,6 +989,7 @@ li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-has-childre
 
 .menu-item-has-children .sub-menu li {
     background-color: #fff;
+    z-index: 200;
     border-bottom: 1px solid var(--bgr-color) !important;
     border-left: 1px solid var(--bgr-color);
     border-right: 1px solid var(--bgr-color);
@@ -1029,6 +1031,7 @@ li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-has-childre
     width: 208.4px;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 200;
 }
 
 e, .clearfix:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after {
@@ -1245,6 +1248,15 @@ div.menu-header-menu-container ul.current li:hover > ul,
     border-radius: 4px;
 }
 
+
+div.menu-header-menu-container ul.current li ul.current li:hover > ul {
+  display: block;
+  position: relative;
+    margine: 5px 5px 5px 5px;
+    box-sizing: content-box;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    border-radius: 4px;
+}
 
 
 div.menu-header-menu-container ul li.toctree-l1 ul li.toctree-l2 a:hover,
