@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configure MailChimp Integration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="dotmailer Integration" href="dotmailer_integration.html" />
+    <link rel="prev" title="LDAP Integration" href="ldap_integration.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dotmailer_integration.html" title="dotmailer Integration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ldap_integration.html" title="LDAP Integration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Integrations</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configure MailChimp Integration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configure-mailchimp-integration">
+<span id="user-guide-mc-integration"></span><h1>Configure MailChimp Integration<a class="headerlink" href="#configure-mailchimp-integration" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#install-extension" id="id1">Install Extension</a></li>
+<li><a class="reference internal" href="#configure-integration-on-the-mailchimp-side" id="id2">Configure Integration on the MailChimp Side</a></li>
+<li><a class="reference internal" href="#configure-integration-on-the-oro-side" id="id3">Configure Integration on the Oro Side</a></li>
+<li><a class="reference internal" href="#sync-integration" id="id4">Sync Integration</a></li>
+<li><a class="reference internal" href="#related-articles" id="id5">Related Articles</a></li>
+</ul>
+</div>
+<div class="section" id="install-extension">
+<h2><a class="toc-backref" href="#id1">Install Extension</a><a class="headerlink" href="#install-extension" title="Permalink to this headline">¶</a></h2>
+<p>To configure MailChimp integration, ensure that you have MailChimp
+extension installed in your Oro instance. For installation instructions,
+click <a class="reference external" href="https://marketplace.orocrm.com/package/orocrm-mailchimp-integration/">here</a>.</p>
+<p>SaaS users should have MailChimp preinstalled.</p>
+</div>
+<div class="section" id="configure-integration-on-the-mailchimp-side">
+<span id="user-guide-mc-integration-mailchimp-side"></span><h2><a class="toc-backref" href="#id2">Configure Integration on the MailChimp Side</a><a class="headerlink" href="#configure-integration-on-the-mailchimp-side" title="Permalink to this headline">¶</a></h2>
+<p>To configure integration with Oro application on the MailChimp side, you need to
+create an API key. To do that:</p>
+<ol class="arabic">
+<li><p class="first">Login to MailChimp.</p>
+</li>
+<li><p class="first">Navigate to your name in the upper right corner.</p>
+</li>
+<li><p class="first">Select <strong>Account</strong>.</p>
+<img alt="../../_images/mc_account.jpg" src="../../_images/mc_account.jpg" />
+</li>
+<li><p class="first">Go to <strong>Extras</strong>.</p>
+</li>
+<li><p class="first">Click <strong>API keys</strong>.</p>
+<img alt="../../_images/mc_extras_api.jpg" src="../../_images/mc_extras_api.jpg" />
+</li>
+<li><p class="first">Scroll down to the bottom of the page and press <strong>Create a Key</strong>.</p>
+<img alt="../../_images/mc_create_key.jpg" src="../../_images/mc_create_key.jpg" />
+</li>
+<li><p class="first">A newly created key will appear at the top of the list. Copy the key.</p>
+<img alt="../../_images/mc_copy_key.jpg" src="../../_images/mc_copy_key.jpg" />
+</li>
+</ol>
+</div>
+<div class="section" id="configure-integration-on-the-oro-side">
+<span id="user-guide-mc-integration-oro-side"></span><h2><a class="toc-backref" href="#id3">Configure Integration on the Oro Side</a><a class="headerlink" href="#configure-integration-on-the-oro-side" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Log into Oro application and navigate to <strong>System &gt; Integrations &gt; Manage Integrations</strong>.</p>
+<img alt="../../_images/o_manage_integrations.jpg" src="../../_images/o_manage_integrations.jpg" />
+</li>
+<li><p class="first">Click <strong>Create Integration</strong> in the top right corner.</p>
+<img alt="../../_images/o_create_integration.jpg" src="../../_images/o_create_integration.jpg" />
+</li>
+<li><p class="first">Next, complete the following fields:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Type</strong></td>
+<td>Among other third-party services, choose MailChimp as this is the integration we are configuring. A form specific to MailChimp will be displayed.</td>
+</tr>
+<tr class="row-odd"><td><strong>Name</strong></td>
+<td>Specify the integration <strong>Name</strong> as it will be referred to within Oro application.</td>
+</tr>
+<tr class="row-even"><td><strong>API Key</strong></td>
+<td>Paste the API key you copied in your MailChimp account. Click <strong>Check Connection</strong>. <strong>Everything’s Chimpy</strong> means that the connection was successful and    you are now authorized.</td>
+</tr>
+<tr class="row-odd"><td><strong>Activity Update Interval</strong></td>
+<td>Now set the <strong>Activity Update Interval</strong> to a period you plan to run your campaign for. This should be set based on the length of your campaign and data    storage requirements specific to your Oro instance.</td>
+</tr>
+<tr class="row-even"><td><strong>Status</strong></td>
+<td><strong>Active</strong> or <strong>Inactive</strong>. By default, Status is set to Active.</td>
+</tr>
+<tr class="row-odd"><td><strong>Owner</strong></td>
+<td>The Owner determines the list of users who can manage the integration and the data synchronized with it. This means that the owner receives the data    produced by the email campaign. All <strong>Entities</strong> imported within the integration will be assigned to the selected user. It is suggested to select a marketing rep as the owner.</td>
+</tr>
+<tr class="row-even"><td><strong>Enable Two Way Sync</strong></td>
+<td>Use this section to enable or disable two-way synchronization. By default, <strong>Enable Two Way Sync</strong> is unchecked. If it remains unchecked, unsubscribes    will pass from MailChimp to Oro application. If enabled, subscription status can be passed from Oro application to MailCHimp and the other way around.</td>
+</tr>
+<tr class="row-odd"><td><strong>Sync Priority:</strong></td>
+<td><strong>Remote Wins</strong> means that the MailChimp will be considered the master and override conflicts with the Oro application. <strong>Local Wins</strong> means that local data will    be the master and override any conflicts with MailChimp.</td>
+</tr>
+</tbody>
+</table>
+<img alt="../../_images/o_choose_mc_integration.jpg" src="../../_images/o_choose_mc_integration.jpg" />
+</li>
+</ol>
+<p>4. Once all the details of the integration have been specified, click <strong>Save and Close.</strong> The integration has been successfully configured and
+will now appear in the integration grid.</p>
+</div>
+<div class="section" id="sync-integration">
+<h2><a class="toc-backref" href="#id4">Sync Integration</a><a class="headerlink" href="#sync-integration" title="Permalink to this headline">¶</a></h2>
+<p>In order to sync your integration:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System&gt;Integrations&gt;Manage Integrations</strong>.</li>
+<li>Select your newly created integration.</li>
+<li>Click <strong>Schedule Sync</strong> in the top right corner.</li>
+</ol>
+<img alt="../../_images/o_manage_integrations_orocrm_schedule_sync.jpg" src="../../_images/o_manage_integrations_orocrm_schedule_sync.jpg" />
+</div>
+<div class="section" id="related-articles">
+<h2><a class="toc-backref" href="#id5">Related Articles</a><a class="headerlink" href="#related-articles" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../../user_guide/marketing/sending_email_campaign_via_mailchimp.html#user-guide-mailchimp-campaign"><span class="std std-ref">Sending Email Campaign via MailChimp</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Integrations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="google_integration_settings.html">Google Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="google_single_sign_on.html">Google Single Sign-On</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ldap_integration.html">LDAP Integration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure MailChimp Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration.html">dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration_settings.html">dotmailer Synchronization Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_configuration.html">Configure dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_single_sign_on.html">Configure Single Sign-on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration_settings.html">MS Exchange Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration.html">Integration with Microsoft Exchange Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_outlook_integration_settings.html">MS Outlook Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="outlook_sync.html">Synchronization with Outlook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embedded_forms.html">Embedded Forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hangouts.html">Voice and Video Calls via Hangouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zendesk_integration.html">Integration with Zendesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commerce_integration.html">CRM and Commerce Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/configuration_guide/integrations/mailchimp_configuration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

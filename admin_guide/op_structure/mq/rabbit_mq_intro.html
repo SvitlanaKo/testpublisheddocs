@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AmqpMessageQueue Component (Enterprise Edition Only) &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="RabbitMQ Transport (via AmqpOroMessageQueue Bundle)" href="rabbit_mq.html" />
+    <link rel="prev" title="DBAL Transport Options and Limitations" href="dbal.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="rabbit_mq.html" title="RabbitMQ Transport (via AmqpOroMessageQueue Bundle)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dbal.html" title="DBAL Transport Options and Limitations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Administrator Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Operational Structure</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Message Queue</a> &#187;</li> 
+     <li class="nav-item nav-item-this">AmqpMessageQueue Component (Enterprise Edition Only)</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="amqpmessagequeue-component-enterprise-edition-only">
+<h1>AmqpMessageQueue Component (Enterprise Edition Only)<a class="headerlink" href="#amqpmessagequeue-component-enterprise-edition-only" title="Permalink to this headline">¶</a></h1>
+<p>The component incorporates message queue in your application via
+different transports. It contains several layers.</p>
+<p>The lowest layer is called Transport and it provides an abstraction of
+transport protocol. The Consumption layer provides the tools to consume
+messages, such as the cli command, signal handling, logging, extensions. It
+works on top of the transport layer.</p>
+<p>The Client layer provides the ability to start
+producingconsuming messages with as little configuration as possible.</p>
+<div class="section" id="minimum-permissions-rabbitmq">
+<h2>Minimum Permissions (RabbitMQ)<a class="headerlink" href="#minimum-permissions-rabbitmq" title="Permalink to this headline">¶</a></h2>
+<p>More about <a class="reference external" href="https://www.rabbitmq.com/access-control.html">access control</a></p>
+<p>Your credentials must meet the next minimum requirements:</p>
+<ul class="simple">
+<li>You have access to the requested rabbitmq&#8217;s virtual host (<code class="docutils literal"><span class="pre">/</span></code> by
+default).</li>
+<li>You need to have the next permissions: <code class="docutils literal"><span class="pre">configure</span></code>, <code class="docutils literal"><span class="pre">write</span></code>,
+<code class="docutils literal"><span class="pre">read</span></code>. It could be a default value <code class="docutils literal"><span class="pre">.*</span></code> or a stricter
+<code class="docutils literal"><span class="pre">oro\..*</span></code>.</li>
+</ul>
+<div class="section" id="queues">
+<h3>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">¶</a></h3>
+<p>If you use only this component, you are free to create any queues you
+want and as many as you need. If you use the Client abstraction
+with this transport, the next queues will be created: <code class="docutils literal"><span class="pre">oro.default</span></code> and
+<code class="docutils literal"><span class="pre">oro.default.delayed</span></code>. The first keeps all sent messages, and the
+seconds keeps broken message that have to be delayed and redelivered
+later. You can still have more queues by explicitly configuring the message
+processor <code class="docutils literal"><span class="pre">destinationName</span></code> option.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Usage is similar to one described in the message queue component. Here,
+we will show you how to get amqp connection. We are assuming the
+RabbitMQ is used as a broker with minimum configuration.</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">Oro\Component\AmqpMessageQueue\Transport\Amqp\AmqpConnection</span><span class="p">;</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="nx">AmqpConnection</span><span class="o">::</span><span class="na">createFromConfig</span><span class="p">([</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">5672</span><span class="p">,</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span>  <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vhost&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>In order to use the component with the symfony application, you first have to
+register the amqp transport factory (). And tell the message queue
+bundle to use it.</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">namespace</span> <span class="nx">Oro\Bundle\AmqpMessageQueueBundle</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Oro\Bundle\MessageQueueBundle\DependencyInjection\OroMessageQueueExtension</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Component\AmqpMessageQueue\DependencyInjection\AmqpTransportFactory</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\DependencyInjection\ContainerBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpKernel\Bundle\Bundle</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AcmeCoreBundle</span> <span class="k">extends</span> <span class="nx">Bundle</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">build</span><span class="p">(</span><span class="nx">ContainerBuilder</span> <span class="nv">$container</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** @var OroMessageQueueExtension $extension */</span>
+        <span class="nv">$extension</span> <span class="o">=</span> <span class="nv">$container</span><span class="o">-&gt;</span><span class="na">getExtension</span><span class="p">(</span><span class="s1">&#39;oro_message_queue&#39;</span><span class="p">);</span>
+        <span class="nv">$extension</span><span class="o">-&gt;</span><span class="na">addTransportFactory</span><span class="p">(</span><span class="k">new</span> <span class="nx">AmqpTransportFactory</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>*Tip:</strong> You can use AmqpMessageQueueBundle to register the factory automatically*</p>
+<p>The config:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="c1"># app/config/config.yml</span>
+<span class="nx">oro_message_queue</span><span class="o">:</span>
+    <span class="nx">transport</span><span class="o">:</span>
+        <span class="k">default</span><span class="o">:</span> <span class="s1">&#39;amqp&#39;</span>
+        <span class="nx">amqp</span><span class="o">:</span>
+          <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+          <span class="nx">port</span><span class="o">:</span> <span class="mi">5672</span>
+          <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;guest&#39;</span>
+          <span class="nx">password</span><span class="o">:</span> <span class="s1">&#39;guest&#39;</span>
+          <span class="nx">vhost</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delaying-messages">
+<h2>Delaying messages<a class="headerlink" href="#delaying-messages" title="Permalink to this headline">¶</a></h2>
+<p>In order to use delayed message with RabbitMQ broker, you have to install
+its plugin. More information can be found <a class="reference external" href="https://www.rabbitmq.com/blog/2015/04/16/scheduling-messages-with-rabbitmq/">here</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Operational Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elastic_search.html">Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../db_search/index.html">Manage Search in Oro Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cache.html">Cache in Oro Application</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Message Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_server_compression_and_caching.html">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jobs.html">Job Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cron.html">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/admin_guide/op_structure/mq/rabbit_mq_intro.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

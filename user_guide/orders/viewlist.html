@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>View Order List &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Edit an Order" href="edit.html" />
+    <link rel="prev" title="View Order Details" href="view.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="edit.html" title="Edit an Order"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="view.html" title="View Order Details"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Orders</a> &#187;</li> 
+     <li class="nav-item nav-item-this">View Order List</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="view-order-list">
+<span id="user-guide-sales-orders-viewlist"></span><h1>View Order List<a class="headerlink" href="#view-order-list" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#list-views" id="id1">List Views</a></li>
+<li><a class="reference internal" href="#order-list" id="id2">Order List</a></li>
+<li><a class="reference internal" href="#manage-orders-from-the-list" id="id3">Manage Orders from the List</a></li>
+</ul>
+</div>
+<p>To view the list of existing orders, navigate to <strong>Sales &gt; Orders</strong> in the main menu.</p>
+<img alt="../../_images/OrdersGrid.png" src="../../_images/OrdersGrid.png" />
+<p>To learn what you can find and perform when viewing the order details, see the following section.</p>
+<div class="section" id="list-views">
+<h2><a class="toc-backref" href="#id1">List Views</a><a class="headerlink" href="#list-views" title="Permalink to this headline">¶</a></h2>
+<p>At the top right you can see the name of the view. The views are defined by default:</p>
+<ul class="simple">
+<li>Open Orders &#8212; Shows only orders with status &#8216;Open&#8217;.</li>
+<li>All Orders &#8212; Shows all existing orders regardless of their statuses.</li>
+</ul>
+<p>To change the view, click the drop-down next to the view name and select the required view.</p>
+<img alt="../../_images/orders_views.png" src="../../_images/orders_views.png" />
+<p>You can also create and save new views for future use.</p>
+</div>
+<div class="section" id="order-list">
+<h2><a class="toc-backref" href="#id2">Order List</a><a class="headerlink" href="#order-list" title="Permalink to this headline">¶</a></h2>
+<p>The following information about orders is available:</p>
+<ul class="simple">
+<li><strong>Order Number</strong> &#8212; The unique order reference number. It is generated automatically for new orders.</li>
+<li><strong>PO Number</strong> &#8212; Another order reference number. It is usually defined by the buyer and used by the buyer&#8217;s side to match invoice and received goods with purchase.</li>
+<li><strong>DNSLT</strong> (Do not ship later than) &#8212; The date on which the order expires.</li>
+<li><strong>Currency</strong> &#8212; The currency in which the order is made.</li>
+<li><strong>Subtotal</strong> &#8212; The amount due for items included in the order. Does not include additional costs, taxes, discounts.</li>
+<li><strong>Total</strong> &#8212; The final amount due for the order. Includes all the additional costs (like shipping costs), taxes or discounts.</li>
+<li><strong>Customer</strong> &#8212; The customer that made the order.</li>
+<li><strong>Customer User</strong> &#8212; The customer user that made an order on behalf of the customer.</li>
+<li><strong>Internal Status</strong> &#8212; The order status visible only in the management console. See the <a class="reference internal" href="statuses.html#doc-orders-statuses-internal"><span class="std std-ref">description of internal statuses</span></a>.</li>
+<li><strong>Owner</strong> &#8212; The management console user who is responsible for the order.</li>
+<li><strong>Payment Status</strong> &#8212; Whether the order is already paid in full, the payment for the order is authorized, etc.</li>
+<li><strong>Payment Method</strong> &#8212; The payment method selected to pay for the order.</li>
+<li><strong>Shipping Method</strong> &#8212; The shipping method selected for the order delivery.</li>
+<li><strong>Source Document</strong> &#8212; If the order has been created from an RFQ, quote, or another order, this field contains a link to the corresponding record. If the order has been created from scratch (in the management console) or the quick order form (in the front store), the field shows &#8216;N/A&#8217;.</li>
+<li><strong>Discount</strong> &#8212; The total of all discounts applied to the order.</li>
+<li><strong>Created At</strong> &#8212; The date and time when the order was created.</li>
+<li><strong>Updated At</strong> &#8212; The date and time when the order was last updated.</li>
+<li><strong>Payment Term</strong> &#8212; The terms and conditions for order payment. For more information, see <a class="reference internal" href="../../configuration_guide/payment/payment_methods/payment_terms.html#sys-integrations-manage-integrations-payment-term"><span class="std std-ref">Payment Terms Integration</span></a>.</li>
+<li><strong>Warehouse</strong> &#8212; The warehouse that the goods are shipped from.</li>
+</ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>To manage the columns displayed within the grid, click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> on the right of the grid, and select the information you wish to be displayed.</p>
+<p class="last">To handle big volume of data, use page switcher, increase the &#8216;view per page&#8217; value, or use <i class="fa fa-filter fa-lg" aria-hidden="true"></i> filters to narrow down the list to the information you need.</p>
+</div>
+</div>
+<div class="section" id="manage-orders-from-the-list">
+<h2><a class="toc-backref" href="#id3">Manage Orders from the List</a><a class="headerlink" href="#manage-orders-from-the-list" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="create_new.html#user-guide-sales-orders-create"><span class="std std-ref">Create an order</span></a></li>
+</ul>
+<p>You can perform the following actions with every item of the orders list:</p>
+<ul class="simple">
+<li><a class="reference internal" href="view.html#user-guide-sales-orders-view"><span class="std std-ref">View order details</span></a></li>
+<li><a class="reference internal" href="edit.html#user-guide-sales-orders-edit"><span class="std std-ref">Edit order details</span></a></li>
+<li><a class="reference internal" href="delete.html#doc-orders-actions-delete"><span class="std std-ref">Delete orders</span></a></li>
+</ul>
+<img alt="../../_images/OrdersGridActions.png" src="../../_images/OrdersGridActions.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Orders</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="create_new.html">Create an Order from Scratch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_from_rfq.html">Create an Order from an RFQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_from_shopping_list.html">Create an Order from a Shopping List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view.html">View Order Details</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">View Order List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="edit.html">Edit an Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delete.html">Delete an Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mark_as_shipped.html">Mark an Order as Shipped</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cancel.html">Cancel an Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="close.html">Close an Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html">Archive an Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statuses.html">Order Internal Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/orders/viewlist.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

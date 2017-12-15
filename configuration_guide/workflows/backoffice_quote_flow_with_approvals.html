@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Backoffice Quote Flow with Approvals &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Understanding Quote Workflows" href="quote_flows_overview.html" />
+    <link rel="prev" title="Quote Management Flow" href="quote_management_workflow.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="quote_flows_overview.html" title="Understanding Quote Workflows"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quote_management_workflow.html" title="Quote Management Flow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Workflow Management</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Backoffice Quote Flow with Approvals</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="backoffice-quote-flow-with-approvals">
+<span id="doc-workflows-backoffice-quote-flow-with-approvals"></span><h1>Backoffice Quote Flow with Approvals<a class="headerlink" href="#backoffice-quote-flow-with-approvals" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></li>
+<li><a class="reference internal" href="#steps-and-transitions" id="id3">Steps and Transitions</a></li>
+<li><a class="reference internal" href="#example" id="id4">Example</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Backoffice Quote Flow with Approvals (BQFA) is a <a class="reference internal" href="index.html#user-guide-system-workflow-management-system-custom"><span class="std std-ref">system</span></a> workflow that defines a sequence of <a class="reference internal" href="index.html#user-guide-system-workflow-management-steps-transitions"><span class="std std-ref">steps and transitions</span></a> that a quote can go through as a deal progresses, including the steps where a sales person might have to get approval from the authorized person (e.g. their manager) before sending the quote with updated prices to the buyer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The difference between the simple quote workflow and the one with approval is covered in the <a class="reference internal" href="quote_flows_overview.html#system-workflows-quote-understanding"><span class="std std-ref">Understanding Quote Workflows</span></a> section.</p>
+</div>
+<p>To reach the workflow:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Workflows</strong> in the main menu.</li>
+<li>Click <strong>Quote Backoffice Flow with Approvals</strong> to open the flow. The following page opens:</li>
+</ol>
+<img alt="../../_images/backoffice_quote_with_approval.png" src="../../_images/backoffice_quote_with_approval.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since BQFA is a system workflow, it cannot be edited, modified, or deleted.</p>
+</div>
+<p>On the <strong>Backoffice Quote Flow with Approvals</strong> page, you can perform the following actions:</p>
+<ul class="simple">
+<li>Deactivate the workflow - click <strong>Deactivate</strong> to deactivate the workflow.</li>
+<li>Update configuration settings - click <strong>Configuration</strong>, modify the settigns, and click <strong>Save And Close</strong>.</li>
+</ul>
+<div class="section" id="in-use-summary">
+<span id="doc-workflows-backoffice-quote-flow-with-approvals-workflows-overview"></span><h3>In Use: Summary<a class="headerlink" href="#in-use-summary" title="Permalink to this headline">¶</a></h3>
+<p>When the <strong>BQFA</strong> is activated instead of the simple quote management workflow, and the <strong>Price Override Requires Approval</strong> option is enabled, the following process is enforced for the quotes where sales person has modified prices:</p>
+<ol class="arabic">
+<li><p class="first">A sales representative creates a quote for a buyer and sends it to an authorized person (e.g., a sales manager) for review.</p>
+</li>
+<li><p class="first">Upon the review, a sales manager may do one of the following:</p>
+<ul class="simple">
+<li>Approve a quote, and, sometimes, immediately send it to a buyer.</li>
+<li>Decline a quote.</li>
+<li>Return a quote to a sales representative for refinement.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The review step is required only after a sales representative has modified prices in the quote.</p>
+</div>
+</li>
+<li><p class="first">Once the quote is approved, the sales representative can send it to a buyer.</p>
+</li>
+</ol>
+<span class="target" id="doc-workflows-backoffice-quote-flow-with-approvals-prerequisites"></span></div>
+</div>
+<div class="section" id="prerequisites">
+<h2><a class="toc-backref" href="#id2">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To enable approvals for your quote management:</p>
+<ul class="simple">
+<li>In workflow configuration, ensure that <a class="reference internal" href="#doc-workflows-backoffice-quote-flow-with-approvals-configure"><span class="std std-ref">approvals are enabled</span></a> for the quotes with overridden price (as described n the section below).</li>
+<li><a class="reference internal" href="index.html#doc-system-workflow-management-activate"><span class="std std-ref">Activate</span></a> the <strong>Backoffice Quote Flow with Approvals</strong> workflow (as described in the topic on workflow management).</li>
+<li>Decide which users (e.g., sales people or their manager) should be reviewing and approving quotes.</li>
+<li>Authorize these users to review and approve quotes by enabling the <strong>Review and approve quotes</strong> capability for their role (as described in the section below).</li>
+</ul>
+<div class="section" id="configure-user-role-to-authorize-quote-approval">
+<h3>Configure User Role to Authorize Quote Approval<a class="headerlink" href="#configure-user-role-to-authorize-quote-approval" title="Permalink to this headline">¶</a></h3>
+<p>To enable quote approval for users with the particular role (e.g., for all sales managers, to enable peer approval), do the following:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Roles</strong> in the main menu.</li>
+<li>Click the necessary role (e.g., <em>Sales Manager</em>) to open it.</li>
+</ol>
+<ol class="arabic simple" start="2">
+<li>Start editing the role by clicking <strong>Edit</strong> on the top right.</li>
+<li>Click <strong>Quotes</strong> to get to the permissions and capabilities related to quotes management.</li>
+<li>In the capabilities list, select the <strong>Review and approve quotes</strong> check box.</li>
+<li>Click <strong>Save And Close</strong> on the top right.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that users with the permission to review and approve a quote do not need to (and thus cannot) perform the <strong>Send for Review</strong> workflow transition. They can send any quote (either created by them or by someone else) directly to the customer.</p>
+</div>
+</div>
+<div class="section" id="enable-approval-for-the-overridden-price-in-workflow-configuration">
+<span id="doc-workflows-backoffice-quote-flow-with-approvals-configure"></span><h3>Enable Approval for the Overridden Price in Workflow Configuration<a class="headerlink" href="#enable-approval-for-the-overridden-price-in-workflow-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Depending on the <strong>Price Override Requires Approval</strong> setting in the workflow configuration, <strong>BQFA</strong> may use the following strategies:</p>
+<ul class="simple">
+<li>Enabled &#8212; <em>Default.</em> Approval is required only after a sales representative (or any other user who is responsible for creating and managing the quote) has modified prices in a quote.</li>
+<li>Disabled &#8212; No approval is required to send any quote to the customer. In this case, <strong>BQFA</strong> mimics the behavior of the simple quote management flow.</li>
+</ul>
+<p>If the option is disabled, do the following to enable it:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>System &gt; Workflows</strong>.</p>
+</li>
+<li><p class="first">Click <strong>Backoffice Quote Flow with Approvals</strong> in the workflow list.</p>
+<p>The workflow details are shown.</p>
+</li>
+<li><p class="first">Click <strong>Configuration</strong> on the top right.</p>
+</li>
+<li><p class="first">Select the <strong>Price Override Requires Approval</strong> check box.</p>
+</li>
+<li><p class="first">Click <strong>Save And Close</strong> on the top right.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="steps-and-transitions">
+<span id="doc-workflows-backoffice-quote-flow-with-approvals-steps"></span><h2><a class="toc-backref" href="#id3">Steps and Transitions</a><a class="headerlink" href="#steps-and-transitions" title="Permalink to this headline">¶</a></h2>
+<p>Available options depend on the current status of the quote and your permissions.</p>
+<p>Quote status may be one of the following:</p>
+<ul class="simple">
+<li>Draft &#8212; the quote is being prepared.</li>
+<li>Submitted for Review &#8212; the quote has been sent to an authorized person for review.</li>
+<li>Under Review &#8212; the quote is being reviewed by an authorized person.</li>
+<li>Approved &#8212; the quote has been approved by an authorized person.</li>
+<li>Not Approved &#8211; the authorized person declined the quote.</li>
+<li>Sent to Customer &#8212; the quote is sent to the customer.</li>
+<li>Closed &#8212; the quote is closed and no further actions with the quote are possible unless it is reopened.</li>
+<li>Deleted &#8212; the quote has been removed.</li>
+</ul>
+<p>The following table describes which options are available for each of the statuses and how the corresponding transitions change the quote status.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Some transitions are available only for a reviewer (Reviewer) and some only for a user without reviewing permissions (Sales). The availability is indicated in the corresponding columns.</p>
+<p class="last">A buyer can see only quotes that have been sent to the customer.</p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="68%" />
+<col width="5%" />
+<col width="4%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Current Quote Status</th>
+<th class="head">Transitions from Step</th>
+<th class="head">Reviewer</th>
+<th class="head">Sales</th>
+<th class="head">New Status</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="5">Draft</td>
+<td>Edit &#8212; make changes to the quote draft.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Draft</td>
+</tr>
+<tr class="row-odd"><td>Clone &#8212; create a copy of the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Draft</td>
+</tr>
+<tr class="row-even"><td>Delete &#8212; remove the quote draft.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Deleted</td>
+</tr>
+<tr class="row-odd"><td>Send to Customer &#8212; send this quote to the customer. <em>If the quote has been modified, this option becomes unavailable for Sales</em></td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Sent to Customer</td>
+</tr>
+<tr class="row-even"><td>Submit for Review &#8212; send the quote to the authorized person for review.</td>
+<td>&nbsp;</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Submitted for Review</td>
+</tr>
+<tr class="row-odd"><td>Submitted for Review</td>
+<td>Review &#8212; start reviewing the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+<td>Under Review</td>
+</tr>
+<tr class="row-even"><td rowspan="4">Under Review</td>
+<td>Return &#8212; return the quote for refinement.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+<td>Open</td>
+</tr>
+<tr class="row-odd"><td>Approve and Send to Customer &#8212; indicate that you would like to approve the quote and send it to the customer.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+<td>Draft</td>
+</tr>
+<tr class="row-even"><td>Approve &#8212; grant your approval on the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+<td>Approved</td>
+</tr>
+<tr class="row-odd"><td>Decline &#8212; reject the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&nbsp;</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td>Approved</td>
+<td>Send to Customer &#8212; directly send this quote to the customer.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Sent to Customer</td>
+</tr>
+<tr class="row-odd"><td>Not Approved</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Open</td>
+</tr>
+<tr class="row-even"><td rowspan="5">Sent to Customer</td>
+<td>Cancel &#8212; call of the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Closed</td>
+</tr>
+<tr class="row-odd"><td>Expire &#8212; indicate that the quote&#8217;s validity period is over.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td>Delete &#8212; remove the quota.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Deleted</td>
+</tr>
+<tr class="row-odd"><td>Create New Quote &#8212; create a copy of the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Sent to Customer</td>
+</tr>
+<tr class="row-even"><td>Declined by Customer &#8212; indicate that the customer did not agree to the terms of the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Closed</td>
+</tr>
+<tr class="row-odd"><td>Closed</td>
+<td>Reopen &#8212; actualize the quote again. A new quote with the same data will appear. The current quote remains closed.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td>Deleted</td>
+<td>Undelete &#8212; restore the quote.</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Draft</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <strong>Accept</strong> and <strong>Decline</strong> transitions (from the <strong>Sent to Customer</strong> step) are reserved for future use.</p>
+</div>
+</div>
+<div class="section" id="example">
+<span id="doc-workflows-backoffice-quote-flow-with-approvals-follow"></span><h2><a class="toc-backref" href="#id4">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>In the following example, a sales rep Jin Thompson creates a quote and modifies prices for the line items.</p>
+<p>As the BQFA is active and the price override requires approval, the sales manager Damara Lira reviews the quote and approves it before Jim sends it to the customer.</p>
+<p>Let us go through every step of this process:</p>
+<ol class="arabic">
+<li><p class="first">Jin creates a quote.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The BQFA workflow starts when Jin saves a quote created from scratch, or from a request for quote received from a buyer. For more information on creating quotes, see <a class="reference internal" href="../../user_guide/quotes/index.html#user-guide-sales-quotes"><span class="std std-ref">Quotes</span></a>.</p>
+</div>
+<p>A newly created quote is in the <strong>Draft</strong> status. The line item price is not yet modified, and the quote does not require approval. Jin can send it to the customer.</p>
+<img alt="../../_images/workflow_bqfa_quote_created.png" src="../../_images/workflow_bqfa_quote_created.png" />
+</li>
+<li><p class="first">As a customer has a positive record and frequently buys headlamps in bulk, they have negotiated a personal discount of 1$ on every headlamp. The new price for the headlamp is 4$ (an MSRP, the best deal Jin could offer).</p>
+<p>To reflect the negotiated price in the quote, Jin clicks <strong>Edit</strong> and updates the headlamp price:</p>
+<img alt="../../_images/workflow_bqfa_quote_edited1.png" src="../../_images/workflow_bqfa_quote_edited1.png" />
+<p>When Jin saves the changes, the <strong>Send To Customer</strong> option becomes hidden, as he cannot send the quote without approval. To get it, Jin has to send the quote for review:</p>
+</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/workflow_bqfa_quote_edited2.png" src="../../_images/workflow_bqfa_quote_edited2.png" />
+</div></blockquote>
+<ol class="arabic">
+<li><p class="first">Jin clicks <strong>Submit for Review</strong>, enters a message that justifies the price update and sends the quote for review.</p>
+<img alt="../../_images/workflow_bqfa_quote_sendforreview1.png" src="../../_images/workflow_bqfa_quote_sendforreview1.png" />
+<p>Once submitted, the quote gets into the <em>Submitted for Review</em> status, which is indicated above the quote details. Jin cannot change the quote or call the submission back until the review is complete.</p>
+<img alt="../../_images/workflow_bqfa_quote_sendforreview2.png" src="../../_images/workflow_bqfa_quote_sendforreview2.png" />
+<p>If email notifications were configured, Damara (as the authorized approver) might get an email about the review request.</p>
+<p>Sample email text:</p>
+<img alt="../../_images/workflow_bqfa_quote_sendforreview_notification.png" src="../../_images/workflow_bqfa_quote_sendforreview_notification.png" />
+</li>
+<li><p class="first">Damara opens the quote submitted for review either via the link in the email or by looking it up in the quotes list using the filter by internal status (is any of &#8220;Submitted for Review&#8221;).</p>
+<p>The following page opens:</p>
+<img alt="../../_images/workflow_bqfa_quote_review1.png" src="../../_images/workflow_bqfa_quote_review1.png" />
+</li>
+<li><p class="first">Damara clicks <strong>Review</strong> to move the quote to the <em>Under Review</em> status and communicate to Jin that his request is being processed.</p>
+<img alt="../../_images/workflow_bqfa_quote_review2.png" src="../../_images/workflow_bqfa_quote_review2.png" />
+<p>The comment that Jin entered when submitting the quote for review is available in the quote&#8217;s activities section:</p>
+<img alt="../../_images/workflow_bqfa_quote_review4.png" src="../../_images/workflow_bqfa_quote_review4.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Once the quote is under review, Jin can see the updated status. However, transitions to further steps are disabled until the approval is gained.</p>
+<img alt="../../_images/workflow_bqfa_quote_review3.png" class="last" src="../../_images/workflow_bqfa_quote_review3.png" />
+</div>
+</li>
+<li><p class="first">As the modified price fits the current aggressive headlamp sale strategy, Damara approves the quote by clicking <strong>Approve</strong> and leaving a short message for Jim.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Damara may use <strong>Approve And Send To Customer</strong> action if she is sure the quote is finalized.</p>
+</div>
+<img alt="../../_images/workflow_bqfa_quote_approve1.png" src="../../_images/workflow_bqfa_quote_approve1.png" />
+<p>This changes the quote status to <em>Approved</em>.</p>
+<img alt="../../_images/workflow_bqfa_quote_approve2.png" src="../../_images/workflow_bqfa_quote_approve2.png" />
+<p>If the email notifications were configured, Jin (as the one who requested approval) might get an email about the review outcome.</p>
+<p>Sample email text:</p>
+<img alt="../../_images/workflow_bqfa_quote_approved_notification.png" src="../../_images/workflow_bqfa_quote_approved_notification.png" />
+</li>
+<li><p class="first">Jin opens the approved quote either via the link in the email or by looking it up in the quotes list using the filter by internal status (is any of &#8220;Reviewed&#8221;).</p>
+<p>The following page opens:</p>
+<img alt="../../_images/workflow_bqfa_quote_approve3.png" src="../../_images/workflow_bqfa_quote_approve3.png" />
+</li>
+</ol>
+<ol class="arabic" start="6">
+<li><p class="first">Jin clicks <strong>Send To Customer</strong> and reviews the email draft. Additional recipients may be added to the To, CC, or BCC fields. The email body may be adjusted to be more personalized.</p>
+<img alt="../../_images/workflow_bqfa_quote_sendtocustomer1.png" src="../../_images/workflow_bqfa_quote_sendtocustomer1.png" />
+<p>When Jim is happy with the draft, he clicks <strong>Send</strong>.</p>
+<p>After the quote is sent, Jin or the authorized approver (Damara) can perform the following actions with the quote:</p>
+<ul class="simple">
+<li>Cancel</li>
+<li>Expire</li>
+<li>Capture that the customer has declined</li>
+</ul>
+<img alt="../../_images/workflow_bqfa_quote_sendtocustomer2.png" src="../../_images/workflow_bqfa_quote_sendtocustomer2.png" />
+<p>In the front store, the quote becomes available to the customer user it was created for:</p>
+<img alt="../../_images/workflow_bqfa_quote_sendtocustomer3.png" src="../../_images/workflow_bqfa_quote_sendtocustomer3.png" />
+</li>
+</ol>
+<p><strong>Related Topics</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quote_flows_overview.html">Understanding Quote Workflows</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Workflow Management</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quote_management_workflow.html">Quote Management Flow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Backoffice Quote Flow with Approvals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfq_backoffice.html">RFQ Management Flow Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfq_frontoffice.html">RFQ Submission Flow Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkout.html">Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alternative_checkout.html">Alternative Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="single_page_checkout_workflow.html">Single Page Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="task_flow.html">Task Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/configuration_guide/workflows/backoffice_quote_flow_with_approvals.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

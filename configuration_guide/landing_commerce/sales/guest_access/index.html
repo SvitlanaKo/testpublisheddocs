@@ -1,0 +1,842 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configure Guest Access &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Enabling Website Guest Access Globally" href="guest_access_global.html" />
+    <link rel="prev" title="Set Display Details" href="../sales_info/display_details.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="guest_access_global.html" title="Enabling Website Guest Access Globally"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../sales_info/display_details.html" title="Set Display Details"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Commerce Configuration</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Sales</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configure Guest Access</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configure-guest-access">
+<span id="sys-conf-commerce-guest"></span><h1>Configure Guest Access<a class="headerlink" href="#configure-guest-access" title="Permalink to this headline">¶</a></h1>
+<p>In you Oro application, you can enable or disable guest website access, in addition to managing its different aspects, such as guest shopping lists, guest checkout, guest RFQ and guest quick order form.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configure-guest-website-access" id="id6">Configure Guest Website Access</a></li>
+<li><a class="reference internal" href="#configure-guest-checkout" id="id7">Configure Guest Checkout</a></li>
+<li><a class="reference internal" href="#configure-guest-checkout-with-registration-options" id="id8">Configure Guest Checkout with Registration Options</a></li>
+<li><a class="reference internal" href="#configure-guest-shopping-lists" id="id9">Configure Guest Shopping Lists</a></li>
+<li><a class="reference internal" href="#configure-guest-quick-order-form" id="id10">Configure Guest Quick Order Form</a></li>
+<li><a class="reference internal" href="#configure-guest-request-for-quote-submission" id="id11">Configure Guest Request for Quote Submission</a></li>
+</ul>
+</div>
+<div class="section" id="configure-guest-website-access">
+<h2><a class="toc-backref" href="#id6">Configure Guest Website Access</a><a class="headerlink" href="#configure-guest-website-access" title="Permalink to this headline">¶</a></h2>
+<p>In order to prevent non-registered customers from accessing OroCommerce front store, the administrator can disable website access by non-authenticated visitors. This can be done globally, per website, or per organization.</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><a class="reference internal" href="#enabling-guest-website-access-globally" id="id12">Enabling Guest Website Access Globally</a></li>
+<li><a class="reference internal" href="#enabling-guest-website-access-per-organization" id="id13">Enabling Guest Website Access per Organization</a></li>
+<li><a class="reference internal" href="#enabling-guest-website-access-per-website" id="id14">Enabling Guest Website Access per Website</a></li>
+</ul>
+</div>
+<p>When guest access is disabled:</p>
+<ul class="simple">
+<li>New users can register, if self-registration is enabled in <strong>Commerce &gt; Customer &gt; Customer Users &gt; Registration Allowed</strong>.</li>
+<li>Guest users can register if self-registration is allowed, even if the website access is closed.</li>
+<li>Guest users cannot access any website pages, except for the login/forgot/reset password page.</li>
+<li>Guest users are redirected to the login page when they try to access the homepage.</li>
+</ul>
+<img alt="../../../../_images/SignIn.png" src="../../../../_images/SignIn.png" />
+<div class="section" id="enabling-guest-website-access-globally">
+<h3><a class="toc-backref" href="#id12">Enabling Guest Website Access Globally</a><a class="headerlink" href="#enabling-guest-website-access-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest access globally:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Configuration &gt; Commerce &gt; Guests &gt; Website Access</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Select the <strong>Enable Guest Access</strong> checkbox.</li>
+<li>Click <strong>Save Settings</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To disable guest access globally, clear the <strong>Enable Guest Access</strong> checkbox.</p>
+</div>
+<img alt="../../../../_images/GuestAccessSysConfig.png" src="../../../../_images/GuestAccessSysConfig.png" />
+</div>
+<div class="section" id="enabling-guest-website-access-per-organization">
+<h3><a class="toc-backref" href="#id13">Enabling Guest Website Access per Organization</a><a class="headerlink" href="#enabling-guest-website-access-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest access per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong>.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization, and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Guests &gt; Website Access</strong> in the menu on the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li>Select the <strong>Enable Guest Access</strong> checkbox.</li>
+<li>Click <strong>Save Settings</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To disable guest access globally, clear the <strong>Enable Guest Access</strong> checkbox.</p>
+</div>
+<img alt="../../../../_images/GuestAccessOrg.png" src="../../../../_images/GuestAccessOrg.png" />
+</div>
+<div class="section" id="enabling-guest-website-access-per-website">
+<h3><a class="toc-backref" href="#id14">Enabling Guest Website Access per Website</a><a class="headerlink" href="#enabling-guest-website-access-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest access per website:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong>.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website, and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Guests &gt; Website Access</strong> in the menu on the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li>Select the <strong>Enable Guest Access</strong> checkbox.</li>
+<li>Click <strong>Save Settings</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To disable guest access globally, clear the <strong>Enable Guest Access</strong> checkbox.</p>
+</div>
+<img alt="../../../../_images/GuestAccessWeb.png" src="../../../../_images/GuestAccessWeb.png" />
+</div>
+</div>
+<div class="section" id="configure-guest-checkout">
+<span id="user-guide-system-configuration-commerce-sales-checkout"></span><h2><a class="toc-backref" href="#id7">Configure Guest Checkout</a><a class="headerlink" href="#configure-guest-checkout" title="Permalink to this headline">¶</a></h2>
+<p>Guest checkout allows unregistered customers proceed through the steps of the checkout similarly to registered customers, with the exception of needing to enter their data manually as there is no pre-filled information available in the checkout forms. They are also limited to 1 shopping list.</p>
+<p>When proceeding through the checkout, unauthenticated customers can choose whether the wish to register, login or continue as guests.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">As creating a shopping list is the key component of the <a class="reference internal" href="../../../../frontstore_guide/orders/index.html#frontstore-guide-orders-checkout"><span class="std std-ref">checkout process</span></a>, guest checkout can only operate properly when <a class="reference internal" href="guest_shopping_list_global.html#user-guide-system-configuration-commerce-sales-shopping-list-global"><span class="std std-ref">shopping lists are enabled</span></a> in the system.  g</p>
+</div>
+<p>The following is the list of actions that unregistered customers can and cannot perform when guest checkout is enabled in your Oro application:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">GUEST CUSTOMERS CAN</th>
+<th class="head">GUEST CUSTOMERS CANNOT</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><ol class="first last arabic simple">
+<li>Proceed to the checkout.</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple">
+<li>View their placed orders.</li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><ol class="first last arabic simple" start="2">
+<li>Create one shopping list and add items to it.</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple" start="2">
+<li>Save their details for future use on the website.</li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><ol class="first last arabic simple" start="3">
+<li>Use the quick order form.</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple" start="3">
+<li>View created quotes.</li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><ol class="first last arabic simple" start="4">
+<li>Submit a request for quote.</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple" start="4">
+<li>Communicate with the manager through the website.</li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td><ol class="first last arabic simple" start="5">
+<li>Proceed as guests with the option to register within guest checkout.</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple" start="5">
+<li>Proceed to checkout.</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For complete guest checkout experience, it is recommended to enable guest shopping lists, guest quick order form and guest requests for quotes.</p>
+</div>
+<p>Guest checkout can be configured on three levels &#8211; globally, per organization and website.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that website settings override organization, organization settings override system settings.</p>
+</div>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#configure-guest-checkout-globally" id="id15">Configure Guest Checkout Globally</a></li>
+<li><a class="reference internal" href="#configure-guest-checkout-per-organization" id="id16">Configure Guest Checkout per Organization</a></li>
+<li><a class="reference internal" href="#configure-guest-checkout-per-website" id="id17">Configure Guest Checkout per Website</a></li>
+</ul>
+</div>
+<div class="section" id="configure-guest-checkout-globally">
+<h3><a class="toc-backref" href="#id15">Configure Guest Checkout Globally</a><a class="headerlink" href="#configure-guest-checkout-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest checkout globally:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Checkout</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/CheckoutGlobal.png" src="../../../../_images/CheckoutGlobal.png" />
+<ol class="arabic" start="3">
+<li><p class="first">In the <strong>Guest Checkout</strong> section, set whether guest checkout should be enabled or disabled.</p>
+<p>By default, guest checkout is disabled.</p>
+<p>To enable it, clear <em>Use Default</em> and select the <em>Enable Guest Checkout</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest Checkout Owner Settings</strong> section, select the default owner of the guest checkout. Depending on the roles and permissions of the owner, guest data (e.g. shopping lists) may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest checkout data, adjust permissions for the checkout entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-checkout-per-organization">
+<h3><a class="toc-backref" href="#id16">Configure Guest Checkout per Organization</a><a class="headerlink" href="#configure-guest-checkout-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest checkout per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Checkout</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/CheckoutOrg.png" src="../../../../_images/CheckoutOrg.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Guest Checkout</strong> section, set whether guest checkout should be enabled or disabled.</p>
+<p>By default, guest checkout is disabled.</p>
+<p>To enable it, clear <em>Use System</em> and select the <em>Enable Guest Checkout</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest Checkout Owner Settings</strong> section, select the default owner of the guest checkout. Depending on the roles and permissions of the owner, guest data (e.g. shopping lists) may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest checkout data, adjust permissions for the checkout entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-checkout-per-website">
+<h3><a class="toc-backref" href="#id17">Configure Guest Checkout per Website</a><a class="headerlink" href="#configure-guest-checkout-per-website" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Checkout</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/CheckoutWeb.png" src="../../../../_images/CheckoutWeb.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Guest Checkout</strong> section, set whether guest checkout should be enabled or disabled.</p>
+<p>By default, guest checkout is disabled.</p>
+<p>To enable it, clear <em>Use System</em> and select the <em>Enable Guest Checkout</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest Checkout Owner Settings</strong> section, select the default owner of the guest checkout. Depending on the roles and permissions of the owner, guest data (e.g. shopping lists) may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest checkout data, adjust permissions for the checkout entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="configure-guest-checkout-with-registration-options">
+<span id="user-guide-system-configuration-commerce-sales-checkout-registration"></span><h2><a class="toc-backref" href="#id8">Configure Guest Checkout with Registration Options</a><a class="headerlink" href="#configure-guest-checkout-with-registration-options" title="Permalink to this headline">¶</a></h2>
+<p>You can control whether guest users are offered to login/register or continue as guests during the checkout. If they select to proceed as guests, they are once again offered to register during order review.</p>
+<p>In addition, you can enable customers who choose to register at the checkout to proceed through its steps without email confirmation. In the management console, in such case, the placed order will be assigned to this customer as the registered one, instead of being attributed to an unauthenticated user.</p>
+<p>Guest Checkout with Registration Options can be configured on three levels &#8211; globally, per organization or per website.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that website settings override organization, organization settings override system settings.</p>
+</div>
+<div class="section" id="configure-guest-checkout-with-registration-options-globally">
+<h3>Configure Guest Checkout with Registration Options Globally<a class="headerlink" href="#configure-guest-checkout-with-registration-options-globally" title="Permalink to this headline">¶</a></h3>
+<p>To configure guest checkout with an option to register globally:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Checkout</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/GuestCheckoutRegistrationGlobal.png" src="../../../../_images/GuestCheckoutRegistrationGlobal.png" />
+<ol class="arabic" start="2">
+<li><p class="first">In the <strong>Customer Users Registration</strong> section, you can:</p>
+<ol class="loweralpha simple">
+<li><strong>Allow Registration</strong> &#8212;  when the option is enabled, registration is allowed for customers on the checkout page.</li>
+<li><strong>Allow Checkout without Email Confirmation</strong> &#8212; when the option is enabled, customers proceed to the checkout immediately once registration details are provided. When this option is disabled, the checkout does not start until the user confirms their email address.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, both options are <em>enabled</em>. However, they are only relevant when <a class="reference internal" href="#user-guide-system-configuration-commerce-sales-checkout"><span class="std std-ref">guest checkout</span></a> is enabled.</p>
+</div>
+<p>To disable the options:</p>
+<ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box.</li>
+<li>Clear the <strong>Allow Registration</strong> and <strong>Allow Checkout without Email Confirmation</strong> check boxes.</li>
+</ol>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong></p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-checkout-with-registration-options-per-organization">
+<h3>Configure Guest Checkout with Registration Options per Organization<a class="headerlink" href="#configure-guest-checkout-with-registration-options-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To configure guest checkout with an option to register per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Checkout</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/GuestCheckoutRegistrationOrg.png" src="../../../../_images/GuestCheckoutRegistrationOrg.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Customer Users Registration</strong> section, you can:</p>
+<ol class="loweralpha simple">
+<li><strong>Allow Registration</strong> &#8212;  when the option is enabled, registration is allowed for customers on the checkout page.</li>
+<li><strong>Allow Checkout without Email Confirmation</strong> &#8212; when the option is enabled, customers proceed to the checkout immediately once registration details are provided. When this option is disabled, the checkout does not start until the user confirms their email address.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, both options are <em>enabled</em>. However, they are only relevant when <a class="reference internal" href="#user-guide-system-configuration-commerce-sales-checkout"><span class="std std-ref">guest checkout</span></a> is enabled.</p>
+</div>
+<p>To disable the options:</p>
+<ol class="loweralpha simple">
+<li>Clear the <strong>Use System</strong> check box.</li>
+<li>Clear the <strong>Allow Registration</strong> and <strong>Allow Checkout without Email Confirmation</strong> check boxes.</li>
+</ol>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong></p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-checkout-with-registration-options-per-website">
+<h3>Configure Guest Checkout with Registration Options per Website<a class="headerlink" href="#configure-guest-checkout-with-registration-options-per-website" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Checkout</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/GuestCheckoutRegistrationWeb.png" src="../../../../_images/GuestCheckoutRegistrationWeb.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Customer Users Registration</strong> section, you can:</p>
+<ol class="loweralpha simple">
+<li><strong>Allow Registration</strong> &#8212;  when the option is enabled, registration is allowed for customers on the checkout page.</li>
+<li><strong>Allow Checkout without Email Confirmation</strong> &#8212; when the option is enabled, customers proceed to the checkout immediately once registration details are provided. When this option is disabled, the checkout does not start until the user confirms their email address.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, both options are <em>enabled</em>. However, they are only relevant when <a class="reference internal" href="#user-guide-system-configuration-commerce-sales-checkout"><span class="std std-ref">guest checkout</span></a> is enabled.</p>
+</div>
+<p>To disable the options:</p>
+<ol class="loweralpha simple">
+<li>Clear the <strong>Use System</strong> check box.</li>
+<li>Clear the <strong>Allow Registration</strong> and <strong>Allow Checkout without Email Confirmation</strong> check boxes.</li>
+</ol>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="configure-guest-shopping-lists">
+<span id="user-guide-system-configuration-commerce-sales-shopping-list"></span><h2><a class="toc-backref" href="#id9">Configure Guest Shopping Lists</a><a class="headerlink" href="#configure-guest-shopping-lists" title="Permalink to this headline">¶</a></h2>
+<p>You control whether to let unregistered customers purchase goods in the store by enabling or disabling <a class="reference internal" href="../../../../frontstore_guide/shopping_lists/index.html#frontstore-guide-shopping-lists"><span class="std std-ref">shopping lists</span></a>. This can be configured on three levels &#8211; globally, per organization and website.</p>
+<div class="contents local topic" id="id3">
+<ul class="simple">
+<li><a class="reference internal" href="#configure-guest-shopping-lists-globally" id="id18">Configure Guest Shopping Lists Globally</a></li>
+<li><a class="reference internal" href="#configure-guest-shopping-lists-per-organization" id="id19">Configure Guest Shopping Lists per Organization</a></li>
+<li><a class="reference internal" href="#configure-guest-shopping-lists-per-website" id="id20">Configure Guest Shopping Lists per Website</a></li>
+</ul>
+</div>
+<p>By default, guest shopping lists are disabled. In addition, only 1 shopping list is available for guest customers.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that website settings override organization, organization settings override system settings.</p>
+</div>
+<div class="section" id="configure-guest-shopping-lists-globally">
+<h3><a class="toc-backref" href="#id18">Configure Guest Shopping Lists Globally</a><a class="headerlink" href="#configure-guest-shopping-lists-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest shopping lists globally:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Shopping List</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ShopListGlobal.png" src="../../../../_images/ShopListGlobal.png" />
+<ol class="arabic" start="3">
+<li><p class="first">In the <strong>Shopping List Limit</strong> section, set the number of shopping lists allowed per customer. The default value is zero. This means that no limit of shopping lists is applied.</p>
+</li>
+<li><p class="first">In the <strong>Guest Shopping List</strong> section, set whether guests are allowed to create and manage shopping lists.</p>
+<p>By default, guest shopping lists are disabled.</p>
+<p>To enable guest shopping lists, clear <em>Use Default</em> and select the <em>Enable Guest Shopping List</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest Shopping List Owner Settings</strong> section, select the user who will be the default owner of all guest shopping lists. Depending on the roles and permissions of the owner, guest shopping lists may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest shopping lists, adjust permissions for the shopping list entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-shopping-lists-per-organization">
+<h3><a class="toc-backref" href="#id19">Configure Guest Shopping Lists per Organization</a><a class="headerlink" href="#configure-guest-shopping-lists-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest shopping lists per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Shopping List</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ShopListOrg.png" src="../../../../_images/ShopListOrg.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Shopping List Limit</strong> section, set the number of shopping lists allowed per customer. The default value is zero. This means that no limit of shopping lists is applied.</p>
+</li>
+<li><p class="first">In the <strong>Guest Shopping List</strong> section, set whether guests are allowed to create and manage shopping lists.</p>
+<p>By default, guest shopping lists are disabled.</p>
+<p>To enable guest shopping lists, clear <em>Use System</em> and select the <em>Enable Guest Shopping List</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest Shopping List Owner Settings</strong> section, select the user who will be the default owner of all guest shopping lists. Depending on the roles and permissions of the owner, guest shopping lists may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest shopping lists, adjust permissions for the shopping list entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <strong>Use System</strong> check box is enabled, <a class="reference internal" href="guest_shopping_list_global.html#user-guide-system-configuration-commerce-sales-shopping-list-global"><span class="std std-ref">system settings</span></a> are applied.</p>
+</div>
+</div>
+<div class="section" id="configure-guest-shopping-lists-per-website">
+<h3><a class="toc-backref" href="#id20">Configure Guest Shopping Lists per Website</a><a class="headerlink" href="#configure-guest-shopping-lists-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest shopping lists per website:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Shopping List</strong> in the menu on the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ShopListWebsite.png" src="../../../../_images/ShopListWebsite.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Shopping List Limit</strong> section, set the number of shopping lists allowed per customer. The default value is zero. This means that no limit of shopping lists is applied.</p>
+</li>
+<li><p class="first">In the <strong>Guest Shopping List</strong> section, set whether guests are allowed to create and manage shopping lists.</p>
+<p>By default, guest shopping lists are disabled.</p>
+<p>To enable guest shopping lists, clear <em>Use System</em> and select the <em>Enable Guest Shopping List</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest Shopping List Owner Settings</strong> section, select the user who will be the default owner of all guest shopping lists. Depending on the roles and permissions of the owner, guest shopping lists may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest shopping lists, adjust permissions for the shopping list entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <strong>Use System</strong> check box is enabled, <a class="reference internal" href="guest_shopping_list_global.html#user-guide-system-configuration-commerce-sales-shopping-list-global"><span class="std std-ref">system settings</span></a> are applied.</p>
+</div>
+</div>
+</div>
+<div class="section" id="configure-guest-quick-order-form">
+<span id="user-guide-system-configuration-commerce-sales-quick-order-form"></span><h2><a class="toc-backref" href="#id10">Configure Guest Quick Order Form</a><a class="headerlink" href="#configure-guest-quick-order-form" title="Permalink to this headline">¶</a></h2>
+<p>Unregistered customers can use a guest <a class="reference internal" href="../../../../frontstore_guide/orders/index.html#frontstore-guide-orders-quick-order"><span class="std std-ref">quick order form</span></a> for fast purchases in the Oro front store. By default, the guest quick order form is disabled, but you can enable it on three levels &#8211; globally, per organization and per website.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that website settings override organization, organization settings override system settings.</p>
+</div>
+<div class="contents local topic" id="id4">
+<ul class="simple">
+<li><a class="reference internal" href="#configure-guest-quick-order-form-globally" id="id21">Configure Guest Quick Order Form Globally</a></li>
+<li><a class="reference internal" href="#configure-guest-quick-order-form-per-organization" id="id22">Configure Guest Quick Order Form per Organization</a></li>
+<li><a class="reference internal" href="#configure-guest-quick-order-form-per-website" id="id23">Configure Guest Quick Order Form per Website</a></li>
+</ul>
+</div>
+<div class="section" id="configure-guest-quick-order-form-globally">
+<h3><a class="toc-backref" href="#id21">Configure Guest Quick Order Form Globally</a><a class="headerlink" href="#configure-guest-quick-order-form-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable the guest quick order form globally:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Quick Order Form</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/QOFGlobal.png" src="../../../../_images/QOFGlobal.png" />
+<ol class="arabic" start="3">
+<li><p class="first">In the <strong>Guest Quick Order Form</strong> section, set whether guests are allowed to create a quick order form.</p>
+<p>By default, the guest quick order form is disabled.</p>
+<p>To enable it, clear <em>Use Default</em> and select the <em>Enable Guest Quick Order Form</em> check box.</p>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-quick-order-form-per-organization">
+<h3><a class="toc-backref" href="#id22">Configure Guest Quick Order Form per Organization</a><a class="headerlink" href="#configure-guest-quick-order-form-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable the guest quick order form per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Quick Order Form</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/QOFOrg.png" src="../../../../_images/QOFOrg.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Guest Quick Order Form</strong> section, set whether guests are allowed to create a quick order form.</p>
+<p>By default, the guest quick order form is disabled.</p>
+<p>To enable it, clear <em>Use System</em> and select the <em>Enable Guest Quick Order Form</em> check box.</p>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-quick-order-form-per-website">
+<h3><a class="toc-backref" href="#id23">Configure Guest Quick Order Form per Website</a><a class="headerlink" href="#configure-guest-quick-order-form-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To enable the guest quick order form per website:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Quick Order Form</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/QOFWeb.png" src="../../../../_images/QOFWeb.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Guest Quick Order Form</strong> section, set whether guests are allowed to create a quick order form.</p>
+<p>By default, the guest quick order form is disabled.</p>
+<p>To enable it, clear <em>Use System</em> and select the <em>Enable Guest Quick Order Form</em> check box.</p>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="configure-guest-request-for-quote-submission">
+<span id="user-guide-system-configuration-commerce-sales-rfq"></span><h2><a class="toc-backref" href="#id11">Configure Guest Request for Quote Submission</a><a class="headerlink" href="#configure-guest-request-for-quote-submission" title="Permalink to this headline">¶</a></h2>
+<p>In order to let unregistered customers request quotes on the items they are interested in, you can enable Guest RFQ Forms in your Oro application. This will also allow sales reps collect information on potential sales in the management console. This can be configured on three levels &#8211; globally, per organization and website.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Make sure you enable <a class="reference internal" href="#user-guide-system-configuration-commerce-sales-shopping-list"><span class="std std-ref">Guest Shopping Lists</span></a> in the management console to let guest customers create RFQs from the shopping lists in their front store.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that website settings override organization, organization settings override system settings.</p>
+</div>
+<div class="contents local topic" id="id5">
+<ul class="simple">
+<li><a class="reference internal" href="#configure-guest-request-for-quote-submission-globally" id="id24">Configure Guest Request for Quote Submission Globally</a></li>
+<li><a class="reference internal" href="#configure-guest-request-for-quote-submission-per-organization" id="id25">Configure Guest Request for Quote Submission per Organization</a></li>
+<li><a class="reference internal" href="#configure-guest-request-for-quote-submission-per-website" id="id26">Configure Guest Request for Quote Submission per Website</a></li>
+</ul>
+</div>
+<div class="section" id="configure-guest-request-for-quote-submission-globally">
+<h3><a class="toc-backref" href="#id24">Configure Guest Request for Quote Submission Globally</a><a class="headerlink" href="#configure-guest-request-for-quote-submission-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest request for quote submission globally:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Request for Quote</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/RFQGlobal.png" src="../../../../_images/RFQGlobal.png" />
+<ol class="arabic" start="3">
+<li><p class="first">In the <strong>Guest RFQ</strong> section, set whether guests are allowed to submit a request for quote.</p>
+<p>By default, guest request for quote submission is disabled.</p>
+<p>To enable it, clear <em>Use Default</em> and select the <em>Enable Guest RFQ</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest RFQ Owner Settings</strong> section, select the user who will be the default owner of all guest RFQs.  Depending on the roles and permissions of the owner, guest RFQs may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest RFQs, adjust permissions for the Request for Quote entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-request-for-quote-submission-per-organization">
+<h3><a class="toc-backref" href="#id25">Configure Guest Request for Quote Submission per Organization</a><a class="headerlink" href="#configure-guest-request-for-quote-submission-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable guest request for quote submission per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Request for Quote</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/RFQOrg.png" src="../../../../_images/RFQOrg.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Guest RFQ</strong> section, set whether guests are allowed to submit a request for quote.</p>
+<p>By default, guest request for quote submission is disabled.</p>
+<p>To enable it, clear <em>Use System</em> and select the <em>Enable Guest RFQ</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest RFQ Owner Settings</strong> section, select the user who will be the default owner of all guest RFQs.  Depending on the roles and permissions of the owner, guest RFQs may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest RFQs, adjust permissions for the Request for Quote entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-guest-request-for-quote-submission-per-website">
+<h3><a class="toc-backref" href="#id26">Configure Guest Request for Quote Submission per Website</a><a class="headerlink" href="#configure-guest-request-for-quote-submission-per-website" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Sales &gt; Request for Quote</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/RFQWebsite.png" src="../../../../_images/RFQWebsite.png" />
+<ol class="arabic" start="4">
+<li><p class="first">In the <strong>Guest RFQ</strong> section, set whether guests are allowed to submit a request for quote.</p>
+<p>By default, guest request for quote submission is disabled.</p>
+<p>To enable it, clear <em>Use System</em> and select the <em>Enable Guest RFQ</em> check box.</p>
+</li>
+<li><p class="first">In the <strong>Guest RFQ Owner Settings</strong> section, select the user who will be the default owner of all guest RFQs.  Depending on the roles and permissions of the owner, guest RFQs may or may not be viewed and managed by the users who are subordinated to the owner.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable users from the same business unit or organization (that the owner belongs to) to view and manage guest RFQs, adjust permissions for the Request for Quote entity in their roles accordingly.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Commerce Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../catalog/index.html">Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../customer/index.html">Customer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../design/index.html">Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guests/index.html">Guests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../inventory/index.html">Inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../orders/index.html">Orders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../payment/index.html">Payment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../product/index.html">Product</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Sales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shipping/index.html">Shipping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../taxation/index.html">Taxation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../localization/index.html">System Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../../_sources/configuration_guide/landing_commerce/sales/guest_access/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

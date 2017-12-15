@@ -1,0 +1,787 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scalability Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Create the Database" href="create_database.html" />
+    <link rel="prev" title="Performance Optimization" href="optimize_performance.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="create_database.html" title="Create the Database"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="optimize_performance.html" title="Performance Optimization"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Installation Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Prepare Installation Environment</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Scalability Configuration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="scalability-configuration">
+<span id="installation-scalable-configuration"></span><h1>Scalability Configuration<a class="headerlink" href="#scalability-configuration" title="Permalink to this headline">¶</a></h1>
+<p>To optimize OroCommerce for large enterprise deployments, you can scale critical resources (e.g. php and fpm server), set up load balancing between the servers using nginx, and use data cache for annotations, metadata, access control levels, etc.</p>
+<p>The following configuration may prepare OroCommerce for a high load and is described in the sections below:</p>
+<ul class="simple">
+<li>Share the <em>[Application root]/app/cache</em> and <em>[Application root]/app/attachment</em> folder between all server instances, for example, using NFS.</li>
+<li>Configure Nginx (<a class="reference external" href="http://nginx.org/">http://nginx.org/</a>) to proxy and load balance requests to php and fpm servers.</li>
+<li>Use <a class="reference external" href="http://redis.io/">REDIS</a>, <a class="reference external" href="http://php.net/apcu">APCu</a>, or <a class="reference external" href="https://memcached.org">Memcached</a> as a cache provider for annotation, metadata, ACL, and other data.</li>
+</ul>
+<div class="section" id="generic-recommendations">
+<h2>Generic Recommendations<a class="headerlink" href="#generic-recommendations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Maintenance mode</strong> support: You can run commands and operations in the maintenance mode. By default,
+the <em>maintenance_lock</em> file in configured to be stored in the cache directory, which is already shared among the
+multiple server instances. To move the <em>maintenance_lock</em> file to another location, follow the guidance provided in the <a class="reference external" href="https://github.com/lexik/LexikMaintenanceBundle/blob/master/Resources/doc/index.md">LexicMaintenanceBundle documentation</a>.</li>
+<li><strong>CRON</strong> jobs isolation: It is recommended to run CRON jobs on the dedicated server. Distributing CRON jobs among several servers is not recommended.</li>
+<li><strong>Data Cache</strong>: OroCommerce supports REDIS, ADCu, and Memcached data caching systems.</li>
+</ul>
+</div>
+<div class="section" id="data-cache-system-installation">
+<h2>Data Cache System Installation<a class="headerlink" href="#data-cache-system-installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="redis-and-phpredis">
+<h3>Redis and PhpRedis<a class="headerlink" href="#redis-and-phpredis" title="Permalink to this headline">¶</a></h3>
+<p>You can use the <a class="reference external" href="https://github.com/snc/SncRedisBundle">SncRedisBundle</a> with either <a class="reference external" href="https://github.com/phpredis/phpredis">PhpRedis</a>, or <a class="reference external" href="https://github.com/nrk/predis">Predis</a> to integrate OroCommerce with Redis server.</p>
+<p>OroCommerce supports PhpRedis v1.1.9 and Predis v0.8.x.</p>
+<p>Install the PhpRedis extension (.so) via the package manager. For example, you may use the following commands:</p>
+<ul class="simple">
+<li><em>Linux:</em> <cite>yum/dnf/apt-get install php-pecl-redis</cite> or <cite>yum/dnf/apt-get install php5-redis</cite> (the package manager and command format depends on the Linux flavor you use).</li>
+<li><em>OS X</em>:  brew install php55-redis</li>
+</ul>
+<p>You can compile the extension from the sources following the guidance in the <a class="reference external" href="https://github.com/phpredis/phpredis">official PhpRedis extension documentation</a>.</p>
+</div>
+<div class="section" id="id1">
+<h3>APCu<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Install APCu via the package manager.  See additional information <a class="reference external" href="http://php.net/manual/en/book.apc.php">on the php.net</a>, <a class="reference external" href="https://pecl.php.net/package/APCu">pecl.php.net</a>, and <a class="reference external" href="https://github.com/krakjoe/apcu">in the github repository</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To avoid unnecessary and misleading php notices or exceptions when rendering image attachments caused by the known issue in the APCu version 4.0.7 (key inconsistency bug), please use earlier or the latest (unreleased) version of the APCu.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Memcached<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Use official <a class="reference external" href="https://memcached.org/">Memcached documentation</a>  for the detailed installation description. Use the <a class="reference external" href="https://github.com/php-memcached-dev/php-memcached">php-memcached</a> extension to connect OroCommerce with Memcached servers.</p>
+</div>
+</div>
+<div class="section" id="data-cache-system-configuration">
+<h2>Data Cache System Configuration<a class="headerlink" href="#data-cache-system-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sessions-storage">
+<h3>Sessions Storage<a class="headerlink" href="#sessions-storage" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>By default the parameters.yml is configured to store the session in files</dt>
+<dd>(<em>session_handler: *session.handler.native_file</em>). The simplest way to deal with the sessions in a web farm
+configuration is to store them in the DB - just change the value to &#8220;<em>session.handler.pdo</em>&#8221;.</dd>
+</dl>
+<p>You can also store them in Redis, APCu, or Memcached caching system. Use the following configuration  (in the <em>app/config/config.yml</em>):</p>
+<div class="section" id="id3">
+<h4>APCu<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">snc_apcu</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">clients</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">...</span>
+      <span class="l l-Scalar l-Scalar-Plain">session</span><span class="p p-Indicator">:</span>
+         <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apcu</span>
+         <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+         <span class="l l-Scalar l-Scalar-Plain">dsn</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apcu://localhost/3</span>
+   <span class="l l-Scalar l-Scalar-Plain">session</span><span class="p p-Indicator">:</span>  <span class="c1"># configure sessions</span>
+      <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+      <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+      <span class="l l-Scalar l-Scalar-Plain">use_as_default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id4">
+<h4>Memcached<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>      <span class="l l-Scalar l-Scalar-Plain">snc_memcached</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">clients</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">...</span>
+              <span class="l l-Scalar l-Scalar-Plain">session</span><span class="p p-Indicator">:</span>
+                  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">memcached</span>
+                  <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+                  <span class="l l-Scalar l-Scalar-Plain">dsn</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">memcached://localhost/3</span>
+          <span class="l l-Scalar l-Scalar-Plain">session</span><span class="p p-Indicator">:</span>  <span class="c1"># configure sessions</span>
+              <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+              <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+              <span class="l l-Scalar l-Scalar-Plain">use_as_default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id5">
+<h4>Redis<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>      <span class="l l-Scalar l-Scalar-Plain">snc_redis</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">clients</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">...</span>
+              <span class="l l-Scalar l-Scalar-Plain">session</span><span class="p p-Indicator">:</span>
+                  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">phpredis</span>
+                  <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+                  <span class="l l-Scalar l-Scalar-Plain">dsn</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">redis://localhost/3</span>
+          <span class="l l-Scalar l-Scalar-Plain">session</span><span class="p p-Indicator">:</span>  <span class="c1"># configure sessions</span>
+              <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+              <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">session</span>
+              <span class="l l-Scalar l-Scalar-Plain">use_as_default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="caching-service">
+<h3>Caching Service<a class="headerlink" href="#caching-service" title="Permalink to this headline">¶</a></h3>
+<p>Configure the <em>oro.cache.abstract</em> service that takes care of the cache that is shared among several nodes  (in the <em>app/config/config.yml</em>).</p>
+<div class="section" id="id6">
+<h4>APCu<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">abstract</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine_cache.abstract.apcu</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h4>Memcached<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>Configure the <em>oro.cache.abstract</em> service that takes care of the cache that is shared among several nodes (in the <em>app/config/config.yml</em>).</p>
+<blockquote>
+<div><div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">abstract</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine_cache.abstract.memcached</span>
+   <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&#39;setMemcached&#39;</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="s">&#39;@memcached&#39;</span><span class="p p-Indicator">]]</span>
+<span class="l l-Scalar l-Scalar-Plain">memcached</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Memcached</span>
+   <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;persistent_id&#39;</span>
+   <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&#39;addServer&#39;</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="s">&#39;localhost&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;11211&#39;</span><span class="p p-Indicator">]]</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&#39;setOption&#39;</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]]</span> <span class="c1">#OPT_NO_BLOCK</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&#39;setOption&#39;</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]]</span> <span class="c1">#OPT_TCP_NODELAY</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&#39;setOption&#39;</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="nv">14</span><span class="p p-Indicator">,</span> <span class="nv">100</span><span class="p p-Indicator">]]</span> <span class="c1">#OPT_CONNECT_TIMEOUT</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</div>
+<div class="section" id="id8">
+<h4>Redis<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p><strong>Recommended Configuration</strong></p>
+<p>Configuration in <em>app/config/config.yml</em>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span><span class="p p-Indicator">:</span>
+           <span class="l l-Scalar l-Scalar-Plain">abstract</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+           <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Snc\RedisBundle\Doctrine\Cache\RedisCache</span>
+           <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+               <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="nv">setRedis</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="s">&quot;@snc_redis.default&quot;</span><span class="p p-Indicator">]]</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>Alternative Configuration</strong></p>
+<p>Configuration in <em>app/config/config.yml</em>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span><span class="p p-Indicator">:</span>
+         <span class="l l-Scalar l-Scalar-Plain">abstract</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+         <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine_cache.abstract.redis</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="connnection-to-redis-server">
+<h3>Connnection to Redis Server<a class="headerlink" href="#connnection-to-redis-server" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All the configuration updates may be applied to the [Application root]/app/config/{config.yml, security.yml} or may happen inside your own bundle in the app.yml file.</p>
+</div>
+<p>To configure connection to Redis server in OroCommerce:</p>
+<ol class="arabic">
+<li><p class="first">Add SncRedisBundle as a requirements into the composer.json file:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="s">&quot;require&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span>
+    <span class="nv">...</span>
+    <span class="nv">&quot;snc/redis-bundle&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;1.1.*&quot;</span><span class="p p-Indicator">,</span>
+    <span class="s">&quot;predis/predis&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;0.8.7&quot;</span> <span class="c1">#in case using Predis instead of PhpRedis</span>
+<span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">Run the <cite>composer update</cite> command.</p>
+</li>
+<li><p class="first">Register the SncRedisBundle in AppKernel.php or in your own bundles.yml (Acme/Bundle/AcmeBundle/Resources/config/oro/bundles.yml):</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Sample registration in AppKernel.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">registerBundles</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$bundles</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="c1">//bundles</span>
+        <span class="k">new</span> <span class="nx">Snc\RedisBundle\SncRedisBundle</span><span class="p">()</span>
+    <span class="p">);</span>
+<span class="o">...</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">Sample registration in the bundle (Acme/Bundle/AcmeBundle/Resources/config/oro/bundles.yml):</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>bundles:
+  ...
+  - Snc\RedisBundle\SncRedisBundle
+  ...
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Configure SncRedisBundle in the <em>app/config/config.yml</em> (see
+<a class="reference external" href="https://github.com/snc/SncRedisBundle/blob/master/Resources/doc/index.md">the SncRedisBundle documentation</a> for detailed information):</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">snc_redis</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">clients</span><span class="p p-Indicator">:</span>  <span class="c1"># configure phpredis client</span>
+        <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">phpredis</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+            <span class="l l-Scalar l-Scalar-Plain">dsn</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">redis://localhost/1</span>
+        <span class="l l-Scalar l-Scalar-Plain">doctrine</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">phpredis</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine</span>
+            <span class="l l-Scalar l-Scalar-Plain">dsn</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">redis://localhost/2</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">doctrine</span><span class="p p-Indicator">:</span> <span class="c1"># use Redis caching for Doctrine</span>
+        <span class="l l-Scalar l-Scalar-Plain">metadata_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine</span>
+            <span class="l l-Scalar l-Scalar-Plain">entity_manager</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+            <span class="l l-Scalar l-Scalar-Plain">document_manager</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+        <span class="l l-Scalar l-Scalar-Plain">result_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine</span>
+            <span class="l l-Scalar l-Scalar-Plain">entity_manager</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">default</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">query_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">client</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">doctrine</span>
+            <span class="l l-Scalar l-Scalar-Plain">entity_manager</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ol>
+</div>
+<div class="section" id="doctrine-cache">
+<h3>Doctrine Cache<a class="headerlink" href="#doctrine-cache" title="Permalink to this headline">¶</a></h3>
+<p>Configuration in <em>app/config/config.yml</em>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span>       <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">oro_cache.doctrine.query_cache_driver</span><span class="p p-Indicator">:</span>
+             <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+             <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span>
+             <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="nv">setNamespace</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span> <span class="s">&#39;oro_query_cache_driver&#39;</span> <span class="p p-Indicator">]</span> <span class="p p-Indicator">]</span>
+          <span class="l l-Scalar l-Scalar-Plain">oro_cache.doctrine.result_cache_driver</span><span class="p p-Indicator">:</span>
+             <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+             <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span>
+             <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="nv">setNamespace</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span> <span class="s">&#39;oro_result_cache_driver&#39;</span> <span class="p p-Indicator">]</span> <span class="p p-Indicator">]</span>
+
+       <span class="l l-Scalar l-Scalar-Plain">doctrine</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">orm</span><span class="p p-Indicator">:</span>
+             <span class="l l-Scalar l-Scalar-Plain">query_cache_driver</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">service</span>
+                <span class="l l-Scalar l-Scalar-Plain">id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_cache.doctrine.query_cache_driver</span>
+             <span class="l l-Scalar l-Scalar-Plain">result_cache_driver</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">service</span>
+                <span class="l l-Scalar l-Scalar-Plain">id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_cache.doctrine.result_cache_driver</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="serializer-cache">
+<h3>Serializer Cache<a class="headerlink" href="#serializer-cache" title="Permalink to this headline">¶</a></h3>
+<p>Configuration in <em>app/config/config.yml</em>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span>       <span class="l l-Scalar l-Scalar-Plain">framework</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">serializer</span><span class="p p-Indicator">:</span>
+             <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.cache. serializer</span>
+
+       <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">oro_cache.serializer</span><span class="p p-Indicator">:</span>
+             <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+             <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span>
+             <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="nv">setNamespace</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span> <span class="s">&#39;oro_serializer_cache&#39;</span> <span class="p p-Indicator">]</span> <span class="p p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="security-nonces">
+<h3>Security Nonces<a class="headerlink" href="#security-nonces" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Since each nonce should be used only once, they cannot be stored on every server, as we need</dt>
+<dd>access to all the nonces when the next API request comes in.</dd>
+</dl>
+<p>Configuration in <em>app/config/security.yml</em>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>       <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">oro_embedded_form.csrf_token_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+            <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span>
+            <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="nv">setNamespace</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span> <span class="s">&#39;oro_csrf_cache&#39;</span> <span class="p p-Indicator">]</span> <span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">oro_security.wsse_nonce_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+            <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.cache.abstract</span>
+            <span class="l l-Scalar l-Scalar-Plain">calls</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="nv">setNamespace</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span> <span class="s">&#39;oro_nonces_cache&#39;</span> <span class="p p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="attachments-cache">
+<h2>Attachments Cache<a class="headerlink" href="#attachments-cache" title="Permalink to this headline">¶</a></h2>
+<p>The attachments in OroCommerce use <a class="reference external" href="https://github.com/KnpLabs/KnpGaufretteBundle">**KnpGaufretteBundle**</a>. Default storage is the <em>attachments</em> directory in the [Application root] directory as stated in the following configuration:</p>
+<p>Configuration in <em>Oro/Bundle/AttachmentBundle/Resources/config/oro/app.yml</em>:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">local</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="s">&quot;%kernel.root_dir%/attachment&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</td></tr></table></div>
+<p>When OroCommerce deployment is scaled, the attachments should be shared among all the web nodes in one of the following ways:</p>
+<ul class="simple">
+<li><strong>Recommended</strong>: Configure KnpGaufretteBundle to use the external storage, such as
+Azure Blob Storage, AwsS3, AmazonS3, FTP, SFTP, MogileFS, MongoGridFS, Open Cloud, or Dropbox. Find more information in the <a class="reference external" href="https://github.com/KnpLabs/KnpGaufretteBundle/blob/master/README.md">KnpGaufretteBundle documentation</a>.</li>
+<li><strong>Fast and dirty</strong>: Share the attachments folder, for example, using NFS. You may face performance degradation as number of attachments in OroCommerce grow.</li>
+</ul>
+<p>To speed up file request responses you can optionally use APC cache. Use an adapter which allows you to cache other adapters.</p>
+<div class="section" id="adapter-configuration-for-apc">
+<h3>Adapter Configuration for APC<a class="headerlink" href="#adapter-configuration-for-apc" title="Permalink to this headline">¶</a></h3>
+<p><strong>FTP with APC:</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">ftp</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span> <span class="c1"># IP or domain or localhost</span>
+                <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+                <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/media/temp</span>
+                <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+                <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">FTP_BINARY</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_apc</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">apc</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+                <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_apc</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7200</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</div>
+<p><strong>Local with APC:</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">local</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="s">&quot;%kernel.root_dir%/attachment&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_apc</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">apc</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+                <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_apc</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7200</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adapter-configuration-for-redis">
+<h3>Adapter Configuration for Redis<a class="headerlink" href="#adapter-configuration-for-redis" title="Permalink to this headline">¶</a></h3>
+<p><strong>FTP with Redis:</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">ftp</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span> <span class="c1"># IP or domain or localhost</span>
+                <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+                <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/media/temp</span>
+                <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+                <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">FTP_BINARY</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_redis</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">redis</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+                <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_redis</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7200</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</div>
+<p><strong>Local with Redis:</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">local</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="s">&quot;%kernel.root_dir%/attachment&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_redis</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">redis</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+                <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_redis</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7200</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adapter-configuration-for-memcached">
+<h3>Adapter Configuration for Memcached<a class="headerlink" href="#adapter-configuration-for-memcached" title="Permalink to this headline">¶</a></h3>
+<p><strong>FTP with Redis:</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">ftp</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span> <span class="c1"># IP or domain or localhost</span>
+                <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+                <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/media/temp</span>
+                <span class="l l-Scalar l-Scalar-Plain">create</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+                <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">FTP_BINARY</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_memcached</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">memcached</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+                <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_memcached</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7200</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</div>
+<p><strong>Local with Redis:</strong></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">knp_gaufrette</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">adapters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">local</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">directory</span><span class="p p-Indicator">:</span> <span class="s">&quot;%kernel.root_dir%/attachment&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_memcached</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">memcached</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file.</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments</span>
+                <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_memcached</span>
+                <span class="l l-Scalar l-Scalar-Plain">ttl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7200</span>
+    <span class="l l-Scalar l-Scalar-Plain">filesystems</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">attachments</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">adapter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">attachments_cache</span>
+            <span class="l l-Scalar l-Scalar-Plain">alias</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">attachments_filesystem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-main-app-in-this-topic-nodes-configuration-and-load-balancing">
+<h2>Multiple OroCommerce Nodes Configuration and Load Balancing<a class="headerlink" href="#multiple-main-app-in-this-topic-nodes-configuration-and-load-balancing" title="Permalink to this headline">¶</a></h2>
+<p>At this point we have fully configured a single node and have to check that everything is working fine.</p>
+<p>If everything is OK, we can now clone the configuration to all the web farm nodes and configure NGINX.</p>
+<p>The default configuration is pretty simple:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>http {
+    server {
+        listen 80;
+        location / {
+            proxy_pass http://application;
+        }
+    }
+
+    upstream application {
+        server node1.local.com;
+        server node2.local.com;
+        server node3.local.com;
+    }
+}
+</pre></div>
+</div>
+<p><strong>Please refer to Nginx documentation for more details:</strong></p>
+<p><a class="reference external" href="http://nginx.org/en/docs/http/load_balancing.html">http://nginx.org/en/docs/http/load_balancing.html</a></p>
+<p><a class="reference external" href="https://www.nginx.com/blog/load-balancing-with-nginx-plus/">https://www.nginx.com/blog/load-balancing-with-nginx-plus/</a></p>
+<p><a class="reference external" href="https://www.nginx.com/blog/load-balancing-with-nginx-plus-part2/">https://www.nginx.com/blog/load-balancing-with-nginx-plus-part2/</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Installation Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Prepare Installation Environment</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="web_server_configuration.html">Install and Configure a Web Application Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="runtime_configuration.html">PHP Runtime Environment Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optimize_performance.html">Performance Optimization</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Scalability Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create_database.html">Create the Database</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../get_files/index.html">Download Files and Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">Run Installation via Wizard or CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../post_install_steps.html">Perform Post-Install Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vm.html">Evaluate Oro App in a Sandbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade/index.html">Upgrade OroCommerce to the Newer Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade/index.html#upgrade-orocommerce">Upgrade OroCommerce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../update.html">Update OroPlatform to Oro App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation_quick_start_dev/index.html">Installation Quick Start for Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/install_upgrade/installation_prerequisites/scalability.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

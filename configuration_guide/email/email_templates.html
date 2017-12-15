@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Email Templates &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Automatic Notification" href="notification_rules.html" />
+    <link rel="prev" title="Email Configuration" href="email_configuration.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="notification_rules.html" title="Automatic Notification"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="email_configuration.html" title="Email Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Email Configuration</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Email Templates</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="email-templates">
+<span id="user-guide-email-template"></span><h1>Email Templates<a class="headerlink" href="#email-templates" title="Permalink to this headline">¶</a></h1>
+<p>With OroCRM you can easily sent numerous personalized emails using one template. For example, you can make a single
+template that welcomes {username}, assign it to an <a class="reference internal" href="../../user_guide/marketing/email_campaigns.html#user-guide-email-campaigns"><span class="std std-ref">email campaign</span></a> and each of your
+subscribers will get a mail send specifically to them.</p>
+<p>This guide describes how to create and manage email template records.</p>
+<div class="section" id="create-email-templates">
+<span id="user-guide-email-templates-create"></span><h2>Create Email Templates<a class="headerlink" href="#create-email-templates" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>In the main menu, navigate <strong>System&gt;Emails&gt;Templates</strong>, and click the <span class="guilabel">Create Template</span> button in the upper-right corner of the page.</li>
+</ol>
+<blockquote>
+<div><img alt="email_template_create" src="../../_images/email_template_create.png" /></div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">Define the general settings of the template.</p>
+<p>The following fields are mandatory and <strong>must</strong> be defined:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Template Name</strong></td>
+<td>Name used to refer to the template in the system.</td>
+</tr>
+<tr class="row-odd"><td><strong>Type*</strong></td>
+<td>Use html or plain text.</td>
+</tr>
+<tr class="row-even"><td><strong>Owner*</strong></td>
+<td>Limits the list of users that can manage the template, subject to the access and permission settings.</td>
+</tr>
+</tbody>
+</table>
+<p>Optional field <strong>Entity Name</strong> shall be used to define an <a class="reference internal" href="../../user_guide/glossary.html#term-entity"><span class="xref std std-term">entity</span></a>, variables whereof can be used in the template. If no entity name is defined, only system variables will be available.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">If you want to use the template for <a class="reference internal" href="system_mailboxes.html#admin-configuration-system-mailboxes-autoresponse"><span class="std std-ref">autoresponses</span></a>, the <strong>Entity Name</strong> field value should be <strong>Email</strong>.</p>
+</div>
+</li>
+<li><p class="first">Define the email template. Click on the necessary variable to add drag it to the text box.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/email_template_ex.png" src="../../_images/email_template_ex.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the example below, the template contains a link to the website page composed with a piece of <a class="reference internal" href="../../user_guide/marketing/marketing_tracking_website_records.html#user-guide-how-to-track"><span class="std std-ref">tracking code</span></a>. Every time a user follows the link, visit event will be tracked for the campaign.</p>
+</div>
+</li>
+<li><p class="first">You can click <span class="guilabel">Preview</span> button to check your template.</p>
+</li>
+</ol>
+<img alt="../../_images/email_template_preview.png" src="../../_images/email_template_preview.png" />
+<ol class="arabic simple" start="5">
+<li>If you are satisfied with the preview, click the <span class="guilabel">Save</span> button in the upper-right corner of
+the page.</li>
+</ol>
+<div class="section" id="email-template-languages">
+<h3>Email Template Languages<a class="headerlink" href="#email-template-languages" title="Permalink to this headline">¶</a></h3>
+<p>If several languages have been enabled for the email templates, move from tab to
+tab to define the template in different languages.</p>
+<img alt="../../_images/email_template_language.png" src="../../_images/email_template_language.png" />
+</div>
+</div>
+<div class="section" id="manage-email-templates">
+<span id="user-guide-email-templates-actions"></span><h2>Manage Email Templates<a class="headerlink" href="#manage-email-templates" title="Permalink to this headline">¶</a></h2>
+<p>The following actions are available for an email template from
+the grid:</p>
+<img alt="../../_images/email_template_actions.png" src="../../_images/email_template_actions.png" />
+<ul>
+<li><p class="first">Delete the template from the system: click the <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong> icon.</p>
+</li>
+<li><p class="first">Get to the edit page form of the template: click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> icon.</p>
+</li>
+<li><p class="first">Clone the template: click the <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> <strong>Clone</strong> icon.</p>
+<p>You can edit the template details and save a new (cloned and edited) template.</p>
+</li>
+</ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">If you want to track the user-activity related to the emails sent within the email campaign, add a piece of
+<a class="reference internal" href="../../user_guide/marketing/marketing_tracking_website_records.html#user-guide-marketing-tracking"><span class="std std-ref">tracking website</span></a> code to the email template.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Email Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="email_configuration.html">Email Configuration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Email Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notification_rules.html">Automatic Notification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_mailboxes.html">System Mailboxes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_mailbox_settings.html">System Mailbox Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email_configuration_settings.html">Email Configuration Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/configuration_guide/email/email_templates.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

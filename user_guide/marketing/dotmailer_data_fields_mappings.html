@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Manage dotmailer Data Fields and Mappings &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Send Email Campaign via MailChimp" href="sending_email_campaign_via_mailchimp.html" />
+    <link rel="prev" title="Send Email Campaign via dotmailer" href="sending_email_campaign_via_dotmailer.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sending_email_campaign_via_mailchimp.html" title="Send Email Campaign via MailChimp"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sending_email_campaign_via_dotmailer.html" title="Send Email Campaign via dotmailer"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Marketing Automation</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Manage dotmailer Data Fields and Mappings</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="manage-dotmailer-data-fields-and-mappings">
+<span id="user-guide-dotmailer-data-fields"></span><h1>Manage dotmailer Data Fields and Mappings<a class="headerlink" href="#manage-dotmailer-data-fields-and-mappings" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#data-fields" id="id1">Data Fields</a><ul>
+<li><a class="reference internal" href="#dotmailer-side" id="id2">Dotmailer Side</a></li>
+<li><a class="reference internal" href="#oro-application-side" id="id3">Oro Application Side</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-field-mappings" id="id4">Data Field Mappings</a><ul>
+<li><a class="reference internal" href="#create-a-new-mapping" id="id5">Create a New Mapping</a></li>
+<li><a class="reference internal" href="#perform-sync" id="id6">Perform Sync</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also-on-dotmailer" id="id7">See Also on dotmailer</a></li>
+</ul>
+</div>
+<div class="section" id="data-fields">
+<h2><a class="toc-backref" href="#id1">Data Fields</a><a class="headerlink" href="#data-fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dotmailer-side">
+<h3><a class="toc-backref" href="#id2">Dotmailer Side</a><a class="headerlink" href="#dotmailer-side" title="Permalink to this headline">¶</a></h3>
+<p>As well as utilizing the default contact data fields (FIRSTNAME, FULLNAME or LASTNAME) that are already in place in dotmailer address books, you can create new contact data fields to capture and/or contain additional information about your contacts. The more useful data you can collect on your contacts, the more you can proficiently segment, target and personalise your email campaigns, and in turn generate better response rates.</p>
+<p>The default fields are listed on the <strong>Default Data Fields</strong> tab, while new customized fields are on <strong>My Data Fields</strong>. These are located in <strong>Contacts&gt;Contact Data fields</strong>.</p>
+<img alt="../../_images/dt_contacts_contact_data_fields.jpg" src="../../_images/dt_contacts_contact_data_fields.jpg" />
+<img alt="../../_images/default_data_fields_dt.jpg" src="../../_images/default_data_fields_dt.jpg" />
+<p>Within <strong>My Data Fields</strong>, you can view, create or remove new data fields.</p>
+<img alt="../../_images/new_data_fields_example_dt.jpg" src="../../_images/new_data_fields_example_dt.jpg" />
+<div class="section" id="create-a-new-data-field">
+<h4>Create a New Data Field<a class="headerlink" href="#create-a-new-data-field" title="Permalink to this headline">¶</a></h4>
+<p>To create a new data field, click <span class="guilabel">New Data Field</span>. A dialog box will open with the following fields to fill in:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Name</strong></td>
+<td>Enter a name for the data field. It must consist of alphanumeric characters only, with hyphens and underscores, if required. The maximum length is 20 characters.</td>
+</tr>
+<tr class="row-odd"><td><strong>Type</strong></td>
+<td>Select data field type: string, numeric, date or boolean. Make sure you select the correct type so your information could render correctly.</td>
+</tr>
+<tr class="row-even"><td><strong>Default Value</strong></td>
+<td>When sending a campaign that uses template personalization, a default value ensures that a value is always displayed even if data field is blank.</td>
+</tr>
+<tr class="row-odd"><td><strong>Access</strong></td>
+<td>Select access type: public or private. Make the field public if you want to allow your contacts to view and amend the data you hold on them in this field.</td>
+</tr>
+<tr class="row-even"><td><strong>Folder</strong></td>
+<td>Select the folder to save your data field to. by default, Data Fields folder is selected.</td>
+</tr>
+</tbody>
+</table>
+<p>Click <span class="guilabel">Save</span> to save the new data field.</p>
+<img alt="../../_images/new_data_fields_create_dt.jpg" src="../../_images/new_data_fields_create_dt.jpg" />
+</div>
+</div>
+<div class="section" id="oro-application-side">
+<h3><a class="toc-backref" href="#id3">Oro Application Side</a><a class="headerlink" href="#oro-application-side" title="Permalink to this headline">¶</a></h3>
+<p>The dotmailer data fields are collected by Oro and can be found under <strong>Marketing&gt;dotmailer&gt;Data Fields</strong>. Here, you can view, remove and create new dotmailer data fields on the Oro side.</p>
+<img alt="../../_images/oro_data_fields_grid.jpg" src="../../_images/oro_data_fields_grid.jpg" />
+<div class="section" id="create-a-new-data-field-in-oro-application">
+<h4>Create a New Data Field in Oro Application<a class="headerlink" href="#create-a-new-data-field-in-oro-application" title="Permalink to this headline">¶</a></h4>
+<p>To create a new data field in Oro application, click <span class="guilabel">Create dotmailer Data Field</span> in the upper-right corner of the page. A form will open with the following fields to fill in within the <strong>General</strong> section:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Integration</strong></td>
+<td>Select your dotmailer integration.</td>
+</tr>
+<tr class="row-odd"><td><strong>Name</strong></td>
+<td>Enter a name for the data field. It should consist of alphnumeric characters only, with hyphens and underscores, if required.</td>
+</tr>
+<tr class="row-even"><td><strong>Type</strong></td>
+<td>Select data field type: string, numeric, date or boolean. Make sure you select the correct type so your information could render correctly.</td>
+</tr>
+<tr class="row-odd"><td><strong>Visibility</strong></td>
+<td>Select visibility type: public or private. Make the field public if you want to allow your contacts to view and amend the data you hold on them in this field.</td>
+</tr>
+<tr class="row-even"><td><strong>Dafault Value</strong></td>
+<td>When sending a campaign that uses template personalization, a default value ensures that a value is always displayed even if data field is blank. Default value depends on the data field type selected.</td>
+</tr>
+</tbody>
+</table>
+<p>You can add a note for the data field you are creating in the <strong>Additional</strong> section in <strong>Notes</strong>.</p>
+<img alt="../../_images/oro_create_data_field.jpg" src="../../_images/oro_create_data_field.jpg" />
+<p>Click <span class="guilabel">Save and Close</span> to save the new data field. Once saved, it will appear in the <strong>Data Fields</strong> grid.</p>
+<p>From within the grid, you can also:</p>
+<ul class="simple">
+<li>Filter the fields by channel, name, visibility and type.</li>
+<li>Add notes with the help of the inline editing feature.</li>
+<li>Delete a field.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">System fields (e.g. FIRSTNAME, LASTNAME) cannot be deleted.</p>
+</div>
+<img alt="../../_images/grid_data_fields.jpg" src="../../_images/grid_data_fields.jpg" />
+</div>
+<div class="section" id="sync-data-fields">
+<h4>Sync Data Fields<a class="headerlink" href="#sync-data-fields" title="Permalink to this headline">¶</a></h4>
+<p>By default, data fields are synchronized with dotmailer once a day. This interval can be changed in <strong>System&gt;Configuration&gt;Integrations&gt;dotmailer Settings&gt;Synchronization Settings</strong>. Synchronization can be also trigged manually by clicking the <span class="guilabel">Synchronize</span> button from data fields grid.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Existing data fields cannot be updated.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-field-mappings">
+<h2><a class="toc-backref" href="#id4">Data Field Mappings</a><a class="headerlink" href="#data-field-mappings" title="Permalink to this headline">¶</a></h2>
+<p><strong>Data Field Mappings</strong> is available under <strong>Marketing</strong> in the main menu.</p>
+<img alt="../../_images/data_field_mappings.jpg" src="../../_images/data_field_mappings.jpg" />
+<div class="section" id="create-a-new-mapping">
+<h3><a class="toc-backref" href="#id5">Create a New Mapping</a><a class="headerlink" href="#create-a-new-mapping" title="Permalink to this headline">¶</a></h3>
+<p>In order to export/import specific data fields from/to dotmailer, you can build mapping between Oro entitiy fields and dotmailer data fields. When a new integration is created, default mappings for common data fields (FIRSTNAME, LASTNAME and FULLNAME) are added automatically for Oro application entities (Contact, Lead etc.). Existing mapping can be updated and new mappings can be added.</p>
+<p>To create a new mapping, click <span class="guilabel">Create dotmailer Data Field mapping</span> in the upper-right corner of the <strong>Data Field Mappings</strong> page.</p>
+<p>A form will emerge with the following fields to fill in within the <strong>General</strong> section:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Integration</strong></td>
+<td>Select your dotmailer integration.</td>
+</tr>
+<tr class="row-odd"><td><strong>Entity</strong></td>
+<td>Select the entity (e.g. <strong>Contact</strong>, <strong>Magento Customer</strong>, etc).</td>
+</tr>
+<tr class="row-even"><td><strong>Sync Priority</strong></td>
+<td>If two or more entities are linked to 1 dotmailer contact, sync priority will be used to identify the master record.</td>
+</tr>
+</tbody>
+</table>
+<img alt="../../_images/data_field_mapping_form.jpg" src="../../_images/data_field_mapping_form.jpg" />
+<p>Configure your mapping in the <strong>Mapping Configuration</strong> section of the same page.</p>
+<img alt="../../_images/data_field_mapping_example.jpg" src="../../_images/data_field_mapping_example.jpg" />
+<p>The <strong>Two Way Sync</strong> check box should be selected if you want to update application entities with data from dotmailer.</p>
+</div>
+<div class="section" id="perform-sync">
+<h3><a class="toc-backref" href="#id6">Perform Sync</a><a class="headerlink" href="#perform-sync" title="Permalink to this headline">¶</a></h3>
+<p>Once you have configured mapping, tracking of changes will be performed automatically every 5 minutes. You can manually re-synchronize data fields on a required marketing list from its view page. To perform manual synchronization:</p>
+<ol class="arabic simple">
+<li>Open a marketing list connected to dotmailer.</li>
+<li>Click <span class="guilabel">dotmailer</span> in the upper-right corner.</li>
+<li>Click <span class="guilabel">Refresh Data Fields</span>.</li>
+</ol>
+<img alt="../../_images/refresh_data_fields.jpg" src="../../_images/refresh_data_fields.jpg" />
+</div>
+</div>
+<div class="section" id="see-also-on-dotmailer">
+<h2><a class="toc-backref" href="#id7">See Also on dotmailer</a><a class="headerlink" href="#see-also-on-dotmailer" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../configuration_guide/integrations/dotmailer_integration.html#user-guide-dotmailer-overview"><span class="std std-ref">dotmailer Overview</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/dotmailer_configuration.html#user-guide-dotmailer-configuration"><span class="std std-ref">dotmailer Configuration</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/dotmailer_single_sign_on.html#user-guide-dotmailer-single-sign-on"><span class="std std-ref">dotmailer Single Sign-on</span></a></li>
+<li><a class="reference internal" href="sending_email_campaign_via_dotmailer.html#user-guide-dotmailer-campaign"><span class="std std-ref">Sending Email Campaign via dotmailer</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/dotmailer_integration_settings.html#admin-configuration-dotmailer-integration-settings"><span class="std std-ref">dotmailer Integration Settings</span></a></li>
+</ul>
+<p><strong>Related Topics on Marketing Automation</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="index.html#user-guide-marketing"><span class="std std-ref">Marketing Automation</span></a><ul>
+<li><a class="reference internal" href="marketing_lists.html#user-guide-marketing-lists"><span class="std std-ref">Marketing Lists</span></a></li>
+<li><a class="reference internal" href="marketing_campaigns.html#user-guide-marketing-campaigns"><span class="std std-ref">Marketing Campaigns</span></a></li>
+<li><a class="reference internal" href="email_campaigns.html#user-guide-email-campaigns"><span class="std std-ref">Email Campaigns</span></a></li>
+<li><a class="reference internal" href="marketing_tracking_website_records.html#user-guide-marketing-tracking"><span class="std std-ref">Website Tracking</span></a></li>
+<li><a class="reference internal" href="sending_email_campaign_via_dotmailer.html#user-guide-dotmailer-campaign"><span class="std std-ref">Send Email Campaign via dotmailer</span></a></li>
+<li><a class="reference internal" href="sending_email_campaign_via_mailchimp.html#user-guide-mailchimp-campaign"><span class="std std-ref">Send Email Campaign via MailChimp</span></a></li>
+<li>Configuration:<ul>
+<li><a class="reference internal" href="#user-guide-dotmailer-data-fields"><span class="std std-ref">Manage dotmailer Data Fields and Mappings</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/landing_marketing/marketing_features.html#marketing-system-configuration"><span class="std std-ref">Marketing Features</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/landing_marketing/tracking_settings.html#admin-configuration-tracking"><span class="std std-ref">Tracking Settings</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/mailchimp_configuration.html#user-guide-mc-integration"><span class="std std-ref">MailChimp Integration</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/dotmailer_integration.html#user-guide-dm-integration"><span class="std std-ref">dotmailer Integration</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Marketing Automation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="marketing_lists.html">Marketing Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email_campaigns.html">Email Campaigns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="marketing_campaigns.html">Marketing Campaigns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="marketing_tracking_website_records.html">Tracking Websites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending_email_campaign_via_dotmailer.html">Send Email Campaign via dotmailer</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Manage dotmailer Data Fields and Mappings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending_email_campaign_via_mailchimp.html">Send Email Campaign via MailChimp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/marketing/dotmailer_data_fields_mappings.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -10,8 +10,8 @@
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -26,33 +26,15 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Payment" href="../payment/index.html" />
-    <link rel="prev" title="Create a Quote" href="create.html" />
+    <link rel="next" title="Delete a Quote" href="delete.html" />
+    <link rel="prev" title="Create a Quote on the Customer Request" href="create/create_from_rfq.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-<script language="javascript" type="text/javascript">
-    <!--
-    var materialdropdown = document.querySelector('.material-dropdown'),
-    middle = document.querySelector('.middle'),
-    cross = document.querySelector('.cross'),
-    dropdown = document.querySelector('.dropdown');
-
-materialdropdown.addEventListener('click', function() {
-  middle.classList.toggle('active');
-  cross.classList.toggle('active');
-  dropdown.classList.toggle('active');
-})
-    -->
-  </script>
-    
-
 
   </head>
   <body role="document">
@@ -71,131 +53,30 @@ materialdropdown.addEventListener('click', function() {
                                 alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
                     </div>
                     <div class="navbar-header">
-                        <p class="navbar-header" href="#">Documentation for... </p>
+                        <p class="navbar-header" href="#">Documentation</p>
                     </div>
-                    <div id="navbar" class="navbar-left">
-                        <div class="navbar-collapse collapse">
-                            <div class="menu-header-menu-container">
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">All Users</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Quotes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../segments/index.html">Segments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../system/index.html">System Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">B2B Buyer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/getting_started/index.html">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/navigation/index.html">Navigation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/profile/index.html">My Profile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/users_roles/index.html">My Organization Users and Roles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/orders/index.html">Orders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/rfq/index.html">Request for Quote</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/quotes/index.html">Quotes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../frontstore_guide/shopping_lists/index.html">Shopping Lists</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/website/index.html">Website Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Admin</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/price_list_sharding.html">How to Configure Price List Sharding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/basics/index.html">OroPlatform Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/extend_and_customize/index.html">Customizing Oro Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/integration/index.html">Web Services API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/theme/index.html">Customizing the Theme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/reference/index.html">Annotation and Configuration Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/entities/index.html">Using and Managing Entities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/other/index.html">How to... Articles</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../community/contribute.html">Contributing to Oro Source Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/translations.html">Contributing to Translatiion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/write.html">Contributing to Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/issues/index.html">Contacting Support and Reporting Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/question.html">Submitting a Question</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/release.html">Release Process</a></li>
-</ul>
-</li>
-</ul>
-
-
-                                <!--
-                                <ul class="nav">
-                                    <li><a href="#">Installation</a></li>
-                                    <li><a href="#">Configuration</a></li>
-                                    <li><a href="#">Use <i class="fa fa-search search-complete__icon"></i></a>
-                                        <ul class="sub-nav">
-                                            <li class="sub-menu" ><a href="#">HTML</a>
-                                            </li>
-                                            <li class="sub-menu" ><a
-                                                   href="#">CSS</a>
-                                                <ul class="sub-nav">
-                                                    <li class="sub-menu"><a
-                                                           href="#">Resets</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">Grids</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">Frameworks</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="sub-menu" href="#">Development</a>
-                                                <ul class="sub-nav">
-                                                    <li class="sub-menu"><a
-                                                           href="#">Ajax</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">jQuery</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Contribution</a>
-                                        <ul class="sub-nav">
-                                            <li class="sub-menu"><a href="#">Themes</a>
-                                            </li>
-                                            <li class="sub-menu"><a href="#">Plugins</a>
-                                            </li>
-                                            <li class="sub-menu"><a href="#">Custom
-                                                Post Types</a>
-                                                <ul class="sub-nav">
-                                                    <li class="sub-menu"><a
-                                                           href="#">Portfolios</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">Testimonials</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-menu"><a href="#">Options</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                -->
-                            </div>
-                        </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="delete.html" title="Delete a Quote"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="create/create_from_rfq.html" title="Create a Quote on the Customer Request"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Quotes</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Edit a Quote</li>
+      </ul>
+    </div>
                     </div>
+
                 </div>
             </div>
 
@@ -209,15 +90,57 @@ materialdropdown.addEventListener('click', function() {
           <div class="body" role="main">
             
   <div class="section" id="edit-a-quote">
-<h1>Edit a Quote<a class="headerlink" href="#edit-a-quote" title="Permalink to this headline">¶</a></h1>
-<p>To edit the Quote:</p>
-<ol class="arabic simple">
-<li>Navigate to <strong>Sales &gt; Quotes</strong> in the main menu.</li>
-<li>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <em>more actions</em> menu to the right of the item and click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to start editing its details.</li>
-<li>Update the <em>Quote General Information</em>, <em>Line Items</em>, <em>Shipping Address</em>, or <em>Shipping Information</em>. See <a class="reference external" href="create">Create a Quote</a> section for detailed information on the available options.</li>
-<li>Click <strong>Save</strong> on the top right of the page.</li>
+<span id="quotes-actions-edit"></span><h1>Edit a Quote<a class="headerlink" href="#edit-a-quote" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="edit-a-quote-from-the-quote-list">
+<span id="quotes-actions-edit-fromgrid"></span><h2>Edit a Quote (From the Quote List)<a class="headerlink" href="#edit-a-quote-from-the-quote-list" title="Permalink to this headline">¶</a></h2>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>This option is available only when:</p>
+<ul class="last simple">
+<li><a class="reference internal" href="flows/simple_quote_management_sample.html#simple-quote-management"><span class="std std-ref">Quote Management Flow</span></a> / <a class="reference internal" href="flows/quote_management_with_approval.html#quote-management-with-approvals"><span class="std std-ref">Backoffice Quote Flow with Approvals</span></a> are inactive.</li>
+<li>One of the workflows is active and the current workflow step allows editing the quote.</li>
+</ul>
+</div>
+<p>To edit a quote:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Quotes</strong> in the main menu.</p>
+</li>
+<li><p class="first">Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the item and click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> icon to start editing its details.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Note that the icon that starts a workflow looks alike to the <strong>Edit</strong> icon. Please check the hint that appears when you hoover over the icon to make sure that you select the desired action.</p>
+</div>
+</li>
+<li><p class="first">Update the <strong>Quote General Information</strong>, <strong>Line Items</strong>, <strong>Shipping Address</strong>, or <strong>Shipping Information</strong> sections. See <a class="reference internal" href="create/create_from_scratch.html#quote-create-from-scratch"><span class="std std-ref">Create a Quote</span></a> topic for detailed information on the available options.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
 </ol>
 <p>The quote is updated.</p>
+</div>
+<div class="section" id="edit-a-quote-from-the-quote-details">
+<span id="quotes-actions-edit-fromviewpage"></span><h2>Edit a Quote (From the Quote Details)<a class="headerlink" href="#edit-a-quote-from-the-quote-details" title="Permalink to this headline">¶</a></h2>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>You can edit a quote in this way only when the <a class="reference internal" href="flows/simple_quote_management_sample.html#simple-quote-management"><span class="std std-ref">Quote Management Flow</span></a> / <a class="reference internal" href="flows/quote_management_with_approval.html#quote-management-with-approvals"><span class="std std-ref">Backoffice Quote Flow with Approvals</span></a> are inactive.  Otherwise, use the Edit transition defined within the active workflow:</p>
+<img alt="../../_images/quotes_workflowedit1.png" class="last" src="../../_images/quotes_workflowedit1.png" />
+</div>
+<p>To edit a quote:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>Sales &gt; Quotes</strong>.</p>
+</li>
+<li><p class="first">Choose the quote in the list and click it. The quote details page opens.</p>
+</li>
+<li><p class="first">Click <strong>Edit</strong> on the top right of the page:</p>
+<img alt="../../_images/quotes_edit1.png" src="../../_images/quotes_edit1.png" />
+</li>
+<li><p class="first">Update the <strong>Quote General Information</strong>, <strong>Line Items</strong>, <strong>Shipping Address</strong>, or <strong>Shipping Information</strong> sections. See <a class="reference internal" href="create/create_from_scratch.html#quote-create-from-scratch"><span class="std std-ref">Create a Quote</span></a> topic for detailed information on the available options.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong> on the top right of the page.</p>
+</li>
+</ol>
+<p>The quote is updated.</p>
+</div>
 </div>
 
 
@@ -227,39 +150,62 @@ materialdropdown.addEventListener('click', function() {
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<ul>
-<li><a class="reference internal" href="#">Edit a Quote</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Quotes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="create/index.html">Create a Quote</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Edit a Quote</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delete.html">Delete a Quote</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quote_states_by_flow/index.html">Next Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows/index.html">Quotes in Use: Examples</a></li>
 </ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">User Guide</a><ul>
-  <li><a href="index.html">Quotes</a><ul>
-      <li>Previous: <a href="create.html" title="previous chapter">Create a Quote</a></li>
-      <li>Next: <a href="../payment/index.html" title="next chapter">Payment</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 </ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-    <form class="search" action="../../search.html" method="get">
-      <div><i class="fa fa-search search-complete__icon"></i>&nbsp;<input class="search_text" type="text" placeholder="Search in documentation " name="q" />
-      <input class="submit" type="submit" value="Search" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Oro Inc. All rights reserved.
-           
+      &copy;2017, Oro Team.
       
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/quotes/edit.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
 
     

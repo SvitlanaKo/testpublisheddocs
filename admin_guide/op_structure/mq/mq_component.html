@@ -1,0 +1,953 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Message Queue Component in Oro Application &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DBAL Transport Options and Limitations" href="dbal.html" />
+    <link rel="prev" title="Message Queue Jobs and Transport Configuration" href="mq_bundle.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dbal.html" title="DBAL Transport Options and Limitations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mq_bundle.html" title="Message Queue Jobs and Transport Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Administrator Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Operational Structure</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Message Queue</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Message Queue Component in Oro Application</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="message-queue-component-in-oro-application">
+<span id="op-structure-mq-complete"></span><h1>Message Queue Component in Oro Application<a class="headerlink" href="#message-queue-component-in-oro-application" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id4">Overview</a></li>
+<li><a class="reference internal" href="#terminology" id="id5">Terminology</a></li>
+<li><a class="reference internal" href="#message-processors" id="id6">Message Processors</a></li>
+<li><a class="reference internal" href="#jobs" id="id7">Jobs</a></li>
+<li><a class="reference internal" href="#message-flow" id="id8">Message Flow</a></li>
+<li><a class="reference internal" href="#more-examples" id="id9">More Examples</a></li>
+<li><a class="reference internal" href="#usage" id="id10">Usage</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id4">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The MessageQueue component incorporates a message queue in your application via
+different transports. It contains several layers.</p>
+<p>The lowest layer is called Transport and provides an abstraction of
+transport protocol. The Consumption layer provides tools to consume
+messages, such as the cli command, signal handling, logging, extensions. It
+works on top of transport layer.</p>
+<p>The Client layer provides the ability to start producing/consuming
+messages with as little configuration as possible.</p>
+<div class="section" id="publish-subscribe-messaging">
+<h3>Publish/Subscribe Messaging<a class="headerlink" href="#publish-subscribe-messaging" title="Permalink to this headline">¶</a></h3>
+<p>OroMessageQueue uses <em>Publish/subscribe messaging</em>. It means that the
+sending application publishes (sends) a message with a specific <em>topic</em>
+and a <em>consumer</em> finds a subscriber(s) for the topic. Publish/subscribe
+messaging allows decoupling of the information provider from the
+consumers of that information. The sending application and the receiving
+application do not need to know anything about each other for the
+information to be sent and received.</p>
+</div>
+</div>
+<div class="section" id="terminology">
+<h2><a class="toc-backref" href="#id5">Terminology</a><a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Message</strong> - An information message which contains a <em>message topic</em>
+that indicates which <em>message processor(s)</em> will process it and a
+<em>message body</em> - array of parameters required for the processing, for
+example an entity id or a channel name. Messages are created and sent
+by a <em>message producer</em> and put to the &#8220;tail&#8221; of the <em>message queue</em>.
+When the message comes up, it is processed by a <em>consumer</em> using a
+<em>message processor</em>. Messages also contain a number of additional
+settings (see <a class="reference external" href="#message-settings">Message settings</a>).</li>
+<li><strong>Message Queue</strong> - A FIFO queue that holds <em>queue messages</em> until
+they are processed. There can be one or more queues. If we use only
+one queue, it is much easier. If there are several queues, it is much
+more difficult but more flexible sometimes.</li>
+<li><strong>Consumer</strong> - A component which takes messages from the queue and
+processes them. It processes one message at a time: once one message
+has finished being processed, the next message follows. For each
+message, the consumer runs a <em>message processor</em> subscribed to the
+<em>message topic</em> (if one exists). If there are several processors
+subscribed to the same topic, they can be run in parallel (actually
+messages are sent via broker and if the broker sees that a message
+has several receivers, it clones the message to create an individual
+message for each receiver). There can be more than one consumer and
+they can work on different servers. It can be done to increase the
+performance. When implementing a message processor, a developer
+should remember that <em>there can be several consumers working on
+different servers</em>.</li>
+<li><strong>Message Processor</strong> - Processes the queue messages (i.e. contains a
+code that should run when a consumer processes a message with the
+specified topic).</li>
+<li><strong>Message Topic</strong> - An identifier that indicates which message
+processor should be executed for the message. One processor can
+subscribe to several topics. Also, there can be several processes
+subscribed to the same topic.</li>
+<li><strong>Job</strong> - A message processor can process a message directly or
+create a job. Jobs are created in the db and allow monitoring of the
+processes status, start and end time, interrupt processes. Also, if
+we split a process into a set of parallel processes, jobs allow
+monitoring and control of the whole set. See details in the
+<a class="reference external" href="#jobs">Jobs</a> section.</li>
+</ul>
+<div class="section" id="message-settings">
+<h3>Message Settings<a class="headerlink" href="#message-settings" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Topic</strong> - Refers to the term &#8216;Message Topic&#8217; above.</li>
+<li><strong>Body</strong> - A string or json encoded array with some data.</li>
+<li><strong>Priority</strong> - Can be <code class="docutils literal"><span class="pre">MessagePriority::VERY_LOW</span></code>,
+<code class="docutils literal"><span class="pre">MessagePriority::LOW</span></code>, <code class="docutils literal"><span class="pre">MessagePriority::NORMAL</span></code>,
+<code class="docutils literal"><span class="pre">MessagePriority::HIGH</span></code>, <code class="docutils literal"><span class="pre">MessagePriority::VERY_HIGH</span></code>.
+Recognizing priority is simple: there are five queues, one queue per
+priority. Consumers process messages from the VERY_HIGH queue. If
+there are no messages in the VERY_HIGH queue, consumers process
+messages from the HIGH queue, etc. Consequently, if all other queues
+are empty, consumer processes messages from the VERY_LOW queue.</li>
+<li><strong>Expire</strong> - A number of seconds after which the message should be
+removed from the queue without processing.</li>
+<li><strong>Delay</strong> - A number of seconds that the message should be delayed
+for before it is sent to a queue.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="message-processors">
+<h2><a class="toc-backref" href="#id6">Message Processors</a><a class="headerlink" href="#message-processors" title="Permalink to this headline">¶</a></h2>
+<p><strong>Message Processors</strong> are classes that process queue messages. They
+implement <code class="docutils literal"><span class="pre">MessageProcessorInterface</span></code>. In addition, they usually
+subscribe to the specific topics and implement
+<code class="docutils literal"><span class="pre">TopicSubscriberInterface</span></code>.</p>
+<p>A <code class="docutils literal"><span class="pre">process(MessageInterface</span> <span class="pre">$message,</span> <span class="pre">SessionInterface</span> <span class="pre">$session)</span></code>
+method describes the actions that should be performed when a message is
+received. It can perform the actions directly or create a job. It can
+also produce a new message to run another processor asynchronously.</p>
+<div class="section" id="processing-status">
+<h3>Processing Status<a class="headerlink" href="#processing-status" title="Permalink to this headline">¶</a></h3>
+<p>The received message can be processed, rejected, and re-queued. An
+exception can also be thrown.</p>
+<p><strong>Message Processor will return ``self::ACK`` in the following cases:</strong></p>
+<ul class="simple">
+<li>If a message wass processed successfully.</li>
+<li>If the created job returned <code class="docutils literal"><span class="pre">true</span></code>.</li>
+</ul>
+<p>It means that the message was processed successfully and is removed from
+the queue.</p>
+<p><strong>Message Processor will return ``self::REJECT`` in the following
+cases:</strong></p>
+<ul class="simple">
+<li>If a message is broken.</li>
+<li>If the created job returned <code class="docutils literal"><span class="pre">false</span></code>.</li>
+</ul>
+<p>It means that the message was not processed and is removed from the
+queue because it is unprocessable and will never become processable
+(e.g. a required parameter is missing or another permanent error
+appears).</p>
+<p><strong>There could be two options:</strong></p>
+<ul class="simple">
+<li>The message became unprocessable as a result of normal work. For
+example, when the message was sent to an the entity that existed at
+the moment of sending, but somebody deleted it. The entity will not
+appear again and we can reject the message. It is normal workflow, so
+user intervention is not required.</li>
+<li>The message became unprocessable due a failure. For example, when an
+entity id was invalid or missing. This is abnormal behavior, the
+message should also be rejected, but the processor requires user
+attention (e.g. log a critical error or even throw an exception).</li>
+</ul>
+<p><strong>If a message cannot be processed temporarily</strong>, for example, in case
+of connection timeout due server overload, the <code class="docutils literal"><span class="pre">process</span></code> method should
+return <code class="docutils literal"><span class="pre">self::REQUEUE</span></code>. The message will be returned to the queue
+again and will be processed later. <strong>This will also happen if an
+exception is thrown during processing or job running</strong>.</p>
+<p><strong>The workflow of re-queuing messages (processor returns
+``self::REQUEUE``) is the following:</strong></p>
+<ol class="arabic simple">
+<li>A consumer processes a message (runs the <code class="docutils literal"><span class="pre">process</span></code> method of the
+message processor).</li>
+<li>The <code class="docutils literal"><span class="pre">process</span></code> method returns <code class="docutils literal"><span class="pre">self::REQUEUE</span></code>.</li>
+<li>The consumer puts the message (i.e. a copy of the message) to the end
+of the queue setting the <code class="docutils literal"><span class="pre">redelivery</span></code> flag to true.</li>
+<li>The consumer continues message processing (the requeued message is at
+the end of the queue).</li>
+<li>When the turn of the requeued message comes, the
+<code class="docutils literal"><span class="pre">DelayRedeliveredMessageExtension</span></code> works and sets a delay for the
+requeued message.</li>
+<li>The time set in the delay passes and the message is processed again.</li>
+</ol>
+<p><strong>The workflow of re-queuing messages when an exception is thrown inside
+a message processor is slightly different:</strong></p>
+<ol class="arabic simple">
+<li>A consumer processes a message (runs <code class="docutils literal"><span class="pre">process</span></code> method of the
+message processor).</li>
+<li>An exception is thrown inside the <code class="docutils literal"><span class="pre">process</span></code> method.</li>
+<li>The consumer logs the exception and puts the message (i.e. a copy of
+the message) to the end of the queue setting the <code class="docutils literal"><span class="pre">redelivery</span></code> flag
+to true. Then the consumer fails with the exception.</li>
+<li>The consumer should be re-run at this stage. It can be done manually
+or automatically with an utility like
+<a class="reference external" href="http://supervisord.org/">supervisord</a>. Manual re-run is preferred
+for developing as developers should review the exceptions thrown on
+the message processing. Automatic re-run is preferred for regression
+testing or prod.</li>
+<li>The consumer continues message processing (the failing message is at
+the end of the queue).</li>
+<li>When the turn of the failing message comes, the
+<code class="docutils literal"><span class="pre">DelayRedeliveredMessageExtension</span></code> works and sets a delay for the
+failing message.</li>
+<li>After the delay time passes, the message is processed again and the
+consumer can fail again.</li>
+</ol>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>A processor receives a message with the entity id. It finds the entity
+and changes its status without creating any job.</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * {@inheritdoc}</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$body</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">critical</span><span class="p">(</span>
+            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;Got invalid message, id is empty: &quot;%s&quot;&#39;</span><span class="p">,</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()),</span>
+            <span class="p">[</span><span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="nv">$message</span><span class="p">]</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nv">$em</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getEntityManager</span><span class="p">();</span>
+    <span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$em</span><span class="o">-&gt;</span><span class="na">getRepository</span><span class="p">(</span><span class="nx">SomeEntity</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+    <span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$repository</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$body</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span> <span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span>
+            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;Cannot find an entity with id: &quot;%s&quot;&#39;</span><span class="p">,</span> <span class="nv">$body</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]),</span>
+            <span class="p">[</span><span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="nv">$message</span><span class="p">]</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">setStatus</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">);</span>
+    <span class="nv">$em</span><span class="o">-&gt;</span><span class="na">persist</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+    <span class="nv">$em</span><span class="o">-&gt;</span><span class="na">flush</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>Overall, there can be three cases:</p>
+<ul class="simple">
+<li>The processor received a message with an entity id. The entity was
+found. The process method of the processor changed the entity status
+and returned self::ACK.</li>
+<li>The processor received a message with an entity id. The entity was
+not found. This is possible if the entity was deleted when the
+message was in the queue (i.e. after it was sent but before it was
+processed). This is expected behavior, but the processor rejects the
+message because the entity does not exist and will not appear later.
+Please note that we use error logging level.</li>
+<li>The processor received a message with an empty entity id. This is
+unexpected behavior. There are definitely bugs in the code that sent
+the message. We also reject the message but using critical logging
+level to inform that user intervention is required.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="jobs">
+<span id="op-structure-mq-component-jobs"></span><h2><a class="toc-backref" href="#id7">Jobs</a><a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h2>
+<p>A message processor can be implemented with or without creating jobs.</p>
+<p>There is no ideal criteria to help decide whether a job should be
+created or not. A developer should decide each time which approach is
+better in this case.</p>
+<p>Here are a few recommendations:</p>
+<p>Skip a job creation if:</p>
+<ul class="simple">
+<li>There is an easy fast-executing action such as status changing etc.</li>
+<li>The action looks like an event listener.</li>
+</ul>
+<p>Always create jobs if:</p>
+<ul class="simple">
+<li>The action is complicated and can be executed for a long time.</li>
+<li>There is a need to monitor execution status.</li>
+<li>There is a need to run an unique job i.e. do not allow running a job with the
+same name until the previous job has finished.</li>
+<li>There is a need to run a step-by-step action i.e. the message flow has
+several steps (tasks) which run one after another.</li>
+<li>There is a need to split a job for a set of sub-jobs to run in parallel and
+monitor the status of the whole task.</li>
+</ul>
+<p>Jobs are usually run with JobRunner.</p>
+<div class="section" id="jobrunner">
+<h3>JobRunner<a class="headerlink" href="#jobrunner" title="Permalink to this headline">¶</a></h3>
+<p>JobRunner creates and runs a job. Usually one of the following methods
+is used:</p>
+<div class="section" id="rununique">
+<h4>runUnique<a class="headerlink" href="#rununique" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">runUnique($ownerId,</span> <span class="pre">$name,</span> <span class="pre">\Closure</span> <span class="pre">$runCallback)</span></code></p>
+<p>Runs the <code class="docutils literal"><span class="pre">$runCallback</span></code>. It does not allow another job with the same
+name to be run at the same time.</p>
+</div>
+<div class="section" id="createdelayed">
+<h4>createDelayed<a class="headerlink" href="#createdelayed" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">createDelayed($name,</span> <span class="pre">\Closure</span> <span class="pre">$startCallback)</span></code></p>
+<p>A sub-job which runs asynchronously (sending its own message). It can
+only run inside another job.</p>
+</div>
+<div class="section" id="rundelayed">
+<h4>runDelayed<a class="headerlink" href="#rundelayed" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">public</span> <span class="pre">function</span> <span class="pre">runDelayed($jobId,</span> <span class="pre">\Closure</span> <span class="pre">$runCallback)</span></code></p>
+<p>This method is used inside a processor for a message which was sent with
+createDelayed.</p>
+<p>The <code class="docutils literal"><span class="pre">$runCallback</span></code> closure usually returns <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code>, the
+job status depends on the returned value. See <a class="reference external" href="#jobs-statuses">Jobs
+statuses</a> section for the details.</p>
+<p>To reuse existing processor logic in scope of job it may be decorated
+with <code class="docutils literal"><span class="pre">DelayedJobRunnerDecoratingProcessor</span></code> which will execute
+runDelayed, pass control to given processor and then handle result in
+format applicable for <code class="docutils literal"><span class="pre">runDelayed</span></code></p>
+</div>
+</div>
+<div class="section" id="a-dependent-job">
+<h3>A Dependent Job<a class="headerlink" href="#a-dependent-job" title="Permalink to this headline">¶</a></h3>
+<p>Use a dependent job when your job flow has several steps but you want to
+send a new message when all steps are finished.</p>
+<p>In the example below, a root job is created. As soon as its work is
+completed, it sends two messages with the &#8216;topic1&#8217; and &#8216;topic2&#8217; topics
+to the queue.</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MessageProcessor</span> <span class="k">implements</span> <span class="nx">MessageProcessorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var JobRunner</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$jobRunner</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var DependentJobService</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$dependentJob</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">jobRunner</span><span class="o">-&gt;</span><span class="na">runUnique</span><span class="p">(</span>
+            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getMessageId</span><span class="p">(),</span>
+            <span class="s1">&#39;oro:index:reindex&#39;</span><span class="p">,</span>
+            <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$runner</span><span class="p">,</span> <span class="nx">Job</span> <span class="nv">$job</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// register two dependent jobs</span>
+                <span class="c1">// next messages will be sent to queue when that job and all children are finished</span>
+                <span class="nv">$context</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dependentJob</span><span class="o">-&gt;</span><span class="na">createDependentJobContext</span><span class="p">(</span><span class="nv">$job</span><span class="o">-&gt;</span><span class="na">getRootJob</span><span class="p">());</span>
+                <span class="nv">$context</span><span class="o">-&gt;</span><span class="na">addDependentJob</span><span class="p">(</span><span class="s1">&#39;topic1&#39;</span><span class="p">,</span> <span class="s1">&#39;message1&#39;</span><span class="p">);</span>
+                <span class="nv">$context</span><span class="o">-&gt;</span><span class="na">addDependentJob</span><span class="p">(</span><span class="s1">&#39;topic2&#39;</span><span class="p">,</span> <span class="s1">&#39;message2&#39;</span><span class="p">,</span> <span class="nx">MessagePriority</span><span class="o">::</span><span class="na">VERY_HIGH</span><span class="p">);</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dependentJob</span><span class="o">-&gt;</span><span class="na">saveDependentJob</span><span class="p">(</span><span class="nv">$context</span><span class="p">);</span>
+
+                <span class="c1">// some work to do</span>
+
+                <span class="k">return</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// if you want to ACK message or false to REJECT</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$result</span> <span class="o">?</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span> <span class="o">:</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The dependant jobs can be added only to root jobs (i.e. to the jobs
+created with <code class="docutils literal"><span class="pre">runUnique</span></code>, not <code class="docutils literal"><span class="pre">runDelayed</span></code>).</p>
+</div>
+<div class="section" id="jobs-structure">
+<h3>Jobs Structure<a class="headerlink" href="#jobs-structure" title="Permalink to this headline">¶</a></h3>
+<p>A two-level job hierarchy is created for the process where:</p>
+<ul class="simple">
+<li>A root job can have a few child jobs.</li>
+<li>A child job can have one root job.</li>
+<li>A child job cannot have child jobs of its own.</li>
+<li>A root job cannot have a root job of its own.</li>
+<li>If we use just <code class="docutils literal"><span class="pre">runUnique</span></code>, then a parent and a child jobs with the
+same name are created.</li>
+<li>If we use <code class="docutils literal"><span class="pre">runUnique</span></code> and <code class="docutils literal"><span class="pre">createDelayed</span></code> inside it, then a
+parent and a child job for <code class="docutils literal"><span class="pre">runUnique</span></code> are created. Then each run
+of <code class="docutils literal"><span class="pre">createDelayed</span></code> adds another child for the runUnique parent.</li>
+</ul>
+</div>
+<div class="section" id="job-statuses">
+<h3>Job Statuses<a class="headerlink" href="#job-statuses" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Single job:</strong> When a message is being processed by a consumer and a
+JobRunner method <code class="docutils literal"><span class="pre">runUnique</span></code> is called without creating any child
+jobs:</li>
+<li>The root job is created and the closure passed in params runs. The
+job gets <code class="docutils literal"><span class="pre">Job::STATUS_RUNNING</span></code> status, the job <code class="docutils literal"><span class="pre">startedAt</span></code> field
+is set to the current time.</li>
+<li>If the closure returns <code class="docutils literal"><span class="pre">true</span></code>, the job status is changed to
+<code class="docutils literal"><span class="pre">Job::STATUS_SUCCESS</span></code>, the job <code class="docutils literal"><span class="pre">stoppedAt</span></code> field is changed to
+the current time.</li>
+<li>If the closure returns <code class="docutils literal"><span class="pre">false</span></code> or throws an exception, the job
+status is changed to <code class="docutils literal"><span class="pre">Job::STATUS_FAILED</span></code>, the job <code class="docutils literal"><span class="pre">stoppedAt</span></code>
+field is changed to the current time.</li>
+<li>If someone interrupts the job, it stops working and gets
+<code class="docutils literal"><span class="pre">Job::STATUS_CANCELLED</span></code> status, the job <code class="docutils literal"><span class="pre">stoppedAt</span></code> field is
+changed to the current time.</li>
+<li><strong>Child jobs:</strong> When a message is being processed by a consumer, a
+JobRunner method <code class="docutils literal"><span class="pre">runUnique</span></code> is called which creates child jobs
+with <code class="docutils literal"><span class="pre">createDelayed</span></code>:</li>
+<li>The root job is created and the closure passed in params runs. The
+job gets <code class="docutils literal"><span class="pre">Job::STATUS_RUNNING</span></code> status, the job <code class="docutils literal"><span class="pre">startedAt</span></code> field
+is set to the current time.</li>
+<li>When the JobRunner method <code class="docutils literal"><span class="pre">createDelayed</span></code> is called, the child jobs
+are created and get the <code class="docutils literal"><span class="pre">Job::STATUS_NEW</span></code> statuses. The messages
+for the jobs are sent to the message queue.</li>
+<li>When a message for a child job is being processed by a consumer and a
+JobRunner method <code class="docutils literal"><span class="pre">runDelayed</span></code> is called, the closure runs and the
+child jobs get <code class="docutils literal"><span class="pre">Job::STATUS_RUNNING</span></code> status.</li>
+<li>If the closure returns <code class="docutils literal"><span class="pre">true</span></code>, the child job status is changed to
+<code class="docutils literal"><span class="pre">Job::STATUS_SUCCESS</span></code>, the job <code class="docutils literal"><span class="pre">stoppedAt</span></code> field is changed to
+the current time.</li>
+<li>If the closure returns <code class="docutils literal"><span class="pre">false</span></code> or throws an exception, the child
+job status is changed to <code class="docutils literal"><span class="pre">Job::STATUS_FAILED</span></code>, the job
+<code class="docutils literal"><span class="pre">stoppedAt</span></code> field is changed to the current time.</li>
+<li>When all child jobs are stopped, the root job status is changed
+according to the child jobs statuses.</li>
+<li>If someone interrupts a child job, it stops working and gets
+<code class="docutils literal"><span class="pre">Job::STATUS_CANCELLED</span></code> status, the job <code class="docutils literal"><span class="pre">stoppedAt</span></code> field is
+changed to the current time.</li>
+<li>If someone interrupts the root job, the child jobs that are already
+running finish their work and get the statuses according to the work
+result (see the description above). The child jobs that are not run
+yet are cancelled and get <code class="docutils literal"><span class="pre">Job::STATUS_CANCELLED</span></code> statuses.</li>
+<li><strong>Also:</strong> If a jobs closure returns <code class="docutils literal"><span class="pre">true</span></code>, the process method
+which runs this job should return <code class="docutils literal"><span class="pre">self::ACK</span></code>. If a job closure
+returns <code class="docutils literal"><span class="pre">false</span></code>, the process method which runs this job should
+return <code class="docutils literal"><span class="pre">self::REJECT</span></code>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="message-flow">
+<h2><a class="toc-backref" href="#id8">Message Flow</a><a class="headerlink" href="#message-flow" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-flow">
+<h3>Simple flow<a class="headerlink" href="#simple-flow" title="Permalink to this headline">¶</a></h3>
+<p>Usually the message flow looks the following way:</p>
+<div class="figure" id="id1">
+<img alt="Simple Message Flow" src="../../../_images/simple_message_flow.png" />
+<p class="caption"><span class="caption-text">Simple Message Flow</span></p>
+</div>
+<p>However, if there are more than one processor subscribed to the same
+topic, the flow becomes more complicated. The client&#8217;s message producer
+sends a message to a router message processor. It takes the message and
+searches for real recipients that are interested in such message. Then
+it sends a copy of the message to all of them. Each target message
+processor takes its copy of the message and processes it.</p>
+</div>
+<div class="section" id="simple-way-to-run-several-processes-in-parallel">
+<h3>Simple Way to Run Several Processes in Parallel<a class="headerlink" href="#simple-way-to-run-several-processes-in-parallel" title="Permalink to this headline">¶</a></h3>
+<p>Let us imagine that we want to run two processes in parallel. In this
+case, we can create a Processor B with the first process and Processor C
+with the second process. We can then create Processor A, inject Message
+Producer into it, and send messages to Processor B and Processor C. The
+messages are put to the queue and when their turn comes, the consumers
+run processes B and C. That could be done in parallel.</p>
+<div class="figure" id="id2">
+<img alt="Simple Parallel Process Running Flow" src="../../../_images/simple_parallel_processes_running.png" />
+<p class="caption"><span class="caption-text">Simple Parallel Process Running Flow</span></p>
+</div>
+<p>Code example:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+    <span class="k">if</span> <span class="p">({</span><span class="nv">$message</span> <span class="nx">is</span> <span class="nx">invalid</span><span class="p">})</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">critical</span><span class="p">(</span>
+            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;Got invalid message: &quot;%s&quot;&#39;</span><span class="p">,</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">()),</span>
+            <span class="p">[</span><span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="nv">$message</span><span class="p">]</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">producer</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nx">Topics</span><span class="o">::</span><span class="na">DO_SOMETHING_WITH_ENTITY</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">,</span>
+            <span class="s1">&#39;targetClass&#39;</span> <span class="o">=&gt;</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;targetClass&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;targetId&#39;</span> <span class="o">=&gt;</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;targetId&#39;</span><span class="p">],</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span>
+        <span class="s1">&#39;Sent &quot;%s&quot; messages&#39;</span><span class="p">,</span>
+        <span class="nb">count</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">])</span>
+    <span class="p">));</span>
+
+    <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The processor in the example accepts an array of some entity ids and
+sends a message <code class="docutils literal"><span class="pre">Topics:DO_SOMETHING_WITH_ENTITY</span></code> to each id. The
+messages are put to the message queue and will be processed when their
+turn comes. It could be done in parallel if several consumers are
+running.</p>
+<p>The approach is simple and works perfectly well, although it has a few
+flaws.</p>
+<ul class="simple">
+<li>We do not have a way to <strong>monitor</strong> the <strong>status</strong> of processes
+except for reading log files. In the example above we do not know how
+many entities are being processed and how many are still in the
+queue. We also do not know how many entities were processed
+successfully and how many received errors during the processing.</li>
+<li>We cannot ensure the <strong>unique</strong> run.</li>
+<li>We cannot easily <strong>interrupt</strong> the running processes.</li>
+</ul>
+</div>
+<div class="section" id="flow-to-run-parallel-jobs-via-creating-a-root-job-and-child-jobs-using-rununique-createdelayed-rundelayed">
+<h3>Flow to Run Parallel Jobs via Creating a Root Job and Child Jobs Using runUnique/createDelayed/runDelayed<a class="headerlink" href="#flow-to-run-parallel-jobs-via-creating-a-root-job-and-child-jobs-using-rununique-createdelayed-rundelayed" title="Permalink to this headline">¶</a></h3>
+<p>This way of running parallel jobs is more appropriate than the previous
+one, although it is slightly more complicated. It is, however, the
+preferred way for the parallel processes implementation.</p>
+<p>The task is the same as the previous one. We want to run two processes
+in parallel. We are also creating processors A, B and C but they are
+slightly different.</p>
+<p>We inject JobRunner to <em>Processor A</em>. Inside the <code class="docutils literal"><span class="pre">process</span></code> method, it
+runs <code class="docutils literal"><span class="pre">runUnique</span></code> method. In the closure of the <code class="docutils literal"><span class="pre">runUnique</span></code>, it runs
+<code class="docutils literal"><span class="pre">createDelayed</span></code> method for <em>Processor B</em> and for <em>Processor C</em> passing
+<code class="docutils literal"><span class="pre">jobId</span></code> param to its closure. Inside the closures of
+<code class="docutils literal"><span class="pre">createDelayed</span></code>, the messages for <em>Processor B</em> and <em>Processor C</em> are
+created and sent. We should also add the <code class="docutils literal"><span class="pre">jobId</span></code> params to the message
+bodies except for the required params.</p>
+<p>Processors B and C are also slightly different. Their process methods
+call <code class="docutils literal"><span class="pre">runDelayed</span></code> method passing the received <code class="docutils literal"><span class="pre">jobId</span></code> param.</p>
+<p>The benefits are the following:</p>
+<ul class="simple">
+<li><strong>Unique running</strong>. As we use <code class="docutils literal"><span class="pre">runUnique</span></code> method in Processor A, a
+new instance of it cannot run until the previous instance completes
+all the jobs.</li>
+<li><strong>Jobs are created in the db</strong>. A root job is created for Processor A
+and child jobs are added to it for Processors B and C.</li>
+<li><strong>Status monitoring</strong>. We can see the statuses of all the child jobs:
+<em>new</em> for just created, <em>running</em> for the jobs that are currently
+running, <em>success</em> for the jobs that finished successfully and
+<em>failed</em> for the jobs that failed.</li>
+<li>A root job status is <em>running</em> until all child jobs are finished.</li>
+<li><strong>Interrupt</strong>. We can interrupt a child job or a root job. If we
+interrupt a root job, all its running child jobs complete their work.
+Child jobs that have not started will not start.</li>
+</ul>
+<div class="figure" id="id3">
+<img alt="Running Parallel Jobs" src="../../../_images/running_parallel_jobs.png" />
+<p class="caption"><span class="caption-text">Running Parallel Jobs - a Root Job with async Sub-jobs</span></p>
+</div>
+<div class="section" id="example-of-createdelayed-and-rundelayed-usage">
+<h4>Example of createDelayed and runDelayed Usage<a class="headerlink" href="#example-of-createdelayed-and-rundelayed-usage" title="Permalink to this headline">¶</a></h4>
+<p>The processor subscribes to <code class="docutils literal"><span class="pre">Topics::DO_BIG_JOB</span></code> and runs a unique big
+job (the name of the job is Topics::DO_BIG_JOB - the same as the topic
+name so it will not be possible to run another big job at the same time)
+The processor creates a set of delayed jobs, each of them sends
+<code class="docutils literal"><span class="pre">Topics::DO_SMALL_JOB</span></code> message.</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * {@inheritdoc}</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$bigJobParts</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">jobRunner</span><span class="o">-&gt;</span><span class="na">runUnique</span><span class="p">(</span> <span class="c1">//a root job is creating here</span>
+        <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getMessageId</span><span class="p">(),</span>
+        <span class="nx">Topics</span><span class="o">::</span><span class="na">DO_BIG_JOB</span><span class="p">,</span>
+        <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$jobRunner</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$bigJobParts</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">foreach</span> <span class="p">(</span><span class="nv">$bigJobParts</span> <span class="k">as</span> <span class="nv">$smallJob</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$jobRunner</span><span class="o">-&gt;</span><span class="na">createDelayed</span><span class="p">(</span> <span class="c1">// child jobs are creating here and get new status</span>
+                    <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;%s:%s&#39;</span><span class="p">,</span> <span class="nx">Topics</span><span class="o">::</span><span class="na">DO_SMALL_JOB</span><span class="p">,</span> <span class="nv">$smallJob</span><span class="p">),</span>
+                    <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$jobRunner</span><span class="p">,</span> <span class="nx">Job</span> <span class="nv">$child</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$smallJob</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">producer</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nx">Topics</span><span class="o">::</span><span class="na">DO_SMALL_JOB</span><span class="p">,</span> <span class="p">[</span> <span class="c1">// messages for child jobs are sent here</span>
+                            <span class="s1">&#39;smallJob&#39;</span> <span class="o">=&gt;</span> <span class="nv">$smallJob</span><span class="p">,</span>
+                            <span class="s1">&#39;jobId&#39;</span> <span class="o">=&gt;</span> <span class="nv">$child</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">(),</span> <span class="c1">// the created child jobs ids are passing as message body params</span>
+                        <span class="p">]);</span>
+                    <span class="p">}</span>
+                <span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+
+    <span class="k">return</span> <span class="nv">$result</span> <span class="o">?</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span> <span class="o">:</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The processor subscribes to the <code class="docutils literal"><span class="pre">Topics::DO_SMALL_JOB</span></code> and runs the
+created delayed job.</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="sd">/**</span>
+<span class="sd"> * {@inheritdoc}</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$payload</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">jobRunner</span><span class="o">-&gt;</span><span class="na">runDelayed</span><span class="p">(</span><span class="nv">$payload</span><span class="p">[</span><span class="s1">&#39;jobId&#39;</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$jobRunner</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$payload</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//the child job status with the id $payload[&#39;jobId&#39;] is changed from new to running</span>
+
+        <span class="nv">$smallJobData</span> <span class="o">=</span> <span class="nv">$payload</span><span class="p">[</span><span class="s1">&#39;smallJob&#39;</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkDataValidity</span><span class="p">(</span><span class="nv">$smallJobData</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span>
+                <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;Invalid data received: &quot;%s&quot;&#39;</span><span class="p">,</span> <span class="nv">$smallJobData</span><span class="p">),</span>
+                <span class="p">[</span><span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="nv">$payload</span><span class="p">]</span>
+            <span class="p">);</span>
+
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span> <span class="c1">//the child job status with the id $payload[&#39;jobId&#39;] is changed from running to failed</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span> <span class="c1">//the child job status with the id $payload[&#39;jobId&#39;] is changed from running to success</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="nv">$result</span> <span class="o">?</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span> <span class="o">:</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A root job is created for the big job and a set of its child jobs is
+created for the small jobs.</p>
+</div>
+</div>
+</div>
+<div class="section" id="more-examples">
+<h2><a class="toc-backref" href="#id9">More Examples</a><a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-only-a-single-job-i-e-job-with-one-step-with-rununique">
+<h3>Run Only a Single Job (i.e. Job with One Step with runUnique)<a class="headerlink" href="#run-only-a-single-job-i-e-job-with-one-step-with-rununique" title="Permalink to this headline">¶</a></h3>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MessageProcessor</span> <span class="k">implements</span> <span class="nx">MessageProcessorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var JobRunner</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$jobRunner</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">jobRunner</span><span class="o">-&gt;</span><span class="na">runUnique</span><span class="p">(</span>
+            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getMessageId</span><span class="p">(),</span>
+            <span class="s1">&#39;oro:index:reindex&#39;</span><span class="p">,</span>
+            <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$runner</span><span class="p">,</span> <span class="nx">Job</span> <span class="nv">$job</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// do your job</span>
+
+                <span class="k">return</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// if you want to ACK message or false to REJECT</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$result</span> <span class="o">?</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span> <span class="o">:</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="job-flow-has-two-or-more-steps">
+<h3>Job Flow Has Two or More Steps<a class="headerlink" href="#job-flow-has-two-or-more-steps" title="Permalink to this headline">¶</a></h3>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Step1MessageProcessor</span> <span class="k">implements</span> <span class="nx">MessageProcessorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var JobRunner</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$jobRunner</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var MessageProducerInterface</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$producer</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">jobRunner</span><span class="o">-&gt;</span><span class="na">runUnique</span><span class="p">(</span>
+            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getMessageId</span><span class="p">(),</span>
+            <span class="s1">&#39;oro:index:reindex&#39;</span><span class="p">,</span>
+            <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$runner</span><span class="p">,</span> <span class="nx">Job</span> <span class="nv">$job</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// for example first step generates tasks for step two</span>
+
+                <span class="k">foreach</span> <span class="p">(</span><span class="nv">$entities</span> <span class="k">as</span> <span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// every job name must be unique</span>
+                    <span class="nv">$jobName</span> <span class="o">=</span> <span class="s1">&#39;oro:index:index-single-entity:&#39;</span> <span class="o">.</span> <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">();</span>
+                    <span class="nv">$runner</span><span class="o">-&gt;</span><span class="na">createDelayed</span><span class="p">(</span>
+                        <span class="nv">$jobName</span><span class="p">,</span>
+                        <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$runner</span><span class="p">,</span> <span class="nx">Job</span> <span class="nv">$childJob</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$entity</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">producer</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="s1">&#39;oro:index:index-single-entity&#39;</span><span class="p">,</span> <span class="p">[</span>
+                                <span class="s1">&#39;entityId&#39;</span> <span class="o">=&gt;</span> <span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">(),</span>
+                                <span class="s1">&#39;jobId&#39;</span> <span class="o">=&gt;</span> <span class="nv">$childJob</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">(),</span>
+                            <span class="p">])</span>
+                    <span class="p">});</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// if you want to ACK message or false to REJECT</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$result</span> <span class="o">?</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span> <span class="o">:</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Step2MessageProcessor</span> <span class="k">implements</span> <span class="nx">MessageProcessorInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var JobRunner</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$jobRunner</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">MessageInterface</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">SessionInterface</span> <span class="nv">$session</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">jobRunner</span><span class="o">-&gt;</span><span class="na">runDelayed</span><span class="p">(</span>
+            <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;jobId&#39;</span><span class="p">],</span>
+            <span class="k">function</span> <span class="p">(</span><span class="nx">JobRunner</span> <span class="nv">$runner</span><span class="p">,</span> <span class="nx">Job</span> <span class="nv">$job</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// do your job</span>
+
+                <span class="k">return</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// if you want to ACK message or false to REJECT</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$result</span> <span class="o">?</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span> <span class="o">:</span> <span class="nx">self</span><span class="o">::</span><span class="na">REJECT</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id10">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The following is an example of a message producing using only a
+transport layer:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">Oro\Component\MessageQueue\Transport\Dbal\DbalConnection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\Configuration</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\DriverManager</span><span class="p">;</span>
+
+<span class="nv">$doctrineConnection</span> <span class="o">=</span> <span class="nx">DriverManager</span><span class="o">::</span><span class="na">getConnection</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://user:secret@localhost/mydb&#39;</span><span class="p">],</span>
+    <span class="k">new</span> <span class="nx">Configuration</span>
+<span class="p">);</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DbalConnection</span><span class="p">(</span><span class="nv">$doctrineConnection</span><span class="p">,</span> <span class="s1">&#39;oro_message_queue&#39;</span><span class="p">);</span>
+
+<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">createSession</span><span class="p">();</span>
+
+<span class="nv">$queue</span> <span class="o">=</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">createQueue</span><span class="p">(</span><span class="s1">&#39;aQueue&#39;</span><span class="p">);</span>
+<span class="nv">$message</span> <span class="o">=</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">createMessage</span><span class="p">(</span><span class="s1">&#39;Something has happened&#39;</span><span class="p">);</span>
+
+<span class="nv">$session</span><span class="o">-&gt;</span><span class="na">createProducer</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$queue</span><span class="p">,</span> <span class="nv">$message</span><span class="p">);</span>
+
+<span class="nv">$session</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The following is an example of a message consuming using only a
+transport layer:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">Oro\Component\MessageQueue\Transport\Dbal\DbalConnection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\Configuration</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\DriverManager</span><span class="p">;</span>
+
+<span class="nv">$doctrineConnection</span> <span class="o">=</span> <span class="nx">DriverManager</span><span class="o">::</span><span class="na">getConnection</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://user:secret@localhost/mydb&#39;</span><span class="p">],</span>
+    <span class="k">new</span> <span class="nx">Configuration</span>
+<span class="p">);</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DbalConnection</span><span class="p">(</span><span class="nv">$doctrineConnection</span><span class="p">,</span> <span class="s1">&#39;oro_message_queue&#39;</span><span class="p">);</span>
+
+<span class="nv">$session</span> <span class="o">=</span> <span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">createSession</span><span class="p">();</span>
+
+<span class="nv">$queue</span> <span class="o">=</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">createQueue</span><span class="p">(</span><span class="s1">&#39;aQueue&#39;</span><span class="p">);</span>
+<span class="nv">$consumer</span> <span class="o">=</span> <span class="nv">$session</span><span class="o">-&gt;</span><span class="na">createConsumer</span><span class="p">(</span><span class="nv">$queue</span><span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$message</span> <span class="o">=</span> <span class="nv">$consumer</span><span class="o">-&gt;</span><span class="na">receive</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+
+        <span class="nv">$consumer</span><span class="o">-&gt;</span><span class="na">acknowledge</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$session</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The following is an example of a message consuming using consumption
+layer:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Oro\Component\MessageQueue\Consumption\MessageProcessor</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FooMessageProcessor</span> <span class="k">implements</span> <span class="nx">MessageProcessor</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">Session</span> <span class="nv">$session</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">ACK</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\Configuration</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\DriverManager</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Component\MessageQueue\Consumption\ChainExtension</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Component\MessageQueue\Consumption\QueueConsumer</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Component\MessageQueue\Transport\Dbal\DbalConnection</span><span class="p">;</span>
+
+<span class="nv">$doctrineConnection</span> <span class="o">=</span> <span class="nx">DriverManager</span><span class="o">::</span><span class="na">getConnection</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://user:secret@localhost/mydb&#39;</span><span class="p">],</span>
+    <span class="k">new</span> <span class="nx">Configuration</span>
+<span class="p">);</span>
+
+<span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DbalConnection</span><span class="p">(</span><span class="nv">$doctrineConnection</span><span class="p">,</span> <span class="s1">&#39;oro_message_queue&#39;</span><span class="p">);</span>
+
+<span class="nv">$queueConsumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueConsumer</span><span class="p">(</span><span class="nv">$connection</span><span class="p">,</span> <span class="k">new</span> <span class="nx">ChainExtension</span><span class="p">([]));</span>
+<span class="nv">$queueConsumer</span><span class="o">-&gt;</span><span class="na">bind</span><span class="p">(</span><span class="s1">&#39;aQueue&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">FooMessageProcessor</span><span class="p">());</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$queueConsumer</span><span class="o">-&gt;</span><span class="na">consume</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="nv">$queueConsumer</span><span class="o">-&gt;</span><span class="na">getConnection</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Operational Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elastic_search.html">Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../db_search/index.html">Manage Search in Oro Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cache.html">Cache in Oro Application</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Message Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_server_compression_and_caching.html">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jobs.html">Job Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cron.html">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/admin_guide/op_structure/mq/mq_component.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to Clone a System Workflow &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Administrator Guide" href="../../admin_guide/index.html" />
+    <link rel="prev" title="How to use WSSE authentication" href="how_to_use_wsse_authentication.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../admin_guide/index.html" title="Administrator Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="how_to_use_wsse_authentication.html" title="How to use WSSE authentication"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">How to... Articles</a> &#187;</li> 
+     <li class="nav-item nav-item-this">How to Clone a System Workflow</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-clone-a-system-workflow">
+<span id="workflows-actions-clone"></span><h1>How to Clone a System Workflow<a class="headerlink" href="#how-to-clone-a-system-workflow" title="Permalink to this headline">¶</a></h1>
+<p>To clone a workflow, create a dump of its configuration and translation files, adjust them, and load into the system:</p>
+<ol class="arabic">
+<li><p class="first">Dump the workflow configuration.</p>
+<p>For example, you want to dump a configuration of the Alternative Checkout workflow to your CustomBundle:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span> php app/console oro:debug:workflow:definitions b2b_flow_alternative_checkout &gt; /home/oro/commerce-application/src/&lt;Acme&gt;/Bundle/&lt;CustomBundle&gt;/Resources/config/oro/workflows.yml
+</pre></div>
+</td></tr></table></div>
+<p>where /&lt;Acme&gt;/Bundle/&lt;CustomBundle&gt; is a path to the bundle you want to create a workflow for.</p>
+<p>The copy of the initial file will be created in the destination directory.</p>
+</li>
+<li><p class="first">Dump the workflow translations. Translation contain labels for workflow steps, transitions, etc., thus it is necessary to clone them too.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>php app/console oro:workflow:translations:dump b2b_flow_alternative_checkout --locale<span class="o">=</span>en &gt; /home/oro/commerce-application/src/&lt;Acme&gt;/Bundle/&lt;CustomBundle&gt;/Resources/translations/workflows.en.yml
+</pre></div>
+</td></tr></table></div>
+<p>The copy of the initial file will be created in the destination directory.</p>
+</li>
+<li><p class="first">Open copied files with workflow configuration and translations. Change the workflow name in both files. If required, adjust other settings.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to change the workflow name to avoid conflicts with the existing workflow: workflows must have unique names in the system.</p>
+</div>
+<img alt="../../_images/workflow_config_change_name.png" src="../../_images/workflow_config_change_name.png" />
+<img alt="../../_images/workflow_transl_change_name.png" src="../../_images/workflow_transl_change_name.png" />
+</li>
+<li><p class="first">Remove section <code class="docutils literal"><span class="pre">init_routes</span></code> from the cloned workflow configuration:</p>
+<img alt="../../_images/workflow_config_remove_init.png" src="../../_images/workflow_config_remove_init.png" />
+</li>
+<li><p class="first">Load your cloned and adjusted workflow translations:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>php app/console oro:translation:load
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">Load your cloned and adjusted workflow configuration:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>php app/console oro:workflow:definitions:load
+</pre></div>
+</td></tr></table></div>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extend_and_customize/index.html">Customizing Oro Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_api/index.html">Web Services API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">How to... Articles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="how_to_accelerate_import.html">How to Accelerate Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_enable_https.html">How to enable https</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_pass_request_parameter_to_grid.html">How to pass request parameter to the grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_use_wsse_authentication.html">How to use WSSE authentication</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to Clone a System Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/dev_guide/other/how_to_clone_workflow.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

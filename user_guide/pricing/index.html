@@ -1,0 +1,1472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pricing &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Create a Price List" href="pricelist/index.html" />
+    <link rel="prev" title="Create a Warehouse" href="../inventory/warehouses/create.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pricelist/index.html" title="Create a Price List"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../inventory/warehouses/create.html" title="Create a Warehouse"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">User Guide</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Pricing</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pricing">
+<span id="user-guide-pricing"></span><h1>Pricing<a class="headerlink" href="#pricing" title="Permalink to this headline">¶</a></h1>
+<p>This topic contains the following sections:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id2">Overview</a><ul>
+<li><a class="reference internal" href="#understanding-price-currencies" id="id3">Understanding Price Currencies</a></li>
+<li><a class="reference internal" href="#understanding-product-quantities-and-tier-prices" id="id4">Understanding Product Quantities and Tier Prices</a></li>
+<li><a class="reference internal" href="#understanding-price-lists" id="id5">Understanding Price Lists</a></li>
+<li><a class="reference internal" href="#price-selection-strategy" id="id6">Price Selection Strategy</a></li>
+<li><a class="reference internal" href="#combining-price-lists" id="id7">Combining Price Lists</a></li>
+<li><a class="reference internal" href="#auto-generated-price-lists" id="id8">Auto-Generated Price Lists</a></li>
+<li><a class="reference internal" href="#price-list-calculation" id="id9">Price List Calculation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration" id="id10">Configuration</a></li>
+<li><a class="reference internal" href="#price-list-management" id="id11">Price List Management</a><ul>
+<li><a class="reference internal" href="#create-a-price-list" id="id12">Create a Price List</a></li>
+<li><a class="reference internal" href="#schedule-price-adjustments" id="id13">Schedule Price Adjustments</a></li>
+<li><a class="reference internal" href="#import-and-export-prices" id="id14">Import and Export Prices</a><ul>
+<li><a class="reference internal" href="#export-prices-from-the-price-list" id="id15">Export Prices From the Price List</a></li>
+<li><a class="reference internal" href="#import-prices-into-the-price-list" id="id16">Import Prices Into the Price List</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manage-product-price-manually" id="id17">Manage Product Price Manually</a><ul>
+<li><a class="reference internal" href="#in-the-price-list" id="id18">In the Price List</a></li>
+<li><a class="reference internal" href="#in-the-product-details" id="id19">In the Product Details</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generate-product-price-automatically" id="id20">Generate Product Price Automatically</a><ul>
+<li><a class="reference internal" href="#filters-priorities-and-matching-units-in-the-automatically-generated-price-list" id="id21">Filters, Priorities, and Matching Units in the Automatically Generated Price List</a></li>
+<li><a class="reference internal" href="#price-rules-automation-examples" id="id22">Price Rules Automation Examples</a></li>
+<li><a class="reference internal" href="#filtering-expression-syntax" id="id23">Filtering Expression Syntax</a></li>
+<li><a class="reference internal" href="#developer-notice" id="id24">Developer Notice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#set-prices-in-multiple-currencies" id="id25">Set Prices in Multiple Currencies</a><ul>
+<li><a class="reference internal" href="#prerequisites" id="id26">Prerequisites</a></li>
+<li><a class="reference internal" href="#enable-multiple-currencies-for-the-price-list" id="id27">Enable Multiple Currencies for the Price List</a></li>
+<li><a class="reference internal" href="#add-price-in-specific-currency-to-the-price-list" id="id28">Add Price in Specific Currency to the Price List</a></li>
+<li><a class="reference internal" href="#view-price-in-specific-currency-on-the-front-store" id="id29">View Price in Specific Currency on the Front Store</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#price-calculation-on-the-front-store" id="id30">Price Calculation on the Front Store</a><ul>
+<li><a class="reference internal" href="#minimal-prices-strategy" id="id31">Minimal Prices Strategy</a></li>
+<li><a class="reference internal" href="#merge-by-priority-strategy" id="id32">Merge By Priority Strategy</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Price management in OroCommerce enables you to:</p>
+<ul class="simple">
+<li>Set up flexible product prices for different websites, customer groups, and customers.</li>
+<li>Assign prices for newly added products automatically.</li>
+<li>Schedule temporary or permanent price changes.</li>
+<li>Override the automatically assigned price with the manually adjusted value.</li>
+</ul>
+<div class="section" id="understanding-price-currencies">
+<h3><a class="toc-backref" href="#id3">Understanding Price Currencies</a><a class="headerlink" href="#understanding-price-currencies" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal"><span class="pre">base</span> <span class="pre">currency</span></code> is a currency that is used to display financial statistics (budgets, sales amounts, etc.) on the management console.
+A <code class="docutils literal"><span class="pre">display</span> <span class="pre">currency</span></code> is a currency that is used to display prices to customer users on the Front Store.</p>
+<p>To enable your customer users to switch between the base currency and additional display currencies when they view the prices on the front store, set up currency conversion rules for each of the additional display currencies. See <a class="reference internal" href="../../configuration_guide/pricing/global_currency.html#sys-config-sysconfig-general-setup-currency"><span class="std std-ref">Global Currency Configuration</span></a> for more information on the necessary steps.</p>
+</div>
+<div class="section" id="understanding-product-quantities-and-tier-prices">
+<h3><a class="toc-backref" href="#id4">Understanding Product Quantities and Tier Prices</a><a class="headerlink" href="#understanding-product-quantities-and-tier-prices" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal"><span class="pre">product</span> <span class="pre">quantity</span></code> is an amount of product that can be sold expressed in a certain unit of quantity.</p>
+<p>A product quantity could be a whole number (integer) or a number with a fractional part (a floating-point number). Whether or not the quantity should be a whole or fractional number, and how many digits are allowed in the fractional part is defined by the settings of the selected unit of measurement. For example, by default, “kilogram” allows entering up to 3 numbers after the decimal point, and “each” requires a whole number entry.</p>
+<p>A <code class="docutils literal"><span class="pre">tier</span> <span class="pre">price</span></code> is a price determined by the system for the specified product quantity.</p>
+<p>For example, you set the following prices in the price list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="34%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Quantity</th>
+<th class="head">Price</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Product A</td>
+<td>1 piece</td>
+<td>$100.00</td>
+</tr>
+<tr class="row-odd"><td>Product A</td>
+<td>10 pieces</td>
+<td>$90.00</td>
+</tr>
+</tbody>
+</table>
+<p>OroCommerce uses $90.00 as a price per piece when a customer user is buying 10 or more pieces and $100.00 as a price per piece when a customer user is buying 9 or fewer pieces.</p>
+<p>Price tiers for a selected product can be derived from the same price list, or from the different price lists if they allow price merge.</p>
+</div>
+<div class="section" id="understanding-price-lists">
+<h3><a class="toc-backref" href="#id5">Understanding Price Lists</a><a class="headerlink" href="#understanding-price-lists" title="Permalink to this headline">¶</a></h3>
+<p>Price lists are used in OroCommerce to match the product quantities with their prices in one or more currencies.</p>
+<p>Price lists are used as a reference that helps calculate the price for the products that customer user sees on the store frontend.</p>
+<p>For example, you can have one or multiple price lists with prices in US dollars and Euros that apply to all your customers.</p>
+<p>At the same time, a different price list with prices in US dollars only may have higher priority for your large-volume US-based distributors.</p>
+<p>Finally, a dedicated price list with prices in Euros may be available only to some of your selected European partners.</p>
+<p>For example, let&#8217;s imagine that one of your customer users logs into your store frontend. They may see prices for both product A and product B. The product A prices come from the default price list available to everybody. The product B prices are from a custom price list that you have created to override default product B pricing only for this specific customer. Even though you can see all price lists and switch between them in your store management console, your customer users can see only those prices on the store frontend that you have made available to them by configuring price lists and their settings.</p>
+</div>
+<div class="section" id="price-selection-strategy">
+<h3><a class="toc-backref" href="#id6">Price Selection Strategy</a><a class="headerlink" href="#price-selection-strategy" title="Permalink to this headline">¶</a></h3>
+<p>Whether your customer user gets the most attractive price or the one you have marked with the higher priority depends on the <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">global price selection strategy</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, the minimal price is configured in OroCommerce 2.2.x and priority-based price is used in the earlier versions of OroCommerce.</p>
+</div>
+</div>
+<div class="section" id="combining-price-lists">
+<h3><a class="toc-backref" href="#id7">Combining Price Lists</a><a class="headerlink" href="#combining-price-lists" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Price</span> <span class="pre">list</span> <span class="pre">priority</span></code> determines the order in which the product prices should be combined when there are prices for the same price tier in the multiple price lists available to a customer.</p>
+<p><strong>For example:</strong></p>
+<p>You specified $90.00 as a unit price for 10 or more sets of Product A in the Price List 1, and $85.00 as a unit price for 10 or more sets of the same Product A in the Price List 2, and both price lists are available to a customer.</p>
+<p>If Price List 1 has a higher priority than Price List 2, the customer will see $90.00 as a unit price when buying 10 or more sets of Product A.</p>
+<p>Otherwise, the customer will see $85.00 as a unit price for 10 or more sets of Product A.</p>
+<p><code class="docutils literal"><span class="pre">Merge</span> <span class="pre">Allowed</span></code> is a price list configuration setting that defines whether the system should combine price tiers of the same product from multiple price lists. This setting is displayed as <strong>Merge Allowed</strong> option next to the price list names on the customer, customer group, website edit pages, or on the pricing settings page (<strong>System Configuration &gt; Catalog &gt; Pricing</strong>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Price tier merging is possible only when the priority-based pricing strategy is enabled. Please, see <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">global pricing configuration</span></a> for more information.</p>
+</div>
+<p><strong>For example:</strong></p>
+<p>You specified the price for 1 item of Product A in Price List 1, and the price for 10 items of Product A in Price List 2.</p>
+<p>If both price lists are available to a customer user, they will see two price tiers. The first price tier will be for <em>1 through 9</em> items, and the second price tier will be for <em>10 or more</em> items.</p>
+<p>If you decided keep <code class="docutils literal"><span class="pre">Merge</span> <span class="pre">Allowed</span></code> off, the customer users to whom both price lists are available, will see only the price tier from the price list with higher priority (e.g. only <em>10 or more</em> items from Price List 2).</p>
+<p><code class="docutils literal"><span class="pre">Price</span> <span class="pre">list</span> <span class="pre">fallback</span></code> is a configuration setting at the customer, customer group, or website level that enables (or disables) access to the higher level price lists.</p>
+<p><strong>For example:</strong></p>
+<p>In a default configuration, all customers users have access to all price lists assigned to their customers and the price lists assigned to the customer group that their customer belongs to, as well as to the price lists assigned to the website they are currently browsing and the default price lists configured at the system level.</p>
+<p>If you disable the fallback configuration at the customer level and assign a selected price list to a customer, this price list becomes the only price list that the users of this customer will see the prices from. In this case, the customer group pricing, the website pricing, and the default pricing at the system level will no longer be available to the users of this customer.</p>
+<p>If you disable fallback configuration at the customer group level, then all customers that belong to this customer group will no longer have access to the website pricing and the default pricing at the system level.</p>
+</div>
+<div class="section" id="auto-generated-price-lists">
+<h3><a class="toc-backref" href="#id8">Auto-Generated Price Lists</a><a class="headerlink" href="#auto-generated-price-lists" title="Permalink to this headline">¶</a></h3>
+<p>In OroCommerce, you can set up a price list that is flexible, adjustable and exactly matches your pricing strategy.</p>
+<p>With the automated pricing that may rely on the key indicators, like product availability, recommended price, and production cost, you get the complete price list for thousands and millions of items ready in literally no time.</p>
+<p>Products automatically get into the price list whenever they match the special criteria - a price list&#8217;s product assignment rule. You can set up flexible pricing rules, for example, to meet the price regulations requirements, maintain an international location aware price list, or to stimulate the demand and update the price following the stock availability trends.</p>
+<p>Automated pricing rules are a single source of truth for your price list. You can easily trace what impacts the price change, share the vision of the pricing strategy, and make sure the price is correct and meets the needs of your pricing policies.</p>
+</div>
+<div class="section" id="price-list-calculation">
+<h3><a class="toc-backref" href="#id9">Price List Calculation</a><a class="headerlink" href="#price-list-calculation" title="Permalink to this headline">¶</a></h3>
+<p>To provide an optimized user experience on the store frontend and in the store management console, and maintain the desired level of system performance, we provide a way to fine-tune the price list calculation behavior.</p>
+<p>OroCommerce performs a non-resource-consuming part of price recalculation immediately after the price change is submitted by the user in the management console (e.g., when a user submits the product edit form, or adds a price via the price list management, or modifies price list priority on a customer edit page, etc.).</p>
+<p>The resource-consuming part of recalculation (e.g., when the price auto-calculation formula depends on the attribute of the item that is not directly related to the product) is deferred and happens on a schedule that is defined using the <strong>Offset Of Processing CPL Prices</strong> value in hours.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#id10">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>To align the price list behavior with your needs, you can adjust the price, currency, and other related configuration options that are grouped in OroCommerce in the following way:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../configuration_guide/pricing/global_currency.html#sys-config-sysconfig-general-setup-currency"><span class="std std-ref">Global Currency Configuration</span></a>, where you can:<ul>
+<li>Add and remove currencies from the <strong>Allowed Currencies</strong> list.</li>
+<li>Set the base currency.</li>
+<li>Define the order that is used to display the currencies to the front store and management console users.</li>
+<li>Toggle between the currency display formats (currency code, e.g. USD, and currency symbol, e.g. $).</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><a class="reference internal" href="../../configuration_guide/pricing/website_pricing.html#sys-websites-sysconfig-currency"><span class="std std-ref">Currency Configuration per Website</span></a>, where you can:<ul>
+<li>Enable all or some currencies from the <strong>Allowed Currencies</strong> list to be used in OroCommerce front store and management console for this website.</li>
+<li>Select the currency to show by default in the OroCommerce front store and management console for this website.</li>
+</ul>
+</li>
+<li><a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">Global Pricing Configuration</span></a>, where you can:<ul>
+<li>Set price precision and price rounding strategy.</li>
+<li>Configure default price lists, their priority and merge strategy to get the necessary resulting combination of prices that are shown on the websites and for the customers whenever their price list settings fall back to the system default.</li>
+<li>Specify an offset in hours that helps launch combined price list recalculation before price change is activated.</li>
+<li>Enable all or some currencies from the <strong>Allowed Currencies</strong> list to be used in OroCommerce front store and management console.</li>
+<li>Select the currency to show by default in the OroCommerce front store and management console.</li>
+</ul>
+</li>
+<li><strong>Price List Configuration</strong>, where you can configure default price lists, their priority and merge strategy to get the necessary resulting combination of prices that are shown on the websites and for the customers whenever their price list settings are customized. See <a class="reference internal" href="../../configuration_guide/pricing/price_list_configuration_overview.html#understanding-price-list-configuration"><span class="std std-ref">Understanding Price List Configuration</span></a> for more information on the configuration priorities, default settings, and fallback strategies.<ul>
+<li>Default &#8212; See the <strong>Price Lists</strong> option description in the <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">Global Pricing Configuration</span></a> topic.</li>
+<li><a class="reference internal" href="../../configuration_guide/pricing/website_price_lists.html#sys-website-edit-price-lists"><span class="std std-ref">Per Website</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/pricing/customer_group_price_lists.html#customers-customer-groups-edit-price-lists"><span class="std std-ref">Per Customer Group</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/pricing/customer_price_lists.html#customers-customers-edit-price-lists"><span class="std std-ref">Per Customer</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="../products/price_attributes/index.html#user-guide-products-price-attributes"><span class="std std-ref">Product Price Attributes Setup</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/landing_commerce/product/products/units.html#sys-commerce-product-product-units"><span class="std std-ref">Product Units Setup</span></a></li>
+</ul>
+</div>
+<div class="section" id="price-list-management">
+<h2><a class="toc-backref" href="#id11">Price List Management</a><a class="headerlink" href="#price-list-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-a-price-list">
+<h3><a class="toc-backref" href="#id12">Create a Price List</a><a class="headerlink" href="#create-a-price-list" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>See a short demo on <a class="reference external" href="https://www.orocommerce.com/media-library/configuring-pricelists">how to configure price lists for customers and customer groups in OroCommerce</a>, or keep reading the step-by-step guidance below.</p>
+<div class="last"><iframe width="560" height="315" src="https://www.youtube.com/embed/KYR1M6gykio" frameborder="0" allowfullscreen></iframe></div></div>
+<p>To create a new price list:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Sales &gt; Price Lists</strong> using the main menu.</li>
+</ol>
+<img alt="../../_images/PriceLists.png" class="with-border" src="../../_images/PriceLists.png" />
+<ol class="arabic simple" start="2">
+<li>Click <strong>Create Price List</strong>. The following page opens:</li>
+</ol>
+<img alt="../../_images/PriceListsCreate.png" class="with-border" src="../../_images/PriceListsCreate.png" />
+<ol class="arabic" start="3">
+<li><p class="first">In the <strong>General</strong> section, provide the following information:</p>
+<ol class="loweralpha simple">
+<li><strong>Name</strong> &#8212; Type in the price list name.</li>
+<li><strong>Currencies</strong> &#8212; Select one or more currencies that you would like to enable for the prices in the price list.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The price in every currency should be provided explicitly. There is no automatic conversion.</p>
+</div>
+<ol class="loweralpha" start="3">
+<li><p class="first"><strong>Active</strong> &#8212; Set the option to enable the price list. Keep the price list inactive while drafting the prices. Deactivate the price list to disable temporarily the prices it contains.</p>
+</li>
+<li><p class="first"><strong>Schedule</strong> &#8212; Add a timetable for price list activation and deactivation.</p>
+<p>Click <em>Choose a date</em> to open a calendar and pick the date.</p>
+<img alt="../../_images/PriceListsCreate_general_schedule.png" class="with-border" src="../../_images/PriceListsCreate_general_schedule.png" />
+<p>Click <em>time</em> and select the activation or deactivation time from the list. Alternatively, type it in and press <strong>Enter</strong>.</p>
+<img alt="../../_images/PriceListsCreate_general_schedule_time.png" class="with-border" src="../../_images/PriceListsCreate_general_schedule_time.png" />
+<p>To add another time slot, click <strong>+ Add</strong> below the time table. Add as many slots as you need.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Product Assignment</strong> section, enter criteria to filter the products and add them to the price list. See <a class="reference internal" href="pricelist/auto.html#user-guide-pricing-price-list-auto"><span class="std std-ref">Automated Rule-Based Price Management</span></a> for more information.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Optionally, in addition to rule-based product assignment, you can add a product price to the price list manually in one of the following ways:</p>
+<ul>
+<li><p class="first">While editing  product (in the <strong>Product Prices</strong> section).</p>
+<img alt="../../_images/prices_for_product.png" class="with-border" src="../../_images/prices_for_product.png" />
+</li>
+<li><p class="first">When viewing the price list details, by clicking <strong>+ Add Product Price</strong>.</p>
+<img alt="../../_images/prices_for_price_list.png" class="with-border" src="../../_images/prices_for_price_list.png" />
+</li>
+</ul>
+<p class="last">You can override the existing rule-based price. A manual entry has higher priority.</p>
+</div>
+</li>
+<li><p class="first">In the <strong>Price Calculation Rules</strong> section, specify rules for price calculation based on the price attributes (e.g. mrsp) and other product details. You may use conditions to apply the rule to the subset or the filtered products. See <a class="reference internal" href="pricelist/auto.html#user-guide-pricing-price-list-auto"><span class="std std-ref">Automated Rule-Based Price Management</span></a> for more information.</p>
+</li>
+</ol>
+<ol class="arabic simple" start="6">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+</div>
+<div class="section" id="schedule-price-adjustments">
+<h3><a class="toc-backref" href="#id13">Schedule Price Adjustments</a><a class="headerlink" href="#schedule-price-adjustments" title="Permalink to this headline">¶</a></h3>
+<p>For season sales or any other temporary price amendments, you can create a dedicated price list, configure it to be the highest priority, then enable and disable it on schedule to cover the planned sales time frames.</p>
+<p>Scheduled price activation helps eliminate the unwanted pressure of the price management during the hot hours and helps you and your sales people focus on your customers.</p>
+<p>To schedule price activation and deactivation:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Sales &gt; Price Lists</strong> in the main menu.</li>
+</ol>
+<img alt="../../_images/PriceLists.png" class="with-border" src="../../_images/PriceLists.png" />
+<ol class="arabic" start="2">
+<li><p class="first">Click the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the required price list and then click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> icon to start editing price list details.</p>
+</li>
+<li><p class="first">In the <strong>General</strong> section, next to the <strong>Schedule</strong>, add a timetable for price list activation and deactivation:</p>
+<ol class="loweralpha">
+<li><p class="first">Click <em>Choose a date</em> to open the calendar and pick the date.</p>
+<img alt="../../_images/PriceListsCreate_general_schedule.png" class="with-border" src="../../_images/PriceListsCreate_general_schedule.png" />
+</li>
+<li><p class="first">Click <em>time</em> and select the activation or deactivation time from the list. Alternatively, type it in and press <strong>Enter</strong>.</p>
+<img alt="../../_images/PriceListsCreate_general_schedule_time.png" class="with-border" src="../../_images/PriceListsCreate_general_schedule_time.png" />
+</li>
+<li><p class="first">To add another slot, click <strong>+ Add</strong> below the time table. Add as many slots as you need.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">Once you</p>
+</li>
+</ol>
+</div>
+<div class="section" id="import-and-export-prices">
+<h3><a class="toc-backref" href="#id14">Import and Export Prices</a><a class="headerlink" href="#import-and-export-prices" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="export-prices-from-the-price-list">
+<h4><a class="toc-backref" href="#id15">Export Prices From the Price List</a><a class="headerlink" href="#export-prices-from-the-price-list" title="Permalink to this headline">¶</a></h4>
+<p><strong>Export</strong> option helps export the prices from the price list in the .csv file.</p>
+<p><strong>Example of prices bulk export template</strong></p>
+<div class="scroll-table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="21%" />
+<col width="14%" />
+<col width="21%" />
+<col width="21%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product SKU</th>
+<th class="head">Quantity</th>
+<th class="head">Unit Code</th>
+<th class="head">Price</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>sku_001</td>
+<td>42</td>
+<td>kg</td>
+<td>100</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To export the prices in a .csv format:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>Sales &gt; Price Lists</strong> and click the necessary price list to open its details.</p>
+<p>The following screen opens.</p>
+<p><img alt="image_export" src="../../_images/export_price_lists.png" /></p>
+</li>
+<li><p class="first">Select the items to export using check boxes at the beginning of the corresponding rows. You can filter the list in the table header, if necessary.</p>
+</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p class="first">Click <strong>Export</strong>.</p>
+<p>After the following notification, you will receive an email with the link to download the .csv file.</p>
+<img alt="../../_images/successful_export.png" src="../../_images/successful_export.png" />
+</li>
+<li><p class="first">Open the email and click the <strong>Download</strong> link.</p>
+<p>The file is automatically downloaded.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="import-prices-into-the-price-list">
+<h4><a class="toc-backref" href="#id16">Import Prices Into the Price List</a><a class="headerlink" href="#import-prices-into-the-price-list" title="Permalink to this headline">¶</a></h4>
+<p><strong>Import File</strong> option helps import a large bulk of product prices into the price list using the .csv file.</p>
+<p><strong>Example of prices bulk import template</strong></p>
+<div class="scroll-table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="21%" />
+<col width="14%" />
+<col width="21%" />
+<col width="21%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product SKU</th>
+<th class="head">Quantity</th>
+<th class="head">Unit Code</th>
+<th class="head">Price</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>sku_001</td>
+<td>42</td>
+<td>kg</td>
+<td>100</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The unit and currency should be created before the inventory levels import.</p>
+</div>
+<p>To import a bulk of product prices:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>Sales &gt; Price Lists</strong> and click the necessary price list to open its details.</p>
+</li>
+<li><p class="first">Click <strong>Import File</strong> on the top right.</p>
+</li>
+<li><p class="first">Click <strong>Choose File</strong> and select the .csv file you prepared.</p>
+</li>
+<li><p class="first">Click <strong>Export Template</strong> to download a sample .csv file with the necessary headers.</p>
+</li>
+<li><p class="first"><strong>Prepare data for import</strong>: Based on the downloaded file, create your bulk information in the .csv format. Once your file is ready, click <strong>Choose File</strong> and select the prepared comma-separated values (.csv) file.</p>
+</li>
+<li><p class="first">Select the strategy for uploading the file:</p>
+<ul>
+<li><p class="first"><strong>Add and Replace</strong> strategy overrides the existing prices with the ones mentioned in the file for the corresponding product item. Also, it adds new prices to the products with the empty values.</p>
+</li>
+<li><p class="first"><strong>Reset and Add</strong> strategy removes all the existing prices and adds only the ones listed in the .csv file.</p>
+<img alt="../../_images/import_price_list.png" src="../../_images/import_price_list.png" />
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Validate import results</strong>: Click <strong>Validate</strong> to check your import results. If there are any <em>Records with errors</em>, fix them in the .csv file before starting the import.</p>
+</li>
+<li><p class="first"><strong>Launch import:</strong> After successful validation, click <strong>Import File</strong>.</p>
+</li>
+<li><p class="first">Click <strong>Cancel</strong> to decline the import.</p>
+</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Interactive status messages inform about the import progress, and once the import is complete, the changes are reflected in the list upon refresh. Additionally, an email message with the import status is delivered to your mailbox.</p>
+</div>
+<p>Follow the on-screen guidance for any additional actions. For example, for the inventory template, select one of the options: a) inventory statuses only or b) detailed inventory levels.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shpqpFao6bA" frameborder="0" allowfullscreen></iframe></div>
+</div>
+<div class="section" id="manage-product-price-manually">
+<h3><a class="toc-backref" href="#id17">Manage Product Price Manually</a><a class="headerlink" href="#manage-product-price-manually" title="Permalink to this headline">¶</a></h3>
+<p>You can add a product price in the specific currency to the price list manually in one of the following ways:</p>
+<ul class="simple">
+<li>While editing a product, in the <strong>Product Prices</strong> section of the product details.</li>
+<li>When viewing the price list details, by clicking <strong>+ Add Product Price</strong>.</li>
+</ul>
+<div class="section" id="in-the-price-list">
+<h4><a class="toc-backref" href="#id18">In the Price List</a><a class="headerlink" href="#in-the-price-list" title="Permalink to this headline">¶</a></h4>
+<p>To add a product price in the price list:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Price Lists</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click on the price list that you would like to add the price into.
+The price list details open.</p>
+</li>
+<li><p class="first">Click <strong>+ Add Product Price</strong>.
+The <strong>Add Product Price</strong> dialog appears.</p>
+<img alt="../../_images/prices_for_price_list.png" src="../../_images/prices_for_price_list.png" />
+</li>
+<li><p class="first">Select the product to add the price for.</p>
+</li>
+<li><p class="first">Specify the quantity to identify the tier of quantity that the price should apply to.</p>
+<p>To illustrate how price tiers work, let us consider the following example:</p>
+<p>When the product prices in USD are provided for one item, ten items, and fifty items, and a buyer orders 20 items, they will see price provided for ten items.</p>
+</li>
+<li><p class="first">Select the unit of quantity for the price.</p>
+</li>
+<li><p class="first">Type in the price value and select the necessary currency from the list next to it.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="in-the-product-details">
+<h4><a class="toc-backref" href="#id19">In the Product Details</a><a class="headerlink" href="#in-the-product-details" title="Permalink to this headline">¶</a></h4>
+<p>To add a product price in the product details:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Products &gt; Products</strong> in the main menu.</p>
+</li>
+<li><p class="first">Find the product you would like to add the price for, click the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu at the end of the corresponding row, and then click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> icon.</p>
+<p>The product details open.</p>
+</li>
+<li><p class="first">In the <strong>Product Prices</strong> section, click <strong>+ Add</strong>.</p>
+<img alt="../../_images/prices_for_product.png" src="../../_images/prices_for_product.png" />
+<p>The new line appends to the end of the list.</p>
+</li>
+<li><p class="first">Select the price list to add the price into.</p>
+</li>
+<li><p class="first">Specify the quantity to identify the tier of quantity the price should apply to.</p>
+<p>To illustrate how price tiers work, let us consider the following example:</p>
+<p>When the product prices in USD are provided for one item, ten items, and fifty items, and a buyer orders 20 items, they will see price provided for ten items.</p>
+</li>
+<li><p class="first">Select the unit of quantity from the list.</p>
+</li>
+<li><p class="first">Type in the price value and select the necessary currency from the list next to it.</p>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="generate-product-price-automatically">
+<h3><a class="toc-backref" href="#id20">Generate Product Price Automatically</a><a class="headerlink" href="#generate-product-price-automatically" title="Permalink to this headline">¶</a></h3>
+<p>The following simplified product catalog will be used in examples:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="18%" />
+<col width="19%" />
+<col width="12%" />
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>B</td>
+<td>Pen</td>
+<td>yes</td>
+<td>2</td>
+<td>0.5</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-even"><td>C</td>
+<td>Office chair</td>
+<td>yes</td>
+<td>3</td>
+<td>300</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>EUR</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Office shelve</td>
+<td>yes</td>
+<td>4</td>
+<td>250</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>To automatically generate a price list in OroCommerce:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Price Lists</strong> in the main menu.</p>
+</li>
+<li><p class="first">Start editing the required price list or click <strong>Create Price List</strong> to create a new one.</p>
+</li>
+<li><p class="first">In the <strong>Product Assignment</strong> section, set up the product list. To complete this, in the <strong>Rule</strong> field, enter criteria to filter products in the catalog with the <a class="reference external" href="http://symfony.com/doc/current/components/expression_language/syntax.html">Symfony2 expression language</a>.</p>
+<p>For example, to include all products in categories 1 and 5, use the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>product.category == 1 or product.category == 5
+</pre></div>
+</td></tr></table></div>
+<p>For the sample catalog, this will generate the following product list:</p>
+<p><strong>Price list A</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="12%" />
+<col width="21%" />
+<col width="13%" />
+<col width="15%" />
+<col width="9%" />
+<col width="8%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>The following example illustrates filtering products in stock with the list price (also known as manufacturer’s suggested retail price - MSRP) that is higher than 100 USD per item:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>product.msrp.value &gt; 100 and product.msrp.currency == ‘USD’ and
+product.msrp.unit == ‘item’ and product.inventory_status == ‘in_stock’
+</pre></div>
+</td></tr></table></div>
+<p>This filtering will result in the following product list:</p>
+<p><strong>Price list B</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="18%" />
+<col width="19%" />
+<col width="12%" />
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Office shelve</td>
+<td>yes</td>
+<td>4</td>
+<td>250</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can customize the automatically generated price list and add more products manually.</p>
+</div>
+</li>
+<li><p class="first">Set up the price.</p>
+<p>To enable outstanding pricing flexibility, for the price list that automatically calculates the price for the products selected. The pricing behavior is configured in the <strong>Price Calculation Rule</strong> section.</p>
+<ol class="loweralpha">
+<li><p class="first">In the <strong>Price for Quantity</strong>, enter the quantity, select a product unit and currency that the rule will be applied to.</p>
+</li>
+<li><p class="first">In the <strong>Calculate As</strong> field, enter a price formula.</p>
+<p>For example:</p>
+<p>To set the price for all products to 99 USD, use the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    99
+</pre></div>
+</td></tr></table></div>
+<p>The result will be the following:</p>
+<p><strong>Price list A</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="11%" />
+<col width="20%" />
+<col width="13%" />
+<col width="15%" />
+<col width="10%" />
+<col width="8%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><strong>99</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><strong>99</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>To set to set the price (for one item in US dollars) to be 5 USD more than the target margin (custom property of the product), use the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    product.msrp.value * product.category.margin + 5
+</pre></div>
+</td></tr></table></div>
+<p>The result will be the following:</p>
+<p><strong>Price list B</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="16%" />
+<col width="15%" />
+<col width="11%" />
+<col width="13%" />
+<col width="9%" />
+<col width="11%" />
+<col width="6%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List price</th>
+<th class="head">Margin</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td>1.2</td>
+<td><strong>3005</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Office shelve</td>
+<td>yes</td>
+<td>4</td>
+<td>250</td>
+<td>1.5</td>
+<td><strong>380</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>In this expression, the (price formula) may contain product and product-related items properties of the numeric type, numbers and arithmetic operations.</p>
+</li>
+<li><p class="first">In the <strong>Condition</strong> field, enter a product filtering expression.</p>
+<p>For example, you have decided to set price 99 USD only to the products from the category 1. Then you have entered <em>99</em> in the <strong>Calculate As</strong> field (see step a. the first example. In the <strong>Condition</strong> field, enter the following expression:</p>
+<div class="highlight-rst"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   product.category == 1
+</pre></div>
+</td></tr></table></div>
+<p>The result will be the following:</p>
+<p><strong>Price list A</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="11%" />
+<col width="20%" />
+<col width="13%" />
+<col width="15%" />
+<col width="10%" />
+<col width="8%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item #</th>
+<th class="head">Product</th>
+<th class="head">Is in stock?</th>
+<th class="head">Category</th>
+<th class="head">List Price</th>
+<th class="head">Price</th>
+<th class="head">Unit</th>
+<th class="head">Currency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>Laptop</td>
+<td>yes</td>
+<td>1</td>
+<td>2500</td>
+<td><strong>99</strong></td>
+<td>item</td>
+<td>USD</td>
+</tr>
+<tr class="row-odd"><td>E</td>
+<td>Server</td>
+<td>no</td>
+<td>5</td>
+<td>30000</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>item</td>
+<td>USD</td>
+</tr>
+</tbody>
+</table>
+<p>The (product filtering expression) is based on a <a class="reference external" href="http://symfony.com/doc/current/components/expression_language/syntax.html">Symfony2 expression</a> that additionally filters the list of products generated in step 3 to limit the products the price shall apply to.</p>
+</li>
+<li><p class="first">In the <strong>Priority</strong> field, specify the precedence for this rule. See <a class="reference internal" href="#filters-priorities-and-matching-units-in-the-automatically-generated-price-list">Filters, Priorities, and Matching Units in the Automatically Generated Price List</a> for more information.</p>
+</li>
+<li><p class="first">If you need to set up prices for another range of products selected into the price list, or for another currency / unit, click <strong>+Add</strong> and repeat steps 4.a‒d.</p>
+</li>
+</ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<ul class="last simple">
+<li>You can use <a class="reference internal" href="pricelist/autocomplete.html#user-guide-pricing-price-list-auto-autocomplete"><span class="std std-ref">autocomplete</span></a> to simplify the expression creation.</li>
+<li>For more information, see <a class="reference internal" href="pricelist/filtering_expression.html#user-guide-pricing-auto-expression"><span class="std std-ref">Filtering Expression Syntax</span></a>.</li>
+<li>For more help on expressions creation, see <a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples"><span class="std std-ref">Price Rules Automation Examples</span></a>.</li>
+</ul>
+</div>
+</li>
+</ol>
+<div class="section" id="filters-priorities-and-matching-units-in-the-automatically-generated-price-list">
+<h4><a class="toc-backref" href="#id21">Filters, Priorities, and Matching Units in the Automatically Generated Price List</a><a class="headerlink" href="#filters-priorities-and-matching-units-in-the-automatically-generated-price-list" title="Permalink to this headline">¶</a></h4>
+<p><strong>Funnel effect:</strong> Condition filter is applied only to the products assigned to the price list in step two in the process above and not the complete catalog.</p>
+<p><strong>Default units and currency:</strong> If the currency and unit are not specified as filtering criteria, Oro Commerce applies <em>USD</em> as the default currency and <em>item</em> as a default unit. When currency and unit values are included in the filtering criteria, they override the default values.</p>
+<p><strong>Automatic updates:</strong> Oro Commerce automatically updates price lists and recalculates prices whenever product-related data is updated. The trigger could be a new product, category structure changes, or the product that moved to another category.</p>
+<p><strong>Matching units:</strong> During price generation, Oro Commerce precisely matches the rule units and product units to ensure calculations are correct. For example, when you sell stuffed toys and the supported units are items and bundles of 10 items, your price calculation rule configured only for kilograms will not apply and the price will not be generated.</p>
+<p><strong>Multiple price rules that are targeting the same product:</strong> When several price calculation rules apply to the same product in the price list, Oro Commerce uses the rule with the highest priority.</p>
+<p><strong>Enforcing the price:</strong> Prices that were provided manually have higher priority than those generated automatically. Once you manually set the price for the automatically assigned product, it will not change after price recalculation anymore.</p>
+</div>
+<div class="section" id="price-rules-automation-examples">
+<h4><a class="toc-backref" href="#id22">Price Rules Automation Examples</a><a class="headerlink" href="#price-rules-automation-examples" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-1"><span class="std std-ref">Different discounts based on the current price</span></a></li>
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-2"><span class="std std-ref">Fixed price for similar SKUs</span></a></li>
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-3"><span class="std std-ref">15% more than MSRP for products created after May 1, 2017</span></a></li>
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-4"><span class="std std-ref">MAP price for all featured products in certain category</span></a></li>
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-5"><span class="std std-ref">Price for selected products</span></a></li>
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-6"><span class="std std-ref">Discounted price for all products except of the selected brand</span></a></li>
+<li><a class="reference internal" href="pricelist/auto_examples.html#price-rules-auto-examples-7"><span class="std std-ref">Price depends on the custom property</span></a></li>
+</ul>
+</div>
+<div class="section" id="filtering-expression-syntax">
+<h4><a class="toc-backref" href="#id23">Filtering Expression Syntax</a><a class="headerlink" href="#filtering-expression-syntax" title="Permalink to this headline">¶</a></h4>
+<p>The filtering expression for the product assignment rule and the price calculation condition follow the <a class="reference external" href="http://symfony.com/doc/current/components/expression_language/syntax.html">Symfony2 expression language</a> syntax and may contain the following elements:</p>
+<ul>
+<li><p class="first">Entity properties <a class="reference internal" href="pricelist/storage_type.html#user-guide-pricing-auto-expression-storage-type"><span class="std std-ref">stored as table columns</span></a>, including:</p>
+<ul>
+<li><p class="first"><strong>Product properties</strong>: product.id, product.sku, product.status, product.createdAt, product.updatedAt, product.inventory_status, etc.</p>
+</li>
+<li><p class="first">Properties of product’s children entities, like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Category properties</strong>: product.category.id, product.category.left, product.category.right, product.category.level, product.category.root, product.category.createdAt, and product.category.updatedAt</li>
+<li><strong>Price properties</strong>: product.price.value, product.price.unit, product.price.quantity, and product.price.currency</li>
+<li>Any <strong>custom properties</strong> added to the product entity (e.g. product.awesomeness), or to the product children entity (e.g. product.category.priority and product.price.season)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Relations</strong> (for example, product.owner, product.organization, product.primaryUnitPrecision, product.category, and any virtual relations created in Oro Commerce for entities of product and its children.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>To keep the filter behavior predictable, Oro Commerce enforces the following limitation in regards to using relations in the filtering criteria: you can only use parameters residing on the “one” side of the “one-to-many” relation (including the custom ones).</li>
+<li>When using relation, the id is assumed and may be omitted (e.g. “product.category == 1” expression means the same as “product.category.id == 1”).</li>
+<li>Any product, price and category entity attribute is accessible by field name.</li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Operators:</strong> +, -,  <em>,  / , %, *</em> , ==, ===, !=, !==, &lt;, &gt;, &lt;=, &gt;=, matches (string) (e.g. matches &#8216;t-shirt&#8217;; you can also use the following wildcards in the string: % &#8212; replaces any number of symbols, _ &#8212; any single symbol, e.g., matches &#8216; t_shirt&#8217; returns both &#8216;t-shirt&#8217; and &#8216;t shirt&#8217;) and, or, not, ~ (concatenation), in, not in, and .. (range).</p>
+</li>
+<li><p class="first"><strong>Literals:</strong> You can use strings (e.g. <em>&#8216;hello&#8217;</em>), numbers (e.g. <em>345</em>), arrays (e.g. <em>[7, 8, 9]</em> ), hashes (e.g. <em>{ property_name: &#8216;property_value&#8217; }</em>), <em>true</em>, <em>false</em> and <em>null</em>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="developer-notice">
+<h4><a class="toc-backref" href="#id24">Developer Notice</a><a class="headerlink" href="#developer-notice" title="Permalink to this headline">¶</a></h4>
+<p>The expression is converted into internal Nodes tree. This tree is converted into QueryBuilder which is used in Insert From Select to fill prices and assignment with one query. Virtual relations and virtual fields are managed by AbstractQueryConverter, that is also used to join all required relations and generate unique table aliases. Generated query builder is cached along with its parameters. Each rule and assignment rules have their cache by ID. When a rule or an assignment rule is changed, the cached QueryBuilder is recalculated.</p>
+</div>
+</div>
+</div>
+<div class="section" id="set-prices-in-multiple-currencies">
+<h2><a class="toc-backref" href="#id25">Set Prices in Multiple Currencies</a><a class="headerlink" href="#set-prices-in-multiple-currencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prerequisites">
+<h3><a class="toc-backref" href="#id26">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>Ensure that the necessary currencies are enabled in the <a class="reference internal" href="../../configuration_guide/pricing/global_currency.html#sys-config-sysconfig-general-setup-currency"><span class="std std-ref">global</span></a> and <a class="reference internal" href="../../configuration_guide/pricing/website_pricing.html#sys-websites-sysconfig-currency"><span class="std std-ref">website</span></a> configuration.</p>
+</div>
+<div class="section" id="enable-multiple-currencies-for-the-price-list">
+<h3><a class="toc-backref" href="#id27">Enable Multiple Currencies for the Price List</a><a class="headerlink" href="#enable-multiple-currencies-for-the-price-list" title="Permalink to this headline">¶</a></h3>
+<p>To add or remove currencies that may be used in a price list:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Sales &gt; Price Lists</strong> in the main menu.</li>
+</ol>
+<img alt="../../_images/PriceLists.png" class="with-border" src="../../_images/PriceLists.png" />
+<ol class="arabic simple" start="2">
+<li>Click the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the price list and then click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong> icon to start editing the price list details.</li>
+<li>In the <strong>General</strong> section, next to the <strong>Currencies</strong>, select the currencies you would like to enable for the price list (e.g. USD, EUR, PND) and unselect those you would like to disable.</li>
+</ol>
+<img alt="../../_images/PriceListsCurrencies.png" src="../../_images/PriceListsCurrencies.png" />
+<ol class="arabic simple" start="4">
+<li>Once you enable the necessary currencies for the price list, click <strong>Save</strong>.</li>
+</ol>
+</div>
+<div class="section" id="add-price-in-specific-currency-to-the-price-list">
+<h3><a class="toc-backref" href="#id28">Add Price in Specific Currency to the Price List</a><a class="headerlink" href="#add-price-in-specific-currency-to-the-price-list" title="Permalink to this headline">¶</a></h3>
+<p>When adding a product price manually or using a rule that automates price generation, you always specify the currency it is in.
+You can add only one price per combination of product quantity tier and currency (e.g. one price for 1 item in USD or per 10 items in EUR).
+For detailed information on adding product prices in particular currencies, see <a class="reference internal" href="pricelist/manual.html#user-guide-pricing-price-list-manual"><span class="std std-ref">Manual Price Management</span></a> and <a class="reference internal" href="pricelist/auto.html#user-guide-pricing-price-list-auto"><span class="std std-ref">Automated Rule-Based Price Management</span></a>.</p>
+</div>
+<div class="section" id="view-price-in-specific-currency-on-the-front-store">
+<h3><a class="toc-backref" href="#id29">View Price in Specific Currency on the Front Store</a><a class="headerlink" href="#view-price-in-specific-currency-on-the-front-store" title="Permalink to this headline">¶</a></h3>
+<p>By default, prices in the OroCommerce Front Store are shown in the default currency.</p>
+<img alt="../../_images/price_currency_change1.png" class="with-border" src="../../_images/price_currency_change1.png" />
+<p>However, you may select a different currency with a currency picker on the top right.</p>
+<img alt="../../_images/currency_on_the_front_store.png" src="../../_images/currency_on_the_front_store.png" />
+<p>After the new currency is selected, product prices automatically adjust to show the unit prices in the selected currency.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When the price list does not contain price for the product in the selected currency, the price information is missing. You can still add the product to the shopping list and request a quote to clarify the pricing in the specific currency.</p>
+</div>
+<p><strong>Sample: Prices in Euro are Provided</strong></p>
+<img alt="../../_images/price_currency_change2.png" class="with-border" src="../../_images/price_currency_change2.png" />
+<p><strong>Sample: Prices in Euro are Missing</strong></p>
+<img alt="../../_images/price_currency_change_no_price_in_selected_currency.png" class="with-border" src="../../_images/price_currency_change_no_price_in_selected_currency.png" />
+</div>
+</div>
+<div class="section" id="price-calculation-on-the-front-store">
+<h2><a class="toc-backref" href="#id30">Price Calculation on the Front Store</a><a class="headerlink" href="#price-calculation-on-the-front-store" title="Permalink to this headline">¶</a></h2>
+<p>Product prices on the front store are taken from the combination of the price lists that are enabled on the system level, website level,
+customer group and customer level.
+Based on the fallback configuration, OroCommerce identifies the enabled price lists (see scenarios below) and selects one price per product quantity tier in the active currency to show it to the buyer as the listing price on the front store.
+As there might be multiple prices matching the selection criteria in the enabled price lists, OroCommerce follows the configured <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">price selection strategy</span></a> (minimal price vs priority-based).</p>
+<p>The enabled price lists for different fallback options setup is illustrated in the table below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="14%" />
+<col width="16%" />
+<col width="12%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration Level (Price Lists)</th>
+<th class="head">Fallback Option</th>
+<th class="head">Configuration 1</th>
+<th class="head">Configuration 2</th>
+<th class="head">Config. 3</th>
+<th class="head">Config. 4</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">System</span></a> (X, Y, Z)</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../../configuration_guide/pricing/website_price_lists.html#sys-website-edit-price-lists"><span class="std std-ref">Website</span></a> (A, B, C)</td>
+<td>Config</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>o</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../../configuration_guide/pricing/customer_group_price_lists.html#customers-customer-groups-edit-price-lists"><span class="std std-ref">Website for Customer Group</span></a> (D, E, F)</td>
+<td>Website</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>o</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../../configuration_guide/pricing/customer_price_lists.html#customers-customers-edit-price-lists"><span class="std std-ref">Website for Customer</span></a> (G)</td>
+<td>Customer Group</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>o</td>
+</tr>
+<tr class="row-even"><td colspan="2"><strong>Resulting active price lists</strong></td>
+<td><em>X, Y, Z, A, B, C, D, E, F, G</em></td>
+<td><em>A, B, C, D, E, F, G</em></td>
+<td><em>D, E, F, G</em></td>
+<td><em>G only</em></td>
+</tr>
+</tbody>
+</table>
+<p>Whether the buyer will get the minimal price or the price from the price list with the highest priority, depends on the pricing strategy configured <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">globally</span></a>.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#minimal-prices-strategy">Minimal Prices Strategy</a></li>
+<li><a class="reference internal" href="#merge-by-priority-strategy">Merge By Priority Strategy</a></li>
+</ul>
+<div class="section" id="minimal-prices-strategy">
+<h3><a class="toc-backref" href="#id31">Minimal Prices Strategy</a><a class="headerlink" href="#minimal-prices-strategy" title="Permalink to this headline">¶</a></h3>
+<p>When Minimal Prices Strategy is selected, the OroCommerce uses the minimum price per tier that is found in the available (enabled) price lists.</p>
+<p>For example, let&#8217;s use the product prices in two price lists:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="48%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 4 item</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+</tr>
+</tbody>
+</table>
+<p>The following minimal tier prices will be shown to the buyer.</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>8$ / 1 item</li>
+<li>7$ / 2 item</li>
+<li>6$ / 4 item</li>
+</ul>
+</div>
+<div class="section" id="merge-by-priority-strategy">
+<h3><a class="toc-backref" href="#id32">Merge By Priority Strategy</a><a class="headerlink" href="#merge-by-priority-strategy" title="Permalink to this headline">¶</a></h3>
+<p>Merge By Priority Strategy picks the first price from the given sequence of the Price Lists for a missing price tier in the given currency.</p>
+<p>In the price list priority configuration, the <cite>Merge Allowed</cite> flag shows whether a particular Price List is allowed to be merged with the other prices. When Merge Allowed is disabled for a price list, its price will be exclusively used for the product that has no price provided in other price lists with higher priority.</p>
+<p>Let&#8217;s take a look at the following example: product price is defined in two price lists that allow price merge.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="36%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+<th class="head">Merge Allowed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 5 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>The product&#8217;s price calculation will result in the following list prices:</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>9$ / 1 item</li>
+<li>8$ / 2 item</li>
+<li>7$ / 4 item</li>
+<li>6$ / 5 item</li>
+</ul>
+<p>Now let&#8217;s see what changes if the merge is not allowed in the price list with higher priority:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="36%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+<th class="head">Merge Allowed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 5 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>The product&#8217;s price calculation will result in the following list prices:</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>9$ / 1 item</li>
+<li>8$ / 2 item</li>
+<li>6$ / 5 item</li>
+</ul>
+<p>Note that the price for 4 items from the Custom Price List is not used.</p>
+<p>Finally, let&#8217;s consider the mixed example, where the merge is allowed for some price lists, including the one of the top priority. However, there is one price list that does not allow merge.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="34%" />
+<col width="26%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+<th class="head">Merge Allowed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 5 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom2 PriceList</td>
+<td>5$ / 10 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom2 PriceList</td>
+<td>4$ / 100 item</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>Now the product will have the following list prices:</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>9$ / 1 item</li>
+<li>8$ / 2 item</li>
+<li>6$ / 5 item</li>
+<li>5$ / 10 item</li>
+<li>4$ / 100 item</li>
+</ul>
+<p>The prices from the Custom Price List, where <strong>Merge Allowed</strong> is off, are omitted.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pricing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html">Create a Price List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#schedule-price-adjustments">Schedule Price Adjustments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#import-and-export-prices">Import and Export Prices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#manage-product-price-manually">Manage Product Price Manually</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#generate-product-price-automatically">Generate Product Price Automatically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#enable-multiple-currencies-for-the-price-list">Enable Multiple Currencies for the Price List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#add-price-in-specific-currency-to-the-price-list">Add Price in Specific Currency to the Price List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pricelist/index.html#view-price-in-specific-currency-on-the-front-store">View Price in Specific Currency on the Front Store</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/pricing/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

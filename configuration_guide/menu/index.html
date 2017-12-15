@@ -1,0 +1,756 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Menus Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Customizing a Menu" href="menu_config.html" />
+    <link rel="prev" title="Payment Rules Configuration" href="../payment/payment_rules.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="menu_config.html" title="Customizing a Menu"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../payment/payment_rules.html" title="Payment Rules Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Configuration Guide</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Menus Configuration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="doc-config-menus"></span><div class="section" id="menus-configuration">
+<h1>Menus Configuration<a class="headerlink" href="#menus-configuration" title="Permalink to this headline">¶</a></h1>
+<p>In this section you will learn how to configure the menus globally, per organization/website, or for your own use only. You also will learn the various kinds of menus in OroCommerce and OroCRM management console and OroCommerce front store.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#menu-types-overview" id="id7">Menu Types Overview</a></li>
+<li><a class="reference internal" href="#permissions-required-to-customize-menus" id="id8">Permissions Required to Customize Menus</a></li>
+<li><a class="reference internal" href="#menu-configuration-levels" id="id9">Menu Configuration Levels</a></li>
+<li><a class="reference internal" href="#menu-management" id="id10">Menu Management</a></li>
+<li><a class="reference internal" href="#related-topics" id="id11">Related Topics</a></li>
+</ul>
+</div>
+<div class="section" id="menu-types-overview">
+<h2><a class="toc-backref" href="#id7">Menu Types Overview</a><a class="headerlink" href="#menu-types-overview" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><a class="reference internal" href="#orocrm-and-orocommerce-management-console-menus" id="id12">OroCRM and OroCommerce Management Console Menus</a></li>
+<li><a class="reference internal" href="#orocommerce-front-store-menus" id="id13">OroCommerce Front Store Menus</a></li>
+</ul>
+</div>
+<div class="section" id="orocrm-and-orocommerce-management-console-menus">
+<h3><a class="toc-backref" href="#id12">OroCRM and OroCommerce Management Console Menus</a><a class="headerlink" href="#orocrm-and-orocommerce-management-console-menus" title="Permalink to this headline">¶</a></h3>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><a class="reference internal" href="#navigation-bar" id="id14">Navigation Bar</a></li>
+<li><a class="reference internal" href="#shortcuts" id="id15">Shortcuts</a></li>
+<li><a class="reference internal" href="#user-menu" id="id16">User Menu</a></li>
+<li><a class="reference internal" href="#calendar-menu" id="id17">Calendar Menu</a></li>
+</ul>
+</div>
+<div class="section" id="navigation-bar">
+<h4><a class="toc-backref" href="#id14">Navigation Bar</a><a class="headerlink" href="#navigation-bar" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>application_menu</strong> is the main menu of the Management Console in Oro application. It resides on the top of every application page and you can use it to navigate through Oro application. Subject to configuration, it may be displayed horizontally or vertically. To toggle the way it is displayed, navigate to the <strong>System &gt; Configuration</strong> section using the main menu, and open <strong>System configuration &gt; General Setup &gt; Display Settings</strong> in the panel to the left. In the <strong>Navigation Bar</strong> section, unselect the <strong>Use Default</strong> option and select the <em>Top</em> or <em>Left</em> position.</p>
+<p>In the latter case, the menu items are displayed as icons. For more information, see <a class="reference internal" href="../../user_guide/getting_started/intro_navigation.html#user-guide-navigation-menu"><span class="std std-ref">Main Menu</span></a>.</p>
+<p>In a top position, Application Menu (Navigation Bar) looks like a top menu with a drop-down sub-menus that expand once you hover over the parent item:</p>
+<img alt="../../_images/ApplicationMenu.png" src="../../_images/ApplicationMenu.png" />
+<p>In a left position, Application Menu (Navigation Bar) may be collapsed into the icon bar:</p>
+<img alt="../../_images/ApplicationMenuVertical.png" src="../../_images/ApplicationMenuVertical.png" />
+<p>or expanded for visible labels and sub-menu items:</p>
+<img alt="../../_images/ApplicationMenuVerticalExpanded.png" src="../../_images/ApplicationMenuVerticalExpanded.png" />
+</div>
+<div class="section" id="shortcuts">
+<h4><a class="toc-backref" href="#id15">Shortcuts</a><a class="headerlink" href="#shortcuts" title="Permalink to this headline">¶</a></h4>
+<p>You can find <strong>shortcuts</strong> menu in the top panel of the application, next to the organization name.</p>
+<img alt="../../_images/shortcut_full.png" src="../../_images/shortcut_full.png" />
+<p>It helps you pin the frequently used actions and have them handy. You can launch an action by clicking it in the dynamically generated <strong>Most Used Actions</strong> list. This list is updated as you are using the system, and will initially contain the actions that you use the most.</p>
+<p>To access other shortcuts, click <strong>See the full list</strong> to see complete list of shortcut items or use search: start typing the name of a related entity or an action to choose from a list of matching items.</p>
+<img alt="../../_images/shortcut_full.png" src="../../_images/shortcut_full.png" />
+</div>
+<div class="section" id="user-menu">
+<h4><a class="toc-backref" href="#id16">User Menu</a><a class="headerlink" href="#user-menu" title="Permalink to this headline">¶</a></h4>
+<p>In Management Console, user can access their profile configuration, emails, tasks and events via a <strong>usermenu</strong> (by clicking on your name on the top right of the application).</p>
+<img alt="../../_images/user_menu.png" src="../../_images/user_menu.png" />
+</div>
+<div class="section" id="calendar-menu">
+<h4><a class="toc-backref" href="#id17">Calendar Menu</a><a class="headerlink" href="#calendar-menu" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>calendar_menu</strong> is a service menu that is used on the <strong>My Calendar</strong> page and helps to change the displayed calendar color, hide or remove a calendar.</p>
+<img alt="../../_images/menus_calendar_menu.png" src="../../_images/menus_calendar_menu.png" />
+</div>
+</div>
+<div class="section" id="orocommerce-front-store-menus">
+<h3><a class="toc-backref" href="#id13">OroCommerce Front Store Menus</a><a class="headerlink" href="#orocommerce-front-store-menus" title="Permalink to this headline">¶</a></h3>
+<div class="contents local topic" id="id3">
+<ul class="simple">
+<li><a class="reference internal" href="#top-links" id="id18">Top Links</a></li>
+<li><a class="reference internal" href="#quick-access" id="id19">Quick Access</a></li>
+<li><a class="reference internal" href="#id4" id="id20">Navigation Bar</a></li>
+<li><a class="reference internal" href="#footer-links" id="id21">Footer Links</a></li>
+<li><a class="reference internal" href="#user-and-account-menu-look-and-feel" id="id22">User and Account Menu Look and Feel</a></li>
+<li><a class="reference internal" href="#customer-user-menu" id="id23">Customer User Menu</a></li>
+<li><a class="reference internal" href="#account-menu" id="id24">Account Menu</a></li>
+<li><a class="reference internal" href="#featured-menu" id="id25">Featured Menu</a></li>
+</ul>
+</div>
+<div class="section" id="top-links">
+<h4><a class="toc-backref" href="#id18">Top Links</a><a class="headerlink" href="#top-links" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>commerce_top_nav</strong> menu defines the links that appear at the top right of the page.</p>
+<img alt="../../_images/FrontendTopNavMenu.png" src="../../_images/FrontendTopNavMenu.png" />
+</div>
+<div class="section" id="quick-access">
+<h4><a class="toc-backref" href="#id19">Quick Access</a><a class="headerlink" href="#quick-access" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>commerce_quick_access</strong> menu provides quick access to the most frequent or important actions.</p>
+<img alt="../../_images/FrontendQuickAccessMenu.png" src="../../_images/FrontendQuickAccessMenu.png" />
+</div>
+<div class="section" id="id4">
+<h4><a class="toc-backref" href="#id20">Navigation Bar</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>commerce_main_menu</strong> defines the static content of the OroCommerce Front Store main menu. The leading part of the menu is generated based on the structure of the website web catalog or master catalog. The trailing part is composed of the <strong>commerce_main_menu</strong> items.</p>
+<img alt="../../_images/FrontendMainMenu.png" src="../../_images/FrontendMainMenu.png" />
+</div>
+<div class="section" id="footer-links">
+<h4><a class="toc-backref" href="#id21">Footer Links</a><a class="headerlink" href="#footer-links" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>commerce_footer_links</strong> defines the structure of the links in the OroCommerce website page footer.</p>
+<img alt="../../_images/FrontendFooterMenu.png" src="../../_images/FrontendFooterMenu.png" />
+</div>
+<div class="section" id="user-and-account-menu-look-and-feel">
+<h4><a class="toc-backref" href="#id22">User and Account Menu Look and Feel</a><a class="headerlink" href="#user-and-account-menu-look-and-feel" title="Permalink to this headline">¶</a></h4>
+<p>Front store user menu is customizable via the <a class="reference internal" href="#customer-user-menu">Customer User Menu</a> and <a class="reference internal" href="#account-menu">Account Menu</a>, and the way it is displayed can be configured globally, on organization, and website levels.</p>
+<img alt="../../_images/ShowAllItemsAtOnce.png" src="../../_images/ShowAllItemsAtOnce.png" />
+<p>To configure user menu globally:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Configuration</strong> in the main menu.</li>
+<li>Click <strong>Commerce &gt; Design &gt; Theme</strong> in the panel on the left.</li>
+<li>In the <strong>Menu Templates</strong> section you have the following templates for user menu - <em>Show all items at once</em> (the default template) and <em>Show subitems in a popup</em>.</li>
+</ol>
+<p>To configure user menu on the organization level:</p>
+<ol class="arabic simple">
+<li>Navigate to the system configuration (click <strong>System &gt; User Management &gt; Organization</strong> in the main menu).</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Design &gt; Theme</strong> in the menu to the left.</li>
+<li>In the <strong>Menu Templates</strong> section you have the following templates for user menu - <em>Show all items at once</em> (the default template) and <em>Show subitems in a popup</em>.</li>
+</ol>
+<p>To configure user menu on the website level:</p>
+<ol class="arabic simple">
+<li>Navigate to the system configuration (click <strong>System &gt; Websites</strong> in the main menu).</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Design &gt; Theme</strong> in the menu on the left.</li>
+<li>In the <strong>Menu Templates</strong> section you have the following templates for user menu - <em>Show all items at once</em> (the default template) and <em>Show subitems in a popup</em>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">When <em>Show all items at once</em> is selected, the user menu has the following look in the front store:</p>
+<blockquote>
+<div><img alt="../../_images/ShowAllItemsAtOnce.png" src="../../_images/ShowAllItemsAtOnce.png" />
+</div></blockquote>
+</li>
+<li><p class="first">When <em>Show subitems in a popup</em> is selected, the user menu has the following look in the font store:</p>
+<blockquote>
+<div><img alt="../../_images/ShowSubitemsInPopup.png" src="../../_images/ShowSubitemsInPopup.png" />
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="customer-user-menu">
+<h4><a class="toc-backref" href="#id23">Customer User Menu</a><a class="headerlink" href="#customer-user-menu" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>customer_usermenu</strong> is a front store user menu that defines what a customer will see within it.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>It is only active when user menu template is set to <em>Show subitems in a popup</em> in system, organization, or website configuration.</p>
+<img alt="../../_images/UserMenu2.png" class="last" src="../../_images/UserMenu2.png" />
+</div>
+</div>
+<div class="section" id="account-menu">
+<h4><a class="toc-backref" href="#id24">Account Menu</a><a class="headerlink" href="#account-menu" title="Permalink to this headline">¶</a></h4>
+<p>An <strong>oro_customer_menu</strong> is a front store menu that defines what options the Account section of the user menu is populated with.</p>
+<img alt="../../_images/AccMenu.png" src="../../_images/AccMenu.png" />
+</div>
+<div class="section" id="featured-menu">
+<h4><a class="toc-backref" href="#id25">Featured Menu</a><a class="headerlink" href="#featured-menu" title="Permalink to this headline">¶</a></h4>
+<p>A <strong>featured_menu</strong> is a front store menu that enables the administrator to configure the featured menu items on the homepage.</p>
+<img alt="../../_images/featured_menu.png" src="../../_images/featured_menu.png" />
+</div>
+</div>
+</div>
+<div class="section" id="permissions-required-to-customize-menus">
+<h2><a class="toc-backref" href="#id8">Permissions Required to Customize Menus</a><a class="headerlink" href="#permissions-required-to-customize-menus" title="Permalink to this headline">¶</a></h2>
+<p>The ability to configure menus globally, per organization, and for personal use is controlled by the two capabilities: <strong>Manage Menus</strong> and <strong>Access system configuration</strong>.</p>
+<p>By default, only users with Admin role have these capabilities enabled and may customize menus on all configuration levels.</p>
+<p>To enable a user to personalise menus for themselves and configure menus for each organization individually, include the <strong>Manage Menus</strong> capability into the user role.</p>
+<p>To enable a user to configure menus globally, for all organizations, websites, and users whose configuration fall back to the global settings, both <strong>Manage Menus</strong> and <strong>Access system configuration</strong> capabilities should be enabled for the user role.</p>
+</div>
+<div class="section" id="menu-configuration-levels">
+<h2><a class="toc-backref" href="#id9">Menu Configuration Levels</a><a class="headerlink" href="#menu-configuration-levels" title="Permalink to this headline">¶</a></h2>
+<p id="user-guide-system-menu-menu-frontend"><span id="doc-menu-config-levels"></span>In Oro applications, you can manage the way menus look and the elements they contain on the multiple configuration layers:</p>
+<p><strong>OroCRM and OroCommerce Management Console</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="#customize-default-management-console-menus">Customize Default Management Console Menus</a> (global, system configuration)</li>
+<li><a class="reference internal" href="#customize-management-console-menus-per-organization">Customize Management Console Menus per Organization</a></li>
+<li><a class="reference internal" href="#customize-management-console-menus-for-your-own-use">Customize Management Console Menus for Your Own Use</a></li>
+</ul>
+<p><strong>OroCommerce Front Store and OroCRM Customer/Partner Portal</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="#customize-default-frontend-menus">Customize Default Frontend Menus</a></li>
+<li><a class="reference internal" href="#customize-frontend-menus-per-organization">Customize Frontend Menus per Organization</a></li>
+<li><a class="reference internal" href="#customize-frontend-menus-per-website">Customize Frontend Menus per Website</a></li>
+<li><a class="reference internal" href="#customize-frontend-menus-per-customer-group">Customize Frontend Menus per Customer Group</a></li>
+<li><a class="reference internal" href="#customize-frontend-menus-per-customer">Customize Frontend Menus per Customer</a></li>
+</ul>
+<div class="section" id="customize-default-management-console-menus">
+<h3>Customize Default Management Console Menus<a class="headerlink" href="#customize-default-management-console-menus" title="Permalink to this headline">¶</a></h3>
+<p>To customize one of the default management console menus (e.g. navigation bar or user menu):</p>
+<ol class="arabic simple">
+<li>Navigate to the management console menu list by clicking <strong>System &gt; Menus</strong> in the main menu.</li>
+<li>Click on the menu you would like to edit.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> section.
+The changes apply automatically.</li>
+</ol>
+</div>
+<div class="section" id="customize-management-console-menus-per-organization">
+<h3>Customize Management Console Menus per Organization<a class="headerlink" href="#customize-management-console-menus-per-organization" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This option is available in the Enterprise edition only.</p>
+</div>
+<p>To customize one of the management console menus (e.g. navigation bar or user menu) for a particular organization:</p>
+<ol class="arabic simple">
+<li>Navigate to the management console menu list by clicking <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>Click on the organization you would like to edit the menu for.</li>
+<li>Click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Edit Menu</strong>.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> section.
+The changes apply automatically.</li>
+</ol>
+</div>
+<div class="section" id="customize-management-console-menus-for-your-own-use">
+<h3>Customize Management Console Menus for Your Own Use<a class="headerlink" href="#customize-management-console-menus-for-your-own-use" title="Permalink to this headline">¶</a></h3>
+<p>To customize one of the management console menus (e.g. navigation bar or user menu) for your own use:</p>
+<ol class="arabic simple">
+<li>Click on your name at the top right of the page and then click <strong>My User</strong> to open your profile.</li>
+<li>Select <span class="guilabel">Edit Menus</span> from the <span class="guilabel">More Actions</span> list at the top right of the page.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> section.
+The changes apply automatically.</li>
+</ol>
+</div>
+<div class="section" id="customize-default-frontend-menus">
+<h3>Customize Default Frontend Menus<a class="headerlink" href="#customize-default-frontend-menus" title="Permalink to this headline">¶</a></h3>
+<p>To customize one of the default front store menus (e.g. commerce main menu) or customer/partner portal menus (e.g. customer user menu):</p>
+<ol class="arabic simple">
+<li>Navigate to the front store menu list by click <strong>System &gt; Frontend Menus</strong> in the main menu.</li>
+<li>Click on the menu you would like to edit.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> and <a class="reference internal" href="menu_frontend.html#user-guide-system-menu-menu-frontend"><span class="std std-ref">Edit a Frontend Menu</span></a> sections.
+The changes apply automatically.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>See a short demo on <a class="reference external" href="https://www.orocommerce.com/media-library/customize-front-end-menus">how to customize front store menus in OroCommerce</a>, or keep reading the step-by-step guidance below.</p>
+<div class="last"><iframe width="560" height="315" src="https://www.youtube.com/embed/nNPLsSOUc1c" frameborder="0" allowfullscreen></iframe></div></div>
+</div>
+<div class="section" id="customize-frontend-menus-per-organization">
+<h3>Customize Frontend Menus per Organization<a class="headerlink" href="#customize-frontend-menus-per-organization" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This option is available in the Enterprise edition only.</p>
+</div>
+<p>To customize one of the front store menus (e.g. commerce main menu) or customer/partner portal menu (e.g. customer user menu) for a particular organization:</p>
+<ol class="arabic simple">
+<li>Navigate to the front store menu list by clicking <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>Click on the organization you would like to edit the menu for.</li>
+<li>Click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Edit Frontend Menu</strong>.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> and <a class="reference internal" href="menu_frontend.html#user-guide-system-menu-menu-frontend"><span class="std std-ref">Edit a Frontend Menu</span></a> sections.
+The changes apply automatically.</li>
+</ol>
+</div>
+<div class="section" id="customize-frontend-menus-per-website">
+<h3>Customize Frontend Menus per Website<a class="headerlink" href="#customize-frontend-menus-per-website" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This option is available in the Enterprise edition only.</p>
+</div>
+<p>To customize one of the front store menus (e.g. commerce main menu) or customer/partner portal menus (e.g. customer user menu) for a particular website:</p>
+<ol class="arabic simple">
+<li>Navigate to the front store menu list by click <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>Click on the website you would like to edit the menu for.</li>
+<li>Click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Edit Frontend Menu</strong>.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> and <a class="reference internal" href="menu_frontend.html#user-guide-system-menu-menu-frontend"><span class="std std-ref">Edit a Frontend Menu</span></a> sections.
+The changes apply automatically.</li>
+</ol>
+</div>
+<div class="section" id="customize-frontend-menus-per-customer-group">
+<h3>Customize Frontend Menus per Customer Group<a class="headerlink" href="#customize-frontend-menus-per-customer-group" title="Permalink to this headline">¶</a></h3>
+<p>To customize one of the front store menus (e.g. commerce main menu) or customer/partner portal menus (e.g. customer user menu) for the customers that belong to a particular customer group:</p>
+<ol class="arabic simple">
+<li>Navigate to the front store menu list by clicking <strong>Customers &gt; Customer Groups</strong> in the main menu.</li>
+<li>Click on the customer group you would like to edit the menu for.</li>
+<li>Click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Edit Frontend Menu</strong>.</li>
+<li>Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> and <a class="reference internal" href="menu_frontend.html#user-guide-system-menu-menu-frontend"><span class="std std-ref">Edit a Frontend Menu</span></a> sections.
+The changes apply automatically.</li>
+</ol>
+</div>
+<div class="section" id="customize-frontend-menus-per-customer">
+<h3>Customize Frontend Menus per Customer<a class="headerlink" href="#customize-frontend-menus-per-customer" title="Permalink to this headline">¶</a></h3>
+<p>To customize one of the front store menus (e.g. commerce main menu) or customer/partner portal menus (e.g. customer user menu) for a particular customer:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to the front store menu list by clicking <strong>Customers &gt; Customers</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click on the customer you would like to edit the menu for.</p>
+</li>
+<li><p class="first">Click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Edit Frontend Menu</strong>.</p>
+</li>
+<li><p class="first">Update the menu contents following the guidelines provided in the <a class="reference internal" href="#doc-menus-config"><span class="std std-ref">Customize a Menu</span></a> and <a class="reference internal" href="menu_frontend.html#user-guide-system-menu-menu-frontend"><span class="std std-ref">Edit a Frontend Menu</span></a> sections.</p>
+<p>The changes apply automatically.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="menu-management">
+<span id="doc-config-menus-menuspage"></span><h2><a class="toc-backref" href="#id10">Menu Management</a><a class="headerlink" href="#menu-management" title="Permalink to this headline">¶</a></h2>
+<p>On various <a class="reference internal" href="menu_config_levels.html#doc-menu-config-levels"><span class="std std-ref">configuration levels</span></a>, the menu and frontend menu list looks the same and the flow for customizing any menu is similar.</p>
+<p>On the menu list you can see the menus available for review or customization.</p>
+<img alt="../../_images/Menus.png" src="../../_images/Menus.png" />
+<div class="contents local topic" id="id5">
+<ul class="simple">
+<li><a class="reference internal" href="#generic-principles" id="id26">Generic Principles</a></li>
+<li><a class="reference internal" href="#edit-a-menu" id="id27">Edit a Menu</a></li>
+<li><a class="reference internal" href="#toggle-the-menu-tree-view" id="id28">Toggle the Menu Tree View</a></li>
+<li><a class="reference internal" href="#add-a-menu-item" id="id29">Add a Menu Item</a></li>
+<li><a class="reference internal" href="#edit-a-frontend-menu" id="id30">Edit a Frontend Menu</a></li>
+<li><a class="reference internal" href="#add-a-divider" id="id31">Add a Divider</a></li>
+<li><a class="reference internal" href="#view-edit-a-menu-item" id="id32">View / Edit a Menu Item</a></li>
+<li><a class="reference internal" href="#toggle-item-visibility" id="id33">Toggle Item Visibility</a></li>
+<li><a class="reference internal" href="#find-a-menu-item" id="id34">Find a Menu Item</a></li>
+<li><a class="reference internal" href="#delete-a-menu-item-divider" id="id35">Delete a Menu Item / Divider</a></li>
+<li><a class="reference internal" href="#reset-a-menu" id="id36">Reset a Menu</a></li>
+</ul>
+</div>
+<div class="section" id="generic-principles">
+<span id="doc-config-menus-actions-draganddrop"></span><span id="doc-menus-config"></span><span id="doc-config-menus-actions-hideorshowpanel"></span><span id="doc-config-menus-actions-viewandedit"></span><span id="doc-config-menus-actions-hide"></span><span id="doc-config-menus-actions-show"></span><span id="doc-config-menus-actions-search"></span><span id="doc-config-menus-actions-reset"></span><span id="doc-config-menus-actions-delete"></span><span id="doc-config-menus-actions-adddivider"></span><span id="doc-config-menus-actions-addmenuitem"></span><span id="doc-config-menus-actions-expandorcollapse"></span><h3><a class="toc-backref" href="#id26">Generic Principles</a><a class="headerlink" href="#generic-principles" title="Permalink to this headline">¶</a></h3>
+<p>A menu may be multi-level like, for example, a default OroCRM and OroCommerce Management Console main menu. The child menu items are nested under parent menu items (e.g. <strong>Accounts</strong>, etc are nested under the <strong>Customers</strong>).</p>
+<img alt="../../_images/menus_general.png" src="../../_images/menus_general.png" />
+<p>Menu items on the same level of hierarchy may be visually separated by a divider that looks like a horizontal line.</p>
+<img alt="../../_images/user_menu.png" src="../../_images/user_menu.png" />
+<p>Dividers help you logically organize menu items.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Some menus do not support displaying dividers (on a particular level in the tree, or in general). For example, if you add a divider to the top level of OroCRM and OroCommerce Management Console main menu (<strong>application_menu</strong>), the divider is not displayed.</p>
+<img alt="../../_images/ApplicationMenu.png" class="last" src="../../_images/ApplicationMenu.png" />
+</div>
+</div>
+<div class="section" id="edit-a-menu">
+<h3><a class="toc-backref" href="#id27">Edit a Menu</a><a class="headerlink" href="#edit-a-menu" title="Permalink to this headline">¶</a></h3>
+<p>To view and edit menu contents, click on the menu name or on the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> <strong>View</strong> icon in the corresponding row of the menu list.</p>
+<img alt="../../_images/Menus.png" src="../../_images/Menus.png" />
+<p>On the page that opens, the menu item tree is shown in the left panel. Center is reserved for the menu item configuration.</p>
+<img alt="../../_images/menus_general.png" src="../../_images/menus_general.png" />
+</div>
+<div class="section" id="toggle-the-menu-tree-view">
+<h3><a class="toc-backref" href="#id28">Toggle the Menu Tree View</a><a class="headerlink" href="#toggle-the-menu-tree-view" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="hide-show-the-menu-tree">
+<h4>Hide / Show the Menu Tree<a class="headerlink" href="#hide-show-the-menu-tree" title="Permalink to this headline">¶</a></h4>
+<p>To minimize or maximize the left menu panel, click a double arrow on the top right of the panel.</p>
+<img alt="../../_images/menus_application_showpanel.png" src="../../_images/menus_application_showpanel.png" />
+</div>
+<div class="section" id="expand-collapse-a-menu-tree">
+<h4>Expand / Collapse a Menu Tree<a class="headerlink" href="#expand-collapse-a-menu-tree" title="Permalink to this headline">¶</a></h4>
+<p>To expand / collapse a parent menu item, click an arrow in front of it.</p>
+<img alt="../../_images/menus_application_expand.png" src="../../_images/menus_application_expand.png" />
+<p>To expand / collapse all menu items, click the ellipses drop-down menu on the top right of the left panel and click <strong>Expand All</strong> or <strong>Collapse All</strong>.</p>
+<img alt="../../_images/menus_application_expall.png" src="../../_images/menus_application_expall.png" />
+</div>
+<div class="section" id="rearrange-menu-items-dividers">
+<h4>Rearrange Menu Items / Dividers<a class="headerlink" href="#rearrange-menu-items-dividers" title="Permalink to this headline">¶</a></h4>
+<p>You can change the position of an item / divider in a menu by dragging and dropping it in the left panel. You can change the order of menu items at the same level as well as move an item / divider to the higher or lower level.</p>
+<p>When you drag-and-drop items, pay attention to the arrow that shows where the item will be placed:</p>
+<ul>
+<li><p class="first">If an arrow points to the place between items, that is where the moved item will be placed.</p>
+<img alt="../../_images/menus_actions_d&amp;dsame.png" src="../../_images/menus_actions_d&amp;dsame.png" />
+</li>
+<li><p class="first">If and arrow appears in front of a menu item, then the moved item will become a child of the item that the arrow points to.</p>
+<img alt="../../_images/menus_actions_d&amp;dunder.png" src="../../_images/menus_actions_d&amp;dunder.png" />
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="add-a-menu-item">
+<h3><a class="toc-backref" href="#id29">Add a Menu Item</a><a class="headerlink" href="#add-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">In the left panel, click a menu item which will be parent for the menu item that you create.</p>
+</li>
+<li><p class="first">Click <strong>Create</strong> drop-down on the top right and click <strong>Create Menu Item</strong> on the list.</p>
+<img alt="../../_images/menus_createmenuitem.png" src="../../_images/menus_createmenuitem.png" />
+<p>The created menu item will appear as the last one on the list of children of the same parent item. You can move it to the position that you need, as described in the <a class="reference internal" href="#doc-config-menus-actions-draganddrop"><span class="std std-ref">Rearrange Menu Items / Dividers</span></a> action description.</p>
+</li>
+<li><p class="first">In the right part of the page, specify the following information:</p>
+<ul>
+<li><p class="first"><strong>Title</strong>—A name for the menu item. This is how this menu item will be represented in the menu.</p>
+<p>Click the <i class="fa fa-folder-o fa-lg" aria-hidden="true"></i> <strong>Translations</strong> icon to provide spelling for different languages. Click the <i class="fa fa-folder fa-lg" aria-hidden="true"></i> <strong>Default Language</strong> icon to return to the single-language view.</p>
+<img alt="../../_images/menus_actions_create_translations.png" src="../../_images/menus_actions_create_translations.png" />
+</li>
+<li><p class="first"><strong>URI</strong>—An web address of the page or resource that this menu item opens.</p>
+<p>You can specify an absolute URI or one relative to the application URI (as specified in Application Settings in System Configuration).</p>
+<p>If this menu item serves as a non-clickable parent that does not link itself to any resource (like <strong>Customers</strong> in the default main menu), type <em>#</em>.</p>
+</li>
+<li><p class="first"><strong>Icon</strong>—From the list, select the icon that will denote the menu item.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sometimes menus (or menu levels) may not be supposed to display icons. For example, icons added to the first level of the main menu (<strong>application_menu</strong>) are displayed only when this menu is set to appear on the left.</p>
+</div>
+</li>
+<li><p class="first"><strong>Description</strong>—Type a short but meaningful description of the menu item.</p>
+<p>Click the <i class="fa fa-folder-o fa-lg" aria-hidden="true"></i> <strong>Translations</strong> icon to provide spelling for different languages. Click the <i class="fa fa-folder fa-lg" aria-hidden="true"></i> <strong>Default Language</strong> icon to return to the single-language view.</p>
+</li>
+</ul>
+<img alt="../../_images/menus_actions_create_general.png" src="../../_images/menus_actions_create_general.png" />
+</li>
+<li><p class="first">Click <strong>Save</strong> to save your changes. If you wish to start creating another menu item right away, click <strong>Save and New</strong> on the top right.</p>
+</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="edit-a-frontend-menu">
+<h3><a class="toc-backref" href="#id30">Edit a Frontend Menu</a><a class="headerlink" href="#edit-a-frontend-menu" title="Permalink to this headline">¶</a></h3>
+<p>To update the frontend menu contents, follow the <a class="reference internal" href="menu_config_levels.html#doc-system-menu-config-levels-frontend-menus"><span class="std std-ref">Customize Default Frontend Menus</span></a> guide and click the menu name or on the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> View icon in the corresponding row of the frontend menu list.</p>
+<img alt="../../_images/frontend_menu_1.png" src="../../_images/frontend_menu_1.png" />
+<p>On the page that opens, the menu item tree is shown in the left panel. The <strong>General Information</strong> section is reserved for the menu item configuration, which you can update, as shown in the <a class="reference internal" href="menu_config.html#doc-system-menu-config-add-menu-item"><span class="std std-ref">Add a Menu Item</span></a> section.</p>
+<img alt="../../_images/frontend_menu_2.png" src="../../_images/frontend_menu_2.png" />
+<p>Moreover, you can customize additional visibility restrictions in the following fields in order to selectively display or hide some menu items from the customer:</p>
+<div class="contents local topic" id="id6">
+<ul class="simple">
+<li><a class="reference internal" href="#user-agent" id="id37">User Agent</a></li>
+<li><a class="reference internal" href="#exclude-on-screens" id="id38">Exclude On Screens</a></li>
+<li><a class="reference internal" href="#condition" id="id39">Condition</a></li>
+</ul>
+</div>
+<div class="section" id="user-agent">
+<h4><a class="toc-backref" href="#id37">User Agent</a><a class="headerlink" href="#user-agent" title="Permalink to this headline">¶</a></h4>
+<p>User agent is unique to every customer. It reveals a catalog of technical data about the device and software that the customer is using. You can control whether to show or hide some menu items from the customer by proceeding with the following steps:</p>
+<ol class="arabic simple">
+<li>Click <strong>+Add</strong> next to the <strong>User Agent</strong> field.</li>
+</ol>
+<p>The following text field displays:</p>
+<img alt="../../_images/frontend_menu_3.png" src="../../_images/frontend_menu_3.png" />
+<ol class="arabic simple" start="2">
+<li>Fill in the text field with a user agent substring or a string, if required.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>A user agent string is a combination of user agent application versions, operating systems, crawlers, and other scripts which are specific for each user (e.g. Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36).</p>
+<p class="last">A user agent substring is a part of the aforementioned string (e.g. Mozilla, Windows, Safari, etc).</p>
+</div>
+<a class="reference internal image-reference" href="../../_images/frontend_menu_4.png"><img alt="../../_images/frontend_menu_4.png" src="../../_images/frontend_menu_4.png" style="width: 70%;" /></a>
+<ol class="arabic" start="3">
+<li><p class="first">Select the corresponding operation from the list.</p>
+<ul class="simple">
+<li>The <em>contains</em> operation determines whether the specified substring is included in the user agent string (e.g. in case you mention Mozilla, all the versions of Mozilla in the user agent string will meet the requirements of this function).</li>
+<li>The <em>does not contain</em> operation determines whether the specified substring is not included in the user agent string.</li>
+<li>The <em>matches</em> operation checks whether the specified value fully matches the user agent string (e.g. you need to provide a version of Mozilla to meet the requirements of this function).</li>
+<li>The <em>does not match</em> operation checks when the specified value does not match the user agent string.</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/frontend_menu_5.png"><img alt="../../_images/frontend_menu_5.png" src="../../_images/frontend_menu_5.png" style="width: 70%;" /></a>
+</li>
+<li><p class="first">To create more advanced condition, you can combine constrains into the expression using logical AND and OR operators:</p>
+<ul>
+<li><p class="first">Click <strong>+ And</strong> below the operation field within the same block to add another constrain block into the expression via AND.</p>
+<p><em>AND</em> operation means that only those user agents that comply with all the specified conditions in a group will be selected.</p>
+</li>
+</ul>
+<img alt="../../_images/frontend_menu_6.png" src="../../_images/frontend_menu_6.png" />
+<ul>
+<li><p class="first">Click <strong>+ Add</strong> at the bottom of the expression block to add another constrain block into the expression via OR.</p>
+<p><em>OR</em> operation activates the expression once any of the constraint blocks in a group evaluates to true.</p>
+</li>
+</ul>
+<img alt="../../_images/frontend_menu_7.png" src="../../_images/frontend_menu_7.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="exclude-on-screens">
+<h4><a class="toc-backref" href="#id38">Exclude On Screens</a><a class="headerlink" href="#exclude-on-screens" title="Permalink to this headline">¶</a></h4>
+<p><strong>Exclude On Screens</strong> enables you to hide the menu items on the specified screens sizes.</p>
+<ol class="arabic simple">
+<li>Click any screen size to select the one for which the menu will be hidden from the customer.</li>
+<li>Hold <strong>Ctrl</strong> and click the value to select/deselect multiple screens.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<img alt="../../_images/frontend_menu_8.png" src="../../_images/frontend_menu_8.png" />
+<p>As an illustration, let us hide the <strong>About</strong> menu item from the desktops with 13 in. screen by enabling <strong>Exclude On Screens</strong> and selecting the corresponding screen size.</p>
+<img alt="../../_images/frontend_menu_9.png" src="../../_images/frontend_menu_9.png" />
+</div>
+<div class="section" id="condition">
+<h4><a class="toc-backref" href="#id39">Condition</a><a class="headerlink" href="#condition" title="Permalink to this headline">¶</a></h4>
+<p><strong>Condition</strong> enables you to restrict visibility of a menu item using the following functions:</p>
+<ul>
+<li><p class="first">The <em>is_logged_in()</em> function stands for the <em>registered users</em>. If entered, only the users who have logged into the Oro front store are enabled to view the corresponding menu item.</p>
+<img alt="../../_images/frontend_menu_10.png" src="../../_images/frontend_menu_10.png" />
+</li>
+<li><p class="first">The <em>!is_logged_in()</em> function stands for the <em>non-registered users</em>. If entered, only the unregistered users are enabled to view the corresponding menu item.</p>
+</li>
+<li><p class="first">The <em>config_value(&#8216;some_identifier&#8217;)</em> function limits visibility of the corresponding menu item upon specifying the certain value instead of <em>&#8216;some_identifier&#8217;</em>.</p>
+<p>As an example, let us make the <strong>About</strong> section in the front store visible to customers with configured taxes. For this, we need to:</p>
+<ol class="loweralpha simple">
+<li>Customize the <em>config_value(&#8216;some_identifier&#8217;)</em> function with the required value instead of <em>some_identifier</em>. In our case, it is the <em>oro_tax.tax_enable</em> value.</li>
+<li>Click <strong>Save</strong> on the top right of the About menu page to save the changes.</li>
+</ol>
+<ol class="loweralpha simple" start="2">
+<li>Enable <strong>Tax Calculation</strong> in the system configuration. More information on tax configuration can be found in the relevant <a class="reference internal" href="../landing_commerce/taxation/taxes/tax_calculation.html#user-guide-taxes-tax-configuration"><span class="std std-ref">Configure Tax Calculation</span></a> topic.</li>
+<li>Click <strong>Save</strong> on the top right of the Tax Calculation configuration page.</li>
+</ol>
+<p>The steps are illustrated below:</p>
+<blockquote>
+<div><img alt="../../_images/frontend_menu_11.png" class="with-border" src="../../_images/frontend_menu_11.png" />
+<img alt="../../_images/frontend_menu_12.png" class="with-border" src="../../_images/frontend_menu_12.png" />
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="add-a-divider">
+<h3><a class="toc-backref" href="#id31">Add a Divider</a><a class="headerlink" href="#add-a-divider" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item which will be parent for the menu divider that you create.</li>
+<li>Click <strong>Create</strong> drop-down on the top right and select <strong>Create Divider</strong>.</li>
+</ol>
+<img alt="../../_images/menus_createdivider.png" src="../../_images/menus_createdivider.png" />
+<p>The created divider will appear as the last one on the list of children of the same parent item. You can move it to the position that you need, as described in the <a class="reference internal" href="#doc-config-menus-actions-draganddrop"><span class="std std-ref">Rearrange Menu Items / Dividers</span></a> action description.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some menus (or some menu levels) cannot display dividers. For example, if you add a divider to the first level of the main menu (<strong>application_menu</strong>), this divider will not be displayed.</p>
+</div>
+</div>
+<div class="section" id="view-edit-a-menu-item">
+<h3><a class="toc-backref" href="#id32">View / Edit a Menu Item</a><a class="headerlink" href="#view-edit-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item that you want to view / edit.</li>
+<li>In the right part of the page, review / edit the menu item settings. See step 3 of the <a class="reference internal" href="#doc-config-menus-actions-addmenuitem"><span class="std std-ref">Add a Menu Item</span></a> action description for information about menu item fields.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You cannot edit URI for default menu items.</p>
+</div>
+</div>
+<div class="section" id="toggle-item-visibility">
+<h3><a class="toc-backref" href="#id33">Toggle Item Visibility</a><a class="headerlink" href="#toggle-item-visibility" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="hide-a-menu-item">
+<h4>Hide a Menu Item<a class="headerlink" href="#hide-a-menu-item" title="Permalink to this headline">¶</a></h4>
+<p>If you do not want one of the default menu items to be visible on the interface, you can hide it.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ul class="last simple">
+<li>If a menu that you hide has child items, they will be hidden too.</li>
+<li>You cannot hide non-default menu items.</li>
+</ul>
+</div>
+<p>To hide a menu item, perform the following steps:</p>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item that you want to hide.</li>
+<li>Click <strong>Hide</strong> on the top right.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="show-a-menu-item">
+<h4>Show a Menu Item<a class="headerlink" href="#show-a-menu-item" title="Permalink to this headline">¶</a></h4>
+<p>To show a previously hidden menu item, perform the following steps:</p>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item that you want to show.</li>
+<li>Click <strong>Show</strong> on the top right.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a menu item that you want to show has a parent, it will become visible too.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+</div>
+<div class="section" id="find-a-menu-item">
+<h3><a class="toc-backref" href="#id34">Find a Menu Item</a><a class="headerlink" href="#find-a-menu-item" title="Permalink to this headline">¶</a></h3>
+<p>To quickly find a menu item, enter its name into the search field and click the <i class="fa fa-search fa-lg" aria-hidden="true"></i> <strong>Search</strong> icon, or press <span class="guilabel">Enter</span>.</p>
+<img alt="../../_images/menus_application_search.png" src="../../_images/menus_application_search.png" />
+</div>
+<div class="section" id="delete-a-menu-item-divider">
+<h3><a class="toc-backref" href="#id35">Delete a Menu Item / Divider</a><a class="headerlink" href="#delete-a-menu-item-divider" title="Permalink to this headline">¶</a></h3>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ul class="last simple">
+<li>You cannot delete default menu items.</li>
+<li>When you delete a menu item that has child items, they will not be deleted but moved to the parent of the menu item that you delete.</li>
+</ul>
+</div>
+<ol class="arabic simple">
+<li>In the left panel, click a menu item / divider that you want to delete.</li>
+<li>Click <strong>Delete</strong> on the top right.</li>
+<li>In the <strong>Delete Confirmation</strong> dialog box, click <span class="guilabel">Yes, Delete</span>.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+<div class="section" id="reset-a-menu">
+<h3><a class="toc-backref" href="#id36">Reset a Menu</a><a class="headerlink" href="#reset-a-menu" title="Permalink to this headline">¶</a></h3>
+<p>To reset any customization changes and roll back to the menu that is provided out of the box in Oro application:</p>
+<ol class="arabic simple">
+<li>In the left panel, click a menu name.</li>
+<li>Click <strong>Reset</strong> on the top right.</li>
+<li>In the <strong>Reset Confirmation</strong> dialog box, click <span class="guilabel">Yes, Reset</span>.</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">You need to reload the page to see changes.</p>
+</div>
+</div>
+</div>
+<div class="section" id="related-topics">
+<h2><a class="toc-backref" href="#id11">Related Topics</a><a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../dev_guide/extend_and_customize/how_to_create_and_customize_application_menu.html#doc-managing-app-menu"><span class="std std-ref">Customize a Menu</span></a> in the Developer Guide</li>
+<li><a class="reference internal" href="../../dev_guide/extend_and_customize/how_to_create_and_customize_application_menu.html#doc-create-and-customize-app-menu"><span class="std std-ref">How to Create and Customize the Application Menu</span></a></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Menus Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="menu_config.html">Customizing a Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menu_config_levels.html">Menu Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menu_frontend.html">Edit a Frontend Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="service_page.html">Used Images</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/configuration_guide/menu/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

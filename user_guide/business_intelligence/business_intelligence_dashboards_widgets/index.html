@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dashboards and Widgets &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Leads Statistics" href="leads_statistics.html" />
+    <link rel="prev" title="Business Intelligence" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="leads_statistics.html" title="Leads Statistics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Business Intelligence"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Business Intelligence</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Dashboards and Widgets</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="user-guide-business-intelligence-widgets"><span id="user-guide-business-intelligence-dashboards"></span></span><div class="section" id="dashboards-and-widgets">
+<h1>Dashboards and Widgets<a class="headerlink" href="#dashboards-and-widgets" title="Permalink to this headline">¶</a></h1>
+<p>Dashboard is a default page you see after you log in. It is an adjustable view that may contain many <a class="reference internal" href="#user-guide-business-intelligence-widgets-explore"><span class="std std-ref">types of information blocks (widgets)</span></a>,
+such as today&#8217;s calendar, recent calls and emails, quick launchpad, etc. You can have several dashboards that serve different purposes and switch between them.</p>
+<img alt="../../../_images/dashboards_0.png" src="../../../_images/dashboards_0.png" />
+<p>In this section you will learn how to easily customize existing dashboard or create a new one, as well as add and manage widgets in the Oro application.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#create-a-dashboard" id="id1">Create a Dashboard</a></li>
+<li><a class="reference internal" href="#manage-dashboard" id="id2">Manage Dashboard</a><ul>
+<li><a class="reference internal" href="#switch-between-dashboards" id="id3">Switch Between Dashboards</a></li>
+<li><a class="reference internal" href="#explore-out-of-the-box-widgets" id="id4">Explore Out-of-the-box Widgets</a></li>
+<li><a class="reference internal" href="#add-widgets-to-a-dashboard" id="id5">Add Widgets to a Dashboard</a></li>
+<li><a class="reference internal" href="#manage-widgets-on-a-dashboard" id="id6">Manage Widgets on a Dashboard</a></li>
+<li><a class="reference internal" href="#adjust-widget-settings" id="id7">Adjust Widget Settings</a></li>
+<li><a class="reference internal" href="#add-edit-and-delete-a-dashboard" id="id8">Add, Edit, and Delete a Dashboard</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="create-a-dashboard">
+<h2><a class="toc-backref" href="#id1">Create a Dashboard</a><a class="headerlink" href="#create-a-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>To create a dashboard:</p>
+<ol class="arabic">
+<li><p class="first">Hover over the <i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> in the main menu and click <strong>Manage Dashboards</strong>.</p>
+</li>
+<li><p class="first">Click <strong>Create Dashboard</strong> on the top right of the page.</p>
+<p>The following page appears:</p>
+<img alt="../../../_images/dashboards_1.png" src="../../../_images/dashboards_1.png" />
+<p>The following fields are mandatory and <strong>must</strong> be specified:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Label</strong></td>
+<td>Name used to refer to the dashboard in the system.</td>
+</tr>
+<tr class="row-odd"><td><strong>Clone from</strong></td>
+<td>Choose an existing dashboard to be used as a base for a new one. If you want to create a dashboard from the scratch, choose the <em>Blank Dashboard</em> option.</td>
+</tr>
+<tr class="row-even"><td><strong>Owner</strong></td>
+<td>Limits the list of users who can manage the dashboard to the users, whose roles allow managing dashboards of the owner (e.g. the owner, members of the same business unit, head of the department, etc.)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">To save the dashboard, click <strong>Save and Close</strong> on the top right.</p>
+</li>
+</ol>
+<p>Initially, the dashboard contains all the widgets of the dashboard it has been cloned from. Dashboards cloned from the Blank Dashboard will be empty.</p>
+<img alt="../../../_images/dashboards_2.png" src="../../../_images/dashboards_2.png" />
+</div>
+<div class="section" id="manage-dashboard">
+<h2><a class="toc-backref" href="#id2">Manage Dashboard</a><a class="headerlink" href="#manage-dashboard" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="switch-between-dashboards">
+<h3><a class="toc-backref" href="#id3">Switch Between Dashboards</a><a class="headerlink" href="#switch-between-dashboards" title="Permalink to this headline">¶</a></h3>
+<p>You can switch to a dashboard in one of the two ways:</p>
+<ul>
+<li><p class="first">Hover over the <i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> in the main menu and click the dashboard name.</p>
+<img alt="../../../_images/dashboards_3.png" src="../../../_images/dashboards_3.png" />
+</li>
+<li><p class="first">Toggle dashboards in the header of the Dashboard page.</p>
+<img alt="../../../_images/dashboards_4.png" src="../../../_images/dashboards_4.png" />
+</li>
+</ul>
+</div>
+<div class="section" id="explore-out-of-the-box-widgets">
+<span id="user-guide-business-intelligence-widgets-explore"></span><h3><a class="toc-backref" href="#id4">Explore Out-of-the-box Widgets</a><a class="headerlink" href="#explore-out-of-the-box-widgets" title="Permalink to this headline">¶</a></h3>
+<p>Your Oro application comes with a number of out-of-the-box widgets that can simplify the day-to-day sales, marketing and communication activities. These can be broken down into three categories:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widgets for Sales and Marketing</th>
+<th class="head">Widgets for Communication</th>
+<th class="head">Universal Widgets</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><blockquote class="first last">
+<div><ul class="simple">
+<li><a class="reference internal" href="leads_statistics.html#user-guide-business-intelligence-widgets-leads-statistics"><span class="std std-ref">Leads statistics</span></a></li>
+<li><a class="reference internal" href="opportunity_statistics.html#user-guide-business-intelligence-widgets-opportunity-statistics"><span class="std std-ref">Opportunity statistics</span></a></li>
+<li><a class="reference internal" href="forecast.html#user-guide-business-intelligence-widgets-forecast"><span class="std std-ref">Forecast</span></a></li>
+<li><a class="reference internal" href="leads_list.html#user-guide-business-intelligence-widgets-leads-list"><span class="std std-ref">Leads list</span></a></li>
+<li><a class="reference internal" href="opportunities_list.html#user-guide-business-intelligence-widgets-opportunity-list"><span class="std std-ref">Opportunities list</span></a></li>
+<li><a class="reference internal" href="opportunities_by_status.html#user-guide-business-intelligence-widgets-opportunity-by-status"><span class="std std-ref">Opportunities by status</span></a></li>
+<li><a class="reference internal" href="opportunities_by_lead_source.html#user-guide-business-intelligence-widgets-opportunity-lead-source"><span class="std std-ref">Opportunities by lead source</span></a></li>
+<li><a class="reference internal" href="campaign_leads.html#user-guide-business-intelligence-widgets-campaign-leads"><span class="std std-ref">Campaign leads</span></a></li>
+<li><a class="reference internal" href="opportunity_generating_campaigns.html#user-guide-business-intelligence-widgets-opportunity-generating-campaigns"><span class="std std-ref">Opportunity-generating campaigns</span></a></li>
+<li><a class="reference internal" href="average_lifetime_sales.html#user-guide-business-intelligence-widgets-average-lifetime-sales"><span class="std std-ref">Average lifetime sales</span></a></li>
+<li><a class="reference internal" href="purchase_funnel.html#user-guide-business-intelligence-widgets-purchase-funnel"><span class="std std-ref">Purchase funnel</span></a></li>
+<li><a class="reference internal" href="campaigns_by_close_revenue.html#user-guide-business-intelligence-widgets-close-revenue"><span class="std std-ref">Campaigns by close revenue</span></a></li>
+</ul>
+</div></blockquote>
+</td>
+<td><blockquote class="first last">
+<div><ul class="simple">
+<li><a class="reference internal" href="recent_emails.html#user-guide-business-intelligence-widgets-recent-emails"><span class="std std-ref">Recent emails</span></a></li>
+<li><a class="reference internal" href="recent_calls.html#user-guide-business-intelligence-widgets-recent-calls"><span class="std std-ref">Recent calls</span></a></li>
+</ul>
+</div></blockquote>
+</td>
+<td><blockquote class="first last">
+<div><ul class="simple">
+<li><a class="reference internal" href="quick_launchpad.html#user-guide-business-intelligence-widgets-quick-launchpad"><span class="std std-ref">Quick launchpad</span></a></li>
+<li><a class="reference internal" href="recently_accessed_contacts.html#user-guide-business-intelligence-widgets-recently-accessed-contacts"><span class="std std-ref">Recently accessed contacts</span></a></li>
+<li><a class="reference internal" href="recently_accessed_accounts.html#user-guide-business-intelligence-widgets-recently-accessed-accounts"><span class="std std-ref">Recently accessed accounts</span></a></li>
+<li><a class="reference internal" href="todays_calendar.html#user-guide-business-intelligence-widgets-todays-calendar"><span class="std std-ref">Today&#8217;s calendar</span></a></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Additional widgets can be added via a third-party system integrations.</p>
+</div>
+</div>
+<div class="section" id="add-widgets-to-a-dashboard">
+<span id="user-guide-business-intelligence-widgets-add"></span><h3><a class="toc-backref" href="#id5">Add Widgets to a Dashboard</a><a class="headerlink" href="#add-widgets-to-a-dashboard" title="Permalink to this headline">¶</a></h3>
+<p>To add a widget to a dashboard:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to the dashboard (e.g. hover over the <i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> in the main menu and click the dashboard name).</p>
+</li>
+<li><p class="first">Click <strong>+Add Widget</strong>.</p>
+<img alt="../../../_images/add_widget_button_new.png" src="../../../_images/add_widget_button_new.png" />
+</li>
+<li><p class="first">The page that appears lists all the widgets available in the system which have not been added to the dashboard yet.</p>
+<img alt="../../../_images/dashboards_5_new.png" src="../../../_images/dashboards_5_new.png" />
+</li>
+<li><p class="first">To search for a widget, type its name in the search field.</p>
+<img alt="../../../_images/business_sales_channel_statistics.png" src="../../../_images/business_sales_channel_statistics.png" />
+</li>
+<li><p class="first">Select the widget that you would like to add and click <strong>Add</strong>.</p>
+<img alt="../../../_images/widgets_list.png" src="../../../_images/widgets_list.png" />
+</li>
+</ol>
+<p>This way you can add the same widgets a number of times and assign them different owners.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can add the same widgets a number of times and assign them different owners.</p>
+</div>
+</div>
+<div class="section" id="manage-widgets-on-a-dashboard">
+<span id="user-guide-business-intelligence-widgets-manage"></span><h3><a class="toc-backref" href="#id6">Manage Widgets on a Dashboard</a><a class="headerlink" href="#manage-widgets-on-a-dashboard" title="Permalink to this headline">¶</a></h3>
+<p>Widgets can be easily managed and filtered. A number of widgets can be created for various team members. For instance, a sales manager can create the same widgets for each sales rep within the organization to be able to see results of each sales rep’s work.</p>
+<p>Manage widgets using the tools in their header:</p>
+<img alt="../../../_images/dashboards_6.png" src="../../../_images/dashboards_6.png" />
+<p>The header of each widget contains:</p>
+<ul class="simple">
+<li>The <i class="fa fa-minus-square-o fa-lg" aria-hidden="true"></i> Collapse/<i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i> Expand button &#8212; If a widget has been collapsed, only its header will be displayed on the dashboard.</li>
+<li>Widget name &#8212; Widget title displayed on the dashboard.</li>
+<li>The <i class="fa fa-arrows fa-lg" aria-hidden="true"></i> Move button &#8212; Click and hold the button while moving the widget around the dashboard.</li>
+<li>The <i class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete button &#8212; delete the widget from the dashboard</li>
+<li>The <i class="fa fa-cog fa-lg" aria-hidden="true"></i> Settings button &#8212; Click the button to adjust the widget. See the <a class="reference internal" href="#adjust-widget-settings">Adjust Widget Settings</a> section for the options you can change.</li>
+</ul>
+<p>The specified owner, date range and the <a class="reference external" href="https://oroinc.com/doc/orocrm/current/user-guide-sales-tools/b2b-sales/territory-management">territory</a> (if available for the entity) are displayed at the bottom of the widget:</p>
+<img alt="../../../_images/owner_date_terr_displayed.png" src="../../../_images/owner_date_terr_displayed.png" />
+</div>
+<div class="section" id="adjust-widget-settings">
+<h3><a class="toc-backref" href="#id7">Adjust Widget Settings</a><a class="headerlink" href="#adjust-widget-settings" title="Permalink to this headline">¶</a></h3>
+<p>By clicking <i class="fa fa-cog fa-lg" aria-hidden="true"></i> in the widget header, you can adjust the following settings:</p>
+<ul class="simple">
+<li><strong>Widget title</strong> &#8212; the name displayed on the dashboard.</li>
+<li><strong>Business unit</strong> &#8212; select the business unit to present statistics for.</li>
+<li><strong>Role</strong> &#8212; select the user’s role (e.g. a sales manager, an administrator, a leads development rep, etc.) to see statistics for.</li>
+<li><strong>Owner</strong> &#8212; select the owner for the widget to see statistics for a certain user.</li>
+<li><strong>Date range</strong> &#8212; time for which the widget details are displayed.</li>
+<li><strong>Compare with previous period</strong> &#8212; tick this option if you wish to compare statistics for the current and the previous periods and see it displayed in the dashboard widget.</li>
+<li>Other widget details (depending on widget type).</li>
+</ul>
+<img alt="../../../_images/configure_widget2.png" src="../../../_images/configure_widget2.png" />
+</div>
+<div class="section" id="add-edit-and-delete-a-dashboard">
+<h3><a class="toc-backref" href="#id8">Add, Edit, and Delete a Dashboard</a><a class="headerlink" href="#add-edit-and-delete-a-dashboard" title="Permalink to this headline">¶</a></h3>
+<p>Manage the widgets via the <i class="fa fa-cog fa-lg" aria-hidden="true"></i> <strong>Tools</strong> menu. Hover over the <i class="fa fa-cog fa-lg" aria-hidden="true"></i> <strong>Tools</strong> and use one of the following actions:</p>
+<img alt="../../../_images/dashboards_8_new.png" src="../../../_images/dashboards_8_new.png" />
+<ul class="simple">
+<li>Click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to edit the dashboard.</li>
+<li>Click <i class="fa fa-plus fa-lg" aria-hidden="true"></i> to create a new dashboard.</li>
+<li>Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> to delete the dashboard from the system.</li>
+</ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>You can also perform these actions via the  <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu from the Dashboards list page (<strong>Dashboards &gt; Manage Dashboards</strong> in the main menu).</p>
+<img alt="../../../_images/dashboards_9.png" class="last" src="../../../_images/dashboards_9.png" />
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Business Intelligence</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Dashboards and Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../business_intelligence_segments.html">Segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../business_intelligence_filters.html">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reports/index.html">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/user_guide/business_intelligence/business_intelligence_dashboards_widgets/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

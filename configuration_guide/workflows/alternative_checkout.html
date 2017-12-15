@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Alternative Checkout Workflow &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Single Page Checkout Workflow" href="single_page_checkout_workflow.html" />
+    <link rel="prev" title="Checkout Workflow" href="checkout.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="single_page_checkout_workflow.html" title="Single Page Checkout Workflow"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="checkout.html" title="Checkout Workflow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Workflow Management</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Alternative Checkout Workflow</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="alternative-checkout-workflow">
+<span id="system-workflows-alternative-checkout-workflow"></span><h1>Alternative Checkout Workflow<a class="headerlink" href="#alternative-checkout-workflow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Alternative Checkout workflow represents an <strong>example</strong> of the <a class="reference internal" href="checkout.html#system-workflows-checkout-workflow"><span class="std std-ref">checkout workflow</span></a> customization. It is a <a class="reference internal" href="index.html#user-guide-system-workflow-management-system-custom"><span class="std std-ref">system workflow</span></a> that defines the sequence of <a class="reference internal" href="index.html#user-guide-system-workflow-management-steps-transitions"><span class="std std-ref">steps and transitions</span></a> that a user can go through when creating an order in the front store.</p>
+<p>In addition to the standard <a class="reference internal" href="checkout.html#system-workflows-checkout-workflow"><span class="std std-ref">checkout steps</span></a>, alternative checkout workflow includes request and order approval steps before creating an order. For this workflow, orders with subtotals exceeding the specified value will have to be reviewed and approved by users with the permission to <em>approve orders that exceed the allowable amount</em>. By default, the order approval threshold is set to 5000.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please keep in mind that the default alternative checkout is merely an example of an alternative checkout workflow. Enabling it for your customer users on the OroCommerce Front Store requires some customization efforts.</p>
+</div>
+<p>To reach the workflow:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Workflows</strong> in the main menu.</li>
+<li>Click <strong>Alternative Checkout</strong> to open the flow.</li>
+</ol>
+<p>On the Alternative Checkout workflow page, you can perform the following actions:</p>
+<ul class="simple">
+<li>Configure order approval threshold: <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong>.</li>
+<li>Deactivate the workflow - click <i class="fa fa-close fa-lg" aria-hidden="true"></i> <strong>Deactivate</strong> to deactivate the workflow.</li>
+</ul>
+<img alt="../../_images/ACF_page.png" src="../../_images/ACF_page.png" />
+<img alt="../../_images/ACF_configuration.png" src="../../_images/ACF_configuration.png" />
+<p>Within the Workflows grid, you can perform the following actions for the alternative checkout workflow:</p>
+<ul class="simple">
+<li>Configure order approval threshold: <i class="fa fa-gear fa-lg" aria-hidden="true"></i></li>
+<li>View the workflow: <i class="fa fa-eye fa-lg" aria-hidden="true"></i></li>
+<li>Deactivate the workflow: <i class="fa fa-close fa-lg" aria-hidden="true"></i></li>
+</ul>
+<img alt="../../_images/ACF_grid.png" src="../../_images/ACF_grid.png" />
+</div>
+<div class="section" id="steps-and-transitions">
+<h2>Steps and Transitions<a class="headerlink" href="#steps-and-transitions" title="Permalink to this headline">¶</a></h2>
+<p>The following table illustrates the steps and transitions that the alternative checkout workflow consists of:</p>
+<img alt="../../_images/ACF_table.png" class="align-center" src="../../_images/ACF_table.png" />
+<p>As an illustration, let us go through a sample flow to see how the alternative checkout workflow works:</p>
+<ol class="arabic simple">
+<li>A product has been added to a shopping list. On opening the shopping list, you can create an order either by clicking <strong>Create Order</strong> on the right of the page next to Request Quote or by clicking on the <strong>Create Order</strong> button at the bottom of the page.</li>
+</ol>
+<img alt="../../_images/ACF_CreateOrderButton.png" src="../../_images/ACF_CreateOrderButton.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The <strong>Create Order</strong> button will only be available if the following conditions are met:</p>
+<blockquote>
+<div><ul class="simple">
+<li>at least one <a class="reference internal" href="../../user_guide/shipping/index.html#user-guide-shipping"><span class="std std-ref">shipping method</span></a> is available</li>
+<li>at least one <a class="reference internal" href="../../user_guide/payment/index.html#user-guide-payment"><span class="std std-ref">payment method</span></a> is available</li>
+<li>there is at least one product with a price in the shopping list</li>
+<li>items to be purchased are available in the <a class="reference internal" href="../../user_guide/inventory/index.html#user-guide-inventory"><span class="std std-ref">inventory</span></a> in the management console</li>
+</ul>
+</div></blockquote>
+<p class="last">A warning message will be shown if for some reason you are unable to start the checkout process.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Step 1: Billing Information</strong></p>
+<p>The order is open. The first step is to enter billing information for the order by selecting an existing address from the address book, or creating a new one.</p>
+<p>Checking <strong>Ship to this address</strong> will allow you to use the provided billing address as shipping.</p>
+<p>Clicking <strong>Continue</strong> will redirect you to the next step.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is possible to amend the order by clicking <strong>Edit the Order</strong> in the right corner of the Order Summary section. The Order Summary section will be available for Billing Information, Shipping Information, Shipping Method and Payment pages. Editing the order will remain possible throughout the checkout process until the order is submitted.</p>
+</div>
+</li>
+</ol>
+<img alt="../../_images/ACF_CreateBilling.png" src="../../_images/ACF_CreateBilling.png" />
+<ol class="arabic" start="3">
+<li><p class="first"><strong>Step 2: Shipping Information</strong></p>
+<p>If the <strong>Ship to this address</strong> box has been checked in the Billing Information step, the provided address will be automatically selected in the Shipping Information step.</p>
+<p>To edit shipping information, clear the <strong>Use billing address</strong> box and provide a different shipping address for the order.</p>
+<img alt="../../_images/ACF_CreateShipping.png" src="../../_images/ACF_CreateShipping.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>It is possible to edit <em>the already provided</em> information (until the order is submitted) by clicking <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> on the left side of the page.</p>
+<img alt="../../_images/EditInfo.png" class="last align-center" src="../../_images/EditInfo.png" />
+</div>
+</li>
+<li><p class="first"><strong>Step 3: Shipping Method</strong></p>
+<p>At this stage, it is necessary to provide a <a class="reference internal" href="../../user_guide/shipping/index.html#user-guide-shipping"><span class="std std-ref">shipping method</span></a> by selecting one from the list of the available methods.</p>
+<img alt="../../_images/ACF_ShippingMethod.png" src="../../_images/ACF_ShippingMethod.png" />
+</li>
+<li><p class="first"><strong>Step 4: Payment</strong></p>
+<p>Choose a suitable <a class="reference internal" href="../../user_guide/payment/index.html#user-guide-payment"><span class="std std-ref">payment method</span></a> by selecting it from the list of all available methods.</p>
+<img alt="../../_images/ACF_Payment.png" src="../../_images/ACF_Payment.png" />
+</li>
+<li><p class="first"><strong>Step 5: Order Review</strong></p>
+<p>Once all the necessary information has been provided, it is possible to review the order in the Order Review section:</p>
+<ul class="simple">
+<li>View Options for the order:<ul>
+<li>Do not ship later than</li>
+<li>PO Number</li>
+<li>Notes</li>
+<li>Delete the shopping list</li>
+</ul>
+</li>
+<li>Check quantity, price, subtotal, shipping and total cost</li>
+<li>Edit the Order</li>
+<li>Edit the already provided information by clicking <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> on the left side of the page</li>
+</ul>
+<p>To submit the order, click <strong>Submit Order</strong> at the bottom of the page.</p>
+<img alt="../../_images/ACF_OrderReview.png" src="../../_images/ACF_OrderReview.png" />
+</li>
+<li><p class="first"><strong>Step 6: Request Approval</strong></p>
+<p>Since the order amount exceeds the threshold of $5000, manager approval is required to submit the order.</p>
+<img alt="../../_images/ACF_RequestApproval.png" src="../../_images/ACF_RequestApproval.png" />
+<p>Order Approval will remain pending until the manager aproves it.</p>
+<img alt="../../_images/ACF_ApprovalPending.png" src="../../_images/ACF_ApprovalPending.png" />
+</li>
+<li><p class="first"><strong>Step 7: Approve Order</strong></p>
+<p>The manager can approve the order by navigating to Orders, selecting the required order and clicking <strong>Approve Order</strong>.</p>
+<img alt="../../_images/ACF_ApproveOrder.png" src="../../_images/ACF_ApproveOrder.png" />
+<p>At this point, the manager can submit the order themselves, or let the employee handle the order:</p>
+<img alt="../../_images/ACF_Approved.png" src="../../_images/ACF_Approved.png" />
+</li>
+<li><p class="first">Once submitted, the order will be received and dealt with by the sales team.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Workflow Management</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quote_management_workflow.html">Quote Management Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backoffice_quote_flow_with_approvals.html">Backoffice Quote Flow with Approvals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfq_backoffice.html">RFQ Management Flow Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfq_frontoffice.html">RFQ Submission Flow Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkout.html">Checkout Workflow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Alternative Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="single_page_checkout_workflow.html">Single Page Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="task_flow.html">Task Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/configuration_guide/workflows/alternative_checkout.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

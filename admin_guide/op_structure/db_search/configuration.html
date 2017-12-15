@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Console Commands" href="console_commands.html" />
+    <link rel="prev" title="Manage Search in Oro Applications" href="index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="console_commands.html" title="Console Commands"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Manage Search in Oro Applications"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Administrator Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Operational Structure</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Manage Search in Oro Applications</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configuration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuration">
+<span id="db-search-configuration"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>OroSearchBundle provides options that can be used to customize the
+search functionality.</p>
+<div class="section" id="system-configuration">
+<h2>System Configuration<a class="headerlink" href="#system-configuration" title="Permalink to this headline">¶</a></h2>
+<p>All configuration data is placed in the configuration under alias
+<code class="docutils literal"><span class="pre">oro_search</span></code>. Let us look at the configuration example:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>oro_search:
+    engine: orm
+    engine_parameters:
+        ...
+    log_queries: true
+    item_container_template: MyBundle:Search:itemContainer.html.twig
+    entities_config:
+        ...
+</pre></div>
+</div>
+<p>Description of parameters:</p>
+<ul class="simple">
+<li><strong>engine</strong>, default &#8220;orm&#8221; (converted to container parameter
+<em>oro_search.engine</em>) - specifies the search engine name used to perform
+search and indexation (see section <a class="reference external" href="#search-engine-configuration">Search Engine Configuration</a>);</li>
+<li><strong>engine_parameters</strong> (converted to the container parameter
+<em>oro_search.engine_parameters</em>) - additional parameters of the search
+engine used for initialization (f.e. IP, port, credentials etc);</li>
+<li><strong>log_queries</strong>, default false (converted to container parameter
+<em>oro_search.log_queries</em>) - flag that defines whether it is necessary to log
+search queries to the database;</li>
+<li><strong>item_container_template</strong>, default
+&#8220;OroSearchBundle:Datagrid:itemContainer.html.twig&#8221; (converted to
+container parameter <em>oro_search.twig.item_container_template</em>) -
+template used to render entity row in search results;</li>
+<li><strong>entities_config</strong> (converted to container parameter
+<em>oro_search.entities_config</em>) - entity search configuration, can be
+used to override the default entity search configuration (see section
+<a class="reference internal" href="#db-search-configuration-entity-configuration"><span class="std std-ref">Entity Configuration</span></a>).</li>
+</ul>
+</div>
+</div>
+<div class="section" id="configuration-merging">
+<h1>Configuration Merging<a class="headerlink" href="#configuration-merging" title="Permalink to this headline">¶</a></h1>
+<p>All configurations merge in the boot bundles order. The application collects
+configurations of all nodes with the same name and merges them into one
+configuration. Merging uses simple rules:</p>
+<ul class="simple">
+<li>if the node value is scalar, the value will be replaced</li>
+<li>if the node value is an array:<ul>
+<li>by default the value will be replaced</li>
+<li>for node &#8216;fields&#8217; this array will be appended by values from the
+second configuration.</li>
+</ul>
+</li>
+</ul>
+<p>After this step, the application knows about all entity search configurations
+from the search.yml files and has only one configuration for each entity.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>AcmeBundleDemoBundleResourcesconfigorosearch`.yml:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Acme\Bundle\DemoBundle\Entity\Tag:
+    alias:                          acme_tag
+    title_fields:                   [name]
+    search_template:                DemoBundle:Search:result.html.twig
+    route:
+        name:                       acme_tag_search
+        parameters:
+            id:                     id
+    fields:
+        -
+            name:                   name
+            target_type:            text
+            target_fields:          [name]
+</pre></div>
+</div>
+<p>AcmeCRMBundleDemoBundleResourcesconfigsearch.yml:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Acme\Bundle\DemoBundle\Entity\Tag:
+    alias:                          acme_tag
+    title_fields:                   [subject]
+    fields:
+        -
+            name:                   subject
+            target_type:            text
+            target_fields:          [subject]
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>alias:                          acme_tag
+title_fields:                   [subject]
+search_template:                DemoBundle:Search:result.html.twig
+route:
+    name:                       acme_tag_search
+    parameters:
+        id:                     id
+fields:
+    -
+        name:                   name
+        target_type:            text
+        target_fields:          [name]
+    -
+        name:                   subject
+        target_type:            text
+        target_fields:          [subject]
+</pre></div>
+</div>
+</div>
+<div class="section" id="entity-configuration">
+<span id="db-search-configuration-entity-configuration"></span><h2>Entity Configuration<a class="headerlink" href="#entity-configuration" title="Permalink to this headline">¶</a></h2>
+<p>After insert, update or delete entity records, the search index must be
+updated. The search index consists of data from entities by mapping
+parameters. Entity search configuration maps fields to the virtual
+search fields in the search index.</p>
+<p>Entity search configuration can be stored in main <code class="docutils literal"><span class="pre">config.yml</span></code> file (in
+<code class="docutils literal"><span class="pre">oro_search</span></code> config section) or in <code class="docutils literal"><span class="pre">search.yml</span></code> files in the config
+directory of the bundle.</p>
+<p>Configuration is an array that contains info about the bundle name, entity name
+and the array of fields. Fields array contains the array of field name and field
+type. Data from all text fields will be stored in the <strong>all_text</strong> virtual field.
+Additionally, all the fields will be stored in the <code class="docutils literal"><span class="pre">fieldName</span></code> virtual
+fields, if the <code class="docutils literal"><span class="pre">target_fields</span></code> parameter is not set.</p>
+<p>Example:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>Acme\DemoBundle\Entity\Product:
+    alias: demo_product                                      # Alias for &#39;from&#39; keyword in advanced search
+    search_template: AcmeDemoBundle:result.html.twig         # Template to use in search result page for this entity type
+    label: Demo products                                     # Label for entity to identify entity in search results
+    route:
+        name: acme_demo_search_product                       # Route name to generate url link to the entity record
+        parameters:                                          # Array with parameters for route
+            id: id
+    mode: normal                                             # optional, default normal. Defines behavior for entities
+    title_fields: [name]                                     # with inheritance hierarchy. See possible values in config
+    fields:                                                  # dump reference or in class constants Oro\Bundle\SearchBundle\Query\Mode
+        -
+            name: name                                       # Name of field in entity
+            target_type: text                                # Type of virtual search field. Supported target types:
+                                                             # text (string and text fields), integer, double, datetime
+        -
+            name: description
+            target_type: text
+            target_fields: [description, another_index_name] # Array of virtual fields for entity field from &#39;name&#39; parameter.
+        -
+            name: manufacturer
+            relation_type: many-to-one                       # Indicate that this field is relation field to another table.
+                                                             # Supported: one-to-one, many-to-many, one-to-many, many-to-one.
+            relation_fields:                                 # Array of fields from relation record we must to index.
+                -
+                    name: name                               # related entity field name to index
+                    target_type: text                        # related entity field name type
+                    target_fields: [manufacturer, all_data]  # target fields to store field index
+                -
+                    name: id
+                    target_type: integer
+                    target_fields: [manufacturer]
+        -
+            name: categories
+            relation_type: many-to-many
+            relation_fields:
+                -
+                    name: name
+                    target_type: text
+                    target_fields: [all_data]
+</pre></div>
+</div>
+</div>
+<div class="section" id="search-engine-configuration">
+<h2>Search Engine Configuration<a class="headerlink" href="#search-engine-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The search bundle provides the ability to use different search engines through
+the common interface.</p>
+<p>Used search engine is defined in the configuration under <code class="docutils literal"><span class="pre">oro_search.engine</span></code>
+key. To make engine work, at least one bundle must have s file with the
+<em>Resources/config/oro/search_engine/&lt;engine_name&gt;.yml</em> name that contains the
+configuration of search engine services that will be added to container
+services.</p>
+<p>To make the engine work, two services must be defined in the engine
+configuration: * Search service <em>oro_search.search.engine</em> must
+implement
+<em>OroBundle`SearchBundle`Engine`EngineInterface`</em>.
+* Indexer service <em>oro_search.search.engine.indexer</em> must implement
+<em>OroBundle`SearchBundle`Engine`IndexerInterface`</em>.</p>
+<p>To make implementation easier, there are abstract classes
+<em>OroBundle`SearchBundle`Engine`AbstractEngine`</em>
+and
+<em>OroBundle`SearchBundle`Engine`AbstractIndexer`</em>
+that provide useful functionality (such as logging, queuing etc).</p>
+<dl class="docutils">
+<dt>If the search engine requires some additional parameters (credentials, index configuration etc.), then they can be passed through the configuration using the</dt>
+<dd><em>oro_search.engine_parameters</em> key, so these parameters can be injected into search services.</dd>
+</dl>
+<p>Also, engine configuration can override existing services to support some specific use cases of the search engine (e.g. ORM engine overrides index listener to support single flush).</p>
+</div>
+<div class="section" id="datagrid-configuration">
+<h2>Datagrid Configuration<a class="headerlink" href="#datagrid-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The SearchBundle supplies a datasource that can be used interchangeably
+with the default ORM datasource. This datasource feeds pure search index
+data, bypassing the default DBMS, thus allowing pure index storage layer
+driven datagrids to be built.</p>
+<p>The following is an example of a DatagridBundle&#8217;s configuration entry in the
+<code class="docutils literal"><span class="pre">Resources/config/oro/datagrids.yml</span></code> file that builds a simple user
+datagrid using search index data only:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>user-search-grid:
+    source:
+        type: search
+        query:
+            select:
+                - text.username as name
+                - text.email
+            from:
+                - oro_user
+    columns:
+        name:
+            label: oro.user.username.label
+            data_name: name
+        email:
+            label: oro.user.email.label
+            data_name: email
+    sorters:
+        columns:
+            name:
+                data_name: username
+                type: string
+            email:
+                data_name: email
+                type: string
+        default:
+            name: ASC
+    filters:
+        columns:
+            quick_search:
+                label: &#39;Quick search&#39;
+                type: string
+                data_name: all_text
+            name:
+                type: string
+                data_name: username
+            email:
+                type: string
+                data_name: email
+    properties:
+        id: ~
+        view_link:
+            type: url
+            route: oro_user_view
+            params:
+                - id
+        update_link:
+            type: url
+            route: oro_user_update
+            params:
+                - id
+        delete_link:
+            type: url
+            route: oro_api_delete_user
+            params:
+                - id
+    actions:
+        view:
+            type:          navigate
+            label:         oro.grid.action.view
+            link:          view_link
+            icon:          eye
+            acl_resource:  oro_user_user_view
+            rowAction:     true
+        update:
+            type:          navigate
+            label:         oro.grid.action.update
+            link:          update_link
+            icon:          edit
+            acl_resource:  oro_user_user_update
+        delete:
+            type:          delete
+            label:         oro.grid.action.delete
+            link:          delete_link
+            icon:          trash
+            acl_resource:  oro_user_user_delete
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Operational Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elastic_search.html">Elasticsearch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Manage Search in Oro Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cache.html">Cache in Oro Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mq/index.html">Message Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_server_compression_and_caching.html">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jobs.html">Job Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cron.html">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/admin_guide/op_structure/db_search/configuration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

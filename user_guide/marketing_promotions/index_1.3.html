@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Promotions &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Promotions</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="promotions">
+<h1>Promotions<a class="headerlink" href="#promotions" title="Permalink to this headline">¶</a></h1>
+<p>Companies often develop loyalty programs offering special discounts to customers who have bought from the company before, follow them in social networks, or have commented on their website. This can motivate customers to buy more and repeat purchases from their stores, making promotions one of the most efficient strategies when it comes to converting shoppers to buyers.</p>
+<p>In your Oro application, you can configure promotions, apply various discount options for orders or line items, add and generate <a class="reference internal" href="../marketing_coupons/index.html#user-guide-marketing-promotions-coupons"><span class="std std-ref">coupons</span></a>, manage discounts in placed <a class="reference internal" href="../orders/index.html#user-guide-sales-orders"><span class="std std-ref">orders</span></a>, view them in <a class="reference internal" href="../../frontstore_guide/shopping_lists/index.html#frontstore-guide-shopping-lists"><span class="std std-ref">shopping lists</span></a> in the management console.</p>
+<p>The following topics will delve into how to view, create and manage promotions in your Oro application:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configure-promotions" id="id3">Configure Promotions</a></li>
+<li><a class="reference internal" href="#create-promotions" id="id4">Create Promotions</a><ul>
+<li><a class="reference internal" href="#discount-options-for-line-items" id="id5">Discount Options for Line Items</a></li>
+<li><a class="reference internal" href="#discount-options-for-buy-x-get-y-same-product" id="id6">Discount Options for Buy X Get Y (Same Product)</a></li>
+<li><a class="reference internal" href="#discount-options-for-shipping" id="id7">Discount Options for Shipping</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#view-promotions" id="id8">View Promotions</a></li>
+<li><a class="reference internal" href="#set-up-a-sample-promotion" id="id9">Set Up a Sample Promotion</a><ul>
+<li><a class="reference internal" href="#set-up-a-segment-with-products-to-promote" id="id10">Set up a Segment with Products to Promote</a></li>
+<li><a class="reference internal" href="#ensure-easy-access-to-the-promoted-products" id="id11">Ensure Easy Access to the Promoted Products</a></li>
+<li><a class="reference internal" href="#create-a-promotion" id="id12">Create a Promotion</a></li>
+<li><a class="reference internal" href="#view-a-discount-when-placing-an-order-in-the-front-store" id="id13">View a Discount When Placing an Order in the Front Store</a></li>
+<li><a class="reference internal" href="#review-discount-in-the-front-store-after-you-place-an-order" id="id14">Review Discount in the Front Store After You Place an Order</a></li>
+<li><a class="reference internal" href="#review-promotion-results-in-the-management-console" id="id15">Review Promotion Results in the Management Console</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manage-promotions-in-orders" id="id16">Manage Promotions in Orders</a><ul>
+<li><a class="reference internal" href="#related-topics" id="id17">Related Topics</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configure-promotions">
+<h2><a class="toc-backref" href="#id3">Configure Promotions</a><a class="headerlink" href="#configure-promotions" title="Permalink to this headline">¶</a></h2>
+<p>You can enable or disable promotions and coupons, as well as control their strategy across your application in the system configuration.</p>
+<p>To reach promotion configuration:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>System &gt; Configuration</strong> in the main menu.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Sales &gt; Promotion</strong> in the menu to the left.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/PromotionSysConfig.png" src="../../_images/PromotionSysConfig.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, promotions are enabled and the <strong>Combine All Discounts</strong> strategy is set.</p>
+</div>
+</li>
+<li><p class="first">To customize the default settings:</p>
+</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the <strong>Enable Promotion</strong> option. This will enable you to clear the option check box and disable promotions in your Oro application.</li>
+<li>Clear the <strong>Use Default</strong> check box next to the <strong>Discount Strategy</strong> and select one of the following options &#8211; <em>Combine All Discounts</em> or <em>Best Value Discounts Only</em>.<ul>
+<li>When <em>Combine All Discounts</em> is selected, all discount options applicable to products are used in combination.</li>
+<li>When <em>Best Value Discounts Only</em> is selected, only the promotion that gives the best value is applied to products.</li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+</div>
+<div class="section" id="create-promotions">
+<h2><a class="toc-backref" href="#id4">Create Promotions</a><a class="headerlink" href="#create-promotions" title="Permalink to this headline">¶</a></h2>
+<p>To create a new promotion:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Marketing &gt; Promotions</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Promotion</strong> in the top right corner.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/CreatePromotion.png" src="../../_images/CreatePromotion.png" />
+</li>
+<li><p class="first">In the <strong>General</strong> section, complete the following fields:</p>
+<ol class="loweralpha">
+<li><p class="first"><strong>Owner</strong> &#8211; select the user responsible for the promotion from the list, or click <i class="fa fa-bars fa-lg" aria-hidden="true"></i> to load the list of users to choose from. By default, the current user in predefined as the promotion owner.</p>
+</li>
+<li><p class="first"><strong>Name</strong> &#8211; specify the promotion name to distinguish it from other promotions.</p>
+</li>
+<li><p class="first"><strong>Sort Order</strong> &#8211; enter the sort order to set the priority compared to other available promotions. The lower is the number, the higher is the priority.</p>
+</li>
+<li><p class="first"><strong>Enabled</strong> &#8211; to activate the promotion, enable the checkbox. To deactivate the promotion, clear the checkbox.</p>
+</li>
+<li><p class="first"><strong>Stop Further Rule Processing</strong> &#8211; select this option if you wish to prevent applying other promotions with lower priority.</p>
+<p>For instance, if there are three promotions for the same products with sort orders 1, 2 and 3 respectively, and the promotion with sort order 2 has <strong>Stop Further Rule Processing</strong> enabled, then when the turn reaches such promotion, the queue stops and promotion with sort order 3 is not applied.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Discount Options</strong> section, configure the discount calculation.</p>
+<ol class="loweralpha">
+<li><p class="first">In the <strong>Discount</strong> list, select the level that the discount targets:</p>
+<ul class="simple">
+<li><em>Order Total</em> &#8211; discount applies to the total order amount,</li>
+<li><em>Order Line Item</em> &#8211; discount applies to the line item total,</li>
+<li><em>Buy X Get Y (Same Product)</em> &#8211; the price of certain quantity of the line items (up to Y) may be discounted when they are ordered in bulk (more than X), or</li>
+<li><em>Shipping</em> &#8211;  discount applies to shipping.</li>
+</ul>
+</li>
+<li><p class="first">In the <strong>Type</strong> list, select whether the discount type should be represented by a fixed amount (e.g. - 10USD) or a certain percent (5%) off the item price.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that when a fixed discount is used, the promotion applies to the order in the selected currency only.</p>
+</div>
+</li>
+<li><p class="first">In the <strong>Discount Value</strong>, provide the required discount amount and select the currency (if possible).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that Oro Application Community version supports one currency. You can set up multiple currencies that would be available for selection in the Discount Value field only in the Enterprise version of the application.</p>
+</div>
+</li>
+<li><p class="first">Depending on the discount type, the remaining fields in the <strong>Discount Options</strong> section will differ. See the following sections for their detailed description:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#discount-options-for-line-items">Discount Options for Line Items</a></li>
+<li><a class="reference internal" href="#discount-options-for-buy-x-get-y-same-product">Discount Options for Buy X Get Y (Same Product)</a></li>
+<li><a class="reference internal" href="#discount-options-for-shipping">Discount Options for Shipping</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Schedules</strong> section, specify the following dates:</p>
+<ol class="loweralpha simple">
+<li><strong>Active at</strong>  &#8211; schedule the date and time when the promotion should trigger.</li>
+<li><strong>Deactivate at</strong> &#8211; schedule the date and time when the promotion should end.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To add more schedules, click <strong>+Add</strong>.</p>
+</div>
+</li>
+<li><p class="first">In the <strong>Conditions</strong> section, provide the following information:</p>
+<ol class="loweralpha simple">
+<li><strong>Restrictions</strong> &#8211; set visibility restrictions to promotions. By default, promotions are displayed for any customer or customer group. Only one field must be chosen at a time, either a customer group and a customer.</li>
+<li><strong>Expression</strong> &#8211; specify the <a class="reference internal" href="expressions.html#user-guide-promotion-expression"><span class="std std-ref">expression</span></a> that describes the conditions when the promotion should be applied.</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Items To Discount</strong> section, add, filter or reset the product that the promotion should apply to:</p>
+<ol class="loweralpha">
+<li><p class="first"><strong>Reset Products</strong> &#8211; click <strong>Reset Products</strong> next to the tabs to clear all filters and reset the product collection to the default state.</p>
+</li>
+<li><p class="first"><strong>Add</strong> &#8211; click <strong>Add</strong> to add the selected products manually. This can be used in cases when you have few products to be added and there is no need to set up a complicated filter, or when you need to add specific products that may be out of the filter’s scope. Manually added items will appear both in the <em>Manually Added</em> and <em>All Added</em> tabs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To ensure that specific items are excluded from the list of the product collection and will not be included automatically or manually, click <strong>Add</strong> in the <em>Excluded</em> tab. All removed products will move to the <em>Excluded</em> tab automatically.</p>
+</div>
+</li>
+<li><p class="first"><strong>Advanced Filter</strong> &#8211; add a product via a <a class="reference internal" href="../getting_started/intro_filters.html#user-guide-getting-started-filters"><span class="std std-ref">filter</span></a> to limit the product list and include only the necessary products. Advanced filter is hidden by default. Click <strong>Preview Results</strong> to check whether the products found via the filter match your criteria, or to exclude unnecessary items from the list.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may use filter on the top of the dialog to limit the scope of the products and make it fit into the visible area.</p>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<div class="section" id="discount-options-for-line-items">
+<h3><a class="toc-backref" href="#id5">Discount Options for Line Items</a><a class="headerlink" href="#discount-options-for-line-items" title="Permalink to this headline">¶</a></h3>
+<p>For line items discount, provide the following information:</p>
+<img alt="../../_images/LineItems.png" src="../../_images/LineItems.png" />
+<ul>
+<li><p class="first"><strong>Product Unit</strong> &#8211; select the necessary unit type from the list (e.g. each, item, set.). Note that the discount will only apply to the product with the specified unit type.</p>
+</li>
+<li><p class="first"><strong>Apply Discount to</strong> &#8211; select whether to apply discount to each of the items on sale or for the line items total.</p>
+<p>For instance, if there are 10 items in the shopping list that qualify for a discount and the discount is $1 per item, then the discount will constitute $10. If in the same scenario the promotion should apply to the line items total, then the total discount will constitute $1.</p>
+</li>
+<li><p class="first"><strong>Maximum Quantity Discount is Applied to</strong> &#8211; enter the maximum quantity of products of the same type eligible for discount in a line item/order. For example, when the limit is set to 10 and a buyer orders 100 items, they will be charged the discounted price for 10 items out of 100, and will pay the full price for the remaining 90 items.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that <strong>Maximum Quantity Discount is Applied to</strong> field can only be applied if <strong>Apply Discount to</strong> field is set to <em>Each Item</em>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="discount-options-for-buy-x-get-y-same-product">
+<h3><a class="toc-backref" href="#id6">Discount Options for Buy X Get Y (Same Product)</a><a class="headerlink" href="#discount-options-for-buy-x-get-y-same-product" title="Permalink to this headline">¶</a></h3>
+<p>For Buy X Get Y (Same Product) discount, provide the following information:</p>
+<img alt="../../_images/BuyX.png" src="../../_images/BuyX.png" />
+<ul>
+<li><p class="first"><strong>Buy X</strong> &#8211; enter the quantity of X products the customer needs to purchase to be eligible for the discount.</p>
+</li>
+<li><p class="first"><strong>Get Y</strong> &#8211; enter the quantity of Y products which the customer will get a discount for when purchases a number of X products.</p>
+</li>
+<li><p class="first"><strong>Product Unit</strong> &#8211; select the necessary unit type from the list (e.g. each, item, set). Note that the discount will only apply to the product with the specified unit type.</p>
+</li>
+<li><p class="first"><strong>Apply Discount to</strong> &#8211; select one of the options, <em>Each Y Item Separately</em> (the discount will apply to Y items only) or <em>X+Y Total</em> (the discount will apply to the total of X and Y items).</p>
+<p>For instance, if:</p>
+<ul class="simple">
+<li>There are 10 items in the shopping list that qualify for a promotion.</li>
+<li>Buy X is set to 3.</li>
+<li>Get Y is set to 2.</li>
+<li>The discount is $1 per each</li>
+</ul>
+<p>Then:</p>
+<ul class="simple">
+<li>The discount for <em>Each Y Item Separately</em> will equal $4 ($1 for each of 4 Y items).</li>
+<li>The discount for <em>X+Y Total</em> will equal $2 ($1 for each bundle of 5).</li>
+</ul>
+</li>
+<li><p class="first"><strong>Limit, Times</strong> &#8211; provide the quantity of discounted groups (X+Y) of the same type eligible for a discount in a line item/order. For example, when the limit is set to 2 and a buyer orders 3 groups of 3+2 items (15 in total), they will be charged the discounted price for 2 groups out of 3, and will pay the full price for the remaining one group.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="discount-options-for-shipping">
+<h3><a class="toc-backref" href="#id7">Discount Options for Shipping</a><a class="headerlink" href="#discount-options-for-shipping" title="Permalink to this headline">¶</a></h3>
+<p>For shipping discount, select the necessary shipping method from the list.</p>
+<blockquote>
+<div><img alt="../../_images/Shipping.png" src="../../_images/Shipping.png" />
+</div></blockquote>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+<div class="section" id="view-promotions">
+<h2><a class="toc-backref" href="#id8">View Promotions</a><a class="headerlink" href="#view-promotions" title="Permalink to this headline">¶</a></h2>
+<p>To view all promotions, navigate to <strong>Marketing &gt; Promotions &gt; Promotions</strong> in the main menu.</p>
+<p>The following page opens:</p>
+<img alt="../../_images/PromotionsGrid.png" src="../../_images/PromotionsGrid.png" />
+<p>You can perform the following actions with every item on the list:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">View promotion details: Click on the item to open its details page.</p>
+<p>OR</p>
+<p>Alternatively: Click the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> to the right of the item to open its details page.</p>
+</li>
+<li><p class="first">Edit promotion details: Click the <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to the right of the item to start editing its details.</p>
+</li>
+<li><p class="first">Duplicate a promotion: Click <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> to clone the selected promotion.</p>
+</li>
+<li><p class="first">Delete a promotion: Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> to remove a promotion from the system.</p>
+</li>
+<li><p class="first">Create promotion: click <strong>Create Promotion</strong> in the top right corner.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>In addition to viewing promotion details, you can perform the following actions on the promotions page:</p>
+<ul class="simple">
+<li>Duplicate: <i class="fa fa-files-o fa-lg" aria-hidden="true"></i> <strong>Duplicate</strong></li>
+<li>Edit: <i class="fa fa-edit fa-lg" aria-hidden="true"></i> <strong>Edit</strong></li>
+<li>Delete: <i class="fa fa-trash fa-lg" aria-hidden="true"></i> <strong>Delete</strong></li>
+<li>Add Note: <strong>Add Note</strong></li>
+</ul>
+<img alt="../../_images/PromotionsViewPage.png" src="../../_images/PromotionsViewPage.png" />
+</div>
+<div class="section" id="set-up-a-sample-promotion">
+<h2><a class="toc-backref" href="#id9">Set Up a Sample Promotion</a><a class="headerlink" href="#set-up-a-sample-promotion" title="Permalink to this headline">¶</a></h2>
+<p>As an example, we will set up a simple promotion for some new arrivals. For this, we will create a custom new arrivals segment and reconfigure the <a class="reference internal" href="../products/products/new_arrivals.html#user-guide-new-arrivals"><span class="std std-ref">New Arrivals</span></a> to use this segment. The promotion will last one day and give 20% off all orders. When the promotion ends, we will roll back to the standard New Arrivals segment.</p>
+<p>To set up a sample promotion, we go through the following steps:</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><a class="reference internal" href="#set-up-a-segment-with-products-to-promote" id="id18">Set up a Segment with Products to Promote</a></li>
+<li><a class="reference internal" href="#ensure-easy-access-to-the-promoted-products" id="id19">Ensure Easy Access to the Promoted Products</a></li>
+<li><a class="reference internal" href="#create-a-promotion" id="id20">Create a Promotion</a></li>
+<li><a class="reference internal" href="#view-a-discount-when-placing-an-order-in-the-front-store" id="id21">View a Discount When Placing an Order in the Front Store</a></li>
+<li><a class="reference internal" href="#review-discount-in-the-front-store-after-you-place-an-order" id="id22">Review Discount in the Front Store After You Place an Order</a></li>
+<li><a class="reference internal" href="#review-promotion-results-in-the-management-console" id="id23">Review Promotion Results in the Management Console</a></li>
+</ul>
+</div>
+<div class="section" id="set-up-a-segment-with-products-to-promote">
+<h3><a class="toc-backref" href="#id18">Set up a Segment with Products to Promote</a><a class="headerlink" href="#set-up-a-segment-with-products-to-promote" title="Permalink to this headline">¶</a></h3>
+<p>To set up such promotion in the management console, we first need to make sure that a <a class="reference internal" href="../business_intelligence/business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">product segment</span></a> is created that would <a class="reference internal" href="../products/products/new_arrivals.html#user-guide-new-arrivals"><span class="std std-ref">include the items intended for sale</span></a>.</p>
+<p><strong>To set up such segment:</strong></p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Reports&amp;Segments</strong> in the main menu and click <strong>Manage Segments</strong>.</p>
+</li>
+<li><p class="first">Click <strong>Create Segment</strong> in the top right corner.</p>
+</li>
+<li><p class="first">Create a <em>Sale</em> <a class="reference internal" href="../business_intelligence/business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">segment</span></a>, populate it with the products for sale and save it.</p>
+<p>As an example, we added four products to the segment.</p>
+<img alt="../../_images/CreatSaleSegment.png" src="../../_images/CreatSaleSegment.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="ensure-easy-access-to-the-promoted-products">
+<h3><a class="toc-backref" href="#id19">Ensure Easy Access to the Promoted Products</a><a class="headerlink" href="#ensure-easy-access-to-the-promoted-products" title="Permalink to this headline">¶</a></h3>
+<p><strong>To add product for sale to the new arrivals block:</strong></p>
+<ol class="arabic">
+<li><p class="first">Proceed to system configuration in the main menu (<strong>System &gt; Configuration</strong>) and click <strong>Commerce &gt; Product &gt; Promotions</strong> in the panel on the left.</p>
+</li>
+<li><p class="first">In the <a class="reference internal" href="../products/products/new_arrivals.html#user-guide-new-arrivals"><span class="std std-ref">New Arrivals</span></a> section, select the <em>Sale</em> segment from the <em>Product Segment</em> list.</p>
+</li>
+<li><p class="first">Set <em>Maximum Items</em> to 4.</p>
+</li>
+<li><p class="first">Save the settings.</p>
+<img alt="../../_images/NewArivalsSaleSegment.png" src="../../_images/NewArivalsSaleSegment.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="create-a-promotion">
+<h3><a class="toc-backref" href="#id20">Create a Promotion</a><a class="headerlink" href="#create-a-promotion" title="Permalink to this headline">¶</a></h3>
+<p><strong>To create a promotion:</strong></p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Marketing &gt; Promotions &gt; Promotions</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create a Promotion</strong>.</p>
+</li>
+<li><p class="first">In the <strong>Discount Options</strong> section, set the discount option to <em>order</em>, the discount Type to <em>percent</em>, the discount Value to <em>20%</em>.</p>
+</li>
+<li><p class="first">In the <strong>Schedules</strong> section, set the <em>Active Date</em> to July, 13, 2017, 12 AM, and <em>Deactivate at</em> to July, 13, 2017, 11:59PM.</p>
+<img alt="../../_images/CreateSamplePromotion1.png" src="../../_images/CreateSamplePromotion1.png" />
+</li>
+<li><p class="first">In the <strong>Items To Discount</strong> section, click <em>Advanced Filter</em>, drag <em>Apply Segment</em> to the field on the right, choose the <em>Sale</em> segment and click <strong>Preview Results</strong> to load the list of products for sale.</p>
+<blockquote>
+<div><img alt="../../_images/CreateSamplePromotion2.png" src="../../_images/CreateSamplePromotion2.png" />
+</div></blockquote>
+</li>
+<li><p class="first">Enable and save the promotion.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="view-a-discount-when-placing-an-order-in-the-front-store">
+<h3><a class="toc-backref" href="#id21">View a Discount When Placing an Order in the Front Store</a><a class="headerlink" href="#view-a-discount-when-placing-an-order-in-the-front-store" title="Permalink to this headline">¶</a></h3>
+<p><strong>To view how the discount from the promotion applies in the front store:</strong></p>
+<ol class="arabic">
+<li><p class="first">Create a shopping list with the 4 items for sale from the New Arrivals Block.</p>
+<blockquote>
+<div><img alt="../../_images/NewArrivalsOnSale.png" src="../../_images/NewArrivalsOnSale.png" />
+</div></blockquote>
+</li>
+<li><p class="first">Once we open the shopping list, we can see the 20% discount of $1124.75 for the order of 4 items for the subtotal of $5623.74.</p>
+<img alt="../../_images/SampeShoppingListOrderDiscount.png" src="../../_images/SampeShoppingListOrderDiscount.png" />
+</li>
+<li><p class="first">Create the order by clicking <strong>Create Order</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="review-discount-in-the-front-store-after-you-place-an-order">
+<h3><a class="toc-backref" href="#id22">Review Discount in the Front Store After You Place an Order</a><a class="headerlink" href="#review-discount-in-the-front-store-after-you-place-an-order" title="Permalink to this headline">¶</a></h3>
+<p><strong>To view applied discount for the submitted order in the front store</strong>:</p>
+<ol class="arabic">
+<li><p class="first">Click <strong>Click Here to View</strong> in the pop up window that appears after you place the order.</p>
+<img alt="../../_images/ThankYouForPurchase.png" src="../../_images/ThankYouForPurchase.png" />
+<p>Alternatively:</p>
+<p>Navigate to <strong>Orders</strong> and in <em>Past Orders</em>, click on the required order.</p>
+</li>
+<li><p class="first">The discount is seen in the order summary.</p>
+<img alt="../../_images/ViewDicountInOrdersFront.png" src="../../_images/ViewDicountInOrdersFront.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="review-promotion-results-in-the-management-console">
+<h3><a class="toc-backref" href="#id23">Review Promotion Results in the Management Console</a><a class="headerlink" href="#review-promotion-results-in-the-management-console" title="Permalink to this headline">¶</a></h3>
+<p><strong>To view applied discount in the management console</strong>:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Sales &gt; Orders</strong> and open the placed order.</p>
+</li>
+<li><p class="first">In the <strong>Promotions</strong> section, you can view the details of the promotion applied to the order.</p>
+<img alt="../../_images/OrderInBackOffice.png" src="../../_images/OrderInBackOffice.png" />
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="manage-promotions-in-orders">
+<h2><a class="toc-backref" href="#id16">Manage Promotions in Orders</a><a class="headerlink" href="#manage-promotions-in-orders" title="Permalink to this headline">¶</a></h2>
+<p>There are cases when an order needs to be amended by the manager, for instance when some of the ordered items turned out to be out of stock. If promotions applied to such order, the manager may decide to keep discounts, or recalculate them depending on circumstances. For such cases, it is possible to save order with or without discount recalculation following the change in items quantity.</p>
+<p>To demonstrate how this works, we will amend the details of the following placed order:</p>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Order #8</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="17%" />
+<col width="33%" />
+<col width="11%" />
+<col width="17%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">SKU</th>
+<th class="head">Name</th>
+<th class="head">Quantity</th>
+<th class="head">Product Unit</th>
+<th class="head">Price</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2TK59</td>
+<td>500-Lumen Portable Suspended Work Lamp</td>
+<td>2</td>
+<td>item</td>
+<td>$15.99</td>
+</tr>
+<tr class="row-odd"><td>6UK81</td>
+<td>Hardhat with 300 Lumen LED Light</td>
+<td>2</td>
+<td>item</td>
+<td>$47.99</td>
+</tr>
+<tr class="row-even"><td>8TF72</td>
+<td>Industrial 310 Lumen LED Headlamp</td>
+<td>9</td>
+<td>item</td>
+<td>$36.79</td>
+</tr>
+<tr class="row-odd"><td>8VS71</td>
+<td>White Bookshelf, 35 x 77 in.</td>
+<td>10</td>
+<td>item</td>
+<td>$151.99</td>
+</tr>
+</tbody>
+</table>
+<p>In compliance with the active promotion, customers will have 20% off all orders.</p>
+<p>Currently, the subtotal for this order  is <strong>$2,738.92</strong> with a <strong>$547.78</strong> discount.</p>
+<blockquote>
+<div><img alt="../../_images/NewDicountInOrder.png" src="../../_images/NewDicountInOrder.png" />
+</div></blockquote>
+<p>Let us suppose that there are only 10 white bookshelves in the warehouse, and you have no means of ordering the missing 5 soon. Having communicated this to the customer, you decided to keep the existing discount to compensate for the issue with the order.</p>
+<p>To amend the order without discount recalculation, you:</p>
+<ol class="arabic">
+<li><p class="first">Click <strong>Edit</strong> in the top right corner of the order page.</p>
+</li>
+<li><p class="first">In the <strong>Line Items</strong> section, you change the quantity of bookshelves from 15 to 10.</p>
+</li>
+<li><p class="first">Click <strong>Save without Discounts Recalculation</strong> in the top right corner.</p>
+<img alt="../../_images/NewDicountInOrder2.png" src="../../_images/NewDicountInOrder2.png" />
+</li>
+</ol>
+<ol class="arabic simple" start="5">
+<li>In the edited order, you see that the discount is still $547.78, although the subtotal has changed from $2,738.92 to $1,978.97.</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/NewDicountInOrder4.png" src="../../_images/NewDicountInOrder4.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Had you saved the order by clicking <strong>Save</strong> or <strong>Save and Close</strong>, the discount would be recalculated and equalled $395.79 according to the terms of the promotion.</p>
+<img alt="../../_images/NewDicountInOrder3.png" class="last" src="../../_images/NewDicountInOrder3.png" />
+</div>
+<div class="section" id="related-topics">
+<h3><a class="toc-backref" href="#id17">Related Topics</a><a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="../marketing_coupons/index.html#user-guide-marketing-promotions-coupons"><span class="std std-ref">Coupons</span></a></li>
+<li><a class="reference internal" href="../orders/index.html#user-guide-sales-orders"><span class="std std-ref">Orders</span></a></li>
+<li><a class="reference internal" href="../../frontstore_guide/shopping_lists/index.html#frontstore-guide-shopping-lists"><span class="std std-ref">Shopping Lists</span></a></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/marketing_promotions/index_1.3.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

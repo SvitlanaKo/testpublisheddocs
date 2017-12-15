@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configure Product Details &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Price Attributes" href="price_attributes/index.html" />
+    <link rel="prev" title="Products" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="price_attributes/index.html" title="Price Attributes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Products"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Products</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configure Product Details</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="doc-product-structure"></span><div class="section" id="configure-product-details">
+<h1>Configure Product Details<a class="headerlink" href="#configure-product-details" title="Permalink to this headline">¶</a></h1>
+<p>You can control the way product information is structured, as well as what default and custom blocks it contains for a particular type of products. The products of the same type belong to the same product family and share the same product information (set of product attributes). A special price attribute helps you store the price related information that may be easily reused when you plan you prices on the website.</p>
+</div>
+<div class="section" id="product-information-structure">
+<span id="doc-product-information-structure"></span><h1>Product Information Structure<a class="headerlink" href="#product-information-structure" title="Permalink to this headline">¶</a></h1>
+<p>When you create a product, you bind it to the product family. It may define additional group of attributes shared among the multiple products of the same type (e.g. software vs services, heavy industry equipment vs fashion products).</p>
+<div class="section" id="product-attributes">
+<h2>Product Attributes<a class="headerlink" href="#product-attributes" title="Permalink to this headline">¶</a></h2>
+<p>A product attribute is a special type of custom field in the product details. For product attributes, OroCommerce enables you to manage and group attributes that are unique to a special product family. By adding the product attributes only to the product families they fit, you can limit the product data to the necessary characteristics.</p>
+<p>For example, when your OroCommerce store sells TVs and T-shirts, these items share some generic attributes (e.g. name, vendor), and differ in the remaining attributes set. For example, there might be a <em>Screen properties</em> group that contains <em>resolution</em>, <em>diagonal</em>, and <em>matrix</em> that should be linked to the products in the TV product family. For the T-shirts family, the linked attribute group may have color, size, material, fit and care guidance (washing, ironing, dry cleaning, etc).</p>
+<p>By default, OroCommerce comes with the following system product attributes:</p>
+<img alt="../../_images/ProductAttributes_oob.png" src="../../_images/ProductAttributes_oob.png" />
+<p>Add new product attributes to introduce new custom parameters in your product details. Include product attributes into the new or existing attribute group in one or multiple product families.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">System attributes are shared among all product families. You can reorganize the way system attributes are grouped, but you cannot remove a product attribute from the product family.</p>
+</div>
+<p>See the <a class="reference internal" href="product_attributes/index.html#products-product-attributes"><span class="std std-ref">Product Attributes</span></a> topic for more information.</p>
+</div>
+<div class="section" id="product-family">
+<h2>Product Family<a class="headerlink" href="#product-family" title="Permalink to this headline">¶</a></h2>
+<p>A product family is a set of the <a class="reference internal" href="product_attributes/index.html#products-product-attributes"><span class="std std-ref">product attributes</span></a> that are enough to store complete information about the products of a similar type (e.g., TV attributes vs T-shirts attributes).
+In the product family, attributes are organized into attribute groups that are displayed as titled sections on the OroCommerce front store.</p>
+<p>By default, there is a product family that groups all system attributes.
+System attributes are mandatory for any product family as they contain core product details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can rearrange the groups and attributes in the groups inside the family. Out of the box, these system attributes are organized into the following structure:</p>
+<ul class="last simple">
+<li><strong>General attributes</strong>: SKU, Name, Description, Short Description</li>
+<li><strong>Images attributes</strong>: Images</li>
+<li><strong>Inventory attributes</strong>: Inventory Status</li>
+<li><strong>Product Prices attributes</strong>: Product Prices</li>
+<li><strong>SEO attributes</strong>: Meta Title, Meta Keywords, Meta Description</li>
+</ul>
+</div>
+<p>See the <a class="reference internal" href="product_families/index.html#products-product-families"><span class="std std-ref">Product Families</span></a> topic for more information.</p>
+</div>
+</div>
+<div class="section" id="product-price-attributes">
+<span id="doc-price-attribute"></span><h1>Product Price Attributes<a class="headerlink" href="#product-price-attributes" title="Permalink to this headline">¶</a></h1>
+<p>Price attributes are custom parameters, like manufacturer&#8217;s suggested retail price (MSRP) or minimum advertised price (MAP), that may be needed as an input information for your retail price listed on the website. Price attributes help you extend the product options with any custom value related to the price formation.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/El_eVV1CB4w" frameborder="0" allowfullscreen></iframe><p>You can use price attribute as a base value for manually or automatically generated price list.</p>
+<p>See the <a class="reference internal" href="price_attributes/index.html#user-guide-products-price-attributes"><span class="std std-ref">Price Attributes</span></a> topic for more information.</p>
+<p>Please follow the links below to get more information on how to manage and configure the product details:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="price_attributes/index.html">Price Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="price_attributes/index.html#create-a-price-attribute">Create a Price Attribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="price_attributes/index.html#set-a-price-attribute-value-in-the-product-details">Set a Price Attribute Value in the Product Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="price_attributes/index.html#view-and-filter-all-price-attributes">View and Filter all Price Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="price_attributes/index.html#id2">View Price Attribute Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="price_attributes/index.html#id3">Edit a Price Attribute</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="product_attributes/index.html">Product Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="product_attributes/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="product_attributes/index.html#create-a-product-attribute">Create a Product Attribute</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="product_attributes/index.html#step-1">Step 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_attributes/index.html#step-2">Step 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="product_attributes/index.html#export">Export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="product_attributes/index.html#import">Import</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="product_families/index.html">Product Families</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="product_families/index.html#create-a-new-product-family">Create a New Product Family</a></li>
+<li class="toctree-l2"><a class="reference internal" href="product_families/index.html#use-product-attributes-in-product-families">Use Product Attributes in Product Families</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="product_families/index.html#add-a-new-product-attribute-group">Add a New Product Attribute Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_families/index.html#add-a-product-attribute-to-the-attribute-group">Add a Product Attribute to the Attribute Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_families/index.html#move-a-product-attribute-to-another-attribute-group">Move a Product Attribute to Another Attribute Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_families/index.html#delete-a-product-attribute-from-the-attribute-group">Delete a Product Attribute from the Attribute Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_families/index.html#delete-a-product-attribute-group">Delete a Product Attribute Group</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="product_families/index.html#view-details-of-product-families">View Details of Product Families</a></li>
+<li class="toctree-l2"><a class="reference internal" href="product_families/index.html#edit-product-families">Edit Product Families</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Products</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure Product Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#product-information-structure">Product Information Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#product-price-attributes">Product Price Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_brands.html">Use Product Brands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="product_brands.html#make-a-brand-filterable">Make a Brand Filterable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/page_templates.html">Manage Product Page Design with Page Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/featured.html">Manage Featured Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/new_arrivals.html">Highlight New Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/new_arrivals.html#set-up-a-new-arrival-icon">Set Up a New Arrival Icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/new_arrivals.html#set-up-new-arrivals">Set Up New Arrivals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/actions_main/index.html">Manage Products: General Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="products/actions_details/index.html">Manage Product Characteristics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/user_guide/products/configure_product_details.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
