@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Filters &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Reports" href="reports/index.html" />
+    <link rel="prev" title="Segments" href="business_intelligence_segments.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="reports/index.html" title="Reports"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="business_intelligence_segments.html" title="Segments"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Business Intelligence</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Filters</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="filters">
+<span id="user-guide-business-intelligence-filters-management"></span><h1>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h1>
+<p>Filters are used to define a set of records to be displayed. Its configuration enables users to automatically select only the records that meet the filter requirements.</p>
+<p>Filters are always created for the records of a specific type (<a class="reference internal" href="../glossary.html#term-entity"><span class="xref std std-term">entity</span></a>) specified in the general details of the relevant field.</p>
+<p>This section will help you learn the basics of filtering expressions and their elements:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#filters-options" id="id1">Filters Options</a></li>
+<li><a class="reference internal" href="#and-or-operators" id="id2">AND/OR Operators</a></li>
+<li><a class="reference internal" href="#field-conditions" id="id3">Field Conditions</a></li>
+<li><a class="reference internal" href="#activities" id="id4">Activities</a></li>
+<li><a class="reference internal" href="#data-audit" id="id5">Data Audit</a></li>
+<li><a class="reference internal" href="#conditions-groups" id="id6">Conditions Groups</a></li>
+<li><a class="reference internal" href="#segments" id="id7">Segments</a></li>
+</ul>
+</div>
+<div class="section" id="filters-options">
+<h2><a class="toc-backref" href="#id1">Filters Options</a><a class="headerlink" href="#filters-options" title="Permalink to this headline">¶</a></h2>
+<p>To define filter, use any of the following filter options or combine them:</p>
+<ul class="simple">
+<li><strong>Field Condition</strong>: select only the records with specific values of the selected <a class="reference internal" href="../glossary.html#term-field"><span class="xref std std-term">fields</span></a>.</li>
+<li><strong>Activity</strong>: select only the records to which a specific kind of <a class="reference internal" href="../getting_started/activities/activities_overview.html#user-guide-activities"><span class="std std-ref">activity</span></a> has been/has not been assigned.</li>
+<li><strong>Data Audit</strong>: select only the records that have been modified in a specific way (available only when the corresponding functionality is enabled for an entity).</li>
+</ul>
+<ul class="simple">
+<li><strong>Conditions Groups</strong>: sets of field conditions that combine requirements of several other filters in one group.</li>
+<li><strong>Segments</strong>: sets of records dynamically or manually updated in compliance with predefined filters. More details are described in the <a class="reference internal" href="business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">Segments guide</span></a>.</li>
+</ul>
+<p>Sample filter that finds all the records with any related activity logged:</p>
+<blockquote>
+<div><img alt="../../_images/filters_1.1.png" src="../../_images/filters_1.1.png" />
+</div></blockquote>
+</div>
+<div class="section" id="and-or-operators">
+<h2><a class="toc-backref" href="#id2">AND/OR Operators</a><a class="headerlink" href="#and-or-operators" title="Permalink to this headline">¶</a></h2>
+<p>To combine the conditions of two or more filters, you can use the operators <strong>AND</strong> and <strong>OR</strong>:</p>
+<ul class="simple">
+<li>If <strong>AND</strong> is used, only the records that meet conditions of all the connected filters will be selected.</li>
+<li>If <strong>OR</strong> is used, all the records that meet conditions of any of the connected filters will be selected.</li>
+</ul>
+<p>The following sections provide a detailed explanation of the filters with examples for different operators.</p>
+<img alt="../../_images/filters_1.png" src="../../_images/filters_1.png" />
+</div>
+<div class="section" id="field-conditions">
+<span id="user-guide-business-intelligence-filters-field-conditions"></span><h2><a class="toc-backref" href="#id3">Field Conditions</a><a class="headerlink" href="#field-conditions" title="Permalink to this headline">¶</a></h2>
+<p>Field Condition filters specify a rule for values of the record attributes. Only the records that meet the condition will be selected.</p>
+<p>To define a field condition:</p>
+<ol class="arabic simple">
+<li>Drag <strong>Field condition</strong> to the box on the right.</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/filters_2.png" src="../../_images/filters_2.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Click <strong>Choose a field</strong>.</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/filters_3.png" src="../../_images/filters_3.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>A list of fields appears. At the top of the list, you can see the name of the field, for which the records are filtered. (In the example below it is a Contact). Below the Contact name, there is a list of all available fields related to it.</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/filters_4.png" src="../../_images/filters_4.png" />
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Select a field that you want to apply for the rule:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>This can be a field of the entity selected in the <strong>General</strong> section. For example, we can filter Contact records by gender.</li>
+</ul>
+<img alt="../../_images/filters_5.png" src="../../_images/filters_5.png" />
+<ul>
+<li><p class="first">You can also select a field of another entity, related to it. For example, if you want the list to contain only Contacts with addresses in California.</p>
+<p>To do so, scroll down the list and select this field under the <em>Related Entities</em> header.</p>
+<img alt="../../_images/filters_6.png" src="../../_images/filters_6.png" />
+<p>The name of the selected field (in our example, it is <em>Addresses</em>) will appear at the top of the list.</p>
+<img alt="../../_images/filters_7.png" src="../../_images/filters_7.png" />
+</li>
+<li><p class="first">You can also add another field related to <em>Addresses</em> under the <em>Related entities</em> section. For example, you can select only the contacts whose Address Owner has a specific Email.</p>
+<img alt="../../_images/filters_8.png" src="../../_images/filters_8.png" />
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>Once you have specified all the required conditions, another default field condition appears. Some components of this field contain links with a list of possible values suitable for the specified field.</p>
+<img alt="../../_images/filters_9.png" class="last" src="../../_images/filters_9.png" />
+</div>
+</div>
+<div class="section" id="activities">
+<span id="user-guide-business-intelligence-filters-activity"></span><h2><a class="toc-backref" href="#id4">Activities</a><a class="headerlink" href="#activities" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Activity</strong> filter specifies a rule for <a class="reference internal" href="../getting_started/activities/activities_overview.html#user-guide-activities"><span class="std std-ref">activities</span></a> assigned to the record. Only the records that meet the condition will be selected.</p>
+<p>To define the activity settings:</p>
+<ol class="arabic simple">
+<li>Drag <strong>Activity</strong> to the box on the right.</li>
+<li>There are three selector links:</li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first"><em>Has activity /has not activity</em> - only the records to which the defined activity has/has not been assigned will be selected.</p>
+<img alt="../../_images/filters_10.png" src="../../_images/filters_10.png" />
+</li>
+<li><p class="first">The List of available activities to filter by.</p>
+<img alt="../../_images/filters_11.png" src="../../_images/filters_11.png" />
+</li>
+<li><p class="first"><em>Choose a field</em>: select the field to filter by. For example, we will select only the records, for which a call was logged after July 1, 2015.</p>
+</li>
+</ul>
+</div></blockquote>
+<img alt="../../_images/filters_12.png" src="../../_images/filters_12.png" />
+</div>
+<div class="section" id="data-audit">
+<span id="user-guide-business-intelligence-filters-data-audit"></span><h2><a class="toc-backref" href="#id5">Data Audit</a><a class="headerlink" href="#data-audit" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Data audit</strong> filter specifies a rule for the record changes recorded in the system. Only the records that meet the condition will be selected.</p>
+<p>To define the data audit settings:</p>
+<ol class="arabic">
+<li><p class="first">Select a field for which a condition is defined in the same way as described above in <a class="reference internal" href="#field-conditions">Field Conditions</a>.</p>
+</li>
+<li><p class="first">Determine if the condition should be valid for the records where the field has or has not been changed.</p>
+<img alt="../../_images/filters_13.png" src="../../_images/filters_13.png" />
+</li>
+<li><p class="first">Select the date when the changes have/have not been applied.</p>
+</li>
+</ol>
+<p>For example, we will select only the records, for which Job Title value has been changed since July 1, 2015.</p>
+<img alt="../../_images/filters_14.png" src="../../_images/filters_14.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can combine any number of Activity, Data audit, and Field Condition filters, joining them with the <strong>AND</strong> and <strong>OR</strong> operators.</p>
+</div>
+</div>
+<div class="section" id="conditions-groups">
+<span id="user-guide-business-intelligence-filters-condition-groups"></span><h2><a class="toc-backref" href="#id6">Conditions Groups</a><a class="headerlink" href="#conditions-groups" title="Permalink to this headline">¶</a></h2>
+<p>A conditions group is a set of activity and/or data audit, and/or field condition filters already joined with the <strong>AND</strong> and <strong>OR</strong> operators. A field condition works as the brackets in mathematics, so all the filters added to a condition group are applied first.</p>
+<p>To define the <strong>Condition Group</strong> filter:</p>
+<ol class="arabic simple">
+<li>Drag <strong>Conditions Group</strong> to the box on the right.</li>
+<li>Add the Activity, Data audit, and Field Condition filters to the section that appears.</li>
+<li>Define the conditions and conjunctions between them.</li>
+</ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">For complex conditions, it is a good idea to draw an outline of the conditions first.</p>
+</div>
+<p>A condition group may also be included into another condition group as a separate filter.</p>
+</div>
+<div class="section" id="segments">
+<h2><a class="toc-backref" href="#id7">Segments</a><a class="headerlink" href="#segments" title="Permalink to this headline">¶</a></h2>
+<p>A segment is a set of the Activity, Data audit, Field Condition, and Condition Group filters created separately for the records of a specific field. It can be updated dynamically or upon a user&#8217;s request.</p>
+<p>In other words, if you often need to use a specific set of conditions to filter the entity records, you can create a segment and use it instead of redefining the same conditions again.</p>
+<p>The ways to create and manage segments are described more detailed in the <a class="reference internal" href="business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">Segments guide</span></a>.</p>
+<p>To add a segment to the filters:</p>
+<ol class="arabic">
+<li><p class="first">Drag <strong>Apply segment</strong> to the box on the right.</p>
+<img alt="../../_images/filters_15.png" src="../../_images/filters_15.png" />
+</li>
+<li><p class="first">Click <strong>Choose segment</strong> and select one of the Segment predefined in the system.</p>
+<img alt="../../_images/filters_16.png" src="../../_images/filters_16.png" />
+</li>
+</ol>
+<p>Subject to the conjunction with the rest of conditions, the list will now include:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Only the records from the segment that correspond to the rest of conditions (<strong>AND</strong> is used).</li>
+<li>The records that correspond to the rest of conditions and the segment (<strong>OR</strong> is used).</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Business Intelligence</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="business_intelligence_dashboards_widgets/index.html">Dashboards and Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="business_intelligence_segments.html">Segments</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reports/index.html">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/user_guide/business_intelligence/business_intelligence_filters.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

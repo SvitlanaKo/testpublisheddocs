@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Processors" href="processors.html" />
+    <link rel="prev" title="Headers" href="headers.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="processors.html" title="Processors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="headers.html" title="Headers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Web Services API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">API Documentation</a> &#187;</li> 
+     <li class="nav-item nav-item-this">How to</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to">
+<h1>How to<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#overview">Turn on API for entity</a></li>
+<li><a class="reference external" href="#turn-on-api-for-entity-disabled-in-resourcesconfigoroentityyml">Turn on API for entity disabled in &#8220;Resources/config/oro/entity.yml&#8221;</a></li>
+<li><a class="reference external" href="#change-acl-resource-for-action">Change ACL resource for action</a></li>
+<li><a class="reference external" href="#disable-access-checks-for-action">Disable access checks for action</a></li>
+<li><a class="reference external" href="#disable-entity-action">Disable entity action</a></li>
+<li><a class="reference external" href="#change-delete-handler-for-entity">Change delete handler for entity</a></li>
+<li><a class="reference external" href="#change-the-maximum-number-of-entities-that-can-be-deleted-by-one-request">Change the maximum number of entities that can be deleted by one request</a></li>
+<li><a class="reference external" href="#configure-nested-object">Configure nested object</a></li>
+<li><a class="reference external" href="#configure-nested-association">Configure nested association</a></li>
+<li><a class="reference external" href="#configure-extended-many-to-one-association">Configure Extended Many-To-One Association</a></li>
+<li><a class="reference external" href="#configure-extended-many-to-many-association">Configure Extended Many-To-Many Association</a></li>
+<li><a class="reference external" href="#configure-extended-multiple-many-to-one-association">Configure Extended Multiple Many-To-One Association</a></li>
+<li><a class="reference external" href="#add-custom-controller">Add custom controller</a></li>
+<li><a class="reference external" href="#using-a-non-primary-key-to-identify-entity">Using a non-primary key to identify entity</a></li>
+</ul>
+</div>
+<div class="section" id="turn-on-api-for-entity">
+<h2>Turn on API for entity<a class="headerlink" href="#turn-on-api-for-entity" title="Permalink to this headline">¶</a></h2>
+<p>By default, API for entities is disabled. To turn on API for some entity, you should add this entity to <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code> of your bundle:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span> <span class="o">~</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="turn-on-api-for-entity-disabled-in-resources-config-oro-entity-yml">
+<h2>Turn on API for entity disabled in Resources/config/oro/entity.yml<a class="headerlink" href="#turn-on-api-for-entity-disabled-in-resources-config-oro-entity-yml" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">exclusions</span></code> section of <code class="docutils literal"><span class="pre">Resources/config/oro/entity.yml</span></code> configuration file is used to make an entity or a field not accessible for a user. Also such entities and fields are not accessible via Data API as well. But it is possible that by some reasons you want to override such rules for Data API. It can be done using <code class="docutils literal"><span class="pre">exclude</span></code> option in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>.</p>
+<p>Let&#8217;s imagine that you have the following <code class="docutils literal"><span class="pre">Resources/config/oro/entity.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">oro_entity</span><span class="o">:</span>
+    <span class="nx">exclusions</span><span class="o">:</span>
+        <span class="o">-</span> <span class="p">{</span> <span class="nx">entity</span><span class="o">:</span> <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity1</span> <span class="p">}</span>
+        <span class="o">-</span> <span class="p">{</span> <span class="nx">entity</span><span class="o">:</span> <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity2</span><span class="p">,</span> <span class="nx">field</span><span class="o">:</span> <span class="nx">field1</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>To override these rules in Data API you can use the following <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity1</span><span class="o">:</span>
+            <span class="nx">exclude</span><span class="o">:</span> <span class="k">false</span> <span class="c1"># override exclude rule from entity.yml</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity2</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">field1</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">false</span> <span class="c1"># override exclude rule from entity.yml</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-acl-resource-for-action">
+<h2>Change ACL resource for action<a class="headerlink" href="#change-acl-resource-for-action" title="Permalink to this headline">¶</a></h2>
+<p>By default, the following permissions are used to restrict access to an entity in a scope of the specific action:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="79%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Action</th>
+<th class="head">Permission</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="./actions#get-action">get</a></td>
+<td>VIEW</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="./actions#get_list-action">get_list</a></td>
+<td>VIEW</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="./actions#delete-action">delete</a></td>
+<td>DELETE</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="./actions#delete_list-action">delete_list</a></td>
+<td>DELETE</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="./actions#create-action">create</a></td>
+<td>CREATE and VIEW</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="./actions#update-action">update</a></td>
+<td>EDIT and VIEW</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="./actions#get_subresource-action">get_subresource</a></td>
+<td>VIEW</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="./actions#get_relationship-action">get_relationship</a></td>
+<td>VIEW</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="./actions#update_relationship-action">update_relationship</a></td>
+<td>EDIT and VIEW</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="./actions#add_relationship-action">add_relationship</a></td>
+<td>EDIT and VIEW</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="./actions#delete_relationship-action">delete_relationship</a></td>
+<td>EDIT and VIEW</td>
+</tr>
+</tbody>
+</table>
+<p>In case if you want to change permission or disable access checks for some action, you can use the <code class="docutils literal"><span class="pre">acl_resource</span></code> option of <code class="docutils literal"><span class="pre">actions</span></code> configuration section.</p>
+<p>For example, lets&#8217;s change permissions for <code class="docutils literal"><span class="pre">delete</span></code> action. You can do at <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code> of your bundle:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">acl_resource</span><span class="o">:</span> <span class="nx">access_entity_view</span>
+</pre></div>
+</div>
+<p>If there is <code class="docutils literal"><span class="pre">access_entity_view</span></code> ACL resource:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">access_entity_view</span><span class="o">:</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nx">entity</span>
+    <span class="nx">class</span><span class="o">:</span> <span class="nx">Acme\Bundle\ProductBundle\Product</span>
+    <span class="nx">permission</span><span class="o">:</span> <span class="nx">VIEW</span>
+</pre></div>
+</div>
+<p>As result, the <code class="docutils literal"><span class="pre">VIEW</span></code> permission will be used instead of <code class="docutils literal"><span class="pre">DELETE</span></code> permission.</p>
+</div>
+<div class="section" id="disable-access-checks-for-action">
+<h2>Disable access checks for action<a class="headerlink" href="#disable-access-checks-for-action" title="Permalink to this headline">¶</a></h2>
+<p>You can disable access checks for some action by setting <code class="docutils literal"><span class="pre">null</span></code> as a value to <code class="docutils literal"><span class="pre">acl_resource</span></code> option in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">get_list</span><span class="o">:</span>
+                    <span class="nx">acl_resource</span><span class="o">:</span> <span class="o">~</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="disable-entity-action">
+<h2>Disable entity action<a class="headerlink" href="#disable-entity-action" title="Permalink to this headline">¶</a></h2>
+<p>When you add an entity to the API, all the actions will be available by default.</p>
+<p>In case if an action should not be accessible, you can disable it in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+<p>Also, you can use short syntax:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span> <span class="k">false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="change-delete-handler-for-entity">
+<h2>Change delete handler for entity<a class="headerlink" href="#change-delete-handler-for-entity" title="Permalink to this headline">¶</a></h2>
+<p>By default, entity deletion is processed by <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/SoapBundle/Handler/DeleteHandler.php">DeleteHandler</a>.</p>
+<p>If your want to use another delete handler, you can set it by the <code class="docutils literal"><span class="pre">delete_handler</span></code> option in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">delete_handler</span><span class="o">:</span> <span class="nx">acme</span><span class="o">.</span><span class="nx">demo</span><span class="o">.</span><span class="nx">product_delete_handler</span>
+</pre></div>
+</div>
+<p>Please note, that the value of <code class="docutils literal"><span class="pre">delete_handler</span></code> option is the service id.</p>
+<p>Also, you can create own delete handler. The handler class must be derived from <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/SoapBundle/Handler/DeleteHandler.php">DeleteHandler</a>.</p>
+</div>
+<div class="section" id="change-the-maximum-number-of-entities-that-can-be-deleted-by-one-request">
+<h2>Change the maximum number of entities that can be deleted by one request<a class="headerlink" href="#change-the-maximum-number-of-entities-that-can-be-deleted-by-one-request" title="Permalink to this headline">¶</a></h2>
+<p>By default, the <a class="reference external" href="./actions#delete_list-action">delete_list</a> action can delete not more than 100 entities. This limit is set by the <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/ApiBundle/Processor/DeleteList/SetDeleteLimit.php">SetDeleteLimit</a> processor.</p>
+<p>If your want to use another limit, you can set it by the <code class="docutils literal"><span class="pre">max_results</span></code> option in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete_list</span><span class="o">:</span>
+                    <span class="nx">max_results</span><span class="o">:</span> <span class="mi">200</span>
+</pre></div>
+</div>
+<p>Also you can remove the limit at all. To do this, set <code class="docutils literal"><span class="pre">-1</span></code> as a value for the <code class="docutils literal"><span class="pre">max_results</span></code> option:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete_list</span><span class="o">:</span>
+                    <span class="nx">max_results</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-nested-object">
+<h2>Configure nested object<a class="headerlink" href="#configure-nested-object" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes it is required to group several fields and expose them as an nested object in Data API. For example lets suppose that an entity has two fields <code class="docutils literal"><span class="pre">intervalNumber</span></code> and <code class="docutils literal"><span class="pre">intervalUnit</span></code> but you need to expose them in API as <code class="docutils literal"><span class="pre">number</span></code> and <code class="docutils literal"><span class="pre">unit</span></code> properties of <code class="docutils literal"><span class="pre">interval</span></code> field. This can be achieved by the following configuration:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Oro\Bundle\ReminderBundle\Entity\Reminder</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">interval</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">nestedObject</span>
+                    <span class="nx">form_options</span><span class="o">:</span>
+                        <span class="nx">data_class</span><span class="o">:</span> <span class="nx">Oro\Bundle\ReminderBundle\Model\ReminderInterval</span>
+                        <span class="nx">by_reference</span><span class="o">:</span> <span class="k">false</span>
+                    <span class="nx">fields</span><span class="o">:</span>
+                        <span class="nx">number</span><span class="o">:</span>
+                            <span class="nx">property_path</span><span class="o">:</span> <span class="nx">intervalNumber</span>
+                        <span class="nx">unit</span><span class="o">:</span>
+                            <span class="nx">property_path</span><span class="o">:</span> <span class="nx">intervalUnit</span>
+                <span class="nx">intervalNumber</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+                <span class="nx">intervalUnit</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+<p>Please note that an entity, in this example <em>OroBundleReminderBundleEntityReminder</em>, should have <code class="docutils literal"><span class="pre">setInterval</span></code> method. This method is called by <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions to set the nested object.</p>
+<p>Here is an example how the nested objects looks in JSON.API:</p>
+<div class="code json highlight-php"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;reminders&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;interval&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="o">:</span> <span class="s2">&quot;H&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-nested-association">
+<h2>Configure nested association<a class="headerlink" href="#configure-nested-association" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes a relationship with a group of entities is implemented as two fields, &#8220;entityClass&#8221; and &#8220;entityId&#8221;, rather than <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/EntityExtendBundle/Resources/doc/associations.md">many-to-one extended association</a>. But in Data API these fields should be represented as a regular relationship. To achieve this a special data type named <code class="docutils literal"><span class="pre">nestedAssociation</span></code> was implemented. For example lets suppose that an entity has two fields
+<code class="docutils literal"><span class="pre">sourceEntityClass</span></code> and <code class="docutils literal"><span class="pre">sourceEntityId</span></code> and you need to expose them in API as <code class="docutils literal"><span class="pre">source</span></code> relationship. This can be achieved by the following configuration:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Oro\Bundle\OrderBundle\Entity\Order</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">source</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">nestedAssociation</span>
+                    <span class="nx">fields</span><span class="o">:</span>
+                        <span class="no">__class__</span><span class="o">:</span>
+                            <span class="nx">property_path</span><span class="o">:</span> <span class="nx">sourceEntityClass</span>
+                        <span class="nx">id</span><span class="o">:</span>
+                            <span class="nx">property_path</span><span class="o">:</span> <span class="nx">sourceEntityId</span>
+                <span class="nx">sourceEntityClass</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+                <span class="nx">sourceEntityId</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+<p>Here is an example how the nested association looks in JSON.API:</p>
+<div class="code json highlight-php"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;orders&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relationships&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;source&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;contacts&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">123</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-extended-many-to-one-association">
+<h2>Configure Extended Many-To-One Association<a class="headerlink" href="#configure-extended-many-to-one-association" title="Permalink to this headline">¶</a></h2>
+<p>For detail what are extended associations, please refer to <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/EntityExtendBundle/Resources/doc/associations.md">Associations</a> topic.</p>
+<p>Depending on current entity configuration, each association resource (e.g. attachment) can be assigned to one of the couple of resources (e.g. user, account, contact) that supports such associations.</p>
+<p>By default, there is no possibility to retrieve targets of such associations. But this behaviour can be enabled via configuration in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>, for instance:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Oro\Bundle\AttachmentBundle\Entity\Attachment</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">target</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">association</span><span class="o">:</span><span class="nx">manyToOne</span>
+</pre></div>
+</div>
+<p>After applying configuration like above, the <code class="docutils literal"><span class="pre">target</span></code> relationship will be available in scope of <a class="reference external" href="./actions#get_list-action">get_list</a>, <a class="reference external" href="./actions#get-action">get</a>, <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions. Also the <code class="docutils literal"><span class="pre">target</span></code> relationship will be available as subresource and it will be possible to perform <a class="reference external" href="./actions#get_subresource-action">get_subresource</a>, <a class="reference external" href="./actions#get_relationship-action">get_relationship</a> and
+<a class="reference external" href="./actions#update_relationship-action">update_relationship</a> actions.</p>
+<p>The <code class="docutils literal"><span class="pre">data_type</span></code> parameter has format: <code class="docutils literal"><span class="pre">association:relationType:associationKind</span></code>, where</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">relationType</span></code> part should have &#8216;manyToOne&#8217; value for extended Many-To-One association;</li>
+<li><code class="docutils literal"><span class="pre">associationKind</span></code> - optional part. The association kind.</li>
+</ul>
+</div>
+<div class="section" id="configure-extended-many-to-many-association">
+<h2>Configure Extended Many-To-Many Association<a class="headerlink" href="#configure-extended-many-to-many-association" title="Permalink to this headline">¶</a></h2>
+<p>For detail what are extended associations, please refer to <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/EntityExtendBundle/Resources/doc/associations.md">Associations</a> topic.</p>
+<p>Depending on current entity configuration, each association resource (e.g. call) can be assigned to several resources (e.g. user, account, contact) that supports such associations.</p>
+<p>By default, there is no possibility to retrieve targets of such associations. But this behaviour can be enabled via configuration in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>, for instance:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Oro\Bundle\CallBundle\Entity\Call</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">activityTargets</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">association</span><span class="o">:</span><span class="nx">manyToMany</span><span class="o">:</span><span class="nx">activity</span>
+</pre></div>
+</div>
+<p>After applying configuration like above, the <code class="docutils literal"><span class="pre">activityTargets</span></code> relationship will be available in scope of <a class="reference external" href="./actions#get_list-action">get_list</a>, <a class="reference external" href="./actions#get-action">get</a>, <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions. Also the <code class="docutils literal"><span class="pre">activityTargets</span></code> relationship will be available as subresource and it will be possible to perform <a class="reference external" href="./actions#get_subresource-action">get_subresource</a>,
+<a class="reference external" href="./actions#get_relationship-action">get_relationship</a>, <a class="reference external" href="./actions#add_relationship-action">add_relationship</a>, <a class="reference external" href="./actions#update_relationship-action">update_relationship</a> and. <a class="reference external" href="./actions#delete_relationship-action">delete_relationship</a> actions.</p>
+<p>The <code class="docutils literal"><span class="pre">data_type</span></code> parameter has format: <code class="docutils literal"><span class="pre">association:relationType:associationKind</span></code>, where</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">relationType</span></code> part should have &#8216;manyToMany&#8217; value for extended Many-To-Many association;</li>
+<li><code class="docutils literal"><span class="pre">associationKind</span></code> - optional part. The association kind.</li>
+</ul>
+</div>
+<div class="section" id="configure-extended-multiple-many-to-one-association">
+<h2>Configure Extended Multiple Many-To-One Association<a class="headerlink" href="#configure-extended-multiple-many-to-one-association" title="Permalink to this headline">¶</a></h2>
+<p>For detail what are extended associations, please refer to <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/EntityExtendBundle/Resources/doc/associations.md">Associations</a> topic.</p>
+<p>Depending on current entity configuration, each association resource (e.g. call) can be assigned to several resources (e.g. user, account, contact) that supports such associations, but in case of multiple many-to-one association a resource can be associated with only one other resource of each type. E.g. a call can be associated only with one user, one account, etc.</p>
+<p>By default, there is no possibility to retrieve targets of such associations. But this behaviour can be enabled via configuration in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>, for instance:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Oro\Bundle\CallBundle\Entity\Call</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">targets</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">association</span><span class="o">:</span><span class="nx">multipleManyToOne</span>
+</pre></div>
+</div>
+<p>After applying configuration like above, the <code class="docutils literal"><span class="pre">targets</span></code> relationship will be available in scope of <a class="reference external" href="./actions#get_list-action">get_list</a>, <a class="reference external" href="./actions#get-action">get</a>, <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions. Also the <code class="docutils literal"><span class="pre">targets</span></code> relationship will be available as subresource and it will be possible to perform <a class="reference external" href="./actions#get_subresource-action">get_subresource</a>, <a class="reference external" href="./actions#get_relationship-action">get_relationship</a>,
+<a class="reference external" href="./actions#add_relationship-action">add_relationship</a>, <a class="reference external" href="./actions#update_relationship-action">update_relationship</a> and. <a class="reference external" href="./actions#delete_relationship-action">delete_relationship</a> actions.</p>
+<p>The <code class="docutils literal"><span class="pre">data_type</span></code> parameter has format: <code class="docutils literal"><span class="pre">association:relationType:associationKind</span></code>, where</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">relationType</span></code> part should have &#8216;multipleManyToOne&#8217; value for extended Multiple Many-To-One association;</li>
+<li><code class="docutils literal"><span class="pre">associationKind</span></code> - optional part. The association kind.</li>
+</ul>
+</div>
+<div class="section" id="add-custom-controller">
+<h2>Add custom controller<a class="headerlink" href="#add-custom-controller" title="Permalink to this headline">¶</a></h2>
+<p>By default, all REST API resources are handled by the following controllers:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/ApiBundle/Controller/RestApiController.php">RestApiController</a> - handles <a class="reference external" href="./actions#get_list-action">get_list</a>, <a class="reference external" href="./actions#get-action">get</a>, <a class="reference external" href="./actions#delete-action">delete</a>, <a class="reference external" href="./actions#delete_list-action">delete_list</a>, <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions.</li>
+<li><a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/ApiBundle/Controller/RestApiSubresourceController.php">RestApiSubresourceController</a> - handles <a class="reference external" href="./actions#get_subresource-action">get_subresource</a> action.</li>
+<li><a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/ApiBundle/Controller/RestApiRelationshipController.php">RestApiRelationshipController</a> - handles <a class="reference external" href="./actions#get_relationship-action">get_relationship</a>, <a class="reference external" href="./actions#update_relationship-action">update_relationship</a>, <a class="reference external" href="./actions#add_relationship-action">add_relationship</a> and <a class="reference external" href="./actions#delete_relationship-action">delete_relationship</a> actions.</li>
+</ul>
+<p>If by some reasons your REST API resource cannot be implemented to be handled by one of these controllers you can register own controller. Please note that this way is not recommended and should be used only in a very special cases, because a lot of logic should be implemented from the scratch, including:</p>
+<ul class="simple">
+<li>extracting and validation of input data</li>
+<li>building and formatting output document</li>
+<li>error handling</li>
+<li>loading data from the database</li>
+<li>saving data to the database</li>
+<li>implementing relationships with other API resources</li>
+<li>documenting such API resources</li>
+</ul>
+<p>If you are ok with these disadvantages, the two simple steps need to be done to register a custom controller:</p>
+<ol class="arabic simple">
+<li>Create a controller.</li>
+<li>Register the created controller using <code class="docutils literal"><span class="pre">Resources/oro/routing.yml</span></code> configuration file.</li>
+</ol>
+<p>Here is an example of the controller:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Bundle\AppBundle\Controller\Api</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Bundle\FrameworkBundle\Controller\Controller</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Nelmio\ApiDocBundle\Annotation\ApiDoc</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyResourceController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Retrieve a specific record.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Request $request</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ApiDoc(</span>
+<span class="sd">     *     resource=true,</span>
+<span class="sd">     *     description=&quot;Get a resource&quot;,</span>
+<span class="sd">     *     views={&quot;rest_json_api&quot;},</span>
+<span class="sd">     *     section=&quot;myresources&quot;,</span>
+<span class="sd">     *     requirements={</span>
+<span class="sd">     *          {</span>
+<span class="sd">     *              &quot;name&quot;=&quot;id&quot;,</span>
+<span class="sd">     *              &quot;dataType&quot;=&quot;integer&quot;,</span>
+<span class="sd">     *              &quot;requirement&quot;=&quot;\d+&quot;,</span>
+<span class="sd">     *              &quot;description&quot;=&quot;The &#39;id&#39; requirement description.&quot;</span>
+<span class="sd">     *          }</span>
+<span class="sd">     *     },</span>
+<span class="sd">     *     filters={</span>
+<span class="sd">     *          {</span>
+<span class="sd">     *              &quot;name&quot;=&quot;aFilter&quot;,</span>
+<span class="sd">     *              &quot;dataType&quot;=&quot;string&quot;,</span>
+<span class="sd">     *              &quot;requirement&quot;=&quot;.+&quot;,</span>
+<span class="sd">     *              &quot;description&quot;=&quot;The &#39;aFilter&#39; filter description.&quot;</span>
+<span class="sd">     *          }</span>
+<span class="sd">     *     },</span>
+<span class="sd">     *     output={</span>
+<span class="sd">     *          &quot;class&quot;=&quot;Your\Namespace\Class&quot;,</span>
+<span class="sd">     *          &quot;fields&quot;={</span>
+<span class="sd">     *              {</span>
+<span class="sd">     *                  &quot;name&quot;=&quot;aField&quot;,</span>
+<span class="sd">     *                  &quot;dataType&quot;=&quot;string&quot;,</span>
+<span class="sd">     *                  &quot;description&quot;=&quot;The &#39;aField&#39; field description.&quot;</span>
+<span class="sd">     *              }</span>
+<span class="sd">     *          }</span>
+<span class="sd">     *     },</span>
+<span class="sd">     *     statusCodes={</span>
+<span class="sd">     *          200=&quot;Returned when successful&quot;,</span>
+<span class="sd">     *          500=&quot;Returned when an unexpected error occurs&quot;</span>
+<span class="sd">     *     }</span>
+<span class="sd">     * )</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return Response</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAction</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// @todo: add an implementaution here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>An example of <code class="docutils literal"><span class="pre">Resources/oro/routing.yml</span></code> configuration file:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">acme_api_get_my_resource</span><span class="o">:</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="o">/</span><span class="nx">api</span><span class="o">/</span><span class="nx">myresources</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">[</span><span class="nx">GET</span><span class="p">]</span>
+    <span class="nx">defaults</span><span class="o">:</span>
+        <span class="nx">_controller</span><span class="o">:</span> <span class="nx">AcmeAppBundle</span><span class="o">:</span><span class="nx">Api\MyResource</span><span class="o">:</span><span class="nx">get</span>
+    <span class="nx">options</span><span class="o">:</span>
+        <span class="nx">group</span><span class="o">:</span> <span class="nx">rest_api</span>
+</pre></div>
+</div>
+<p>An information about <code class="docutils literal"><span class="pre">ApiDoc</span></code> annotation can be found in <a class="reference external" href="https://symfony.com/doc/current/bundles/NelmioApiDocBundle/the-apidoc-annotation.html">Symfony documentation</a>. To find all possible properties of <code class="docutils literal"><span class="pre">fields</span></code> option take a look at <a class="reference external" href="https://github.com/nelmio/NelmioApiDocBundle/blob/2.x/Formatter/AbstractFormatter.php">AbstractFormatter class in NelmioApiDocBundle</a>. Please note that <code class="docutils literal"><span class="pre">fields</span></code> option can be used inside <code class="docutils literal"><span class="pre">input</span></code> and <code class="docutils literal"><span class="pre">output</span></code> options.</p>
+<p>Use <a class="reference external" href="./commands#oroapidoccacheclear">oro:api:doc:cache:clear</a> command to apply changes in <code class="docutils literal"><span class="pre">ApiDoc</span></code> annotation to <a class="reference external" href="https://www.oroinc.com/doc/orocommerce/current/dev-guide/web-api#api-sandbox">API Sandbox</a>.</p>
+</div>
+<div class="section" id="using-a-non-primary-key-to-identify-an-entity">
+<h2>Using a non-primary key to identify an entity<a class="headerlink" href="#using-a-non-primary-key-to-identify-an-entity" title="Permalink to this headline">¶</a></h2>
+<p>By default, a primary key is used to identify ORM entities in API. If you need another field as an identifier, specify it using the <code class="docutils literal"><span class="pre">identifier_field_names</span></code> option.</p>
+<p>For example, let your entity has the <code class="docutils literal"><span class="pre">id</span></code> field that is the primary key and the <code class="docutils literal"><span class="pre">uuid</span></code> field that contains a unique value for each entity. To use the <code class="docutils literal"><span class="pre">uuid</span></code> field to identify the entity, add the following in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AppBundle\Entity\SomeEntity</span><span class="o">:</span>
+            <span class="nx">identifier_field_names</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;uuid&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also exclude the <code class="docutils literal"><span class="pre">id</span></code> field (primary key) if you do not want to expose it via API:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AppBundle\Entity\SomeEntity</span><span class="o">:</span>
+            <span class="nx">identifier_field_names</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;uuid&#39;</span><span class="p">]</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">id</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extend_and_customize/index.html">Customizing Oro Features</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Web Services API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../_sources/dev_guide/web_api/api_docs/how_to.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

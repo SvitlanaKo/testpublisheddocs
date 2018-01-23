@@ -3,49 +3,50 @@
 Shopping Lists 
 ==============
 
-The following guide will describe how shopping lists can be used in OroCommerce front store.
+The following guide will describe how shopping lists can be used in the OroCommerce storefront.
 
-.. .. contents:: :local:
+.. contents:: :local:
    :depth: 2
 
-In OroCommerce, shopping lists are much more than merely a list of items in a cart. For one, in OroCommerce customers can create and manage note just one, but multiple shopping lists. This is useful when customers have to work on many projects that need different products for various needs. 
-
+In OroCommerce, shopping lists are much more than merely a list of items in a cart. For one, in OroCommerce registered customers can create and manage not just one, but multiple shopping lists. This is useful when customers have to work on many projects that need different products for various needs. Unregistered customers, in turn, can purchase goods without the need of going through the registration process, which simplifies their shopping experience and saves time.
 
 .. _frontstore-guide--shopping-lists-create:
 
-On the front store, shopping lists are located in the top right corner and can be easily spotted.
+In the storefront, shopping lists are located in the top right corner and can be easily spotted.
 
 .. image:: /frontstore_guide/img/shopping_lists/ShoppingLists.png
 
-The shopping lists button displays the number of shopping lists that have been created. 
+The shopping lists button displays the number of shopping lists that have been created.
 
-Clicking on the |IcChevronDown| icon next to the button will open a dropdown with all available shopping lists, the number of items in each of them, and a button to create a new shopping list.
+Clicking on the |IcChevronDown| icon next to the button will open a drop-down with all available shopping lists, the number of items in each of them, and a button to create a new shopping list.
 
 .. image:: /frontstore_guide/img/shopping_lists/ShoppingListsDropdown.png
 
+Shopping Lists for Registered Users
+-----------------------------------
 
-Create Shopping List 
-^^^^^^^^^^^^^^^^^^^^
+Create a Shopping List
+^^^^^^^^^^^^^^^^^^^^^^
 
 Shopping lists can be created using several flows.
 
-**First**
+**Flow 1**
 
 1. Click |IcChevronDown| next to **Shopping Lists** on the top right of the page.
-2. Click **Create New List** on the bottom of the dropdown window.
+2. Click **Create New List** on the bottom of the drop-down window.
 3. Give the list a name and click **Create**.
    
 .. image:: /frontstore_guide/img/shopping_lists/ShoppingListName.png
 
-**Second**
+**Flow 2**
 
-1. Click on the dropdown icon |IcChevronDown| located in the **Add to** button next to each product.
+1. Click on the drop-down icon |IcChevronDown| located in the **Add to** button next to each product.
 2. Select **Create New Shopping List**.
 3. Give the list a name and click **Create**.
 
 .. image:: /frontstore_guide/img/shopping_lists/CreateShoppingListItem.png
 
-**Third**
+**Flow 3**
 
 1. Click **Quick Order Form** on the top right of the page.
 2. Enter product details in the provided fields.
@@ -53,7 +54,7 @@ Shopping lists can be created using several flows.
 4. Select **Create New Shopping List**.
 5. Give the list a name and click **Create**.  
 
-**Fourth**
+**Flow 4**
 
 1. In the Quick Order Form, enter product SKU(s) and quantity.
 2. Click **Verify Order**.
@@ -63,7 +64,7 @@ Shopping lists can be created using several flows.
  
 .. image:: /frontstore_guide/img/shopping_lists/CreateShoppingListQuickOrder.png
 
-**Fifth**
+**Flow 5**
 
 1. Open :ref:`Matrix Ordering Form <frontstore-guide--orders-matrix>`.
    
@@ -73,14 +74,39 @@ Shopping lists can be created using several flows.
    
 .. image:: /frontstore_guide/img/orders/MatrixForm.png
 
-4. Click on the dropdown icon |IcChevronDown| located in the **Add to** button next to each product.
+4. Click on the drop-down icon |IcChevronDown| located in the **Add to** button next to each product.
 5. Select **Create New Shopping List**.
 
 .. image:: /frontstore_guide/img/orders/MatrixFormShoppngList.png
 
 7. Give the list a name and click **Create**.
    
+**Flow 6**
 
+Duplicate the already existing shopping list to make multiple similar orders:
+
+1. Open a shopping list.
+2. Click **Duplicate List** on the left under the list of items.
+3. A copy of the shopping list will be created.
+
+.. image:: /user_guide/img/sales/shopping_lists/DuplicateListFrontEndScreenShot.png
+
+**Flow 7**
+
+.. _frontstore-guide--shopping-lists-create--mass-action:
+
+Create a new shopping list when selecting multiple products using mass action on the product listing page.
+
+1. Select the required items by clicking **Select Item**.
+
+   .. note:: **Select Item** can be placed under or next to the item depending on the :ref:`display options <frontstore-guide--navigation-display-options>`.
+   
+2. Click **Choose Action** on the top left next to the **Sort by** option.
+   
+   .. image:: /frontstore_guide/img/navigation/MassActionProductListing.png
+
+3. Click **Create New Shopping List**.
+4. Give the list a name and click **Create**.
 
 .. _frontstore-guide--shopping-lists-view:
 
@@ -89,7 +115,7 @@ View Shopping List
 
 The shopping list view page contains the following information and options:
 
-1. Customer name (dropdown)
+1. Customer name (drop-down)
 2. Item name
 3. Availability
 4. Quantity
@@ -98,7 +124,7 @@ The shopping list view page contains the following information and options:
 7. Total
 8. A list of all shopping lists available
    
-Here you can add a note to the current shopping list, as well as each of the items within this list, by enabling the **Add a Note to This Shopping List** checkbox.
+Here you can add a note to the current shopping list, as well as each of the items within this list, by enabling the **Add a Note to This Shopping List** check box.
 
 
 .. image:: /frontstore_guide/img/shopping_lists/AddNoteShoppingList.png
@@ -107,6 +133,16 @@ Here you can add a note to the current shopping list, as well as each of the ite
 
 Manage Shopping List 
 ^^^^^^^^^^^^^^^^^^^^
+
+While adding a product to a shopping list, click |IcChevronDown| to view a list with additional options available for the selected product.
+
+  .. image:: /user_guide/img/sales/shopping_lists/shopping_list_dropdown_1.png
+
+* To add the product to the current shopping list, click **Add to Shopping List X**.
+* Update the shopping list with a new information regarding the selected product by clicking **Update Shopping List**.
+* Add the product to the previous shopping list, in case you have it, click **Add to Shopping List Y**.
+* Remove the product from the shopping list, click **Remove From Shopping List**.
+* Create a new shopping list with the selected product, click **Create New Shopping List**.
 
 To edit the shopping list name from within its view page:
 
@@ -138,15 +174,43 @@ To create a request for quote from the shopping list:
 2. Click |ICChevronDown| next to the **Create Order** button on the bottom of the view page.
 3. Click **Request Quote**.
 
-Related Topics
---------------
+.. _frontstore-guide--shopping-lists-guest:
 
-* :doc:`/frontstore_guide/getting_started/index`
-* :doc:`/frontstore_guide/navigation/index`
-* :doc:`/frontstore_guide/profile/index`
-* :doc:`/frontstore_guide/users_roles/index`
-* :doc:`/frontstore_guide/rfq/index` 
-* :doc:`/frontstore_guide/quotes/index`
- 
+Shopping Lists for Guest Users
+------------------------------
+
+In Oro application, unregistered customers can create and manage a shopping list in the storefront without the need to register. By default, they can have one shopping list per website and browsing session with the possiblity of storing such list for up to 30 days in a single browser.
+
+.. note:: If you seem unable to create a guest shopping list, please refer to your administrator.
+
+Create and Manage a Shopping List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, only one shopping list is available for unregistered users:
+
+1.  To add items to the list, click **Add to Shopping List** next to the product.
+  
+    .. note:: You can also create a new shopping list when selecting multiple products using :ref:`mass action <frontstore-guide--shopping-lists-create--mass-action>` on the product listing page. 
+      
+2.  To add more items to the existing list, or change the quantity of the items that are already in the list, click **Update Shopping List** next to the product.
+
+    Alternatively, navigate to the shopping list itself by clicking **Shopping List** in the top right corner of the store page, and click *View Details*.
+
+    In the *Quantity* field, change the quantity of the product.
+
+3.  To remove items from the list, click |ICChevronDown| next to **Update Shopping List** and click **Remove from Shopping List**.
+
+     .. image:: /user_guide/img/sales/shopping_lists/shopping_list_dropdown_2.png
+
+     Alternatively, navigate to the shopping list itself by clicking **Shopping List** in the top right corner of the store page, and click *View Details*.
+
+     Next to the product, click |IcDelete| to remove it.
+
+
+.. include:: /frontstore_guide/related_topics.rst
+   :start-after: begin
+
+
+
 .. include:: /user_guide/include_images.rst
    :start-after: begin

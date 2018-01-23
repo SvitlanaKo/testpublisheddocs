@@ -1,9 +1,11 @@
+.. _user-guide--taxes:
+
 Taxes
 =====
 
-.. This topic contains the following sections:
+This topic contains the following sections:
 
-.. .. contents:: :local:
+.. contents:: :local:
 
 Overview
 --------
@@ -14,7 +16,7 @@ Overview
 Before You Begin: Taxation Configuration
 ----------------------------------------
 
-.. include:: /user_guide/taxes/configuration/index.rst
+.. include:: /configuration_guide/landing_commerce/taxation/taxes/index.rst
    :start-after: begin
    :end-before: finish
 
@@ -55,8 +57,6 @@ Manage Tax Rules
 .. toctree::
    :maxdepth: 1
 
-   configuration/index
-
    customer_tax_codes/index
 
    product_tax_codes/index
@@ -70,12 +70,6 @@ Manage Tax Rules
    link_a_tax_code_to_a_customer
 
    link_a_tax_code_to_a_product
-
-..   managing_tax_exemptions
-
-..   integration_with_external_tax_management_systems
-
-..   Taxes in the customer order <../../guides_by_role/buyer_guide/taxes>
 
 .. finish 
 

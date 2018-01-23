@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Run Installation via Wizard or CLI &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installation" href="installation_steps.html" />
+    <link rel="prev" title="Download External Packages and Configure Installation Environment" href="../get_files/download_packages_and_configure_install.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation_steps.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../get_files/download_packages_and_configure_install.html" title="Download External Packages and Configure Installation Environment"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Installation Guide</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Run Installation via Wizard or CLI</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="run-installation-via-wizard-or-cli">
+<span id="installation"></span><span id="index-0"></span><h1>Run Installation via Wizard or CLI<a class="headerlink" href="#run-installation-via-wizard-or-cli" title="Permalink to this headline">¶</a></h1>
+<p>This article describes how to install the Oro application (e.g. OroPlatform, OroCRM or OroCommerce).</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#installation-customization" id="id1">Installation Customization</a></li>
+<li><a class="reference internal" href="#installation-launch" id="id2">Installation Launch</a></li>
+<li><a class="reference internal" href="#re-installation" id="id3">Re-Installation</a></li>
+</ul>
+</div>
+<p>This topic will showcase the installation and configuration using OroCommerce as an example.</p>
+<div class="section" id="installation-customization">
+<h2><a class="toc-backref" href="#id1">Installation Customization</a><a class="headerlink" href="#installation-customization" title="Permalink to this headline">¶</a></h2>
+<p>To customize the installation process and modify the database structure and/or data that are loaded in the OroCommerce after installation, you can:</p>
+<ul class="simple">
+<li><a class="reference internal" href="customize_install.html#execute-custom-migrations"><span class="std std-ref">Execute custom migrations</span></a>, and</li>
+<li><a class="reference internal" href="customize_install.html#load-custom-data-fixtures"><span class="std std-ref">Load custom data fixtures</span></a></li>
+</ul>
+</div>
+<div class="section" id="installation-launch">
+<span id="doc-installation-section-installation-process"></span><h2><a class="toc-backref" href="#id2">Installation Launch</a><a class="headerlink" href="#installation-launch" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Before you begin the installation, ensure you have <a class="reference internal" href="../installation_prerequisites/index.html#installation-prepare"><span class="std std-ref">prepared the installation environment</span></a> and all the <a class="reference internal" href="../../system_requirements.html#system-requirements"><span class="std std-ref">system requirements</span></a> are met.</p>
+</div>
+<p>You can launch the Oro application installation either <a class="reference internal" href="installation_via_console.html#installation-via-console"><span class="std std-ref">from the console</span></a>, or using <a class="reference internal" href="installation_via_UI.html#book-installation-wizard"><span class="std std-ref">the web installation wizard</span></a>.</p>
+<p>The installation wizard guides you through the installation process and is more straightforward. However, with console-based installation, you get more flexibility in choosing custom options, like force reinstall. Additionally, from the console, you can install the Oro application in a silent mode.</p>
+<p>See the following topics for more details on:</p>
+<ul class="simple">
+<li><a class="reference internal" href="installation_via_console.html#installation-via-console"><span class="std std-ref">Installation via console</span></a> in a normal or <a class="reference internal" href="installation_via_console.html#silent-installation"><span class="std std-ref">silent mode</span></a>, and</li>
+<li><a class="reference internal" href="installation_via_UI.html#book-installation-wizard"><span class="std std-ref">Installation via the web installation wizard</span></a>.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Once you have completed the installation, <a class="reference internal" href="../post_install_steps.html#post-install"><span class="std std-ref">activate background tasks</span></a> to ensure execution of the required scheduled operations.</p>
+</div>
+</div>
+<div class="section" id="re-installation">
+<h2><a class="toc-backref" href="#id3">Re-Installation</a><a class="headerlink" href="#re-installation" title="Permalink to this headline">¶</a></h2>
+<p>To reinstall OroCommerce:</p>
+<ol class="arabic simple">
+<li>Drop the database that was used for the previous installation attempt.</li>
+<li>Create a new database for new OroCommerce installation.</li>
+<li>Empty the <em>&lt;installation directory&gt;/app/cache/prod</em> and <em>&lt;installation directory&gt;/app/cache/session</em> directories.</li>
+<li>Clear the Installed option in the <em>app/config/parameters.yml</em> file and update the database name, if necessary.</li>
+<li>Launch the OroCommerce installation <a class="reference internal" href="installation_via_console.html#silent-installation"><span class="std std-ref">Via Console: Silent Installation</span></a> with the <strong>&#8211;force</strong> option provided.</li>
+</ol>
+<p><strong>Related Topics</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation_steps.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation_steps.html#via-console">Via Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation_steps.html#via-installation-wizard">Via Installation Wizard</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Installation Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation_prerequisites/index.html">Prepare Installation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_files/index.html">Download Files and Packages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Run Installation via Wizard or CLI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation_steps.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../post_install_steps.html">Perform Post-Install Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vm.html">Evaluate Oro App in a Sandbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade/index.html">Upgrade OroCommerce to the Newer Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade/index.html#upgrade-orocommerce">Upgrade OroCommerce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../update.html">Update OroPlatform to Oro App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation_quick_start_dev/index.html">Installation Quick Start for Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/install_upgrade/installation/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

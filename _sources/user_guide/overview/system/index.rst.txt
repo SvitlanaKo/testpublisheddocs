@@ -17,12 +17,6 @@ Overview index
 
    integrations/manage_integrations_overview
 
-   localization/languages_overview
-
-   localization/localizations_overview
-
-   localization/translations_overview
-
    user_management/business_units_overview
 
    user_management/groups_overview
@@ -45,8 +39,6 @@ Overview index
 
    job_queue_overview
 
-   localization_overview
-
    menus_overview
 
    message_queue_jobs_overview
@@ -54,6 +46,8 @@ Overview index
    processes_overview
 
    rfq_statuses_overview
+
+   rule_conditions_overview
 
    scheduled_tasks_overview
 

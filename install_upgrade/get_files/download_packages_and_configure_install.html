@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Download External Packages and Configure Installation Environment &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Run Installation via Wizard or CLI" href="../installation/index.html" />
+    <link rel="prev" title="Method 2: Download the Source Code Archive and Install Dependencies" href="get_source_files/install_archive.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../installation/index.html" title="Run Installation via Wizard or CLI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="get_source_files/install_archive.html" title="Method 2: Download the Source Code Archive and Install Dependencies"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Installation Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Download Files and Packages</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Download External Packages and Configure Installation Environment</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="download-external-packages-and-configure-installation-environment">
+<span id="platform-installation-download-external-packages-and-configure-installation"></span><h1>Download External Packages and Configure Installation Environment<a class="headerlink" href="#download-external-packages-and-configure-installation-environment" title="Permalink to this headline">¶</a></h1>
+<p>Navigate to the installation directory and run the following command to prepare for installation:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>composer install --prefer-dist --no-dev
+</pre></div>
+</td></tr></table></div>
+<p>This command downloads the latest version of the external packages used in the Oro application and prepares for Oro application installation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When installing from the cloned git repository, you are prompted to enter the installation environment configuration and integration parameters that are saved to the parameters.yml file. Enter nothing to keep the default value (provided in brackets), or find more information on the options <a class="reference internal" href="#book-installation-github-clone-configuration-params"><span class="std std-ref">here</span></a>.</p>
+</div>
+<p>When installing from the downloaded archive, open the <em>&lt;installation directory&gt;/app/config/parameters.yml</em> file and update the environment configuration and integration details to match the server and network infrastructure you have prepared.</p>
+<div class="section" id="configuration-parameters">
+<span id="book-installation-github-clone-configuration-params"></span><span id="id1"></span><h2>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Installation configuration parameters are grouped in the following way:</p>
+<ul>
+<li><p class="first">The <code class="docutils literal"><span class="pre">database_</span></code> parameters are used to connect to the database.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">mailer_</span></code> parameters define settings used to deliver emails sent by the application.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">websocket_</span></code> parameters define settings for the web UI.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">session_handler</span></code> value specifies the PHP <a class="reference external" href="http://symfony.com/doc/current/components/http_foundation/session_configuration.html#save-handlers">session handler</a> to be used.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">locale</span></code> value is the fallback locale used as a last resort for <a class="reference external" href="http://symfony.com/doc/current/components/translation/introduction.html">translations</a>.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">secret</span></code> value is used to generate <a class="reference external" href="http://symfony.com/doc/current/cookbook/security/csrf_in_login_form.html">CSRF tokens</a>.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">assets_version</span></code> parameter is used to bust the cache on assets by globally adding a query parameter to all rendered asset paths.</p>
+</li>
+<li><p class="first">The <code class="docutils literal"><span class="pre">assets_version_strategy</span></code> value defines the strategy used to generate the global assets version. The available values are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">null</span></code> &#8212; The asset&#8217;s version stays unchanged.</li>
+<li><code class="docutils literal"><span class="pre">time_hash</span></code> &#8212; A hash of the current time.</li>
+<li><code class="docutils literal"><span class="pre">incremental</span></code> &#8212; The next asset&#8217;s version is the previous version incremented by one (e.g. <code class="docutils literal"><span class="pre">ver1</span></code> -&gt; <code class="docutils literal"><span class="pre">ver2</span></code> or <code class="docutils literal"><span class="pre">1</span></code> -&gt; <code class="docutils literal"><span class="pre">2</span></code>).</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="default-configuration-values">
+<span id="book-installation-github-clone-configuration-params-default"></span><h2>Default Configuration Values<a class="headerlink" href="#default-configuration-values" title="Permalink to this headline">¶</a></h2>
+<p>Default configuration options for the Oro application are provided in brackets below:</p>
+<blockquote>
+<div><div class="highlight-text"><div class="highlight"><pre><span></span>Creating the &quot;app/config/parameters.yml&quot; file
+Some parameters are missing. Please provide them.
+database_driver (pdo_mysql):
+database_host (127.0.0.1):
+database_port (null):
+database_name (oro_crm):
+database_user (root):
+database_password (null):
+mailer_transport (smtp):
+mailer_host (127.0.0.1):
+mailer_port (null):
+mailer_encryption (null):
+mailer_user (null):
+mailer_password (null):
+websocket_bind_address (0.0.0.0):
+websocket_bind_port (8080):
+websocket_frontend_host (&#39;*&#39;):
+websocket_frontend_port (8080):
+websocket_backend_host (&#39;*&#39;):
+websocket_backend_port (8080):
+session_handler (session.handler.native_file):
+locale (en):
+secret (ThisTokenIsNotSoSecretChangeIt):
+installed (null):
+assets_version (null):
+assets_version_strategy: time_hash
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="environment-configuration-and-integration-parameters">
+<h2>Environment Configuration and Integration Parameters<a class="headerlink" href="#environment-configuration-and-integration-parameters" title="Permalink to this headline">¶</a></h2>
+<p>The sample contents of the <strong>&lt;installation directory&gt;/app/config/parameters.yml</strong> file for OroCommerce:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="highlight"><pre><span></span>parameters:
+   database_driver:        pdo_mysql
+   database_host:          154.122.122.154
+   database_port:          3606
+   database_name:          orocommerce_database
+   database_user:          orocommerce_database_user
+   database_password:      orocommerce_database_password
+
+   mailer_transport:       mail
+   mailer_host:            155.122.122.155
+   mailer_port:            22
+   mailer_encryption:      TLS
+   mailer_user:            orocommerce_mail_user
+   mailer_password:        orocommerce_mail_password
+
+   # WebSocket server config
+   websocket_bind_address:  &quot;0.0.0.0&quot;  # The host IP the socket server will bind to
+             websocket_bind_port:     8080       # The port the socket server will listen on
+             websocket_frontend_host: &quot;*&quot;        # Websocket host the browser will connect to
+             websocket_frontend_port: 8080       # Websocket port the browser will connect to
+             websocket_backend_host:  &quot;*&quot;        # Websocket host the application server will connect to
+             websocket_backend_port:  8080       # Websocket port the application server will connect to
+
+   # search engine configuration
+   search_engine_name:       orm
+   search_engine_host:       156.122.122.156
+   search_engine_port:       ~
+   search_engine_index_name: oro_search
+   search_engine_username:   orocommerce_search_user
+   search_engine_password:   orocommerce_search_password
+   search_engine_ssl_verification: ~
+   search_engine_ssl_cert: ~
+   search_engine_ssl_cert_password: ~
+   search_engine_ssl_key: ~
+   search_engine_ssl_key_password: ~
+
+   # website search engine configuration
+   website_search_engine_index_name: oro_website_search
+
+   # Used to hide backend under specified prefix, should be started with &quot;/&quot;, for instance &quot;/admin&quot;
+   web_backend_prefix:         &#39;/admin&#39;
+
+   session_handler:        session.handler.native_file
+
+   locale:                 en
+   secret:                 ThisTokenIsNotSoSecretChangeIt
+   installed:              ~
+   assets_version:         ~
+   assets_version_strategy: time_hash # A strategy should be used to generate the global assets version, can be:
+          # null        - the assets version stays unchanged
+          # time_hash   - a hash of the current time
+         # incremental - the next assets version is the previous version is incremented by one (e.g. &#39;ver1&#39; -&gt; &#39;ver2&#39; or &#39;1&#39; -&gt; &#39;2&#39;)
+   enterprise_licence: ~
+   message_queue_transport: &#39;dbal&#39;
+   message_queue_transport_config: ~
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Installation Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation_prerequisites/index.html">Prepare Installation Environment</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Download Files and Packages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="get_source_files/index.html">Get the Source Code and Install Dependencies</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Download External Packages and Configure Installation Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">Run Installation via Wizard or CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../post_install_steps.html">Perform Post-Install Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vm.html">Evaluate Oro App in a Sandbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade/index.html">Upgrade OroCommerce to the Newer Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrade/index.html#upgrade-orocommerce">Upgrade OroCommerce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../update.html">Update OroPlatform to Oro App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation_quick_start_dev/index.html">Installation Quick Start for Developers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/install_upgrade/get_files/download_packages_and_configure_install.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

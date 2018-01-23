@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>System Mailboxes &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="System Mailbox Settings" href="system_mailbox_settings.html" />
+    <link rel="prev" title="Automatic Notification" href="notification_rules.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="system_mailbox_settings.html" title="System Mailbox Settings"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="notification_rules.html" title="Automatic Notification"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Email Configuration</a> &#187;</li> 
+     <li class="nav-item nav-item-this">System Mailboxes</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="system-mailboxes">
+<span id="admin-configuration-system-mailboxes"></span><h1>System Mailboxes<a class="headerlink" href="#system-mailboxes" title="Permalink to this headline">¶</a></h1>
+<p>System mailbox allows people who do not have access to the company mailbox addresses write to the company.
+You can create several system mailboxes. This may be, for example, a mailbox for support requests, for business
+proposals, for order requests, etc.</p>
+<p>You can define and modify the list of OroCRM users who have access to each of these mailboxes, automatically turn
+letters into cases or leads, and set up auto-responses.</p>
+<div class="section" id="create-system-mailbox">
+<h2>Create System Mailbox<a class="headerlink" href="#create-system-mailbox" title="Permalink to this headline">¶</a></h2>
+<img alt="../../_images/new_mb.png" src="../../_images/new_mb.png" />
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Click <strong>General Setup &gt; Email Configuration</strong> in the menu to the left.</li>
+<li>Click <strong>Add Mailbox</strong> in the System Mailboxes section.</li>
+<li>Define the mailbox settings, as described in the sections below.</li>
+</ol>
+<div class="section" id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<p>The &#8220;General&#8221; section defines the basic settings of the mailbox created. The following fields must be defined:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Mailbox Label</strong></td>
+<td>Name of the mailbox used in OroCRM to refer to it.</td>
+</tr>
+<tr class="row-odd"><td><strong>Email</strong></td>
+<td>Email address used to write to the mailbox.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="synchronization">
+<h3>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Let OroCRM know the details of IMAP (incoming mail) and/or SMTP (outgoing mail) connection for the mailbox, such as host, port, and encryption, and specify the login (user) and password used to access the mailbox.</li>
+<li>Click the <strong>Check Connection/Retrieve Folders</strong>.</li>
+<li>After successful connection, the list of available folders will be loaded. Check the Folders to be synchronized.</li>
+</ol>
+<p>In the example below, synchronization has been done for a .gmail mailbox. The INBOX folder will be synchronized.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>Detailed instructions on the way to set-up IMAP and SMTP connection in gmail, are provided
+<a class="reference external" href="https://support.google.com/mail/troubleshooter/1668960?hl=en&amp;rd=1#ts=1665018%2C1665144">here</a></p>
+<p class="last">To enable connection, check the box next to
+<a class="reference external" href="https://support.google.com/accounts/answer/6010255?hl=en">Allow access for less secure apps box</a></p>
+</div>
+<img alt="../../_images/synchronize_mb.png" src="../../_images/synchronize_mb.png" />
+</div>
+<div class="section" id="email-processing">
+<h3>Email Processing<a class="headerlink" href="#email-processing" title="Permalink to this headline">¶</a></h3>
+<p>You can choose what actions will be performed with all the emails received in the mailbox.</p>
+<p>Available options are:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Do Nothing</strong></td>
+<td>No actions will be performed. Letters will be saved in the mailbox.</td>
+</tr>
+<tr class="row-odd"><td><strong>Convert To Lead</strong></td>
+<td>Letters will be saved in the mailbox. Based on the first letter in the thread, a new Lead
+record will be created in OroCRM.</td>
+</tr>
+<tr class="row-even"><td><strong>Convert To Case</strong></td>
+<td>Letters will be saved in the mailbox. Based on the first letter in the thread, a new Case
+record will be created in OroCRM.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="email-management">
+<h3>Email Management<a class="headerlink" href="#email-management" title="Permalink to this headline">¶</a></h3>
+<p>Define what OroCRM users will have access to the mailbox. You can select roles and/or specific users. All the users with
+defined roles and all the specifically defined users will have access to
+the mailbox.</p>
+</div>
+<div class="section" id="autoresponse-rules">
+<span id="admin-configuration-system-mailboxes-autoresponse"></span><h3>Autoresponse Rules<a class="headerlink" href="#autoresponse-rules" title="Permalink to this headline">¶</a></h3>
+<p>You can generate one or several auto-response rules upon which response emails will be generated and sent back to the senders of all the letters in the mailbox that meet predefined criteria.</p>
+<p>To create a rule, click the <strong>Add Rule</strong>.</p>
+<p>The Autoresponse Rule form will appear.</p>
+<img alt="../../_images/ar_rule.png" src="../../_images/ar_rule.png" />
+<p>Define the following settings for the rule:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Status</strong></td>
+<td>Only rules with the <em>Active</em> status will be applied.</td>
+</tr>
+<tr class="row-odd"><td><strong>Name</strong></td>
+<td>Choose the name to be used to refer to the rule in the system.</td>
+</tr>
+<tr class="row-even"><td><strong>Conditions</strong></td>
+<td><p class="first">Define the condition upon which the rule will be applied.</p>
+<ul class="simple">
+<li>In the first selector, choose the field, for which the condition is checked.</li>
+<li>In the second selector, choose the condition.</li>
+<li>In the field  besides the selectors, define the values where required (e.g. for conditions contain/doesn&#8217;t contain/
+is any of, etc.)</li>
+</ul>
+<p>Click  + or <strong>+Add</strong> to add another condition for the rule. Click x to remove the condition All the conditions are summed up (AND operator).</p>
+<div class="last admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">If you need some ORed conditions, just create a new rule for each of them.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>Response Template</td>
+<td>Choose an <a class="reference internal" href="email_templates.html#user-guide-email-template"><span class="std std-ref">Email template</span></a> for autoresponse. All the templates
+with <em>Entity Name</em> value <em>Email</em> will be available in the selector. Choose the <em>Custom</em> if you want to create a new
+template.</td>
+</tr>
+<tr class="row-even"><td>Type</td>
+<td>Choose if you want to use html or plain text for the email.</td>
+</tr>
+<tr class="row-odd"><td>Email template</td>
+<td>Fill in the email subject and content.</td>
+</tr>
+<tr class="row-even"><td>Save Response as Email Template</td>
+<td>Enable the check-box, and your email will be saved as an email template with entity
+name <em>Email</em>.</td>
+</tr>
+</tbody>
+</table>
+<p>Click Add button and the rule will be saved.</p>
+<p>All the rules of a mailbox can be viewed and processed from the Autoresponse Rules grid in the corresponding section of the System Mailbox record page.</p>
+<img alt="../../_images/ar_rule.png" src="../../_images/ar_rule.png" />
+</div>
+<div class="section" id="final-steps">
+<h3>Final Steps<a class="headerlink" href="#final-steps" title="Permalink to this headline">¶</a></h3>
+<p>Save the created mailbox with the button in the top right corner of the page.</p>
+<p>All the system mailboxes can be viewed and processed from the System Mailboxes grid in the corresponding section of the Email Configuration page.</p>
+<img alt="../../_images/system_mb_grid.png" src="../../_images/system_mb_grid.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Email Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="email_configuration.html">Email Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email_templates.html">Email Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notification_rules.html">Automatic Notification</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">System Mailboxes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_mailbox_settings.html">System Mailbox Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email_configuration_settings.html">Email Configuration Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/email/system_mailboxes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

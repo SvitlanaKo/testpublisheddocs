@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Synchronization with Outlook &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Embedded Forms" href="embedded_forms.html" />
+    <link rel="prev" title="MS Outlook Integration Settings" href="ms_outlook_integration_settings.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="embedded_forms.html" title="Embedded Forms"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ms_outlook_integration_settings.html" title="MS Outlook Integration Settings"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Integrations</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Synchronization with Outlook</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="synchronization-with-outlook">
+<span id="user-guide-synch-outlook"></span><h1>Synchronization with Outlook<a class="headerlink" href="#synchronization-with-outlook" title="Permalink to this headline">¶</a></h1>
+<p>OroCRM Enterprise Edition supports data synchronization in the OroCRM and Outlook.
+All the contacts, tasks and calendar events available for the user can be synchronized with the specified
+Outlook account and vice versa.</p>
+<p>From this article you will learn how to configure and run synchronization, and see the workflow used for that.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Emails are not synced in the course of Outlook integration. For this, please refer to <a class="reference internal" href="../email/email_configuration.html#user-guide-email-admin"><span class="std std-ref">Email Configuration</span></a> topic.</p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this headline">¶</a></h3>
+<p><strong>RAM</strong></p>
+<p><em>Minimum</em>:</p>
+<p>MS Outlook x86, x64 – 4GB</p>
+<p><em>Recommended</em>:</p>
+<p>MS Outlook x86 – 4GB</p>
+<p>MS Outlook x64 – 8GB</p>
+<p><strong>CPU</strong></p>
+<p><em>Minimum</em>:</p>
+<p>MS Outlook x86 - 1 GHz IA-32 processor</p>
+<p>MS Outlook x64 - 1 GHz x86-64 processor</p>
+<p><em>Recommended</em>:</p>
+<p>MS Outlook x86 – 2-3 GHz IA-32 processor (Dual Core)</p>
+<p>MS Outlook x64 – 2-3 GHz x86-64 processor (Dual Core)</p>
+<p><strong>HDD</strong></p>
+<p>Available disk space – fully depends on the size of PST file you operate and other programs installed on your computer
+but we recommend <em>at least 40GB</em> of available disk space.</p>
+<p><strong>Disk average rotational latency</strong></p>
+<p><em>Minimum</em>:</p>
+<p>20 milliseconds</p>
+<p><em>Recommended</em>:</p>
+<p>5 milliseconds</p>
+</div>
+<div class="section" id="software-requirements">
+<h3>Software Requirements<a class="headerlink" href="#software-requirements" title="Permalink to this headline">¶</a></h3>
+<p>OroCRM Enterprise version 1.6+</p>
+<p>Outlook 2010+</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Please note that the following factors can influence the ORO CRM Outlook add-in performance</p>
+<ul class="last simple">
+<li>Email archiving</li>
+<li>Antivirus</li>
+<li>Mobile devices connected to the computer</li>
+<li>Voice mail</li>
+<li>Other programs or Outlook add-ins that create additional views or search folders</li>
+</ul>
+</div>
+</div>
+<div class="section" id="add-in-setup">
+<h3>Add-in Setup<a class="headerlink" href="#add-in-setup" title="Permalink to this headline">¶</a></h3>
+<p>In order to enable data synchronization from OroCRM go to <em>&#8220;My User&#8221;</em> and click the link to download the add-in to
+integrate with your Outlook client.</p>
+<p>Wait for download to finish and run the installation process.</p>
+<img alt="../../_images/settings_1_8.png" src="../../_images/settings_1_8.png" />
+<p>System administrators can modify the add-in look:</p>
+<ul class="simple">
+<li>Go to System → SYSTEM CONFIGURATION → Integrations → MS Outlook settings → MS Outlook Add-in</li>
+<li>Modify the code to alter the add-in look.</li>
+</ul>
+<p>In the example below, you can see the add-in default look:</p>
+<img alt="../../_images/addin_view.png" src="../../_images/addin_view.png" />
+<div class="sidebar">
+<p class="first sidebar-title">Use Default</p>
+<p class="last">Beside each of the settings there is a <em>&#8220;Use Default&#8221;</em> check-box. If the check-box is active, the default value will
+be used. Default values for each of the settings are described in corresponding sections below.</p>
+</div>
+</div>
+<div class="section" id="integration-settings-on-the-oro-side">
+<h3>Integration Settings on the Oro Side<a class="headerlink" href="#integration-settings-on-the-oro-side" title="Permalink to this headline">¶</a></h3>
+<p>You can configure the set of entities to be synchronized, synchronization direction, synchronization
+intervals and priority of the conflict resolution.</p>
+<p>Go to System → SYSTEM CONFIGURATION → Integrations → MS Outlook settings → Integration Settings.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="22%" />
+<col width="33%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Setting</strong></th>
+<th class="head"><strong>Description</strong></th>
+<th class="head"><strong>Possible Values</strong></th>
+<th class="head"><strong>Default Value</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Sync Direction</strong></td>
+<td>The data synchronization direction</td>
+<td><ul class="first last simple">
+<li>OroCRM to Outlook</li>
+<li>Outlook to OroCRM</li>
+<li>Biderectional</li>
+</ul>
+</td>
+<td>Biderectional</td>
+</tr>
+<tr class="row-odd"><td><strong>Conflict Resolution</strong></td>
+<td>Conflict resolution strategy to be used if the same data has been changed in both
+Outlook and CRM</td>
+<td><ul class="first last simple">
+<li>OroCRM always wins</li>
+<li>Outlook always wins</li>
+</ul>
+</td>
+<td>OroCRM always wins</td>
+</tr>
+<tr class="row-even"><td><strong>CRM Sync Interval (In Seconds)</strong></td>
+<td>How often changes on the CRM side will be checked</td>
+<td>Any numeric value from 1 to
+86399</td>
+<td>120</td>
+</tr>
+<tr class="row-odd"><td><strong>Outlook Sync Interval (In Seconds)</strong></td>
+<td>How often changes on Outlook side will be checked</td>
+<td>Any numeric value from 1
+to 86399</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="synchronization-settings-on-the-oro-side">
+<h3>Synchronization Settings on the Oro Side<a class="headerlink" href="#synchronization-settings-on-the-oro-side" title="Permalink to this headline">¶</a></h3>
+<p>&#8220;<strong>Contacts, Tasks and Calendar Events</strong>&#8221;,&#8221;Records of the entity are synchronized if the box is checked&#8221;,&#8221;Yes or No&#8221;,&#8221;
+Yes&#8221;</p>
+</div>
+<div class="section" id="settings-on-the-outlook-side">
+<span id="doc-ms-outlook-add-in-set-up-outlook-side"></span><h3>Settings on the Outlook Side<a class="headerlink" href="#settings-on-the-outlook-side" title="Permalink to this headline">¶</a></h3>
+<p>Once you have installed the .msi file, the <em>&#8220;OroCRM for Outlook</em>&#8221; menu will appear in your Oultlook menu bar.</p>
+<img alt="../../_images/outlook_menu_bar.png" src="../../_images/outlook_menu_bar.png" />
+<p>Choose &#8220;Settings&#8221;. The <em>&#8220;OroCRM for Outlook Settings&#8221;</em> window will emerge.  The following fields are available</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>OroCRM URL</strong></td>
+<td>The Web address of your OroCRM instance. Mandatory field.</td>
+</tr>
+<tr class="row-odd"><td><strong>Ignore self-signed certificate</strong></td>
+<td>Check this box to allow connection to secure servers that use self-signed
+certificates. We recommend to keep it checked at all times.</td>
+</tr>
+<tr class="row-even"><td><strong>User</strong></td>
+<td>Your Username as defined on the <em>My user</em> page of the OroCRM. Mandatory field.</td>
+</tr>
+<tr class="row-odd"><td><strong>API Key</strong></td>
+<td>API Key as generated on the <em>My user</em> page of the OroCRM. Mandatory field.</td>
+</tr>
+<tr class="row-even"><td><strong>Enable Sync</strong></td>
+<td><ul class="first last simple">
+<li>If the box is checked, synchronization is run automatically in the intervals defined in the
+OroCRM.</li>
+<li>If the box is not checked, synchronization will start only after the user has clicked <span class="guilabel">StartSyncNow</span>
+button on the side panel</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Show Alerts</strong></td>
+<td><ul class="first last">
+<li><p class="first">If the box is checked, synchronization-related alerts (if any) will pop up in the bottom panel.
+For example:</p>
+<p><img alt="alert" src="../../_images/alert.png" /></p>
+</li>
+<li><p class="first">If the box is not checked, alert will not appear in the bottom panel.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="mapped-fields">
+<h2>Mapped Fields<a class="headerlink" href="#mapped-fields" title="Permalink to this headline">¶</a></h2>
+<p>Values of the fields of an OroCRM and Outlook records are mapped as described below:</p>
+<div class="section" id="contact-mapping">
+<span id="outlook-contact-mapping"></span><h3>Contact Mapping<a class="headerlink" href="#contact-mapping" title="Permalink to this headline">¶</a></h3>
+<p>The following fields of an OroCRM Contact record are mapped to the following fields of the Outlook Contact Record.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>OroCRM Field</strong></th>
+<th class="head"><strong>Outlook Field</strong></th>
+<th class="head">Note</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>First Name</td>
+<td>First Name</td>
+<td>If no <em>First Name</em> is defined in the Outlook record, the <em>Last Name</em> value is used for
+the both first name and last name in OroCRM.</td>
+</tr>
+<tr class="row-odd"><td>Middle Name</td>
+<td>Middle Name</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Last Name</td>
+<td>Last Name</td>
+<td>If no <em>Last Name</em> is defined in the Outlook record, the <em>First Name</em> value is used for
+the both first name and last name in OroCRM.</td>
+</tr>
+<tr class="row-odd"><td>Name Suffix</td>
+<td>Name Suffix</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Description</td>
+<td>Notes</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Email</td>
+<td>Email</td>
+<td>All the existing email addresses are mapped.</td>
+</tr>
+<tr class="row-even"><td>Phone</td>
+<td>Primary Phone</td>
+<td>Only the first OroCRM phone number is mapped.</td>
+</tr>
+<tr class="row-odd"><td>Job Title</td>
+<td>Job Title</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Birthday</td>
+<td>Birthday</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Gender</td>
+<td>Gender</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Fax</td>
+<td>Fax</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Address of a <em>Billing</em> Type</td>
+<td>Business Address</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Address of a <em>Shipping</em> Type</td>
+<td>Home Address</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Address with no type defined</td>
+<td>Other Address</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="task-mapping">
+<span id="outlook-task-mapping"></span><h3>Task Mapping<a class="headerlink" href="#task-mapping" title="Permalink to this headline">¶</a></h3>
+<p>The following fields of an OroCRM Task record are mapped to the following fields of the Outlook Task Record.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>OroCRM Field</strong></th>
+<th class="head"><strong>Outlook Field</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Subject</td>
+<td>Subject</td>
+</tr>
+<tr class="row-odd"><td>Priority</td>
+<td>Priority</td>
+</tr>
+<tr class="row-even"><td>Due Date</td>
+<td>Due Date</td>
+</tr>
+</tbody>
+</table>
+<p>OroCRM statuses are mapped to Outlook as is:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>OroCRM Task Status</strong></th>
+<th class="head"><strong>Outlook Task Status</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>In progress</td>
+<td>In progress</td>
+</tr>
+<tr class="row-odd"><td>Closed</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td>Open</td>
+<td>Open</td>
+</tr>
+</tbody>
+</table>
+<p>Outlook status not available in OroCRM are mapped as follows:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Outlook Task Status</strong></th>
+<th class="head"><strong>OroCRM Task Status</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Not Started</td>
+<td>Open</td>
+</tr>
+<tr class="row-odd"><td>Completed</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td>Waiting on someone else</td>
+<td>In progress</td>
+</tr>
+<tr class="row-odd"><td>Deferred</td>
+<td>In Progress</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="calendar-mapping">
+<span id="outlook-calendar-mapping"></span><h3>Calendar Mapping<a class="headerlink" href="#calendar-mapping" title="Permalink to this headline">¶</a></h3>
+<p>The following fields of an OroCRM Calendar Event record are mapped to the following fields of an Outlook Appointment.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>OroCRM Field</strong></th>
+<th class="head"><strong>Outlook Field</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Title</td>
+<td>Subject</td>
+</tr>
+<tr class="row-odd"><td>Start</td>
+<td>Start time</td>
+</tr>
+<tr class="row-even"><td>End</td>
+<td>End time</td>
+</tr>
+<tr class="row-odd"><td>All-Day Event</td>
+<td>All day event</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Only a calendar assigned to the specified user is mapped, regardless of access settings.</p>
+<p class="last">Invitations, received by the user are sent to Outlook as regular calendar event.</p>
+</div>
+</div>
+</div>
+<div class="section" id="synchronization-workflow">
+<h2>Synchronization Workflow<a class="headerlink" href="#synchronization-workflow" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="synchronization-start">
+<h3>Synchronization Start<a class="headerlink" href="#synchronization-start" title="Permalink to this headline">¶</a></h3>
+<p>Synchronization will start automatically, or as soon as the user has clicked the <span class="guilabel">StartSyncNow</span> button on the side panel, subject to the settings defined.</p>
+</div>
+<div class="section" id="identifying-a-record">
+<h3>Identifying a Record<a class="headerlink" href="#identifying-a-record" title="Permalink to this headline">¶</a></h3>
+<p>For every entity synchronized, there is also a key defined. The key is a set of field values used to identify an entity
+record. Fields of a key can be chosen subject to the specific company needs and defined at the back-end.
+The following keys are used by default:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Entity</strong></th>
+<th class="head"><strong>Key Fields</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Contact</td>
+<td>First Name, Last Name, Gender and Birthday</td>
+</tr>
+<tr class="row-odd"><td>Calendar Event</td>
+<td>Title(Subject), Start Time, End Time and whether it is an All-day event</td>
+</tr>
+<tr class="row-even"><td>Task</td>
+<td>Subject and Task Priority</td>
+</tr>
+</tbody>
+</table>
+<p>Every contact, task and calendar event present in OroCRM has a unique ID. When the record is saved in Outlook, the
+ID value is saved from OroCRM in the OroCRM_id field.</p>
+</div>
+<div class="section" id="synchronization-from-orocrm-to-outlook">
+<h3>Synchronization from OroCRM to Outlook<a class="headerlink" href="#synchronization-from-orocrm-to-outlook" title="Permalink to this headline">¶</a></h3>
+<p>Synchronization is run in the same way for records of activities, tasks and calendar events:</p>
+<img alt="../../_images/outlook_from_oro_diag.png" src="../../_images/outlook_from_oro_diag.png" />
+<p>All the records processed in OroCRM since the latest synchronization date and available to the user are
+checked:</p>
+<ul class="simple">
+<li>If ID of an OroCRM record matches an OroCRM_id value of an Outlook record, the Outlook record is updated.
+(Values of all the mapped fields in Outlook are overwritten with corresponding values from OroCRM).</li>
+<li>If ID of an OroCRM record does not match OroCRM_id of any Outlook records, their keys are checked against fields of
+Outlook records with empty the OroCRM_id field.<ul>
+<li>As soon as an Outlook record with empty OroCRM_id and matching key is found, it is updated from OroCRM and
+the ID value is saved from OroCRM into the OroCRM_id field of the Outlook record.</li>
+<li>If no Outlook record with empty OroCRM_id and matching key is found, a new record is created in Outlook.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">During the first synchronization or resynchronization, all the Outlook records with a non-empty the OroCRM_id field are deleted first, and then OroCRM record keys are checked for all of them.</p>
+</div>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>If</strong></th>
+<th class="head"><strong>Then</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Such record already exists in Outlook.</td>
+<td>Values of the mapped fields of the OroCRM record replace corresponding values
+for the Outlook record.</td>
+</tr>
+<tr class="row-odd"><td>A record doesn’t yet exist in Outlook.</td>
+<td>OroCRM creates the record in Outlook.</td>
+</tr>
+<tr class="row-even"><td>Multiple matching records exist in Outlook.</td>
+<td>OroCRM updates one of them.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve updated a record in OroCRM.</td>
+<td>Values of the mapped fields of the OroCRM record replace corresponding values
+for the Outlook record.</td>
+</tr>
+<tr class="row-even"><td>You&#8217;ve updated a record in Outlook.</td>
+<td>The updates remain in the Outlook record, but won’t sync to the OroCRM.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve deleted a record in Outlook.</td>
+<td>OroCRM creates the record again.</td>
+</tr>
+<tr class="row-even"><td>You&#8217;ve deleted a record in OroCRM.</td>
+<td>The record stays in Outlook with no changes.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="synchronization-from-outlook-to-orocrm">
+<h3>Synchronization from Outlook to OroCRM<a class="headerlink" href="#synchronization-from-outlook-to-orocrm" title="Permalink to this headline">¶</a></h3>
+<img alt="../../_images/oro_from_outlook_diag.png" src="../../_images/oro_from_outlook_diag.png" />
+<p>All the records processed in Outlook since the latest synchronization date and available to the user are
+loaded:</p>
+<ul class="simple">
+<li>If the OroCRM_id field of a record is empty, a new record is created in OroCRM</li>
+<li>If the OroCRM_id field is defined and<ul>
+<li>if this is the first synchronization or resynchronization, the record is deleted</li>
+<li>otherwise, the OroCRM_id is checked against ID values of the records in OroCRM:<ul>
+<li>if a record with the matching ID is found in OroCRM, it is updated with data from Outlook</li>
+<li>if a record with a matching ID is absent in OroCRM, it is deleted from Outlook</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>If</strong></th>
+<th class="head"><strong>Then</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Such record (record with such id) already exists in OroCRM.</td>
+<td>Values of the mapped fields of the Outlook record
+replace corresponding values for the OroCRM record.</td>
+</tr>
+<tr class="row-odd"><td>A record doesn’t yet exist in OroCRM.</td>
+<td>A new record is created in OroCRM.</td>
+</tr>
+<tr class="row-even"><td>You&#8217;ve updated a record in OroCRM.</td>
+<td>Values of the mapped fields of the Outlook record replace corresponding values
+of the OroCRM record.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve updated a record in Outlook.</td>
+<td>Values of the mapped fields of the Outlook record replace corresponding values
+of the OroCRM record.</td>
+</tr>
+<tr class="row-even"><td>You&#8217;ve deleted a record in Outlook.</td>
+<td>The record stay in OroCRM.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve deleted a record in OroCRM.</td>
+<td>The record  are deleted from Outlook.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bidirectional-synchronization">
+<h3>Bidirectional Synchronization<a class="headerlink" href="#bidirectional-synchronization" title="Permalink to this headline">¶</a></h3>
+<p>For Bidirectional synchronization, synchronization from OroCRM to Outlook is performed first and followed by
+synchronization from Outlook to OroCRM.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>If</strong></th>
+<th class="head"><strong>Then</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A record exists in both OroCRM and Outlook.</td>
+<td>Values of the mapped fields of the OroCRM record
+replace corresponding values for the Outlook record.</td>
+</tr>
+<tr class="row-odd"><td>A record doesn’t yet exist in OroCRM.</td>
+<td>A new record is created in OroCRM.</td>
+</tr>
+<tr class="row-even"><td>A record doesn’t yet exist in Outlook.</td>
+<td>A new record is created in Outlook.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve updated a record in OroCRM.</td>
+<td>Values of the mapped fields of the OroCRM record replace corresponding values
+of the Outlook record.</td>
+</tr>
+<tr class="row-even"><td>You&#8217;ve updated a record in Outlook.</td>
+<td>Values of the mapped fields of the Outlook record replace corresponding values
+of the OroCRM record.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve updated a record in the both OroCRM and Outlook.</td>
+<td>Subject to your conflict resolution settings.</td>
+</tr>
+<tr class="row-even"><td>You&#8217;ve deleted a record in Outlook.</td>
+<td>The record stay in OroCRM and are be added to Outlook.</td>
+</tr>
+<tr class="row-odd"><td>You&#8217;ve deleted a record in OroCRM.</td>
+<td>The record are be deleted from Outlook as well.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Integrations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="google_integration_settings.html">Google Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="google_single_sign_on.html">Google Single Sign-On</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ldap_integration.html">LDAP Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mailchimp_configuration.html">Configure MailChimp Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration.html">dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration_settings.html">dotmailer Synchronization Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_configuration.html">Configure dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_single_sign_on.html">Configure Single Sign-on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration_settings.html">MS Exchange Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration.html">Integration with Microsoft Exchange Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_outlook_integration_settings.html">MS Outlook Integration Settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Synchronization with Outlook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embedded_forms.html">Embedded Forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hangouts.html">Voice and Video Calls via Hangouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zendesk_integration.html">Integration with Zendesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commerce_integration.html">CRM and Commerce Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/integrations/outlook_sync.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

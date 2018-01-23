@@ -1,3 +1,5 @@
+.. _dev-customize-features:
+
 Customizing Oro Features
 ------------------------
 
@@ -29,3 +31,11 @@ Customizing Oro Features
    how_to_create_global_js_component
 
    how_to_replace_inline-javascript_with_component
+
+   payment_method_add
+
+   shipping_method_add
+
+   integration
+
+   installer_generate

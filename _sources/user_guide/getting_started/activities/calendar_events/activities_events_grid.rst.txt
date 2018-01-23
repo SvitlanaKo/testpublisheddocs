@@ -4,9 +4,7 @@
 All Calendar Events Grid
 ========================
 
-
 .. image:: /user_guide/img/getting_started/activities/activities_events.png
-
 
 Page Top
 ^^^^^^^^
@@ -15,7 +13,7 @@ On the upper-left of the page, you can see the name of the selected grid view. T
 
 In the upper-right part of the page, you can see the :guilabel:`Create Calendar Event` action button. Click it to make a new calendar entry. See the :ref:`Add a Calendar Event <doc-activities-events-actions-add>` action descriptions.
 
-The other grid controls are common for all grids in the application. See the :ref:`Grids <doc-grids>` guide for more information on grids.
+The other grid controls are common for all grids in the application.
 
 Grid
 ^^^^
@@ -47,9 +45,7 @@ To respond to a calendar event, view, edit, or delete it, click the ellipsis men
 
 To view a calendar event, you can also click the corresponding row itself.
 
-
 .. image:: /user_guide/img/getting_started/activities/activities_events_grid_actions.png
-
 
 See the action descriptions:
 

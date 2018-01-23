@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CLI Commands &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Configuration Extensions" href="configuration_extensions.html" />
+    <link rel="prev" title="Actions" href="actions.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configuration_extensions.html" title="Configuration Extensions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="actions.html" title="Actions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Web Services API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">API Documentation</a> &#187;</li> 
+     <li class="nav-item nav-item-this">CLI Commands</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cli-commands">
+<h1>CLI Commands<a class="headerlink" href="#cli-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="oro-api-cache-clear">
+<h2>oro:api:cache:clear<a class="headerlink" href="#oro-api-cache-clear" title="Permalink to this headline">¶</a></h2>
+<p>This command command clears Data API cache.</p>
+<p>Usually you need to run this command when you add a new entity to <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code> or you add a new processor that changes a list of available through Data API resources.</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">cache</span><span class="o">:</span><span class="nx">clear</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oro-api-doc-cache-clear">
+<h2>oro:api:doc:cache:clear<a class="headerlink" href="#oro-api-doc-cache-clear" title="Permalink to this headline">¶</a></h2>
+<p>This command allows to clear or warm-up API documentation cache.</p>
+<p>If this command is launched without parameters it warm-ups all API documentation caches:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">doc</span><span class="o">:</span><span class="nx">cache</span><span class="o">:</span><span class="nx">clear</span>
+</pre></div>
+</div>
+<p>Also you can use <code class="docutils literal"><span class="pre">--no-warmup</span></code> option if you need to clear the cache, but do not need to warm-up it:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">doc</span><span class="o">:</span><span class="nx">cache</span><span class="o">:</span><span class="nx">clear</span> <span class="o">--</span><span class="nx">no</span><span class="o">-</span><span class="nx">warmup</span>
+</pre></div>
+</div>
+<p>To work only with the specified <a class="reference external" href="https://github.com/nelmio/NelmioApiDocBundle/blob/master/Resources/doc/multiple-api-doc.rst">API documentation views</a> use <code class="docutils literal"><span class="pre">--view</span></code> option:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">doc</span><span class="o">:</span><span class="nx">cache</span><span class="o">:</span><span class="nx">clear</span> <span class="o">--</span><span class="nx">view</span><span class="o">=</span><span class="nx">rest_json_api</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oro-api-dump">
+<h2>oro:api:dump<a class="headerlink" href="#oro-api-dump" title="Permalink to this headline">¶</a></h2>
+<p>This command shows all resources accessible through Data API.</p>
+<p>Run this command without parameters to see all available resources:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">dump</span>
+</pre></div>
+</div>
+<p>or specify the <code class="docutils literal"><span class="pre">request-type</span></code> option if you need to know resources for a particular request type:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">dump</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">rest</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">json_api</span>
+</pre></div>
+</div>
+<p>Also the <code class="docutils literal"><span class="pre">sub-resources</span></code> option can be used to show all available sub-resources:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">dump</span> <span class="o">--</span><span class="nx">sub</span><span class="o">-</span><span class="nx">resources</span>
+</pre></div>
+</div>
+<p>If you are interested in information about a concrete entity, you can specify entity class or entity alias as an argument:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">dump</span> <span class="s2">&quot;Oro\Bundle\UserBundle\Entity\User&quot;</span> <span class="o">--</span><span class="nx">sub</span><span class="o">-</span><span class="nx">resources</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">sub</span><span class="o">-</span><span class="nx">resources</span>
+</pre></div>
+</div>
+<p>In additional you can use this command to get all entities that are not accessible through Data API. Use <code class="docutils literal"><span class="pre">--not-accessible</span></code> option for this:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">dump</span> <span class="o">--</span><span class="k">not</span><span class="o">-</span><span class="nx">accessible</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oro-api-debug">
+<h2>oro:api:debug<a class="headerlink" href="#oro-api-debug" title="Permalink to this headline">¶</a></h2>
+<p>This command shows details about registered Data API actions and processors.</p>
+<p>If you want to know all actions run this command without parameters:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">debug</span>
+</pre></div>
+</div>
+<p>If you want to know which processors are registered for a particular action run this command with the action name as an argument:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">debug</span> <span class="nx">get_list</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">request-type</span></code> option can be used to see the processors which will be executed for a particular request type:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">debug</span> <span class="nx">get_list</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">rest</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">json_api</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oro-api-config-dump">
+<h2>oro:api:config:dump<a class="headerlink" href="#oro-api-config-dump" title="Permalink to this headline">¶</a></h2>
+<p>This command shows configuration for a particular entity.</p>
+<p>Run this command and specify entity class or entity alias as an argument:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="s2">&quot;Oro\Bundle\UserBundle\Entity\User&quot;</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span>
+</pre></div>
+</div>
+<p>If you want to see the configuration that is used for a particular action you can use the <code class="docutils literal"><span class="pre">action</span></code> option (please note that the default value for this option is <code class="docutils literal"><span class="pre">get</span></code>):</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">action</span><span class="o">=</span><span class="nx">update</span>
+</pre></div>
+</div>
+<p>To see the configuration for a particular request type you can use the <code class="docutils literal"><span class="pre">request-type</span></code> option:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">rest</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">json_api</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">section</span></code> option can be used to see a configuration of an entity when it is referenced by another entity:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">addresses</span> <span class="o">--</span><span class="nx">section</span><span class="o">=</span><span class="nx">relations</span>
+</pre></div>
+</div>
+<p>By default no extra configuration data are added into output, but they can be added with the <code class="docutils literal"><span class="pre">--extra</span></code> option. The value for <code class="docutils literal"><span class="pre">extra</span></code> option can be: actions, definition, filters, sorters, descriptions or the full name of a class implements <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/ApiBundle/Config/ConfigExtraInterface.php">ConfigExtraInterface</a>, e.g.</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="nx">filters</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="nx">sorters</span>
+</pre></div>
+</div>
+<p>to see human-readable representation of an entity and its fields</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="nx">descriptions</span>
+</pre></div>
+</div>
+<p>or if a new extra section was added just pass the FQCN of a ConfigExtra</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="s2">&quot;Acme\Bundle\AcmeBundle\Config\AcmeConfigExtra&quot;</span>
+</pre></div>
+</div>
+<p>or it&#8217;s also possible to pass multiple options</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="nx">sorters</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="nx">descriptions</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="nx">filters</span> <span class="o">--</span><span class="nx">extra</span><span class="o">=</span><span class="s2">&quot;Acme\Bundle\AcmeBundle\Config\AcmeConfigExtra&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oro-api-metadata-dump">
+<h2>oro:api:metadata:dump<a class="headerlink" href="#oro-api-metadata-dump" title="Permalink to this headline">¶</a></h2>
+<p>This command shows metadata for a particular entity.</p>
+<p>To see metadata run this command and specify entity class or entity alias as an argument:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">metadata</span><span class="o">:</span><span class="nx">dump</span> <span class="s2">&quot;Oro\Bundle\UserBundle\Entity\User&quot;</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">metadata</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span>
+</pre></div>
+</div>
+<p>If you want to see entity metadata that is used for a particular action you can use the <code class="docutils literal"><span class="pre">action</span></code> option (please note that the default value for this option is <code class="docutils literal"><span class="pre">get</span></code>):</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">metadata</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">action</span><span class="o">=</span><span class="nx">update</span>
+</pre></div>
+</div>
+<p>If you want to see entity metadata that is used for a particular request type you can use the <code class="docutils literal"><span class="pre">request-type</span></code> option:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">metadata</span><span class="o">:</span><span class="nx">dump</span> <span class="nx">users</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">rest</span> <span class="o">--</span><span class="nx">request</span><span class="o">-</span><span class="nx">type</span><span class="o">=</span><span class="nx">json_api</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oro-api-config-dump-reference">
+<h2>oro:api:config:dump-reference<a class="headerlink" href="#oro-api-config-dump-reference" title="Permalink to this headline">¶</a></h2>
+<p>This command shows the structure of <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code>.</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span><span class="o">-</span><span class="nx">reference</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extend_and_customize/index.html">Customizing Oro Features</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Web Services API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../_sources/dev_guide/web_api/api_docs/commands.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

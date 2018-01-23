@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configure Message Queue with RabbitMQ for Production &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Web Server Performance Optimization" href="../../optimize_server_compression_and_caching.html" />
+    <link rel="prev" title="RabbitMQ Transport (via AmqpOroMessageQueue Bundle)" href="rabbit_mq.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../optimize_server_compression_and_caching.html" title="Web Server Performance Optimization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rabbit_mq.html" title="RabbitMQ Transport (via AmqpOroMessageQueue Bundle)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Administrator Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Operational Structure</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Message Queue</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configure Message Queue with RabbitMQ for Production</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configure-message-queue-with-rabbitmq-for-production">
+<h1>Configure Message Queue with RabbitMQ for Production<a class="headerlink" href="#configure-message-queue-with-rabbitmq-for-production" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>RabbitMQ, and messaging in general, uses some jargon:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><strong>Producer</strong> is an application that sends messages.</li>
+<li><strong>Queue</strong> is a buffer that stores messages.</li>
+<li><strong>Consumer</strong> is an application that receives messages.</li>
+<li><strong>Exchange</strong> is a component that receives messages from <strong>producers</strong> and pushes them to <strong>queues</strong>. Available <strong>exchange</strong> types are: <cite>direct</cite>, <cite>topic</cite>, <cite>headers</cite> and <cite>fanout</cite>.</li>
+<li><strong>Bindings</strong> is a routing between the <strong>exchange</strong> and the <strong>queue</strong>. Whenever the <strong>queue</strong> has to get the messages from this <strong>exchange</strong>, they should be bound.</li>
+</ul>
+</div></blockquote>
+</div>
+<p>In <cite>AmqpMessageQueueBundle</cite>, by default, the <strong>producer</strong> send messages to the <cite>oro.default</cite> exchange of the <cite>fanout</cite> type and pushes them to the <cite>oro.default</cite> <strong>queue</strong>.
+Every message contains a routing key &#8211; the <cite>topic_name</cite> of the message processor. Read more about <a class="reference internal" href="mq_bundle.html#op-structure-mq"><span class="std std-ref">message processors and topics</span></a>.</p>
+</div>
+<div class="section" id="configure-rabbitmq-exchanges-routing-and-bindings">
+<h2>Configure RabbitMQ Exchanges, Routing and Bindings<a class="headerlink" href="#configure-rabbitmq-exchanges-routing-and-bindings" title="Permalink to this headline">¶</a></h2>
+<p>To configure RabbitMQ exchanges and queues, create a simple bash script for queue declaration and binding:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="c1">#!/bin/bash</span>
+
+<span class="c1"># function for declaring queue and bind it to exchange</span>
+<span class="k">function</span> <span class="nf">declareQueue</span> <span class="p">{</span>
+   <span class="nx">queue_name</span><span class="o">=</span><span class="err">$</span><span class="mi">1</span>
+   <span class="nx">queue_route_key</span><span class="o">=</span><span class="err">$</span><span class="mi">2</span>
+   <span class="nx">source</span><span class="o">=</span><span class="err">$</span><span class="mi">3</span>
+
+   <span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">declare</span> <span class="nx">queue</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span> <span class="nx">name</span><span class="o">=</span><span class="nv">$queue_name</span> <span class="nx">durable</span><span class="o">=</span><span class="k">true</span> <span class="nx">arguments</span><span class="o">=</span><span class="s1">&#39;{&quot;x-max-priority&quot;: 4}&#39;</span>
+   <span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">declare</span> <span class="nx">binding</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span> <span class="nx">source</span><span class="o">=</span><span class="nv">$source</span> <span class="nx">destination</span><span class="o">=</span><span class="nv">$queue_name</span> <span class="nx">destination_type</span><span class="o">=</span><span class="nx">queue</span> <span class="nx">routing_key</span><span class="o">=</span><span class="nv">$queue_route_key</span>
+<span class="p">}</span>
+
+<span class="c1"># configuration</span>
+<span class="nx">HOST</span><span class="o">=</span><span class="s2">&quot;197.0.13.17&quot;</span>
+<span class="nx">VHOST</span><span class="o">=</span><span class="s2">&quot;/&quot;</span>
+<span class="nx">USER</span><span class="o">=</span><span class="s2">&quot;guest&quot;</span>
+<span class="nx">PASSWORD</span><span class="o">=</span><span class="s2">&quot;guest&quot;</span>
+<span class="nx">DEFAULT_EXCHANGE</span><span class="o">=</span><span class="s1">&#39;oro.default&#39;</span>
+
+<span class="c1"># download rabbitmq admin script from server_host</span>
+<span class="nx">wget</span> <span class="s2">&quot;http://server_host:15672/cli/rabbitmqadmin&quot;</span>
+
+<span class="c1"># delete if exist &quot;oro.default&quot; exchange and redeclare it with type &quot;topic&quot;</span>
+<span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="nx">delete</span> <span class="nx">exchange</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;oro.default&quot;</span>
+<span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">declare</span> <span class="nx">exchange</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;oro.default&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;topic&quot;</span> <span class="nx">durable</span><span class="o">=</span><span class="k">true</span>
+
+<span class="c1"># declare &quot;oro.alternate&quot; exchange with type &quot;fanout&quot;</span>
+<span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">declare</span> <span class="nx">exchange</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;oro.alternate&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;fanout&quot;</span> <span class="nx">durable</span><span class="o">=</span><span class="k">true</span>
+<span class="c1"># declare &quot;oro.default&quot; queue if it does not exist and bind it to &quot;oro.alternate&quot; exchange</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.default&quot;</span> <span class="s2">&quot;&quot;</span> <span class="s2">&quot;oro.alternate&quot;</span>
+<span class="c1"># set policy to &quot;oro.default&quot; exchange to use &quot;oro.alternate&quot; exchange as a alternate exchange</span>
+<span class="nx">rabbitmqctl</span> <span class="nx">set_policy</span> <span class="nx">AE</span> <span class="s2">&quot;^oro.default$&quot;</span> <span class="s1">&#39;{&quot;alternate-exchange&quot;:&quot;oro.alternate&quot;}&#39;</span>
+
+<span class="c1"># declare below queues with routing mask and bind them to &quot;oro.default&quot; exchange</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.service_jobs&quot;</span> <span class="s2">&quot;oro.message_queue.job.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.cron&quot;</span> <span class="s2">&quot;oro.cron.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.data_audit&quot;</span> <span class="s2">&quot;oro.data_audit.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.search&quot;</span> <span class="s2">&quot;oro.search.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.search&quot;</span> <span class="s2">&quot;oro.website.search.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.redirect&quot;</span> <span class="s2">&quot;oro.redirect.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.pricing&quot;</span> <span class="s2">&quot;oro_pricing.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.image_resize&quot;</span> <span class="s2">&quot;imageResize&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+<span class="nx">declareQueue</span> <span class="s2">&quot;oro.email&quot;</span> <span class="s2">&quot;oro.email.#&quot;</span> <span class="nv">$DEFAULT_EXCHANGE</span>
+
+<span class="c1"># show list of declared exchanges, declared queues and bindings</span>
+<span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">list</span> <span class="nx">exchanges</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span>
+<span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">list</span> <span class="nx">queues</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span>
+<span class="nx">python</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span> <span class="k">list</span> <span class="nx">bindings</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$HOST</span> <span class="o">--</span><span class="nx">user</span><span class="o">=</span><span class="nv">$USER</span> <span class="o">--</span><span class="nx">password</span><span class="o">=</span><span class="nv">$PASSWORD</span> <span class="o">--</span><span class="nx">vhost</span><span class="o">=</span><span class="nv">$VHOST</span>
+
+<span class="c1"># remove rabbitmq admin script</span>
+<span class="nx">rm</span> <span class="o">./</span><span class="nx">rabbitmqadmin</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: <cite>rabbitmqctl</cite> requires <strong>root</strong> permissions, so make sure you run script as a <strong>root</strong> user.</p>
+<p>The <cite>oro.default</cite> and <cite>oro.alternate</cite> <strong>exchanges</strong> are now declared with a predefined routing and the necessary queues are declared.</p>
+<p>Exchange bindings example:</p>
+<img alt="../../../_images/bindings.png" src="../../../_images/bindings.png" />
+<p>Declared queues example:</p>
+<img alt="../../../_images/queues.png" src="../../../_images/queues.png" />
+<p><cite>Alternate</cite> <strong>exchange</strong> is bound to the <cite>oro.default</cite> <strong>queue</strong>. When a message route key does not match any regular expression it is send to the <cite>oro.alternate</cite> exchange and pushed to the <cite>oro.default</cite> queue.</p>
+<p>Alternate example:</p>
+<img alt="../../../_images/alternate.png" src="../../../_images/alternate.png" />
+</div>
+<div class="section" id="configure-systemd-to-consume-messages-from-different-queues">
+<h2>Configure systemd to Consume Messages from Different Queues<a class="headerlink" href="#configure-systemd-to-consume-messages-from-different-queues" title="Permalink to this headline">¶</a></h2>
+<p>Create a template unit file to allow systemd to address multiple units from a single configuration file.
+For example, name it <cite>oro-message-queue&#64;.service</cite> and put it into <cite>/lib/systemd/system/</cite> folder.</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="c1"># /lib/systemd/system/oro-message-queue@.service</span>
+
+<span class="p">[</span><span class="nx">Unit</span><span class="p">]</span>
+<span class="nx">Description</span><span class="o">=</span><span class="nx">ORO</span> <span class="nx">AMQP</span> <span class="nx">consumer</span> <span class="nx">oro</span><span class="o">.%</span><span class="nx">i</span>
+<span class="nx">After</span><span class="o">=</span><span class="nx">rabbitmq</span><span class="o">-</span><span class="nx">server</span><span class="o">.</span><span class="nx">target</span>
+
+<span class="p">[</span><span class="nx">Service</span><span class="p">]</span>
+<span class="nx">Type</span><span class="o">=</span><span class="nx">simple</span>
+<span class="nx">User</span><span class="o">=</span><span class="nx">www</span><span class="o">-</span><span class="nx">data</span>
+<span class="nx">WorkingDirectory</span><span class="o">=/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">the</span><span class="o">/</span><span class="nx">project</span>
+<span class="nx">ExecStart</span><span class="o">=/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span> <span class="o">-</span><span class="nx">c</span> <span class="s1">&#39;\</span>
+<span class="s1">   QUEUE=$(echo %i | sed &quot;s/:.*//g&quot;) &amp;&amp; \</span>
+<span class="s1">   exec app/console --env=prod --no-debug oro:message-queue:transport:consume oro.$QUEUE oro_message_queue.client.delegate_message_processor --time-limit=&quot;now + 15minutes&quot; -vv&#39;</span>
+<span class="nx">Restart</span><span class="o">=</span><span class="nx">always</span>
+<span class="nx">RestartSec</span><span class="o">=</span><span class="mi">3</span><span class="nx">s</span>
+
+<span class="p">[</span><span class="nx">Install</span><span class="p">]</span>
+<span class="nx">WantedBy</span><span class="o">=</span><span class="nx">multi</span><span class="o">-</span><span class="nx">user</span><span class="o">.</span><span class="nx">target</span>
+</pre></div>
+</div>
+<p>Next, hook the specified unit into relevant places.</p>
+<p>To start a service during the system boot, use the enable command:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">systemctl</span> <span class="nx">enable</span> <span class="nx">oro</span><span class="o">-</span><span class="nx">message</span><span class="o">-</span><span class="nx">queue</span><span class="o">@</span>
+</pre></div>
+</div>
+<p>This creates a symbolic link from the system&#8217;s copy of the service file (usually, it is located in the /lib/systemd/system or /etc/systemd/system directory).</p>
+<p>Prepare the service to consume selected queue by starting oro-message-queue with a queue name provided after <cite>&#64;</cite> symbol.</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">systemctl</span> <span class="nx">start</span> <span class="nx">oro</span><span class="o">-</span><span class="nx">message</span><span class="o">-</span><span class="nx">queue</span><span class="o">@</span><span class="k">default</span>
+<span class="nx">sudo</span> <span class="nx">systemctl</span> <span class="nx">start</span> <span class="nx">oro</span><span class="o">-</span><span class="nx">message</span><span class="o">-</span><span class="nx">queue</span><span class="o">@</span><span class="nx">cron</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>To start more than one consumer for the selected queue, use the <cite>queue_name:{1..num_of_process}</cite> mask.</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">systemctl</span> <span class="nx">start</span> <span class="nx">oro</span><span class="o">-</span><span class="nx">message</span><span class="o">-</span><span class="nx">queue</span><span class="o">@</span><span class="nx">search</span><span class="o">:</span><span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="mi">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Consumer processes example:</p>
+<img alt="../../../_images/processes.png" src="../../../_images/processes.png" />
+</div>
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>To see the list of all of the active units registered with the systemd, use the list-units command:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">systemctl</span> <span class="k">list</span><span class="o">-</span><span class="nx">units</span> <span class="o">--</span><span class="nx">type</span><span class="o">=</span><span class="nx">service</span> <span class="o">|</span> <span class="nx">grep</span> <span class="nx">oro</span><span class="o">-</span><span class="nx">message</span><span class="o">-</span><span class="nx">queue</span>
+</pre></div>
+</div>
+<p>Use the following command to retrieve the selected consumer unit output:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">journalctl</span> <span class="o">-</span><span class="nx">f</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">oro</span><span class="o">-</span><span class="nx">message</span><span class="o">-</span><span class="nx">queue</span><span class="o">@</span><span class="nx">search</span><span class="o">:</span><span class="mf">3.</span><span class="nx">service</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Operational Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../search_index/index.html">Search Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/index.html">DataBase System Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cache.html">Cache in Oro Application</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Message Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_server_compression_and_caching.html">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jobs.html">Job Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cron.html">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../_sources/admin_guide/op_structure/mq/rabbit_mq_in_production.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Payment Actions &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Payment Integration Details For PayPal Payment Methods" href="paypal_payment_integration_details.html" />
+    <link rel="prev" title="PayPal Payflow Gateway / PayPal Payment Pro Payment Methods Integration" href="paypal_payflow_gateway.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="paypal_payment_integration_details.html" title="Payment Integration Details For PayPal Payment Methods"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="paypal_payflow_gateway.html" title="PayPal Payflow Gateway / PayPal Payment Pro Payment Methods Integration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Payment Configuration</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../payment_method_integrations.html" >Payment Method Integration</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="index.html" accesskey="U">Payment Methods</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Payment Actions</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="payment-actions">
+<span id="user-guide-payment-configuration-payment-method-integration-payment-actions"></span><h1>Payment Actions<a class="headerlink" href="#payment-actions" title="Permalink to this headline">¶</a></h1>
+<p>Payment action parameters are configured per payment method. Available options are similar for all payment methods and include the following options:</p>
+<ul class="simple">
+<li>Authorize</li>
+<li>Authorize and Charge</li>
+</ul>
+<p>In <strong>Payment Action</strong>, you select the strategy for the payment processing on the checkout.</p>
+<p><strong>Payment Transactions for Authorize</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When the <strong>Authorize</strong> payment action is configured in PayPal integration settings, the buyer is never charged immediately after they submit the order.</p>
+</div>
+<p>After the buyer enters their card details, their payment information is validated.</p>
+<p>If <strong>Zero Amount Authorization</strong> is enabled in the PayPal integration settings, the payment may be initially authorized with <a class="reference external" href="https://developer.paypal.com/docs/classic/payflow/integration-guide/?mark=Zero%20Amount%20Authorization#submitting-account-verifications">zero amount transaction (account verification)</a>.</p>
+<p>If <strong>Zero Amount Authorization</strong> is disabled in the PayPal integration settings, the card details are stored locally in the buyer&#8217;s browser until they are used in further transactions for this order or until the buyer leaves the checkout pages (navigate from the page, closed it or cancel the checkout).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>OroCommerce server never stores buyer&#8217;s sensitive payment information (complete card number, expiration date, and cvv code).</p>
+<p class="last">Transaction response from the payment gateway also does not contain sensitive information about buyer&#8217;s card. It serves as an identifier of the initial authorization that is solely handled by the payment gateway.</p>
+</div>
+<p>After the buyer submits the order on the Order Review step, the total purchase amount may be put on hold (temporarily blocked) on their account to guarantee that they have enough funds to finalize the purchase.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If <strong>Zero Amount Authorization</strong> is enabled and <strong>Authorization for Required Amount</strong> is disabled in PayPal integration settings, the total purchase amount will NOT be blocked in the buyer&#8217;s account.</p>
+</div>
+<p><strong>Payment Transactions for Authorize and Charge</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When the <strong>Authorize and Charge</strong> payment action is configured in PayPal integration settings, the buyer is charged immediately after they submit the order.</p>
+</div>
+<p>After the buyer enters their card details, their payment information is validated.</p>
+<p>If <strong>Zero Amount Authorization</strong> is enabled in the PayPal integration settings, the payment may be initially authorized with zero amount transaction.</p>
+<p>If <strong>Zero Amount Authorization</strong> is disabled in the PayPal integration settings, the card details are stored locally in the buyer&#8217;s browser and are used in further transactions for this order.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>OroCommerce server never stores buyer&#8217;s payment information (complete card number, expiration date, and cvv code).</p>
+<p class="last">Transaction response from the payment gateway does not contain any information about buyer&#8217;s card. It serves as an identifier of the initial authorization that is solely handled by the payment gateway.</p>
+</div>
+<p>After the buyer submits the order on the Order Review step, the total purchase amount is captured from their account. This is executed as another transaction.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Payment Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../payment_configuration.html">System Configuration: Merchant Location</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../payment_method_integrations.html">Payment Method Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../payment_rules.html">Payment Rules Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../_sources/configuration_guide/payment/payment_methods/paypal_payment_actions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

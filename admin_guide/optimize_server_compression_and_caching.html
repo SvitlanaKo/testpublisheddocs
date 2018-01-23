@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Web Server Performance Optimization &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to Configure Price List Sharding" href="price_list_sharding.html" />
+    <link rel="prev" title="Configure Message Queue with RabbitMQ for Production" href="op_structure/mq/rabbit_mq_in_production.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="price_list_sharding.html" title="How to Configure Price List Sharding"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="op_structure/mq/rabbit_mq_in_production.html" title="Configure Message Queue with RabbitMQ for Production"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Administrator Guide</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Web Server Performance Optimization</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="web-server-performance-optimization">
+<span id="admin-web-server-performance"></span><h1>Web Server Performance Optimization<a class="headerlink" href="#web-server-performance-optimization" title="Permalink to this headline">¶</a></h1>
+<p>You can improve your website performance by turning on compression and caching.
+This is configured on your web server.</p>
+<div class="section" id="for-nginx">
+<h2>For nginx<a class="headerlink" href="#for-nginx" title="Permalink to this headline">¶</a></h2>
+<p>To enable <code class="docutils literal"><span class="pre">gzip</span></code> compression, add the following into your <code class="docutils literal"><span class="pre">nginx.conf</span></code> or website configuration file:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">gzip</span> <span class="nx">on</span><span class="p">;</span>
+<span class="nx">gzip_buffers</span> <span class="mi">16</span> <span class="mi">8</span><span class="nx">k</span><span class="p">;</span>
+<span class="nx">gzip_comp_level</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">gzip_disable</span> <span class="s2">&quot;msie6&quot;</span><span class="p">;</span>
+<span class="nx">gzip_min_length</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="nx">gzip_http_version</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="nx">gzip_proxied</span> <span class="nx">any</span><span class="p">;</span>
+<span class="nx">gzip_types</span> <span class="nx">text</span><span class="o">/</span><span class="nx">plain</span> <span class="nx">application</span><span class="o">/</span><span class="nx">javascript</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">javascript</span> <span class="nx">text</span><span class="o">/</span><span class="nx">javascript</span> <span class="nx">text</span><span class="o">/</span><span class="nx">xml</span> <span class="nx">text</span><span class="o">/</span><span class="nx">css</span> <span class="nx">image</span><span class="o">/</span><span class="nx">svg</span><span class="o">+</span><span class="nx">xml</span><span class="p">;</span>
+<span class="nx">gzip_vary</span> <span class="nx">on</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><em>Nginx.conf</em> is usually located at <code class="docutils literal"><span class="pre">/etc/nginx/nginx.conf</span></code>.</p>
+</div>
+<p>To install <code class="docutils literal"><span class="pre">pagespeed_mod</span></code> for nginx, use the <a class="reference external" href="https://modpagespeed.com/doc/build_ngx_pagespeed_from_source">build ngx pagespeed from source</a> guidance.
+To enable <code class="docutils literal"><span class="pre">HTML</span> <span class="pre">compression</span></code>, add the following lines into your <code class="docutils literal"><span class="pre">nginx.conf</span></code> or website configuration file in sections <code class="docutils literal"><span class="pre">server</span></code> or <code class="docutils literal"><span class="pre">http</span></code>:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">pagespeed</span> <span class="nx">on</span><span class="p">;</span>
+<span class="nx">pagespeed</span> <span class="nx">FileCachePath</span> <span class="s2">&quot;/var/cache/ngx_pagespeed&quot;</span><span class="p">;</span>
+<span class="nx">pagespeed</span> <span class="nx">EnableFilters</span> <span class="nx">collapse_whitespace</span><span class="p">;</span>
+<span class="nx">pagespeed</span> <span class="nx">Disallow</span> <span class="s2">&quot;*.svg*&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><em>Nginx.conf</em> is usually located at <code class="docutils literal"><span class="pre">/etc/nginx/nginx.conf</span></code>.</p>
+</div>
+<p>To enable caching, insert the following in the server section of your website configuration file:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">server</span> <span class="p">{</span>
+     <span class="c1"># One week for javascript and css</span>
+     <span class="nx">location</span> <span class="o">~*</span> <span class="nx">\</span><span class="o">.</span><span class="p">(</span><span class="o">?:</span><span class="nx">css</span><span class="o">|</span><span class="nx">js</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">expires</span> <span class="mi">1</span><span class="nx">w</span><span class="p">;</span>
+       <span class="nx">access_log</span> <span class="nx">off</span><span class="p">;</span>
+       <span class="nx">add_header</span> <span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span> <span class="k">public</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="c1"># Three weeks for media: images, fonts, icons, video, audio etc.</span>
+     <span class="nx">location</span> <span class="o">~*</span> <span class="nx">\</span><span class="o">.</span><span class="p">(</span><span class="o">?:</span><span class="nx">jpg</span><span class="o">|</span><span class="nx">jpeg</span><span class="o">|</span><span class="nx">gif</span><span class="o">|</span><span class="nx">png</span><span class="o">|</span><span class="nx">ico</span><span class="o">|</span><span class="nx">tiff</span><span class="o">|</span><span class="nx">woff</span><span class="o">|</span><span class="nx">eot</span><span class="o">|</span><span class="nx">ttf</span><span class="o">|</span><span class="nx">svg</span><span class="o">|</span><span class="nx">svgz</span><span class="o">|</span><span class="nx">mp4</span><span class="o">|</span><span class="nx">ogg</span><span class="o">|</span><span class="nx">ogv</span><span class="o">|</span><span class="nx">webm</span><span class="o">|</span><span class="nx">swf</span><span class="o">|</span><span class="nx">flv</span><span class="p">)</span><span class="err">$</span> <span class="p">{</span>
+       <span class="nx">expires</span> <span class="mi">3</span><span class="nx">w</span><span class="p">;</span>
+       <span class="nx">access_log</span> <span class="nx">off</span><span class="p">;</span>
+       <span class="nx">add_header</span> <span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span> <span class="k">public</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="for-apache">
+<h2>For Apache<a class="headerlink" href="#for-apache" title="Permalink to this headline">¶</a></h2>
+<p>If you are using Apache as your web server, you already have the necessary configuration in the <code class="docutils literal"><span class="pre">web/.htaccess</span></code> file.</p>
+<p>However, this configuration rely on the <code class="docutils literal"><span class="pre">mod_deflate</span></code> and <code class="docutils literal"><span class="pre">mod_headers</span></code> modules that are needed for the compression and caching to work.</p>
+<p>Ensure these modules are enabled in Apache configuration:</p>
+<ol class="arabic">
+<li><p class="first">To enable compression, ensure that <code class="docutils literal"><span class="pre">mod_deflate</span></code> module is loaded in your Apache config file as illustrated below:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">LoadModule</span> <span class="nx">deflate_module</span> <span class="nx">libexec</span><span class="o">/</span><span class="nx">apache2</span><span class="o">/</span><span class="nx">mod_deflate</span><span class="o">.</span><span class="nx">so</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Apache configuration is usually located at <code class="docutils literal"><span class="pre">/etc/apache2/httpd.conf</span></code>.</p>
+</div>
+<p>The out of the box configuration for the compression in the <code class="docutils literal"><span class="pre">.htaccess</span></code> file is following:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">IfModule</span> <span class="nx">mod_deflate</span><span class="o">.</span><span class="nx">c</span><span class="o">&gt;</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span> <span class="nx">text</span><span class="o">/</span><span class="nx">plain</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">text</span><span class="o">/</span><span class="nx">css</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">text</span><span class="o">/</span><span class="nx">javascript</span> <span class="nx">application</span><span class="o">/</span><span class="nx">javascript</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">javascript</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">text</span><span class="o">/</span><span class="nx">xml</span> <span class="nx">application</span><span class="o">/</span><span class="nx">xml</span> <span class="nx">application</span><span class="o">/</span><span class="nx">xhtml</span><span class="o">+</span><span class="nx">xml</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">image</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">icon</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">image</span><span class="o">/</span><span class="nx">svg</span><span class="o">+</span><span class="nx">xml</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">application</span><span class="o">/</span><span class="nx">rss</span><span class="o">+</span><span class="nx">xml</span>
+
+    <span class="nx">AddOutputFilterByType</span> <span class="nx">DEFLATE</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">font</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">font</span><span class="o">-</span><span class="nx">truetype</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">font</span><span class="o">-</span><span class="nx">ttf</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">font</span><span class="o">-</span><span class="nx">otf</span> <span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">font</span><span class="o">-</span><span class="nx">opentype</span> <span class="nx">application</span><span class="o">/</span><span class="nx">vnd</span><span class="o">.</span><span class="nx">ms</span><span class="o">-</span><span class="nx">fontobject</span> <span class="nx">font</span><span class="o">/</span><span class="nx">ttf</span> <span class="nx">font</span><span class="o">/</span><span class="nx">otf</span> <span class="nx">font</span><span class="o">/</span><span class="nx">opentype</span>
+
+    <span class="nx">BrowserMatch</span> <span class="nx">\bMSIE</span> <span class="o">!</span><span class="nx">no</span><span class="o">-</span><span class="nx">gzip</span> <span class="o">!</span><span class="nx">gzip</span><span class="o">-</span><span class="nx">only</span><span class="o">-</span><span class="nx">text</span><span class="o">/</span><span class="nx">html</span>
+
+<span class="o">&lt;/</span><span class="nx">IfModule</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To enable caching, ensure that <code class="docutils literal"><span class="pre">mod_headers</span></code> is loaded in your Apache config file as shown below:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">LoadModule</span> <span class="nx">headers_module</span> <span class="nx">libexec</span><span class="o">/</span><span class="nx">apache2</span><span class="o">/</span><span class="nx">mod_headers</span><span class="o">.</span><span class="nx">so</span>
+</pre></div>
+</div>
+<p>The out of the box configuration for caching in the <code class="docutils literal"><span class="pre">.htaccess</span></code> file is following:</p>
+<div class="code xml highlight-php"><div class="highlight"><pre><span></span>  <span class="o">&lt;</span><span class="nx">IfModule</span> <span class="nx">mod_headers</span><span class="o">.</span><span class="nx">c</span><span class="o">&gt;</span>
+
+<span class="c1"># One week for css and js</span>
+
+      <span class="o">&lt;</span><span class="nx">filesMatch</span> <span class="s2">&quot;.(css|js)$&quot;</span><span class="o">&gt;</span>
+
+          <span class="nx">Header</span> <span class="nx">set</span> <span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span> <span class="s2">&quot;max-age=604800, public&quot;</span>
+
+      <span class="o">&lt;/</span><span class="nx">filesMatch</span><span class="o">&gt;</span>
+
+
+
+      <span class="c1"># Three weeks for images, fonts, icons, video, audio etc.</span>
+
+<span class="o">&lt;</span><span class="nx">filesMatch</span> <span class="s2">&quot;.(jpg|jpeg|gif|png|ico|tiff|woff|eot|ttf|svg|svgz|mp4|ogg|ogv|webm|swf|flv)$&quot;</span><span class="o">&gt;</span>
+
+          <span class="nx">Header</span> <span class="nx">set</span> <span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span> <span class="s2">&quot;max-age=1814400, public&quot;</span>
+
+<span class="o">&lt;/</span><span class="nx">filesMatch</span><span class="o">&gt;</span>
+
+  <span class="o">&lt;/</span><span class="nx">IfModule</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To install <code class="docutils literal"><span class="pre">Pagespeed</span></code> module for Apache, follow the guidance on <a class="reference external" href="https://modpagespeed.com/doc/download">installing from Apache-only packages</a>
+To enable <code class="docutils literal"><span class="pre">HTML</span> <span class="pre">compression</span></code>, ensure that these lines are uncommetned in <code class="docutils literal"><span class="pre">pagespeed.conf</span></code>:</p>
+<div class="code highlight-php"><div class="highlight"><pre><span></span><span class="nx">ModPagespeed</span> <span class="nx">On</span>
+<span class="nx">ModPagespeedFileCachePath</span> <span class="s2">&quot;/var/cache/mod_pagespeed/&quot;</span>
+<span class="nx">ModPagespeedEnableFilters</span> <span class="nx">collapse_whitespace</span>
+<span class="nx">AddOutputFilterByType</span> <span class="nx">MOD_PAGESPEED_OUTPUT_FILTER</span> <span class="nx">text</span><span class="o">/</span><span class="nx">html</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="op_structure/index.html">Operational Structure</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Job Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cron.html">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../_sources/admin_guide/optimize_server_compression_and_caching.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

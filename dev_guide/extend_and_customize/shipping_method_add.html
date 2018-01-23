@@ -1,0 +1,2608 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Add a New Shipping Method &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to Create an Integration" href="integration.html" />
+    <link rel="prev" title="Add a New Payment Method" href="payment_method_add.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="integration.html" title="How to Create an Integration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="payment_method_add.html" title="Add a New Payment Method"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Customizing Oro Features</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Add a New Shipping Method</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="add-a-new-shipping-method">
+<h1>Add a New Shipping Method<a class="headerlink" href="#add-a-new-shipping-method" title="Permalink to this headline">¶</a></h1>
+<p>This topic describes how to add a custom shipping method for your OroCommerce-based store.</p>
+<p>It is recommended to manage shipping methods through integrations. Therefore, to create a new shipping method:</p>
+<ul class="simple">
+<li>Implement an integration for the shipping method</li>
+<li>Implement the shipping method itself</li>
+</ul>
+<p>Usually, a shipping method has several services to provide a flexible choice of price and delivery time. As an example, we will implement the &#8220;Fast Shipping&#8221; method &#8212; a simple method that requires just the minimum set of options to operate. It will have two services (types): &#8220;With present&#8221; and &#8220;Without present&#8221;. Thus, at the end of the topic, you will have the understanding of what steps are necessary to add a workable shipment method and the basic template that you can further extend when the need arises.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#create-a-bundle" id="id2">Create a Bundle</a></li>
+<li><a class="reference internal" href="#create-a-shipping-integration" id="id3">Create a Shipping Integration</a><ul>
+<li><a class="reference internal" href="#create-an-entity-to-store-the-shipping-method-settings" id="id4">Create an Entity to Store the Shipping Method Settings</a></li>
+<li><a class="reference internal" href="#create-a-user-interface-form-for-the-shipping-method-integration" id="id5">Create a User Interface Form for the Shipping Method Integration</a></li>
+<li><a class="reference internal" href="#add-translations-for-the-form-texts" id="id6">Add Translations for the Form Texts</a></li>
+<li><a class="reference internal" href="#create-the-integration-channel-type" id="id7">Create the Integration Channel Type</a></li>
+<li><a class="reference internal" href="#add-an-icon-for-the-integration" id="id8">Add an Icon for the Integration</a></li>
+<li><a class="reference internal" href="#create-the-integration-transport" id="id9">Create the Integration Transport</a></li>
+<li><a class="reference internal" href="#create-a-configuration-file-for-the-service-container" id="id10">Create a Configuration File for the Service Container</a></li>
+<li><a class="reference internal" href="#add-the-channel-type-and-transport-to-the-services-container" id="id11">Add the Channel Type and Transport to the Services Container</a></li>
+<li><a class="reference internal" href="#set-up-services-with-dependencyinjection" id="id12">Set up Services with DependencyInjection</a></li>
+<li><a class="reference internal" href="#add-translations-for-the-channel-type-and-transport" id="id13">Add Translations for the Channel Type and Transport</a></li>
+<li><a class="reference internal" href="#add-an-installer" id="id14">Add an Installer</a></li>
+<li><a class="reference internal" href="#check-that-the-integration-is-created-successfully" id="id15">Check That the Integration is Created Successfully</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-a-shipping-method" id="id16">Implement a Shipping Method</a><ul>
+<li><a class="reference internal" href="#implement-the-main-method" id="id17">Implement the Main Method</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-identifier-generator-to-the-services-container" id="id18">Add the Shipping Method Identifier Generator to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-factory-for-the-shipping-method" id="id19">Create a Factory for the Shipping Method</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-factory-to-the-services-container" id="id20">Add the Shipping Method Factory to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-shipping-method-provider" id="id21">Create a Shipping Method Provider</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-provider-to-the-services-container" id="id22">Add the Shipping Method Provider to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-shipping-method-type" id="id23">Create a Shipping Method Type</a></li>
+<li><a class="reference internal" href="#define-translation-for-the-shipping-method-type" id="id24">Define Translation for the Shipping Method Type</a></li>
+<li><a class="reference internal" href="#create-a-shipping-method-options-form" id="id25">Create a Shipping Method Options Form</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-options-form-to-the-services-container" id="id26">Add the Shipping Method Options Form to the Services Container</a></li>
+<li><a class="reference internal" href="#define-translation-for-the-shipping-method-form-options" id="id27">Define Translation for the Shipping Method Form Options</a></li>
+<li><a class="reference internal" href="#add-a-template" id="id28">Add a Template</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#add-a-check-for-when-users-disable-used-shipping-method-types" id="id29">Add a Check for When Users Disable Used Shipping Method Types</a><ul>
+<li><a class="reference internal" href="#add-event-listeners-to-the-system-container" id="id30">Add Event Listeners to the System Container</a></li>
+<li><a class="reference internal" href="#add-actions" id="id31">Add Actions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="create-a-bundle">
+<h2><a class="toc-backref" href="#id2">Create a Bundle</a><a class="headerlink" href="#create-a-bundle" title="Permalink to this headline">¶</a></h2>
+<p>First, create and enable the FastShippingBundle bundle for your shipping method as described in the <a class="reference internal" href="how_to_create_new_bundle.html#how-to-create-new-bundle"><span class="std std-ref">How to create a new bundle</span></a> topic:</p>
+<ol class="arabic simple">
+<li>In the /src/ACME/Bundle/FastShippingBundle/ directory of your application, create class ACMEFastShippingBundle.php:</li>
+</ol>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="o">&lt;?</span><span class="nx">php</span>
+
+ <span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle</span><span class="p">;</span>
+
+ <span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\DependencyInjection\FastShippingExtension</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\HttpKernel\Bundle\Bundle</span><span class="p">;</span>
+
+ <span class="k">class</span> <span class="nc">ACMEFastShippingBundle</span> <span class="k">extends</span> <span class="nx">Bundle</span>
+ <span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getContainerExtension</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">extension</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FastShippingExtension</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">extension</span><span class="p">;</span>
+    <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The body of your class can be empty if you use regular case in the name of your organization (i.e. Acme or ACME in our example). <code class="docutils literal"><span class="pre">getExtension()</span></code> is necessary when you use uppercase, as Symfony treats uppercase letters in the organization prefix as separate words when creating aliases.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p class="first">To enable the bundle, create Resources/config/oro/bundles.yml in the same directory, with the following content:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># src/ACME/Bundle/FastShippingBundle/Resources/config/oro/bundles.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">bundles</span><span class="p p-Indicator">:</span>
+   <span class="c1"># Set a priority higher than the priority of the ShippingBundle (i.e. 200) to ensure that all dependees from the ShippingBundle are loaded before the dependent methods of your bundle.</span>
+   <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">ACME\Bundle\FastShippingBundle\ACMEFastShippingBundle</span><span class="p p-Indicator">,</span> <span class="nv">priority</span><span class="p p-Indicator">:</span> <span class="nv">210</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">To fully enable a bundle, you need to regenerate the application cache. However, to save time, you can do it after creation of the shipping integration.</p>
+</div>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">All the files and subdirectories mentioned in the following sections are to be added to the /src/ACME/Bundle/FastShippingBundle/ directory of your application (referred to as <strong>&lt;bundle_root&gt;</strong>).</p>
+</div>
+</div>
+<div class="section" id="create-a-shipping-integration">
+<h2><a class="toc-backref" href="#id3">Create a Shipping Integration</a><a class="headerlink" href="#create-a-shipping-integration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-an-entity-to-store-the-shipping-method-settings">
+<h3><a class="toc-backref" href="#id4">Create an Entity to Store the Shipping Method Settings</a><a class="headerlink" href="#create-an-entity-to-store-the-shipping-method-settings" title="Permalink to this headline">¶</a></h3>
+<p>Define an entity that to store the configuration settings of the shipping method in the database. To do this, create &lt;bundle_root&gt;/Entity/FastShippingSettings.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Doctrine\Common\Collections\ArrayCollection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\Common\Collections\Collection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\ORM\Mapping</span> <span class="k">as</span> <span class="nx">ORM</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Entity\Transport</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\ParameterBag</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @ORM\Entity</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">FastShippingSettings</span> <span class="k">extends</span> <span class="nx">Transport</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var Collection|LocalizedFallbackValue[]</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ORM\ManyToMany(</span>
+<span class="sd">     *      targetEntity=&quot;Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue&quot;,</span>
+<span class="sd">     *      cascade={&quot;ALL&quot;},</span>
+<span class="sd">     *      orphanRemoval=true</span>
+<span class="sd">     * )</span>
+<span class="sd">     * @ORM\JoinTable(</span>
+<span class="sd">     *      name=&quot;acme_fast_ship_transport_label&quot;,</span>
+<span class="sd">     *      joinColumns={</span>
+<span class="sd">     *          @ORM\JoinColumn(name=&quot;transport_id&quot;, referencedColumnName=&quot;id&quot;, onDelete=&quot;CASCADE&quot;)</span>
+<span class="sd">     *      },</span>
+<span class="sd">     *      inverseJoinColumns={</span>
+<span class="sd">     *          @ORM\JoinColumn(name=&quot;localized_value_id&quot;, referencedColumnName=&quot;id&quot;, onDelete=&quot;CASCADE&quot;, unique=true)</span>
+<span class="sd">     *      }</span>
+<span class="sd">     * )</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$labels</span><span class="p">;</span>
+
+    <span class="sd">/** @var ParameterBag */</span>
+    <span class="k">private</span> <span class="nv">$settings</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ArrayCollection</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return Collection|LocalizedFallbackValue[]</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabels</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizedFallbackValue $label</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return FastShippingSettings</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">addLabel</span><span class="p">(</span><span class="nx">LocalizedFallbackValue</span> <span class="nv">$label</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$label</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizedFallbackValue $label</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return FastShippingSettings</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">removeLabel</span><span class="p">(</span><span class="nx">LocalizedFallbackValue</span> <span class="nv">$label</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$label</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">removeElement</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return ParameterBag</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSettingsBag</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">===</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ParameterBag</span><span class="p">([]);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>As you can see from the code above, the only necessary parameter defined for the FastShipping shipping method is the <code class="docutils literal"><span class="pre">label</span></code> parameter.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When naming DB columns, make sure that the name does not exceed 31 symbols. Pay attention to the <code class="docutils literal"><span class="pre">acme_fast_ship_transport_label</span></code> name in the following extract:</p>
+<div class="last highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="o">*</span> <span class="o">@</span><span class="nx">ORM\JoinTable</span><span class="p">(</span>
+  <span class="o">*</span>      <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;acme_fast_ship_transport_label&quot;</span><span class="p">,</span>
+  <span class="o">*</span>      <span class="nx">joinColumns</span><span class="o">=</span><span class="p">{</span>
+  <span class="o">*</span>          <span class="o">@</span><span class="nx">ORM\JoinColumn</span><span class="p">(</span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;transport_id&quot;</span><span class="p">,</span> <span class="nx">referencedColumnName</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="nx">onDelete</span><span class="o">=</span><span class="s2">&quot;CASCADE&quot;</span><span class="p">)</span>
+  <span class="o">*</span>      <span class="p">},</span>
+  <span class="o">*</span>      <span class="o">...</span>
+  <span class="o">*</span> <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="create-a-user-interface-form-for-the-shipping-method-integration">
+<h3><a class="toc-backref" href="#id5">Create a User Interface Form for the Shipping Method Integration</a><a class="headerlink" href="#create-a-user-interface-form-for-the-shipping-method-integration" title="Permalink to this headline">¶</a></h3>
+<p>When you add an integration via the user interface of the management console, a form that contains the integration settings appears. In this step, implement the form. To do this, create &lt;bundle_root&gt;/Form/Type/FastShippingTransportSettingsType.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Form\Type</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Entity\FastShippingSettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\LocaleBundle\Form\Type\LocalizedFallbackValueCollectionType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Form\AbstractType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Form\FormBuilderInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\OptionsResolver\OptionsResolver</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Validator\Constraints\NotBlank</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FastShippingTransportSettingsType</span> <span class="k">extends</span> <span class="nx">AbstractType</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">BLOCK_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;acme_fast_shipping_settings&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">buildForm</span><span class="p">(</span><span class="nx">FormBuilderInterface</span> <span class="nv">$builder</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$builder</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span>
+                <span class="s1">&#39;labels&#39;</span><span class="p">,</span>
+                <span class="nx">LocalizedFallbackValueCollectionType</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+                <span class="p">[</span>
+                    <span class="s1">&#39;label&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;acme.fast_shipping.settings.labels.label&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+                    <span class="s1">&#39;options&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;constraints&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="k">new</span> <span class="nx">NotBlank</span><span class="p">()]],</span>
+                <span class="p">]</span>
+            <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">configureOptions</span><span class="p">(</span><span class="nx">OptionsResolver</span> <span class="nv">$resolver</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$resolver</span><span class="o">-&gt;</span><span class="na">setDefaults</span><span class="p">([</span>
+            <span class="s1">&#39;data_class&#39;</span> <span class="o">=&gt;</span> <span class="nx">FastShippingSettings</span><span class="o">::</span><span class="na">class</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getBlockPrefix</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">BLOCK_PREFIX</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-translations-for-the-form-texts">
+<h3><a class="toc-backref" href="#id6">Add Translations for the Form Texts</a><a class="headerlink" href="#add-translations-for-the-form-texts" title="Permalink to this headline">¶</a></h3>
+<p>To present the information on the user interface in a user-friendly way, add translations for the shipping method settings&#8217; names. To do this, create &lt;bundle_root&gt;/Resources/translations/messages.en.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">fast_shipping</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Label&#39;</span>
+</pre></div>
+</td></tr></table></div>
+<p>This defines the name of the field that contains the label.</p>
+</div>
+<div class="section" id="create-the-integration-channel-type">
+<h3><a class="toc-backref" href="#id7">Create the Integration Channel Type</a><a class="headerlink" href="#create-the-integration-channel-type" title="Permalink to this headline">¶</a></h3>
+<p>When you select the type of the integration on the user interface, you will see the integration name and the icon that you define in this step.</p>
+<p>To implement a channel type, create &lt;bundle_root&gt;/Integration/FastShippingChannelType.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Integration</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\ChannelInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\IconAwareIntegrationInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FastShippingChannelType</span> <span class="k">implements</span> <span class="nx">ChannelInterface</span><span class="p">,</span> <span class="nx">IconAwareIntegrationInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;acme.fast_shipping.channel_type.label&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIcon</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;bundles/acmefastshipping/img/fast-shipping-logo.png&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-an-icon-for-the-integration">
+<h3><a class="toc-backref" href="#id8">Add an Icon for the Integration</a><a class="headerlink" href="#add-an-icon-for-the-integration" title="Permalink to this headline">¶</a></h3>
+<p>To add an icon:</p>
+<ol class="arabic">
+<li><p class="first">Save the file to the &lt;bundle_root&gt;/Resources/public/img directory.</p>
+</li>
+<li><p class="first">Install assets:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>app/console oro:assets:install
+</pre></div>
+</td></tr></table></div>
+</li>
+</ol>
+<p>To make sure that the icon is accessible for the web interface, check if it appears (as a copy or a symlink depending on the settings selected during the application installation) in the /web/bundles/acmefastshipping/img directory of your application.</p>
+</div>
+<div class="section" id="create-the-integration-transport">
+<h3><a class="toc-backref" href="#id9">Create the Integration Transport</a><a class="headerlink" href="#create-the-integration-transport" title="Permalink to this headline">¶</a></h3>
+<p>Transport is generally responsible for how the data is obtained from the external system. While the Fast Shipping method does not interact with external systems, you still need to define transport and implement all methods of the TransportInterface for the integration to work properly. To add transport, create &lt;bundle_root&gt;/Integration/FastShippingTransport.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Integration</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Entity\FastShippingSettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Form\Type\FastShippingTransportSettingsType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Entity\Transport</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\TransportInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\ParameterBag</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FastShippingTransport</span> <span class="k">implements</span> <span class="nx">TransportInterface</span>
+<span class="p">{</span>
+    <span class="sd">/** @var ParameterBag */</span>
+    <span class="k">protected</span> <span class="nv">$settings</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param Transport $transportEntity</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="nx">Transport</span> <span class="nv">$transportEntity</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span> <span class="o">=</span> <span class="nv">$transportEntity</span><span class="o">-&gt;</span><span class="na">getSettingsBag</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSettingsFormType</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">FastShippingTransportSettingsType</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSettingsEntityFQCN</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">FastShippingSettings</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;acme.fast_shipping.transport.label&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-configuration-file-for-the-service-container">
+<h3><a class="toc-backref" href="#id10">Create a Configuration File for the Service Container</a><a class="headerlink" href="#create-a-configuration-file-for-the-service-container" title="Permalink to this headline">¶</a></h3>
+<p>To start using a service container for your bundle, first create the bundle configuration file &lt;bundle_root&gt;/Resources/config/services.yml.</p>
+</div>
+<div class="section" id="add-the-channel-type-and-transport-to-the-services-container">
+<h3><a class="toc-backref" href="#id11">Add the Channel Type and Transport to the Services Container</a><a class="headerlink" href="#add-the-channel-type-and-transport-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>To register the channel type and transport, append the following key-values to &lt;bundle_root&gt;/Resources/config/services.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+ <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.integration.type</span><span class="p p-Indicator">:</span> <span class="s">&#39;fast_shipping&#39;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+ <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.integration.channel</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACME\Bundle\FastShippingBundle\Integration\FastShippingChannelType&#39;</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+     <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">oro_integration.channel</span><span class="p p-Indicator">,</span> <span class="nv">type</span><span class="p p-Indicator">:</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span> <span class="p p-Indicator">}</span>
+
+ <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.integration.transport</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACME\Bundle\FastShippingBundle\Integration\FastShippingTransport&#39;</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+     <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">oro_integration.transport</span><span class="p p-Indicator">,</span> <span class="nv">type</span><span class="p p-Indicator">:</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">,</span> <span class="nv">channel_type</span><span class="p p-Indicator">:</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="set-up-services-with-dependencyinjection">
+<h3><a class="toc-backref" href="#id12">Set up Services with DependencyInjection</a><a class="headerlink" href="#set-up-services-with-dependencyinjection" title="Permalink to this headline">¶</a></h3>
+<p>To set up services, load your configuration file (services.yml) using the DependencyInjection component. For this, create &lt;bundle_root&gt;/DependencyInjection/FastShippingExtension.php with the following content:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\DependencyInjection</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\Config\FileLocator</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\DependencyInjection\ContainerBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\DependencyInjection\Loader</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpKernel\DependencyInjection\Extension</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FastShippingExtension</span> <span class="k">extends</span> <span class="nx">Extension</span>
+<span class="p">{</span>
+    <span class="sd">/** @internal */</span>
+    <span class="k">const</span> <span class="no">ALIAS</span> <span class="o">=</span> <span class="s1">&#39;acme_fast_shipping&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param array            $configs</span>
+<span class="sd">     * @param ContainerBuilder $container</span>
+<span class="sd">     *</span>
+<span class="sd">     * @throws \Exception</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">load</span><span class="p">(</span><span class="k">array</span> <span class="nv">$configs</span><span class="p">,</span> <span class="nx">ContainerBuilder</span> <span class="nv">$container</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Loader\YamlFileLoader</span><span class="p">(</span><span class="nv">$container</span><span class="p">,</span> <span class="k">new</span> <span class="nx">FileLocator</span><span class="p">(</span><span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../Resources/config&#39;</span><span class="p">));</span>
+        <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;services.yml&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return string</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAlias</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">ALIAS</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-translations-for-the-channel-type-and-transport">
+<h3><a class="toc-backref" href="#id13">Add Translations for the Channel Type and Transport</a><a class="headerlink" href="#add-translations-for-the-channel-type-and-transport" title="Permalink to this headline">¶</a></h3>
+<p>The channel type and, in general, transport labels also appear on the user interface (you will not see the transport label for Fast Shipping). Provide translations for them by appending the &lt;bundle_root&gt;/Resources/translations/messages.en.yml. Now, the messages.en.yml content must look as follows:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">fast_shipping</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+               <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Label&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">transport</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">channel_type</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-an-installer">
+<h3><a class="toc-backref" href="#id14">Add an Installer</a><a class="headerlink" href="#add-an-installer" title="Permalink to this headline">¶</a></h3>
+<p>An installer ensures that upon the application installation, the database will contain the entity that you defined within your bundle.</p>
+<p>Follow the instructions provided in the <a class="reference internal" href="installer_generate.html#installer-generate"><span class="std std-ref">How to generate an installer</span></a> topic. After you complete it, you will have the class &lt;bundle_root&gt;/Migrations/Schema/FastShippingBundleInstaller.php with the following content:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Migrations\Schema</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\Schema\Schema</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\MigrationBundle\Migration\Installation</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\MigrationBundle\Migration\QueryBag</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @SuppressWarnings(PHPMD.TooManyMethods)</span>
+<span class="sd"> * @SuppressWarnings(PHPMD.ExcessiveClassLength)</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">FastShippingBundleInstaller</span> <span class="k">implements</span> <span class="nx">Installation</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getMigrationVersion</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;v1_0&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">,</span> <span class="nx">QueryBag</span> <span class="nv">$queries</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** Tables generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createAcmeFastShipTransportLabelTable</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+
+        <span class="sd">/** Foreign keys generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addAcmeFastShipTransportLabelForeignKeys</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create acme_fast_ship_transport_label table</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">createAcmeFastShipTransportLabelTable</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;acme_fast_ship_transport_label&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;transport_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setPrimaryKey</span><span class="p">([</span><span class="s1">&#39;transport_id&#39;</span><span class="p">,</span> <span class="s1">&#39;localized_value_id&#39;</span><span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addUniqueIndex</span><span class="p">([</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">],</span> <span class="s1">&#39;UNIQ_15E6E6F3EB576E89&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">([</span><span class="s1">&#39;transport_id&#39;</span><span class="p">],</span> <span class="s1">&#39;IDX_15E6E6F39909C13F&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Add acme_fast_ship_transport_label foreign keys.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addAcmeFastShipTransportLabelForeignKeys</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;acme_fast_ship_transport_label&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_integration_transport&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;transport_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">]</span>
+        <span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_fallback_localization_val&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">,</span> <span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="check-that-the-integration-is-created-successfully">
+<h3><a class="toc-backref" href="#id15">Check That the Integration is Created Successfully</a><a class="headerlink" href="#check-that-the-integration-is-created-successfully" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Clear the application cache:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>app/console cache:clear
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are working in a production environment, you have to use the <code class="docutils literal"><span class="pre">--env=prod</span></code> parameter with the command.</p>
+</div>
+</li>
+<li><p class="first">Open the user interface and check that the changes have applied and you can add an integration of the Fast Shipping type. Note that at this point you are not yet able to add this shipping method to a shipping rule.</p>
+<img alt="View the Fast Shipping integration details." src="../../_images/shipping_method_create2.png" />
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="implement-a-shipping-method">
+<h2><a class="toc-backref" href="#id16">Implement a Shipping Method</a><a class="headerlink" href="#implement-a-shipping-method" title="Permalink to this headline">¶</a></h2>
+<p>Now implement the shipping method itself using the following steps:</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><a class="reference internal" href="#implement-the-main-method" id="id32">Implement the Main Method</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-identifier-generator-to-the-services-container" id="id33">Add the Shipping Method Identifier Generator to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-factory-for-the-shipping-method" id="id34">Create a Factory for the Shipping Method</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-factory-to-the-services-container" id="id35">Add the Shipping Method Factory to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-shipping-method-provider" id="id36">Create a Shipping Method Provider</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-provider-to-the-services-container" id="id37">Add the Shipping Method Provider to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-shipping-method-type" id="id38">Create a Shipping Method Type</a></li>
+<li><a class="reference internal" href="#define-translation-for-the-shipping-method-type" id="id39">Define Translation for the Shipping Method Type</a></li>
+<li><a class="reference internal" href="#create-a-shipping-method-options-form" id="id40">Create a Shipping Method Options Form</a></li>
+<li><a class="reference internal" href="#add-the-shipping-method-options-form-to-the-services-container" id="id41">Add the Shipping Method Options Form to the Services Container</a></li>
+<li><a class="reference internal" href="#define-translation-for-the-shipping-method-form-options" id="id42">Define Translation for the Shipping Method Form Options</a></li>
+<li><a class="reference internal" href="#add-a-template" id="id43">Add a Template</a></li>
+</ul>
+</div>
+<div class="section" id="implement-the-main-method">
+<h3><a class="toc-backref" href="#id32">Implement the Main Method</a><a class="headerlink" href="#implement-the-main-method" title="Permalink to this headline">¶</a></h3>
+<p>To implement the main method, create the &lt;bundle_root&gt;/Method/FastShipping.php class that implements two standard interfaces OroBundleShippingBundleMethodShippingMethodInterface and OroBundleShippingBundleMethodShippingMethodIconAwareInterface:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Method</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Oro\Bundle\ShippingBundle\Method\ShippingMethodIconAwareInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\ShippingBundle\Method\ShippingMethodInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Form\Extension\Core\Type\HiddenType</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FastShippingMethod</span> <span class="k">implements</span> <span class="nx">ShippingMethodInterface</span><span class="p">,</span> <span class="nx">ShippingMethodIconAwareInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var array</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$types</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var string</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$label</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var string|null</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$icon</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var string</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$identifier</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var bool</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$enabled</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param string      $identifier</span>
+<span class="sd">     * @param string      $label</span>
+<span class="sd">     * @param string|null $icon</span>
+<span class="sd">     * @param bool        $enabled</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">,</span> <span class="nv">$label</span><span class="p">,</span> <span class="nv">$icon</span><span class="p">,</span> <span class="nv">$enabled</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$types</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifier</span> <span class="o">=</span> <span class="nv">$identifier</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span> <span class="o">=</span> <span class="nv">$label</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">icon</span> <span class="o">=</span> <span class="nv">$icon</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">types</span> <span class="o">=</span> <span class="nv">$types</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">enabled</span> <span class="o">=</span> <span class="nv">$enabled</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIdentifier</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifier</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isGrouped</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isEnabled</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">enabled</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIcon</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">icon</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getTypes</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">types</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getType</span><span class="p">(</span><span class="nv">$type</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$type</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">types</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">types</span><span class="p">[</span><span class="nv">$type</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionsConfigurationFormType</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">HiddenType</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSortOrder</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">150</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The methods are the following:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">getIdentifier</span></code> &#8212; Provides a unique identifier of the shipping method in the scope of the Oro application.</li>
+<li><code class="docutils literal"><span class="pre">getLabel</span></code> &#8212; Returns the shipping method&#8217;s label that appears on the shipping rule edit page. It can also be a Symfony translated message.</li>
+<li><code class="docutils literal"><span class="pre">getIcon</span></code> &#8212; Returns the icon that appears on the shipping rule edit page.</li>
+<li><code class="docutils literal"><span class="pre">isEnabled</span></code> &#8212; Defines, whether the integration of the shipping method is enabled by default.</li>
+<li><code class="docutils literal"><span class="pre">isGrouped</span></code> &#8212; Defines how shipping method&#8217;s types appear in the shipping method configuration on the user interface. If set to <code class="docutils literal"><span class="pre">true</span></code>, the types appear in the table where each line contains the <strong>Active</strong> check box that enables users to enable individual shipping method types for a particular shipping method configuration.</li>
+</ul>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">getSortOrder</span></code> &#8212;  Defines the order in which shipping methods appear on the user interface. For example, in the following screenshot, the Flat rate sort order is lower than the UPS sort order:</p>
+<img alt="../../_images/shipping_methods_frontend.png" src="../../_images/shipping_methods_frontend.png" />
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getType</span></code> &#8212; Returns the selected shipping method type based on the type identifier.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getTypes</span></code> &#8212; Returns a set of the shipping method types.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getOptionsConfigurationFormType</span></code> &#8212; Returns the user interface form with the configuration options. The form appears on the shipping rule edit page. If the method returns <code class="docutils literal"><span class="pre">HiddenType::class</span></code>, the form does not appear.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="add-the-shipping-method-identifier-generator-to-the-services-container">
+<h3><a class="toc-backref" href="#id33">Add the Shipping Method Identifier Generator to the Services Container</a><a class="headerlink" href="#add-the-shipping-method-identifier-generator-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>Append the following lines to &lt;bundle_root&gt;/Resources/config/services.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.method.identifier_generator.method</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_integration.generator.prefixed_identifier_generator</span>
+        <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-factory-for-the-shipping-method">
+<h3><a class="toc-backref" href="#id34">Create a Factory for the Shipping Method</a><a class="headerlink" href="#create-a-factory-for-the-shipping-method" title="Permalink to this headline">¶</a></h3>
+<p>This factory generates an individual configuration set for each instance of the integration of the Fast Shipping type. In our case, it also contains the method createTypes() that generates the services (types) of the fast shipping type and assigns them labels.</p>
+<p>Create the &lt;bundle_root&gt;/Factory/FastShippingMethodFromChannelFactory.php class with the following content:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="o">&lt;?</span><span class="nx">php</span>
+
+ <span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Factory</span><span class="p">;</span>
+
+ <span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Entity\FastShippingSettings</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Method\FastShippingMethod</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Method\FastShippingMethodType</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Entity\Channel</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Generator\IntegrationIdentifierGeneratorInterface</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\IntegrationIconProviderInterface</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\LocaleBundle\Helper\LocalizationHelper</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\ShippingBundle\Method\Factory\IntegrationShippingMethodFactoryInterface</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\Translation\TranslatorInterface</span><span class="p">;</span>
+
+ <span class="k">class</span> <span class="nc">FastShippingMethodFromChannelFactory</span> <span class="k">implements</span> <span class="nx">IntegrationShippingMethodFactoryInterface</span>
+ <span class="p">{</span>
+     <span class="sd">/**</span>
+<span class="sd">      * @var IntegrationIdentifierGeneratorInterface</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="nv">$identifierGenerator</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @var LocalizationHelper</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="nv">$localizationHelper</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @var TranslatorInterface</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="nv">$translator</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @var IntegrationIconProviderInterface</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="nv">$integrationIconProvider</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * FastShippingMethodFromChannelFactory constructor.</span>
+<span class="sd">      * @param IntegrationIdentifierGeneratorInterface $identifierGenerator</span>
+<span class="sd">      * @param LocalizationHelper $localizationHelper</span>
+<span class="sd">      * @param TranslatorInterface $translator</span>
+<span class="sd">      * @param IntegrationIconProviderInterface $integrationIconProvider</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+         <span class="nx">IntegrationIdentifierGeneratorInterface</span> <span class="nv">$identifierGenerator</span><span class="p">,</span>
+         <span class="nx">LocalizationHelper</span> <span class="nv">$localizationHelper</span><span class="p">,</span>
+         <span class="nx">TranslatorInterface</span> <span class="nv">$translator</span><span class="p">,</span>
+         <span class="nx">IntegrationIconProviderInterface</span> <span class="nv">$integrationIconProvider</span>
+     <span class="p">)</span> <span class="p">{</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifierGenerator</span> <span class="o">=</span> <span class="nv">$identifierGenerator</span><span class="p">;</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">localizationHelper</span> <span class="o">=</span> <span class="nv">$localizationHelper</span><span class="p">;</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">translator</span> <span class="o">=</span> <span class="nv">$translator</span><span class="p">;</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">integrationIconProvider</span> <span class="o">=</span> <span class="nv">$integrationIconProvider</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @param Channel $channel</span>
+<span class="sd">      *</span>
+<span class="sd">      * @return FastShippingMethod</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">Channel</span> <span class="nv">$channel</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifierGenerator</span><span class="o">-&gt;</span><span class="na">generateIdentifier</span><span class="p">(</span><span class="nv">$channel</span><span class="p">);</span>
+         <span class="nv">$label</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getChannelLabel</span><span class="p">(</span><span class="nv">$channel</span><span class="p">);</span>
+         <span class="nv">$icon</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getIcon</span><span class="p">(</span><span class="nv">$channel</span><span class="p">);</span>
+         <span class="nv">$types</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createTypes</span><span class="p">();</span>
+
+         <span class="k">return</span> <span class="k">new</span> <span class="nx">FastShippingMethod</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$label</span><span class="p">,</span> <span class="nv">$icon</span><span class="p">,</span> <span class="nv">$channel</span><span class="o">-&gt;</span><span class="na">isEnabled</span><span class="p">(),</span> <span class="nv">$types</span><span class="p">);</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @param Channel $channel</span>
+<span class="sd">      *</span>
+<span class="sd">      * @return string</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="k">function</span> <span class="nf">getChannelLabel</span><span class="p">(</span><span class="nx">Channel</span> <span class="nv">$channel</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="sd">/** @var FastShippingSettings $transport */</span>
+         <span class="nv">$transport</span> <span class="o">=</span> <span class="nv">$channel</span><span class="o">-&gt;</span><span class="na">getTransport</span><span class="p">();</span>
+
+         <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">localizationHelper</span><span class="o">-&gt;</span><span class="na">getLocalizedValue</span><span class="p">(</span><span class="nv">$transport</span><span class="o">-&gt;</span><span class="na">getLabels</span><span class="p">());</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @param Channel $channel</span>
+<span class="sd">      *</span>
+<span class="sd">      * @return string|null</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="k">function</span> <span class="nf">getIcon</span><span class="p">(</span><span class="nx">Channel</span> <span class="nv">$channel</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">integrationIconProvider</span><span class="o">-&gt;</span><span class="na">getIcon</span><span class="p">(</span><span class="nv">$channel</span><span class="p">);</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @return array</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="k">function</span> <span class="nf">createTypes</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="nv">$withoutPresentLabel</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">translator</span>
+             <span class="o">-&gt;</span><span class="na">trans</span><span class="p">(</span><span class="s1">&#39;acme.fast_shipping.method.processing_type.without_present.label&#39;</span><span class="p">);</span>
+         <span class="nv">$withPresentLabel</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">translator</span>
+             <span class="o">-&gt;</span><span class="na">trans</span><span class="p">(</span><span class="s1">&#39;acme.fast_shipping.method.processing_type.with_present.label&#39;</span><span class="p">);</span>
+
+         <span class="nv">$withoutPresent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FastShippingMethodType</span><span class="p">(</span><span class="nv">$withoutPresentLabel</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+         <span class="nv">$withPresent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FastShippingMethodType</span><span class="p">(</span><span class="nv">$withoutPresentLabel</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+         <span class="k">return</span> <span class="p">[</span>
+             <span class="nv">$withoutPresent</span><span class="o">-&gt;</span><span class="na">getIdentifier</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nv">$withoutPresent</span><span class="p">,</span>
+             <span class="nv">$withPresent</span><span class="o">-&gt;</span><span class="na">getIdentifier</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nv">$withPresent</span><span class="p">,</span>
+         <span class="p">];</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-the-shipping-method-factory-to-the-services-container">
+<h3><a class="toc-backref" href="#id35">Add the Shipping Method Factory to the Services Container</a><a class="headerlink" href="#add-the-shipping-method-factory-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>To register the shipping method factory, append the following key-values to &lt;bundle_root&gt;/Resources/config/services.yml under the services section:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.factory.method</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACME\Bundle\FastShippingBundle\Factory\FastShippingMethodFromChannelFactory&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_fast_shipping.method.identifier_generator.method&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_locale.helper.localization&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@translator&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_integration.provider.integration_icon&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-shipping-method-provider">
+<h3><a class="toc-backref" href="#id36">Create a Shipping Method Provider</a><a class="headerlink" href="#create-a-shipping-method-provider" title="Permalink to this headline">¶</a></h3>
+<p>For this, add the &lt;bundle_root&gt;/Method/FastShippingMethodProvider.php class with the following content:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">&lt;?php</span>
+
+<span class="l l-Scalar l-Scalar-Plain">namespace ACME\Bundle\FastShippingBundle\Method;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;</span>
+<span class="l l-Scalar l-Scalar-Plain">use Oro\Bundle\ShippingBundle\Method\Factory\IntegrationShippingMethodFactoryInterface;</span>
+<span class="l l-Scalar l-Scalar-Plain">use Oro\Bundle\ShippingBundle\Method\Provider\Integration\ChannelShippingMethodProvider;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">class FastShippingMethodProvider extends ChannelShippingMethodProvider</span>
+<span class="l l-Scalar l-Scalar-Plain">{</span>
+    <span class="l l-Scalar l-Scalar-Plain">/**</span>
+     <span class="l l-Scalar l-Scalar-Plain">* {@inheritDoc}</span>
+     <span class="l l-Scalar l-Scalar-Plain">*/</span>
+    <span class="l l-Scalar l-Scalar-Plain">public function __construct(</span>
+        <span class="l l-Scalar l-Scalar-Plain">$channelType,</span>
+        <span class="l l-Scalar l-Scalar-Plain">DoctrineHelper $doctrineHelper,</span>
+        <span class="l l-Scalar l-Scalar-Plain">IntegrationShippingMethodFactoryInterface $methodFactory</span>
+    <span class="l l-Scalar l-Scalar-Plain">) {</span>
+        <span class="l l-Scalar l-Scalar-Plain">parent::__construct($channelType, $doctrineHelper, $methodFactory);</span>
+    <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class="l l-Scalar l-Scalar-Plain">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-the-shipping-method-provider-to-the-services-container">
+<h3><a class="toc-backref" href="#id37">Add the Shipping Method Provider to the Services Container</a><a class="headerlink" href="#add-the-shipping-method-provider-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>Append the following lines to &lt;bundle_root&gt;/Resources/config/services.yml under the services section:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.method.provider</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACME\Bundle\FastShippingBundle\Method\FastShippingMethodProvider&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_entity.doctrine_helper&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_fast_shipping.factory.method&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">oro_shipping_method_provider</span> <span class="p p-Indicator">}</span>
+            <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">doctrine.orm.entity_listener</span><span class="p p-Indicator">,</span> <span class="nv">entity</span><span class="p p-Indicator">:</span> <span class="s">&#39;Oro\Bundle\IntegrationBundle\Entity\Channel&#39;</span><span class="p p-Indicator">,</span> <span class="nv">event</span><span class="p p-Indicator">:</span> <span class="nv">postLoad</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-shipping-method-type">
+<h3><a class="toc-backref" href="#id38">Create a Shipping Method Type</a><a class="headerlink" href="#create-a-shipping-method-type" title="Permalink to this headline">¶</a></h3>
+<p>Shipping method types define different specifics of the same shipping services. For example, for Flat Rate, the type defines whether to calculate shipping price per order or per item. The Fast Shipping will have two types: &#8220;With Present&#8221; and &#8220;Without Present&#8221;.</p>
+<p>To create a shipping method type, add the &lt;bundle_root&gt;/Method/FastShippingMethodType.php class with the following content:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="o">&lt;?</span><span class="nx">php</span>
+
+ <span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Method</span><span class="p">;</span>
+
+ <span class="k">use</span> <span class="nx">Oro\Bundle\CurrencyBundle\Entity\Price</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Form\Type\FastShippingMethodOptionsType</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\ShippingBundle\Context\ShippingContextInterface</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\ShippingBundle\Method\ShippingMethodTypeInterface</span><span class="p">;</span>
+
+ <span class="k">class</span> <span class="nc">FastShippingMethodType</span> <span class="k">implements</span> <span class="nx">ShippingMethodTypeInterface</span>
+ <span class="p">{</span>
+     <span class="k">const</span> <span class="no">PRICE_OPTION</span> <span class="o">=</span> <span class="s1">&#39;price&#39;</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @internal</span>
+<span class="sd">      */</span>
+     <span class="k">const</span> <span class="no">WITHOUT_PRESENT_TYPE</span> <span class="o">=</span> <span class="s1">&#39;without_present&#39;</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @internal</span>
+<span class="sd">      */</span>
+     <span class="k">const</span> <span class="no">WITH_PRESENT_TYPE</span> <span class="o">=</span> <span class="s1">&#39;with_present&#39;</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @var string</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="nv">$label</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @var bool</span>
+<span class="sd">      */</span>
+     <span class="k">private</span> <span class="nv">$isWithPresent</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @param string $label</span>
+<span class="sd">      * @param bool $isWithPresent</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$label</span><span class="p">,</span> <span class="nv">$isWithPresent</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span> <span class="o">=</span> <span class="nv">$label</span><span class="p">;</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isWithPresent</span> <span class="o">=</span> <span class="nv">$isWithPresent</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">getIdentifier</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isWithPresent</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">WITH_PRESENT_TYPE</span><span class="p">;</span>
+         <span class="p">}</span>
+
+         <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">WITHOUT_PRESENT_TYPE</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">getSortOrder</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">getOptionsConfigurationFormType</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="k">return</span> <span class="nx">FastShippingMethodOptionsType</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">calculatePrice</span><span class="p">(</span><span class="nx">ShippingContextInterface</span> <span class="nv">$context</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$methodOptions</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$typeOptions</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="nv">$price</span> <span class="o">=</span> <span class="nv">$typeOptions</span><span class="p">[</span><span class="k">static</span><span class="o">::</span><span class="na">PRICE_OPTION</span><span class="p">];</span>
+
+         <span class="c1">// Provide additional price calculation logic here if required.</span>
+
+         <span class="k">return</span> <span class="nx">Price</span><span class="o">::</span><span class="na">create</span><span class="p">((</span><span class="nx">float</span><span class="p">)</span><span class="nv">$price</span><span class="p">,</span> <span class="nv">$context</span><span class="o">-&gt;</span><span class="na">getCurrency</span><span class="p">());</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">getIdentifier</span></code> &#8212; Returns a unique identifier of a shipping method type in the scope of the shipping method.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getLabel</span></code> &#8212; Returns the label of the shipping method type. The label appears on the shipping rule edit page in the management console and on the storefront.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getSortOrder</span></code> &#8212;  Defines the order in which shipping method types appear on the user interface. For example, see the UPS shipping types below. The number that defines the sort order of the UPS Ground is lower than that of the UPS 2nd Day Air (i.e. the lower the number, the higher up the list the method type appears):</p>
+<img alt="../../_images/shipping_methods_frontend.png" src="../../_images/shipping_methods_frontend.png" />
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getOptionsConfigurationFormType</span></code> &#8212; Returns the user interface form with the configuration options. The form appears on the shipping rule edit page. If the method returns <code class="docutils literal"><span class="pre">HiddenType::class</span></code>, the form does not appear.</p>
+</li>
+</ul>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">calculatePrice</span></code>&#8211; Contains the main logic and returns the shipping price for the given <code class="docutils literal"><span class="pre">$context</span></code>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you implement a more complicated shipping method, see OroBundleShippingBundleContextShippingContextInterface for attributes that can affect a shipping price (e.g. shipping address information or line items).</p>
+</div>
+</div>
+<div class="section" id="define-translation-for-the-shipping-method-type">
+<h3><a class="toc-backref" href="#id39">Define Translation for the Shipping Method Type</a><a class="headerlink" href="#define-translation-for-the-shipping-method-type" title="Permalink to this headline">¶</a></h3>
+<p>Provide translations by appending the &lt;bundle_root&gt;/Resources/translations/messages.en.yml. Now, the messages.en.yml content must look as follows:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">fast_shipping</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+               <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Label&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">transport</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">channel_type</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">price.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Price&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">processing_type</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">without_present.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping</span><span class="nv"> </span><span class="s">Rate</span><span class="nv"> </span><span class="s">Without</span><span class="nv"> </span><span class="s">Present&#39;</span>
+                <span class="l l-Scalar l-Scalar-Plain">with_present.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping</span><span class="nv"> </span><span class="s">Rate</span><span class="nv"> </span><span class="s">With</span><span class="nv"> </span><span class="s">Present&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-shipping-method-options-form">
+<h3><a class="toc-backref" href="#id40">Create a Shipping Method Options Form</a><a class="headerlink" href="#create-a-shipping-method-options-form" title="Permalink to this headline">¶</a></h3>
+<p>This form with options for a shipping method appears on the user interface of the management console when you add the shipping method to a shipping rule. Add FastShippingMethodOptionsType.php to the &lt;bundle_root&gt;/Form/Type/ directory:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="o">&lt;?</span><span class="nx">php</span>
+
+ <span class="k">namespace</span> <span class="nx">ACME\Bundle\FastShippingBundle\Form\Type</span><span class="p">;</span>
+
+ <span class="k">use</span> <span class="nx">ACME\Bundle\FastShippingBundle\Method\FastShippingMethodType</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Oro\Bundle\CurrencyBundle\Rounding\RoundingServiceInterface</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\Form\AbstractType</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\Form\Extension\Core\Type\NumberType</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\Form\FormBuilderInterface</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\OptionsResolver\Exception\AccessException</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\OptionsResolver\OptionsResolver</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\Validator\Constraints\NotBlank</span><span class="p">;</span>
+ <span class="k">use</span> <span class="nx">Symfony\Component\Validator\Constraints\Type</span><span class="p">;</span>
+
+ <span class="k">class</span> <span class="nc">FastShippingMethodOptionsType</span> <span class="k">extends</span> <span class="nx">AbstractType</span>
+ <span class="p">{</span>
+     <span class="k">const</span> <span class="no">BLOCK_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;acme_fast_shipping_options_type&#39;</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @var RoundingServiceInterface</span>
+<span class="sd">      */</span>
+     <span class="k">protected</span> <span class="nv">$roundingService</span><span class="p">;</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @param RoundingServiceInterface $roundingService</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">RoundingServiceInterface</span> <span class="nv">$roundingService</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">roundingService</span> <span class="o">=</span> <span class="nv">$roundingService</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">buildForm</span><span class="p">(</span><span class="nx">FormBuilderInterface</span> <span class="nv">$builder</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="nv">$priceOptions</span> <span class="o">=</span> <span class="p">[</span>
+             <span class="s1">&#39;scale&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">roundingService</span><span class="o">-&gt;</span><span class="na">getPrecision</span><span class="p">(),</span>
+             <span class="s1">&#39;rounding_mode&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">roundingService</span><span class="o">-&gt;</span><span class="na">getRoundType</span><span class="p">(),</span>
+             <span class="s1">&#39;attr&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;data-scale&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">roundingService</span><span class="o">-&gt;</span><span class="na">getPrecision</span><span class="p">()],</span>
+         <span class="p">];</span>
+
+         <span class="nv">$builder</span>
+             <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nx">FastShippingMethodType</span><span class="o">::</span><span class="na">PRICE_OPTION</span><span class="p">,</span> <span class="nx">NumberType</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nb">array_merge</span><span class="p">([</span>
+                 <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;acme.fast_shipping.method.price.label&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;constraints&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="k">new</span> <span class="nx">NotBlank</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Type</span><span class="p">([</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;numeric&#39;</span><span class="p">])]</span>
+             <span class="p">],</span> <span class="nv">$priceOptions</span><span class="p">));</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * @param OptionsResolver $resolver</span>
+<span class="sd">      *</span>
+<span class="sd">      * @throws AccessException</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">configureOptions</span><span class="p">(</span><span class="nx">OptionsResolver</span> <span class="nv">$resolver</span><span class="p">)</span>
+     <span class="p">{</span>
+         <span class="nv">$resolver</span><span class="o">-&gt;</span><span class="na">setDefaults</span><span class="p">([</span>
+             <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;acme.fast_shipping.form.acme_fast_shipping_options_type.label&#39;</span><span class="p">,</span>
+         <span class="p">]);</span>
+     <span class="p">}</span>
+
+     <span class="sd">/**</span>
+<span class="sd">      * {@inheritDoc}</span>
+<span class="sd">      */</span>
+     <span class="k">public</span> <span class="k">function</span> <span class="nf">getBlockPrefix</span><span class="p">()</span>
+     <span class="p">{</span>
+         <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">BLOCK_PREFIX</span><span class="p">;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-the-shipping-method-options-form-to-the-services-container">
+<h3><a class="toc-backref" href="#id41">Add the Shipping Method Options Form to the Services Container</a><a class="headerlink" href="#add-the-shipping-method-options-form-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>Append the following lines to &lt;bundle_root&gt;/Resources/config/services.yml under the services section:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.form.type.fast_shipping_options</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACME\Bundle\FastShippingBundle\Form\Type\FastShippingMethodOptionsType&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_currency.rounding.price_rounding_service&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">form.type</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="define-translation-for-the-shipping-method-form-options">
+<h3><a class="toc-backref" href="#id42">Define Translation for the Shipping Method Form Options</a><a class="headerlink" href="#define-translation-for-the-shipping-method-form-options" title="Permalink to this headline">¶</a></h3>
+<p>Provide translations by appending the &lt;bundle_root&gt;/Resources/translations/messages.en.yml. Now, the messages.en.yml content must look as follows:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">fast_shipping</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+               <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Label&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">transport</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">channel_type</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">price.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Price&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">processing_type</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">without_present.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping</span><span class="nv"> </span><span class="s">Rate</span><span class="nv"> </span><span class="s">Without</span><span class="nv"> </span><span class="s">Present&#39;</span>
+                <span class="l l-Scalar l-Scalar-Plain">with_present.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping</span><span class="nv"> </span><span class="s">Rate</span><span class="nv"> </span><span class="s">With</span><span class="nv"> </span><span class="s">Present&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_options_type.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Fast</span><span class="nv"> </span><span class="s">Shipping</span><span class="nv"> </span><span class="s">Rate&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-a-template">
+<h3><a class="toc-backref" href="#id43">Add a Template</a><a class="headerlink" href="#add-a-template" title="Permalink to this headline">¶</a></h3>
+<p>In the shipping rules, this template is used to display the configured settings of the Fast Shipping integration.</p>
+<p>Create the /Resources/views/method/fastShippingMethodWithOptions.html.twig file with the following content:</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span>{% import &#39;OroShippingBundle:ShippingMethodsConfigsRule:macros.html.twig&#39; as ShipRuleMacro %}
+
+{% spaceless %}
+    {% set methodLabel = get_shipping_method_label(methodData.identifier)|trans %}
+    {% if methodLabel|length &gt; 0 %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ methodLabel }}
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    {% endif %}
+        {% for type in methodData.types %}
+        {%- if type.enabled -%}
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{ get_shipping_method_type_label(methodData.identifier, type.identifier)|trans }} ({{ &#39;acme.fast_shipping.method.price.label&#39;|trans }}: {{ type.options[&#39;price&#39;]|oro_format_currency({&#39;currency&#39;: currency}) }}
+                {%- if type.options[&#39;handling_fee&#39;] is defined and type.options[&#39;handling_fee&#39;] is not empty -%}
+                    , {{ &#39;acme.fast_shipping.method.handling_fee.label&#39;|trans}}: {{ type.options[&#39;handling_fee&#39;]|oro_format_currency({&#39;currency&#39;: currency})}}
+                {%- endif -%}
+                ) {{ ShipRuleMacro.renderShippingMethodDisabledFlag(methodData.identifier) }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        {%- endif -%}
+        {% endfor %}
+    {% if methodLabel|length &gt; 0 %}
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    {% endif %}
+{% endspaceless %}
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="add-a-check-for-when-users-disable-used-shipping-method-types">
+<h2><a class="toc-backref" href="#id29">Add a Check for When Users Disable Used Shipping Method Types</a><a class="headerlink" href="#add-a-check-for-when-users-disable-used-shipping-method-types" title="Permalink to this headline">¶</a></h2>
+<p>To show a notification when a user disables or removes the integration currently used in shipping rules, use the event listeners to catch the corresponding event and the event handlers.</p>
+<div class="section" id="add-event-listeners-to-the-system-container">
+<h3><a class="toc-backref" href="#id30">Add Event Listeners to the System Container</a><a class="headerlink" href="#add-event-listeners-to-the-system-container" title="Permalink to this headline">¶</a></h3>
+<p>Append the following lines to &lt;bundle_root&gt;/Resources/config/services.yml under the parameters and services sections:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.admin_view.method_template</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACMEFastShippingShippingBundle::method/fastShippingMethodWithOptions.html.twig&#39;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.event_listener.shipping_method_config_data</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_shipping.admin_view.method_template.listener</span>
+        <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;%acme_fast_shipping.admin_view.method_template%&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_fast_shipping.method.provider&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">kernel.event_listener</span><span class="p p-Indicator">,</span> <span class="nv">event</span><span class="p p-Indicator">:</span> <span class="nv">oro_shipping_method.config_data</span><span class="p p-Indicator">,</span> <span class="nv">method</span><span class="p p-Indicator">:</span> <span class="nv">onGetConfigData</span> <span class="p p-Indicator">}</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.remove_integration_listener</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_shipping.remove_integration_listener</span>
+        <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_fast_shipping.method.identifier_generator.method&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_shipping.method.event.dispatcher.method_removal&#39;</span>
+        <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">kernel.event_listener</span><span class="p p-Indicator">,</span> <span class="nv">event</span><span class="p p-Indicator">:</span> <span class="nv">oro_integration.channel_delete</span><span class="p p-Indicator">,</span> <span class="nv">method</span><span class="p p-Indicator">:</span> <span class="nv">onRemove</span> <span class="p p-Indicator">}</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.disable_integration_listener</span><span class="p p-Indicator">:</span>
+         <span class="l l-Scalar l-Scalar-Plain">parent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_shipping.disable_integration_listener</span>
+         <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+             <span class="p p-Indicator">-</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span>
+             <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_fast_shipping.method.identifier_generator.method&#39;</span>
+             <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_shipping.method_disable_handler.decorator&#39;</span>
+         <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+             <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">kernel.event_listener</span><span class="p p-Indicator">,</span> <span class="nv">event</span><span class="p p-Indicator">:</span> <span class="nv">oro_integration.channel_disable</span><span class="p p-Indicator">,</span> <span class="nv">method</span><span class="p p-Indicator">:</span> <span class="nv">onIntegrationDisable</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-actions">
+<h3><a class="toc-backref" href="#id31">Add Actions</a><a class="headerlink" href="#add-actions" title="Permalink to this headline">¶</a></h3>
+<p>Create actions.yml in the &lt;bundle_root&gt;/Resources/config/oro/ directory:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.integration.type</span><span class="p p-Indicator">:</span> <span class="s">&#39;fast_shipping&#39;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">operations</span><span class="p p-Indicator">:</span>
+    <span class="c1"># Disable the default deactivate method for the Fast Shipping integration.</span>
+    <span class="l l-Scalar l-Scalar-Plain">oro_integration_deactivate</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">preconditions</span><span class="p p-Indicator">:</span>
+            <span class="s">&#39;@and&#39;</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@not_equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$type</span><span class="p p-Indicator">,</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">]</span>
+
+    <span class="c1"># Disable the default delete method for the Fast Shipping integration.</span>
+    <span class="l l-Scalar l-Scalar-Plain">oro_integration_delete</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">preconditions</span><span class="p p-Indicator">:</span>
+            <span class="s">&#39;@and&#39;</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@not_equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$type</span><span class="p p-Indicator">,</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">]</span>
+
+    <span class="c1"># Use the deactivate method that:</span>
+    <span class="c1">#    a. first checks whether there are shipping rules that use the Fast Shipping method, and</span>
+    <span class="c1">#    b. if yes, displays to a user the confirmation dialog with the notification message and the link to the list of the corresponding rules.</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_integration_deactivate</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">extends</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_integration_deactivate</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_entities</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_datagrids</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">replace</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">preactions</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">preconditions</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">frontend_options</span>
+
+        <span class="c1"># Filter the grid with the active shipping rules that use the Fast Shipping method and generate the link to it.</span>
+        <span class="l l-Scalar l-Scalar-Plain">preactions</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@call_service_method&#39;</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.actionAllowed</span>
+                <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_integration.utils.edit_mode</span>
+                <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">isSwitchEnableAllowed</span>
+                <span class="l l-Scalar l-Scalar-Plain">method_parameters</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.data.editMode</span><span class="p p-Indicator">]</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@call_service_method&#39;</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.methodIdentifier</span>
+                <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.method.identifier_generator.method</span>
+                <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">generateIdentifier</span>
+                <span class="l l-Scalar l-Scalar-Plain">method_parameters</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.data</span><span class="p p-Indicator">]</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@call_service_method&#39;</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.linkGrid</span>
+                <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_shipping.helper.filtered_datagrid_route</span>
+                <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">generate</span>
+                <span class="l l-Scalar l-Scalar-Plain">method_parameters</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[{</span><span class="s">&#39;methodConfigs&#39;</span><span class="p p-Indicator">:</span> <span class="nv">$.methodIdentifier</span><span class="p p-Indicator">}]</span>
+
+        <span class="c1"># Check that the method is used in the shipping rules.</span>
+        <span class="l l-Scalar l-Scalar-Plain">preconditions</span><span class="p p-Indicator">:</span>
+            <span class="s">&#39;@and&#39;</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@shipping_method_has_enabled_shipping_rules&#39;</span><span class="p p-Indicator">:</span>
+                    <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+                        <span class="l l-Scalar l-Scalar-Plain">method_identifier</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.methodIdentifier</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$type</span><span class="p p-Indicator">,</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">]</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.actionAllowed</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.data.enabled</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]</span>
+
+        <span class="c1"># Show the confirmation dialog with the notification message.</span>
+        <span class="l l-Scalar l-Scalar-Plain">frontend_options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">confirmation</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.shipping.integration.deactivate.title</span>
+                <span class="l l-Scalar l-Scalar-Plain">okText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.shipping.integration.deactivate.button.okText</span>
+                <span class="l l-Scalar l-Scalar-Plain">message</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.shipping.integration.deactivate.message</span>
+                <span class="l l-Scalar l-Scalar-Plain">message_parameters</span><span class="p p-Indicator">:</span>
+                    <span class="l l-Scalar l-Scalar-Plain">linkGrid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.linkGrid</span>
+                <span class="l l-Scalar l-Scalar-Plain">component</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oroui/js/standart-confirmation</span>
+
+
+    <span class="c1"># If there are no shipping rules that use this method, deactivate without displaying to a user the confirmation dialog.</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_integration_deactivate_without_rules</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">extends</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_integration_deactivate</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_entities</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_datagrids</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">replace</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">preconditions</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">frontend_options</span>
+        <span class="l l-Scalar l-Scalar-Plain">preconditions</span><span class="p p-Indicator">:</span>
+            <span class="s">&#39;@and&#39;</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@not&#39;</span><span class="p p-Indicator">:</span>
+                    <span class="p p-Indicator">-</span> <span class="s">&#39;@shipping_method_has_enabled_shipping_rules&#39;</span><span class="p p-Indicator">:</span>
+                        <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+                            <span class="l l-Scalar l-Scalar-Plain">method_identifier</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.methodIdentifier</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$type</span><span class="p p-Indicator">,</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">]</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.actionAllowed</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.data.enabled</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">frontend_options</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">~</span>
+
+    <span class="c1"># Use the delete method that:</span>
+    <span class="c1">#    a. first checks whether there are shipping rules that use the Fast Shipping method, and</span>
+    <span class="c1">#    b. if yes, displays to a user the confirmation dialog with the notification message and the link to the list of the corresponding rules.</span>
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_integration_delete</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">extends</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_integration_delete</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_entities</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_datagrids</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">replace</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">preactions</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">preconditions</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">frontend_options</span>
+        <span class="l l-Scalar l-Scalar-Plain">preactions</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@call_service_method&#39;</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_integration.utils.edit_mode</span>
+                <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">isEditAllowed</span>
+                <span class="l l-Scalar l-Scalar-Plain">method_parameters</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.data.editMode</span><span class="p p-Indicator">]</span>
+                <span class="l l-Scalar l-Scalar-Plain">attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.actionAllowed</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@call_service_method&#39;</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.methodIdentifier</span>
+                <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping.method.identifier_generator.method</span>
+                <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">generateIdentifier</span>
+                <span class="l l-Scalar l-Scalar-Plain">method_parameters</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.data</span><span class="p p-Indicator">]</span>
+            <span class="p p-Indicator">-</span> <span class="s">&#39;@call_service_method&#39;</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">attribute</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.linkGrid</span>
+                <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro_shipping.helper.filtered_datagrid_route</span>
+                <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">generate</span>
+                <span class="l l-Scalar l-Scalar-Plain">method_parameters</span><span class="p p-Indicator">:</span>  <span class="p p-Indicator">[{</span><span class="s">&#39;methodConfigs&#39;</span><span class="p p-Indicator">:</span> <span class="nv">$.methodIdentifier</span><span class="p p-Indicator">}]</span>
+        <span class="l l-Scalar l-Scalar-Plain">preconditions</span><span class="p p-Indicator">:</span>
+            <span class="s">&#39;@and&#39;</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@shipping_method_has_shipping_rules&#39;</span><span class="p p-Indicator">:</span>
+                    <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+                        <span class="l l-Scalar l-Scalar-Plain">method_identifier</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.methodIdentifier</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$type</span><span class="p p-Indicator">,</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">]</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.actionAllowed</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">frontend_options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">confirmation</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.shipping.integration.delete.title</span>
+                <span class="l l-Scalar l-Scalar-Plain">okText</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.shipping.integration.delete.button.okText</span>
+                <span class="l l-Scalar l-Scalar-Plain">message</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.shipping.integration.delete.message</span>
+                <span class="l l-Scalar l-Scalar-Plain">message_parameters</span><span class="p p-Indicator">:</span>
+                    <span class="l l-Scalar l-Scalar-Plain">linkGrid</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.linkGrid</span>
+                <span class="l l-Scalar l-Scalar-Plain">component</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oroui/js/standart-confirmation</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_integration_delete_without_rules</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">extends</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">acme_fast_shipping_integration_delete</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_entities</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">for_all_datagrids</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="l l-Scalar l-Scalar-Plain">replace</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">preconditions</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">frontend_options</span>
+        <span class="l l-Scalar l-Scalar-Plain">preconditions</span><span class="p p-Indicator">:</span>
+            <span class="s">&#39;@and&#39;</span><span class="p p-Indicator">:</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@not&#39;</span><span class="p p-Indicator">:</span>
+                    <span class="p p-Indicator">-</span> <span class="s">&#39;@shipping_method_has_shipping_rules&#39;</span><span class="p p-Indicator">:</span>
+                        <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+                            <span class="l l-Scalar l-Scalar-Plain">method_identifier</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$.methodIdentifier</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$type</span><span class="p p-Indicator">,</span> <span class="s">&#39;%acme_fast_shipping.integration.type%&#39;</span><span class="p p-Indicator">]</span>
+                <span class="p p-Indicator">-</span> <span class="s">&#39;@equal&#39;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">$.actionAllowed</span><span class="p p-Indicator">,</span> <span class="nv">true</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">frontend_options</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.action.delete_entity</span>
+            <span class="l l-Scalar l-Scalar-Plain">confirmation</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.action.delete_entity</span>
+                <span class="l l-Scalar l-Scalar-Plain">message</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oro.action.delete_confirm</span>
+                <span class="l l-Scalar l-Scalar-Plain">message_parameters</span><span class="p p-Indicator">:</span>
+                    <span class="l l-Scalar l-Scalar-Plain">entityLabel</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$name</span>
+                <span class="l l-Scalar l-Scalar-Plain">component</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">oroui/js/delete-confirmation</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Customizing Oro Features</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../entities/adding_properties.html">Add Properties to Core Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing_crud.html">Customizing CRUD Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing_import_export.html">Extending Entities to Support Bulk Import and Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_add_an_extension_to_oro_marketplace.html">How to Add an Extension to the OroCRM Marketplace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing_data_grid_in_orocommerce.html">Customizing Data Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using_php_instead_of_twig_for_templates.html">Using PHP Instead of Twig for Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_create_new_bundle.html">How to Create New Bundle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_extend_existing_bundle.html">How to Extend Existing Bundle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_add_entity_event_listeners.html">How to Add Entity Event Listeners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_create_and_customize_application_menu.html">How to Create and Customize Application Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_custom_validation_constraints.html">How to Add Custom User Validation Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_create_global_js_component.html">How to Create a Global JavaScript Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_replace_inline-javascript_with_component.html">How to Replace Inline-Javascript with a Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payment_method_add.html">Add a New Payment Method</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Add a New Shipping Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html">How to Create an Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installer_generate.html">How to Generate an Installer for a Bundle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../web_api/index.html">Web Services API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/dev_guide/extend_and_customize/shipping_method_add.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

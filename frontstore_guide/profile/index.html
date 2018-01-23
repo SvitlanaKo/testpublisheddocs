@@ -10,8 +10,8 @@
     
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -26,11 +26,10 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="My Organization Users and Roles" href="../users_roles/index.html" />
-    <link rel="prev" title="Navigation" href="../navigation/index.html" />
+    <link rel="next" title="Address Book" href="../address_book/index.html" />
+    <link rel="prev" title="Mass Delete in Tables" href="../navigation/mass_actions_front_store.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -71,131 +70,29 @@ materialdropdown.addEventListener('click', function() {
                                 alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
                     </div>
                     <div class="navbar-header">
-                        <p class="navbar-header" href="#">Documentation for... </p>
+                        <p class="navbar-header" href="#">Documentation</p>
                     </div>
-                    <div id="navbar" class="navbar-left">
-                        <div class="navbar-collapse collapse">
-                            <div class="menu-header-menu-container">
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">All Users</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started/index.html">Getting Started with UI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/inventory/index.html">Warehouses and Inventory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/customers/index.html">Customers and Customer Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/quotes/index.html">Quotes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/payment/index.html">Payment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/shipping/index.html">Shipping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/marketing_web_catalog/index.html">Web Catalogs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/marketing_landing_pages/index.html">Landing Pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/taxes/index.html">Taxes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/segments/index.html">Segments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/system/index.html">System Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">B2B Buyer</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../navigation/index.html">Navigation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">My Profile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../users_roles/index.html">My Organization Users and Roles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../seo_config_guide/website/index.html">Website Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Admin</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/price_list_sharding.html">How to Configure Price List Sharding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../admin_guide/optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/basics/index.html">OroPlatform Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/extend_and_customize/index.html">Customizing Oro Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/integration/index.html">Web Services API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/theme/index.html">Customizing the Theme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/reference/index.html">Annotation and Configuration Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/entities/index.html">Using and Managing Entities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/other/index.html">How to... Articles</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../community/contribute.html">Contributing to Oro Source Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/translations.html">Contributing to Translatiion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/write.html">Contributing to Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/issues/index.html">Contacting Support and Reporting Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/question.html">Submitting a Question</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../community/release.html">Release Process</a></li>
-</ul>
-</li>
-</ul>
-
-
-                                <!--
-                                <ul class="nav">
-                                    <li><a href="#">Installation</a></li>
-                                    <li><a href="#">Configuration</a></li>
-                                    <li><a href="#">Use <i class="fa fa-search search-complete__icon"></i></a>
-                                        <ul class="sub-nav">
-                                            <li class="sub-menu" ><a href="#">HTML</a>
-                                            </li>
-                                            <li class="sub-menu" ><a
-                                                   href="#">CSS</a>
-                                                <ul class="sub-nav">
-                                                    <li class="sub-menu"><a
-                                                           href="#">Resets</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">Grids</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">Frameworks</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="sub-menu" href="#">Development</a>
-                                                <ul class="sub-nav">
-                                                    <li class="sub-menu"><a
-                                                           href="#">Ajax</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">jQuery</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Contribution</a>
-                                        <ul class="sub-nav">
-                                            <li class="sub-menu"><a href="#">Themes</a>
-                                            </li>
-                                            <li class="sub-menu"><a href="#">Plugins</a>
-                                            </li>
-                                            <li class="sub-menu"><a href="#">Custom
-                                                Post Types</a>
-                                                <ul class="sub-nav">
-                                                    <li class="sub-menu"><a
-                                                           href="#">Portfolios</a>
-                                                    </li>
-                                                    <li class="sub-menu"><a
-                                                           href="#">Testimonials</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-menu"><a href="#">Options</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                -->
-                            </div>
-                        </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../address_book/index.html" title="Address Book"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../navigation/mass_actions_front_store.html" title="Mass Delete in Tables"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Storefront Guide</a> &#187;</li> 
+     <li class="nav-item nav-item-this">My Profile</li>
+      </ul>
+    </div>
                     </div>
+
                 </div>
             </div>
 
@@ -210,23 +107,31 @@ materialdropdown.addEventListener('click', function() {
             
   <div class="section" id="my-profile">
 <span id="frontstore-guide-profile"></span><h1>My Profile<a class="headerlink" href="#my-profile" title="Permalink to this headline">¶</a></h1>
-<p>The following information will cover the My Profile section of the Account menu.</p>
-<span class="target" id="frontstore-guide-profile-overview"></span><p>To locate My Profile:</p>
+<p>The following information covers the <strong>My Profile</strong> section of the <strong>Account</strong> menu.</p>
+<span class="target" id="frontstore-guide-profile-overview"></span><div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#account-info" id="id1">Account Info</a></li>
+<li><a class="reference internal" href="#default-addresses" id="id2">Default Addresses</a></li>
+</ul>
+</div>
+<p>To locate your profile:</p>
 <ol class="arabic simple">
 <li>Click <strong>Account</strong> in the <a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation-user-menu"><span class="std std-ref">user menu</span></a> on the top left of the page.</li>
 <li>Under <strong>Account</strong>, Click <strong>My Profile</strong>.</li>
 </ol>
 <p>My Profile has two sections:</p>
-<ol class="arabic">
+<ul>
 <li><p class="first">Account Info</p>
 </li>
 <li><p class="first">Default Addresses</p>
-<img alt="../../_images/MyProfilePage.png" src="../../_images/MyProfilePage.png" />
+<blockquote>
+<div><img alt="../../_images/MyProfilePage.png" src="../../_images/MyProfilePage.png" />
+</div></blockquote>
 </li>
-</ol>
+</ul>
 <div class="section" id="account-info">
-<span id="frontstore-guide-profile-account"></span><h2>Account Info<a class="headerlink" href="#account-info" title="Permalink to this headline">¶</a></h2>
-<p>In the Account Info section you can view the following details:</p>
+<span id="frontstore-guide-profile-account"></span><h2><a class="toc-backref" href="#id1">Account Info</a><a class="headerlink" href="#account-info" title="Permalink to this headline">¶</a></h2>
+<p>In the <strong>Account Info</strong> section you can view the following details:</p>
 <ul class="simple">
 <li>Name</li>
 <li>Email</li>
@@ -234,7 +139,11 @@ materialdropdown.addEventListener('click', function() {
 <li>Company</li>
 <li>Status</li>
 </ul>
-<p>To edit the profile, click <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> next to Account Info.</p>
+<p>To edit the profile, click <i class="fa fa-pencil fa-lg" aria-hidden="true"></i> next to <strong>Account Info</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that the ability to edit your account information depends on the permissions that correspond to your role. These are defined by the administrator.</p>
+</div>
 <p>In editing mode, you can amend the following details:</p>
 <ul class="simple">
 <li>Customer</li>
@@ -250,128 +159,34 @@ materialdropdown.addEventListener('click', function() {
 <img alt="../../_images/MyProfilePageEdit.png" src="../../_images/MyProfilePageEdit.png" />
 </div>
 <div class="section" id="default-addresses">
-<span id="frontstore-guide-profile-default-addresses"></span><h2>Default Addresses<a class="headerlink" href="#default-addresses" title="Permalink to this headline">¶</a></h2>
-<p>Default Addresses section shows the addresses used by the signed in user. Here, the primary address is displayed by default.</p>
-<p>You can perform the following actions for the primary address:</p>
-<ol class="arabic simple">
+<span id="frontstore-guide-profile-default-addresses"></span><h2><a class="toc-backref" href="#id2">Default Addresses</a><a class="headerlink" href="#default-addresses" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>The <strong>Default Addresses</strong> section shows the addresses used by the signed in user. Here, the primary address is displayed</dt>
+<dd>by default.</dd>
+</dl>
+<p>You can perform the following actions for each of the addresses listed here:</p>
+<ul class="simple">
 <li>Edit <i class="fa fa-pencil fa-lg" aria-hidden="true"></i></li>
 <li>Delete <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
-</ol>
-<p>You can manage company and personal addresses by clicking on the corresponding <strong>Manage Addresses</strong> button below the default address, or by clicking <strong>Address Book</strong> in the menu on the left under <strong>My Profile</strong>.</p>
+</ul>
+<p>To <a class="reference internal" href="../address_book/index.html#frontstore-guide-company-address"><span class="std std-ref">manage default addresses in the address book</span></a>, click <strong>Manage Addresses</strong> on the bottom of the section.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can also open the address book by clicking <strong>Address Book</strong> in the menu on the left.</p>
+</div>
 <img alt="../../_images/MyProfileManageAddresses.png" src="../../_images/MyProfileManageAddresses.png" />
 <img alt="../../_images/MyProfileAddressBooks.png" src="../../_images/MyProfileAddressBooks.png" />
-<div class="section" id="company-addresses">
-<h3>Company Addresses<a class="headerlink" href="#company-addresses" title="Permalink to this headline">¶</a></h3>
-<p>To create a new company address:</p>
-<ol class="arabic">
-<li><p class="first">Click <strong>+New Company Address</strong> on the right of the All Company Addresses view table.</p>
-<img alt="../../_images/MyProfileNewCompanyAddress.png" src="../../_images/MyProfileNewCompanyAddress.png" />
-</li>
-<li><p class="first">In the Create Address form, define the following fields:</p>
+<p class="rubric">Related Topics</p>
 <ul class="simple">
-<li>Customer</li>
-<li>Label</li>
-<li>Name Prefix</li>
-<li>First name</li>
-<li>Middle Name</li>
-<li>Last name</li>
-<li>Name Suffix</li>
-<li>Organization</li>
-<li>Phone</li>
-<li>Street</li>
-<li>Street 2</li>
-<li>City</li>
-<li>Country</li>
-<li>State</li>
-<li>Zip/Postal Code</li>
+<li><a class="reference internal" href="../getting_started/index.html#frontstore-guide-getting-started"><span class="std std-ref">Register and Sign In</span></a></li>
+<li><a class="reference internal" href="../navigation/index.html#frontstore-guide-navigation"><span class="std std-ref">Navigation</span></a></li>
+<li><a class="reference internal" href="#frontstore-guide-profile"><span class="std std-ref">Profile</span></a></li>
+<li><a class="reference internal" href="../users_roles/index.html#frontstore-guide-users-roles"><span class="std std-ref">Users Roles</span></a></li>
+<li><a class="reference internal" href="../orders/index.html#frontstore-guide-orders"><span class="std std-ref">Orders</span></a></li>
+<li><a class="reference internal" href="../quotes/index.html#frontstore-guide-quotes"><span class="std std-ref">Quotes</span></a></li>
+<li><a class="reference internal" href="../rfq/index.html#frontstore-guide-rfq"><span class="std std-ref">Requests For Quotes</span></a></li>
+<li><a class="reference internal" href="../shopping_lists/index.html#frontstore-guide-shopping-lists"><span class="std std-ref">Shopping Lists</span></a></li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To make the new address primary, select the <strong>Is Primary Address</strong> checkbox.</p>
-</div>
-<p>For address type and usage, enable the following checkboxes:</p>
-<ul class="simple">
-<li>Billing</li>
-<li>Shipping</li>
-<li>Default Billing</li>
-<li>Default Shipping</li>
-</ul>
-</li>
-<li><p class="first">Click <strong>Save</strong>.</p>
-<blockquote>
-<div><img alt="../../_images/MyProfileNewCompanyAddressForm.png" src="../../_images/MyProfileNewCompanyAddressForm.png" />
-</div></blockquote>
-</li>
-</ol>
-<p>You can perform the following actions for each address record in the table:</p>
-<ol class="arabic simple">
-<li>Show address on the map: click <i class="fa fa-map-o fa-lg" aria-hidden="true"></i></li>
-<li>Edit address: click <i class="fa fa-pencil fa-lg" aria-hidden="true"></i></li>
-<li>Delete address: click <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
-</ol>
-</div>
-<div class="section" id="my-addresses">
-<h3>My Addresses<a class="headerlink" href="#my-addresses" title="Permalink to this headline">¶</a></h3>
-<p>To create a new personal address:</p>
-<ol class="arabic">
-<li><p class="first">Click <strong>+New Address</strong> on the right side of the All My Addresses view table.</p>
-<img alt="../../_images/MyProfileMyAddress.png" src="../../_images/MyProfileMyAddress.png" />
-</li>
-</ol>
-<ol class="arabic" start="3">
-<li><p class="first">In the Create Address form, define the following fields:</p>
-<ul class="simple">
-<li>Customer</li>
-<li>Label</li>
-<li>Name Prefix</li>
-<li>First name</li>
-<li>Middle Name</li>
-<li>Last name</li>
-<li>Name Suffix</li>
-<li>Organization</li>
-<li>Phone</li>
-<li>Street</li>
-<li>Street 2</li>
-<li>City</li>
-<li>Country</li>
-<li>State</li>
-<li>Zip/Postal Code</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To make the new address primary, select the <strong>Is Primary Address</strong> checkbox.</p>
-</div>
-<p>For address type and usage, enable the following checkboxes:</p>
-<ul class="simple">
-<li>Billing</li>
-<li>Shipping</li>
-<li>Default Billing</li>
-<li>Default Shipping</li>
-</ul>
-</li>
-</ol>
-<ol class="arabic simple" start="3">
-<li>Click <strong>Save</strong>.</li>
-</ol>
-<p>You can perform the following actions for each address record in the table:</p>
-<ol class="arabic simple">
-<li>Show the address on the map: click <i class="fa fa-map-o fa-lg" aria-hidden="true"></i></li>
-<li>Edit address: click <i class="fa fa-pencil fa-lg" aria-hidden="true"></i></li>
-<li>Delete address: click <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
-</ol>
-<div class="section" id="related-topics">
-<h4>Related Topics<a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><a class="reference internal" href="../getting_started/index.html"><span class="doc">Getting Started</span></a></li>
-<li><a class="reference internal" href="../navigation/index.html"><span class="doc">Navigation</span></a></li>
-<li><a class="reference internal" href="../users_roles/index.html"><span class="doc">My Organization Users and Roles</span></a></li>
-<li><a class="reference internal" href="../rfq/index.html"><span class="doc">Request for Quote</span></a></li>
-<li><a class="reference internal" href="../quotes/index.html"><span class="doc">Quotes</span></a></li>
-<li><a class="reference internal" href="../orders/index.html"><span class="doc">Orders</span></a></li>
-<li><a class="reference internal" href="../shopping_lists/index.html"><span class="doc">Shopping Lists</span></a></li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 
@@ -382,48 +197,41 @@ materialdropdown.addEventListener('click', function() {
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<ul>
-<li><a class="reference internal" href="#">My Profile</a><ul>
-<li><a class="reference internal" href="#account-info">Account Info</a></li>
-<li><a class="reference internal" href="#default-addresses">Default Addresses</a><ul>
-<li><a class="reference internal" href="#company-addresses">Company Addresses</a></li>
-<li><a class="reference internal" href="#my-addresses">My Addresses</a><ul>
-<li><a class="reference internal" href="#related-topics">Related Topics</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Storefront Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Register and Sign In</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../navigation/index.html">Getting Started with Navigation and UI</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">My Profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../address_book/index.html">Address Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users_roles/index.html">My Organization Users and Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../previously_purchased/index.html">Previously Purchased Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">B2B Buyer&#8217;s Guide</a><ul>
-      <li>Previous: <a href="../navigation/index.html" title="previous chapter">Navigation</a></li>
-      <li>Next: <a href="../users_roles/index.html" title="next chapter">My Organization Users and Roles</a></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-    <form class="search" action="../../search.html" method="get">
-      <div><i class="fa fa-search search-complete__icon"></i>&nbsp;<input class="search_text" type="text" placeholder="Search in documentation " name="q" />
-      <input class="submit" type="submit" value="Search" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Oro Inc. All rights reserved.
+      &copy;2017, Oro Team All rights reserved.
            
       
+      |
+      <a href="../../_sources/frontstore_guide/profile/index.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
 
     

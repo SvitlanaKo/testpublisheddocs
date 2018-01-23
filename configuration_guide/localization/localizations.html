@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Localizations &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Configure Localization Settings" href="localization_configuration.html" />
+    <link rel="prev" title="Translations" href="translations.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="localization_configuration.html" title="Configure Localization Settings"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="translations.html" title="Translations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">System Localization and Translations</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Localizations</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="localizations">
+<span id="localization-localizations"></span><h1>Localizations<a class="headerlink" href="#localizations" title="Permalink to this headline">¶</a></h1>
+<p>Localization helps to bind the language and locale-specific formatting for smooth localization of the Oro system elements and messages visible to the user.</p>
+<p>To enable easy inheritance from the parent or similar language, localizations may form groups organized as an ancestors tree, for example:</p>
+<ul>
+<li><p class="first">English</p>
+<blockquote>
+<div><ul class="simple">
+<li>English (UK)</li>
+<li>English (USA)</li>
+<li>English (Canada)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>To view all localizations, navigate to <strong>System &gt; Localization &gt; Localizations</strong> in the main menu.</p>
+<img alt="../../_images/localizations.png" src="../../_images/localizations.png" />
+<p>The following information about the localizations is available in the Localizations list:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>NAME</td>
+<td>The name of the localization that identifies settings for the particular locale. It is displayed in the management console.</td>
+</tr>
+<tr class="row-odd"><td>TITLE</td>
+<td>The name of the localization set with a specific configuration displayed to the user in the storefront.</td>
+</tr>
+<tr class="row-even"><td>LANGUAGE</td>
+<td>The target language of the UI elements displayed to the user in the storefront.</td>
+</tr>
+<tr class="row-odd"><td>FORMATTING</td>
+<td>The formatting style of the corresponding target language that is applied in the localized instance.</td>
+</tr>
+<tr class="row-even"><td>PARENT LOCALIZATION</td>
+<td>Another localization that the current one should fall back to whenever a system element has no translation in the target language.</td>
+</tr>
+<tr class="row-odd"><td>CREATED AT</td>
+<td>The date when the localization is created.</td>
+</tr>
+<tr class="row-even"><td>UPDATED AT</td>
+<td>The date when the localization is updated.</td>
+</tr>
+</tbody>
+</table>
+<p>With every item in the Localizations list, you can perform the following actions:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#manage-localizations" id="id1">Manage Localizations</a></li>
+<li><a class="reference internal" href="#create-a-new-localization" id="id2">Create a New Localization</a></li>
+</ul>
+</div>
+<div class="section" id="manage-localizations">
+<h2><a class="toc-backref" href="#id1">Manage Localizations</a><a class="headerlink" href="#manage-localizations" title="Permalink to this headline">¶</a></h2>
+<p>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary localization:</p>
+<ol class="arabic simple">
+<li>Click <i class="fa fa-eye fa-lg" aria-hidden="true"></i> to view the localization details. Alternatively, click the corresponding item to open its details page.</li>
+<li>Click <i class="fa fa-edit fa-lg" aria-hidden="true"></i> to edit the localization.</li>
+<li>Click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> to remove the localization from the list.</li>
+</ol>
+<img alt="../../_images/localizations_more_options.png" src="../../_images/localizations_more_options.png" />
+</div>
+<div class="section" id="create-a-new-localization">
+<h2><a class="toc-backref" href="#id2">Create a New Localization</a><a class="headerlink" href="#create-a-new-localization" title="Permalink to this headline">¶</a></h2>
+<p>Create a new localization with a specific configuration by clicking <strong>Create Localization</strong> in the top right.</p>
+<p>The following page displays:</p>
+<img alt="../../_images/localizations_create.png" src="../../_images/localizations_create.png" />
+<ol class="arabic simple">
+<li>Give the localization a meaningful name and a title. The name is displayed in the management console while the corresponding title is used in the storefront.</li>
+</ol>
+<img alt="../../_images/localizations_name_and_title.png" src="../../_images/localizations_name_and_title.png" />
+<ol class="arabic simple" start="2">
+<li>Select the target language from the list for this particular localization. Make sure to enable the required language as described in the <a class="reference internal" href="languages.html#localization-languages"><span class="std std-ref">Languages</span></a> section to display it in the list of the available languages.</li>
+<li>Select the language formatting style.</li>
+<li>Select the parent localization from the available list. If no relations are set, the current localization inherits the English translation equivalents by default.</li>
+<li>Click <strong>Save</strong> in the top right.</li>
+<li>Now, you need to update the translation cache so that all the changes could enter into force.<ul>
+<li>Click the reference link at the top to move to the <strong>Translations</strong> page.</li>
+<li>Click <strong>Update Cache</strong> in the top right.</li>
+</ul>
+</li>
+</ol>
+<p>Once the localization is configured and the cache is updated, you need to enable it in the system configuration menu. Proceed to the <a class="reference internal" href="localization_configuration.html#localization-localization"><span class="std std-ref">Localization Settings</span></a> section and follow the steps described in the guide.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">System Localization and Translations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="languages.html">Languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="translations.html">Translations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Localizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization_configuration.html">Configure Localization Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="organization_localization.html">Customize Localization Settings per Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="website_localization.html">Customize Localization Settings per Website</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_localization.html">Customize Localization Settings per User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="language_settings.html">Configure Language Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html">Localization Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="content_translation.html">Content Translation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/localization/localizations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

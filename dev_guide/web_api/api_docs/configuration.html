@@ -1,0 +1,749 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuration Reference &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Documenting API Resources" href="documentation.html" />
+    <link rel="prev" title="Configuration Extras" href="configuration_extra.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="Documenting API Resources"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration_extra.html" title="Configuration Extras"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Web Services API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">API Documentation</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configuration Reference</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuration-reference">
+<h1>Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#overview">Overview</a></li>
+<li><a class="reference external" href="#configuration-structure">Configuration structure</a></li>
+<li><a class="reference external" href="#exclude-option">**exclude** option</a></li>
+<li><a class="reference external" href="#entity_aliases-configuration-section">**entity_aliases** configuration section</a></li>
+<li><a class="reference external" href="#entities-configuration-section">**entities** configuration section</a></li>
+<li><a class="reference external" href="#fields-configuration-section">**fields** configuration section</a></li>
+<li><a class="reference external" href="#filters-configuration-section">**filters** configuration section</a></li>
+<li><a class="reference external" href="#sorters-configuration-section">**sorters** configuration section</a></li>
+<li><a class="reference external" href="#actions-configuration-section">**actions** configuration section</a></li>
+<li><a class="reference external" href="#action-status_codes-configuration-section">**status_codes** configuration section</a></li>
+<li><a class="reference external" href="#action-fields-configuration-section">**fields** configuration section</a></li>
+<li><a class="reference external" href="#subresources-configuration-section">**subresources** configuration section</a></li>
+<li><a class="reference external" href="#relations-configuration-section">**relations** configuration section</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The configuration declares all aspects related to specific entity. The configuration should be placed in <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code> to be automatically loaded.</p>
+<p>All entities, except custom entities, dictionaries and enumerations are not accessible through Data API. To allow usage of an entity in Data API you have to enable it directly. For example, to make <code class="docutils literal"><span class="pre">Acme\Bundle\ProductBundle\Product</span></code> entity available through Data API you can write the following configuration:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\ProductBundle\Product</span><span class="o">:</span> <span class="o">~</span>
+</pre></div>
+</div>
+<p>If an auto-generated alias for your entity looks bad for you, you can change it in <code class="docutils literal"><span class="pre">Resources/config/oro/entity.yml</span></code>. More details you can find in <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/EntityBundle/Resources/doc/entity_aliases.md">entity aliases documentation</a>.</p>
+<p>Do not forget to run <code class="docutils literal"><span class="pre">oro:api:cache:clear</span></code> CLI command to immediately make an entity accessible through Data API. If you use API sandbox run <code class="docutils literal"><span class="pre">oro:api:doc:cache:clear</span></code> CLI command to apply the changes for it. Also please see other <a class="reference external" href="./commands.md">CLI commands</a> that may be helpful.</p>
+</div>
+<div class="section" id="configuration-structure">
+<h2>Configuration structure<a class="headerlink" href="#configuration-structure" title="Permalink to this headline">¶</a></h2>
+<p>To get the overall configuration structure, execute the following command:</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span><span class="o">-</span><span class="nx">reference</span>
+</pre></div>
+</div>
+<p>By default this command shows configuration of nesting entities. To simplify the output you can use the <code class="docutils literal"><span class="pre">--max-nesting-level</span></code> option, e.g.</p>
+<div class="code bash highlight-php"><div class="highlight"><pre><span></span><span class="nx">php</span> <span class="nx">app</span><span class="o">/</span><span class="nx">console</span> <span class="nx">oro</span><span class="o">:</span><span class="nx">api</span><span class="o">:</span><span class="nx">config</span><span class="o">:</span><span class="nx">dump</span><span class="o">-</span><span class="nx">reference</span> <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="nx">nesting</span><span class="o">-</span><span class="nx">level</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>The default nesting level is <code class="docutils literal"><span class="pre">3</span></code>. It is specified in the configuration of ApiBundle via the <code class="docutils literal"><span class="pre">config_max_nesting_level</span></code> parameter. So, if needed, you can easily change this value, for example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="c1"># app/config/config.yml</span>
+
+<span class="nx">oro_api</span><span class="o">:</span>
+    <span class="nx">config_max_nesting_level</span><span class="o">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>The first level sections of configuration are:</p>
+<ul class="simple">
+<li><a class="reference external" href="#entity_aliases-configuration-section">entity_aliases</a> - allows to override entity aliases.</li>
+<li><a class="reference external" href="#entities-configuration-section">entities</a> - describes the configuration of entities.</li>
+<li><a class="reference external" href="#relations-configuration-section">relations</a> - describes the configuration of relationships.</li>
+</ul>
+<p>Top level configuration example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entity_aliases</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="o">...</span>
+
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">exclude</span><span class="o">:</span>
+            <span class="o">...</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="o">...</span>
+            <span class="nx">filters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="o">...</span>
+            <span class="nx">sorters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="o">...</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="o">...</span>
+            <span class="nx">subresources</span><span class="o">:</span>
+                <span class="o">...</span>
+        <span class="o">...</span>
+    <span class="nx">relations</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="o">...</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="o">...</span>
+            <span class="nx">filters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="o">...</span>
+            <span class="nx">sorters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="o">...</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exclude-option">
+<h2>&#8220;exclude&#8221; option<a class="headerlink" href="#exclude-option" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">exclude</span></code> configuration option describes whether an entity or some of its fields should be excluded from Data API.</p>
+<p>Example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity1</span><span class="o">:</span>
+            <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span> <span class="c1"># exclude the entity from Data API</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity2</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="nx">field1</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span> <span class="c1"># exclude the field from Data API</span>
+</pre></div>
+</div>
+<p>Also the <code class="docutils literal"><span class="pre">exclude</span></code> option can be used to indicate whether filtering or sorting for certain field should be disabled. Please note that filtering and sorting for the excluded field are disabled automatically, so it&#8217;s not possible to filter or sort by excluded field.</p>
+<p>Example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity1</span><span class="o">:</span>
+            <span class="nx">sorters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="nx">field1</span><span class="o">:</span>
+                        <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+            <span class="nx">filters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="nx">field1</span><span class="o">:</span>
+                        <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+<p>Please note that <code class="docutils literal"><span class="pre">exclude</span></code> option are applicable only for Data API. In case if an entity or its&#8217; field(s) should be excluded globally use <code class="docutils literal"><span class="pre">Resources/config/oro/entity.yml</span></code>, e.g.:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">oro_entity</span><span class="o">:</span>
+    <span class="nx">exclusions</span><span class="o">:</span>
+        <span class="c1"># whole entity exclusion</span>
+        <span class="o">-</span> <span class="p">{</span> <span class="nx">entity</span><span class="o">:</span> <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity1</span> <span class="p">}</span>
+        <span class="c1"># exclude field1 of Acme\Bundle\AcmeBundle\Entity\Entity2 entity</span>
+        <span class="o">-</span> <span class="p">{</span> <span class="nx">entity</span><span class="o">:</span> <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity2</span><span class="p">,</span> <span class="nx">field</span><span class="o">:</span> <span class="nx">field1</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="entity-aliases-configuration-section">
+<h2>&#8220;entity_aliases&#8221; configuration section<a class="headerlink" href="#entity-aliases-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">entity_aliases</span></code> section allows to override existing system-wide entity aliases or add aliases for models intended to be used only in Data API.</p>
+<p>It can be helpful when you need to provide entity aliases for Data API but it is not possible to make them system-wide. For example because the backwards compatibility promise or because your models were created for using only in Data API.</p>
+<p>Please see <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/EntityBundle/Resources/doc/entity_aliases.md">documentation</a> for more details about entity aliases.</p>
+<p>An example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entity_aliases</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">alias</span><span class="o">:</span> <span class="nx">acmeentity</span>
+            <span class="nx">plural_alias</span><span class="o">:</span> <span class="nx">acmeentities</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="entities-configuration-section">
+<h2>&#8220;entities&#8221; configuration section<a class="headerlink" href="#entities-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">entities</span></code> section describes a configuration of entities.</p>
+<ul class="simple">
+<li><strong>documentation_resource</strong> <em>string</em> May contain the link to <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">markdown</a> file that contains a detailed documentation for a single or multiple API resources. For more details see <a class="reference external" href="./documentation.md">Documenting API Resources</a>. Please note that the same entity can be configured in different <code class="docutils literal"><span class="pre">Resources/config/oro/api.yml</span></code> files, e.g. when some bundle needs to add a field to an entity declared in another bundle. In this case all configuration files
+for this entity can have <strong>documentation_resource</strong> option and all documentation files declared there will be merged. Also pay attention that in case if the same field is documented in several documentation files, they will not be merged and only a documentation from one file will be used.</li>
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether the entity should be excluded from Data API. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>inherit</strong> <em>boolean</em> By default <code class="docutils literal"><span class="pre">true</span></code>. The flag indicates that the configuration for certain entity should be merged with the configuration of a parent entity. If a derived entity should have completely different configuration and merging with parent configuration is not needed the flag should be set to <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>exclusion_policy</strong> <em>string</em> - Can be <code class="docutils literal"><span class="pre">all</span></code> or <code class="docutils literal"><span class="pre">none</span></code>. By default <code class="docutils literal"><span class="pre">none</span></code>. Indicates the exclusion strategy that should be used for the entity. <code class="docutils literal"><span class="pre">all</span></code> means that all fields are not configured explicitly will be excluded. <code class="docutils literal"><span class="pre">none</span></code> means that only fields marked with <code class="docutils literal"><span class="pre">exclude</span></code> flag will be excluded.</li>
+<li><strong>max_results</strong> <em>integer</em> The maximum number of entities in the result. Set <code class="docutils literal"><span class="pre">-1</span></code> (it means unlimited), zero or positive number to set the limit. Can be used to set the limit for both root and related entities.</li>
+<li><strong>order_by</strong> <em>array</em> The property can be used to configure default ordering of the result. The item key is the name of a field. The value can be <code class="docutils literal"><span class="pre">ASC</span></code> or <code class="docutils literal"><span class="pre">DESC</span></code>. By default the result is ordered by identifier field.</li>
+<li><strong>disable_inclusion</strong> <em>boolean</em> The flag indicates whether an inclusion of related entities is disabled. In JSON.API an <a class="reference external" href="http://jsonapi.org/format/#fetching-includes">**include** request parameter</a> can be used to customize which related entities should be returned. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>disable_fieldset</strong> <em>boolean</em> The flag indicates whether a requesting of a restricted set of fields is disabled. In JSON.API an <a class="reference external" href="http://jsonapi.org/format/#fetching-sparse-fieldsets">**fields** request parameter</a> can be used to customize which fields should be returned. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>disable_meta_properties</strong> <em>boolean</em> The flag indicates whether a requesting of additional meta properties is disabled. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>hints</strong> <em>array</em> Sets <a class="reference external" href="http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/dql-doctrine-query-language.html#query-hints">Doctrine query hints</a>. Each item can be a string or an array with <code class="docutils literal"><span class="pre">name</span></code> and <code class="docutils literal"><span class="pre">value</span></code> keys. The string value is a short form of <code class="docutils literal"><span class="pre">[name:</span> <span class="pre">hint</span> <span class="pre">name]</span></code>.</li>
+<li><strong>identifier_field_names</strong> <em>string[]</em> The names of identifier fields of the entity. Usually it should be set in a configuration file in case if Data API resource is not based on ORM entity. For ORM entities a value of this option is retrieved from an entity metadata, but this can be changed using this option if by some reasons you do not want to use the primary key as an entity identifier in Data API.</li>
+<li><strong>delete_handler</strong> <em>string</em> The id of a service that should be used to delete entity by the <a class="reference external" href="./actions#delete-action">delete</a> and <a class="reference external" href="./actions#delete_list-action">delete_list</a> actions. By default the <a class="reference external" href="https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/SoapBundle/Handler/DeleteHandler.php">oro_soap.handler.delete</a> service is used.</li>
+<li><strong>form_type</strong> <em>string</em> The form type that should be used for the entity in <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions. By default the <code class="docutils literal"><span class="pre">form</span></code> form type is used.</li>
+<li><strong>form_options</strong> <em>array</em> The form options that should be used for the entity in <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions.</li>
+<li><strong>form_event_subscriber</strong> The form event subscriber(s) that should be used for the entity in <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions. Also this event subscriber is used for <a class="reference external" href="./actions#update_relationship-action">update_relationship</a>, <a class="reference external" href="./actions#add_relationship-action">add_relationship</a> and <a class="reference external" href="./actions#delete_relationship-action">delete_relationship</a> actions, but only if the <code class="docutils literal"><span class="pre">form_type</span></code> option is not specified. For
+custom form types this event subscriber is not used. Can be specified as service name or array of service names. An event subscriber service should implement <code class="docutils literal"><span class="pre">Symfony\Component\EventDispatcher\EventSubscriberInterface</span></code> interface.</li>
+</ul>
+<p>By default the following form options are set:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option Name</th>
+<th class="head">Option Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>data_class</td>
+<td>The class name of the entity</td>
+</tr>
+<tr class="row-odd"><td>validation_groups</td>
+<td>[&#8216;Default&#8217;, &#8216;api&#8217;]</td>
+</tr>
+<tr class="row-even"><td>extra_fields_message</td>
+<td>This form should not contain extra fields: &#8220;{{ extra_fields }}&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">documentation_resource</span><span class="o">:</span> <span class="s1">&#39;@AcmeAcmeBundle/Resources/doc/api/acme_entity.md&#39;</span>
+            <span class="nx">inherit</span><span class="o">:</span>              <span class="k">false</span>
+            <span class="nx">exclusion_policy</span><span class="o">:</span>     <span class="nx">all</span>
+            <span class="nx">max_results</span><span class="o">:</span>          <span class="mi">25</span>
+            <span class="nx">order_by</span><span class="o">:</span>
+                <span class="nx">field1</span><span class="o">:</span> <span class="nx">DESC</span>
+                <span class="nx">field2</span><span class="o">:</span> <span class="nx">ASC</span>
+            <span class="nx">hints</span><span class="o">:</span>
+                <span class="o">-</span> <span class="nx">HINT_TRANSLATABLE</span>
+                <span class="o">-</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">HINT_FILTER_BY_CURRENT_USER</span> <span class="p">}</span>
+                <span class="o">-</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">HINT_CUSTOM_OUTPUT_WALKER</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Acme\Bundle\AcmeBundle\AST_Walker_Class&#39;</span><span class="p">}</span>
+            <span class="nx">delete_handler</span><span class="o">:</span>       <span class="nx">acme</span><span class="o">.</span><span class="nx">demo</span><span class="o">.</span><span class="nx">test_entity</span><span class="o">.</span><span class="nx">delete_handler</span>
+            <span class="nx">excluded</span><span class="o">:</span>             <span class="k">false</span>
+            <span class="nx">form_type</span><span class="o">:</span> <span class="nx">acme_entity</span><span class="o">.</span><span class="nx">api_form</span>
+            <span class="nx">form_options</span><span class="o">:</span>
+                <span class="nx">validation_groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span> <span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="s1">&#39;my_group&#39;</span><span class="p">]</span>
+            <span class="nx">form_event_subscriber</span><span class="o">:</span> <span class="nx">acme</span><span class="o">.</span><span class="nx">api</span><span class="o">.</span><span class="nx">form_listener</span><span class="o">.</span><span class="nx">test_entity</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fields-configuration-section">
+<h2>&#8220;fields&#8221; configuration section<a class="headerlink" href="#fields-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>This section describes entity fields&#8217; configuration.</p>
+<ul class="simple">
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether the field should be excluded. This property is described above in <a class="reference external" href="#exclude-option">&#8220;exclude&#8221; option</a>.</li>
+<li><strong>description</strong> <em>string</em> A human-readable description of the field or a link to the <a class="reference external" href="./documentation.md">documentation resource</a>. Used in auto generated documentation only.</li>
+<li><strong>property_path</strong> <em>string</em> The property path to reach the fields&#8217; value. Can be used to rename a field or to access to a field of related entity.</li>
+<li><strong>collapse</strong> <em>boolean</em> Indicates whether the entity should be collapsed. It is applicable for associations only. It means that target entity should be returned as a value, instead of an array with values of entity fields. Usually this property is set by <a class="reference external" href="./actions#get_relation_config-action">get_relation_config</a> processors to get identifier of the related entity.</li>
+<li><strong>form_type</strong> <em>string</em> The form type that should be used for the field in <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions.</li>
+<li><strong>form_options</strong> <em>array</em> The form options that should be used for the field in <a class="reference external" href="./actions#create-action">create</a> and <a class="reference external" href="./actions#update-action">update</a> actions.</li>
+<li><strong>data_type</strong> <em>string</em> The data type of the field value. Can be <code class="docutils literal"><span class="pre">boolean</span></code>, <code class="docutils literal"><span class="pre">integer</span></code>, <code class="docutils literal"><span class="pre">string</span></code>, etc. If a field represents an association the data type should be a type of an identity field of the target entity.</li>
+<li><strong>meta_property</strong> <em>boolean</em> A flag indicates whether the field represents a meta information. For JSON.API such fields will be returned in <a class="reference external" href="http://jsonapi.org/format/#document-meta">meta</a> section. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>target_class</strong> <em>string</em> The class name of a target entity if a field represents an association. Usually it should be set in a configuration file in case if Data API resource is based on not ORM entity.</li>
+<li><strong>target_type</strong> <em>string</em> The type of a target association. Can be <strong>to-one</strong> or <strong>to-many</strong>. Also <strong>collection</strong> can be used as an alias for <strong>to-many</strong>. <strong>to-one</strong> can be omitted as it is used by default. Usually it should be set in a configuration file in case if Data API resource is based on not ORM entity.</li>
+<li><strong>depends_on</strong> <em>string[]</em> A list of fields on which this field depends on. Also <code class="docutils literal"><span class="pre">.</span></code> can be used to specify a path to an association field. This option can be helpful for computed fields. These fields will be loaded from the database even if they are excluded.</li>
+</ul>
+<p>Special data types:</p>
+<p>As described above, the <strong>data_type</strong> attribute can be used to specify a data type of a field, but it can be used to configure some special types of fields as well. The following table contains details of such types.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>scalar</td>
+<td>Used to represent a field of to-one association as a field of parent entity. In JSON.API it means that the association&#8217;s field should be in &#8220;attributes&#8221; section instead of &#8220;relationships&#8221; section.</td>
+</tr>
+<tr class="row-odd"><td>object</td>
+<td>Used to represent to-one association as a field. In JSON.API it means that the association should be in &#8220;attributes&#8221; section instead of &#8220;relationships&#8221; section.</td>
+</tr>
+<tr class="row-even"><td>array</td>
+<td>Used to represent to-many association as a field. In JSON.API it means that the association should be in &#8220;attributes&#8221; section instead of &#8220;relationships&#8221; section.</td>
+</tr>
+<tr class="row-odd"><td>nestedObject</td>
+<td>Used to configure nested objects. For details see <a class="reference external" href="./how_to#configure-nested-object">Configure nested object</a>.</td>
+</tr>
+<tr class="row-even"><td>nestedAssociation</td>
+<td>Used to configure nested associations. For details see <a class="reference external" href="./how_to#configure-nested-association">Configure nested association</a>.</td>
+</tr>
+<tr class="row-odd"><td>association:relationType[:associationKind]</td>
+<td>Used to configure extended associations. For details see <a class="reference external" href="./how_to#configure-extended-many-to-one-association">Configure Extended Many-To-One Association</a>, <a class="reference external" href="./how_to#configure-extended-many-to-many-association">Configure Extended Many-To-Many Association</a> and <a class="reference external" href="./how_to#configure-extended-multiple-many-to-one-association">Configure Extended Multiple Many-To-One Association</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">fields</span><span class="o">:</span>
+                <span class="c1"># exclude a field</span>
+                <span class="nx">field1</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+
+                <span class="c1"># the &quot;firstName&quot; field will be renamed to the &quot;name&quot; field</span>
+                <span class="nx">name</span><span class="o">:</span>
+                    <span class="nx">description</span><span class="o">:</span> <span class="nx">Some</span> <span class="nx">Field</span>
+                    <span class="nx">property_path</span><span class="o">:</span> <span class="nx">firstName</span>
+
+                <span class="c1"># the &quot;addressName&quot; field will contain the value of the &quot;name&quot; field of the &quot;address&quot; related entity</span>
+                <span class="nx">addressName</span><span class="o">:</span>
+                    <span class="nx">property_path</span><span class="o">:</span> <span class="nx">address</span><span class="o">.</span><span class="nx">name</span>
+
+                <span class="c1"># full syntax for &quot;collapse&quot; property</span>
+                <span class="nx">field4</span><span class="o">:</span>
+                    <span class="nx">collapse</span><span class="o">:</span>         <span class="k">true</span>
+                    <span class="nx">exclusion_policy</span><span class="o">:</span> <span class="nx">all</span>
+                    <span class="nx">fields</span><span class="o">:</span>
+                        <span class="nx">targetField1</span><span class="o">:</span> <span class="k">null</span>
+
+                <span class="c1"># short syntax for &quot;collapse&quot; property</span>
+                <span class="nx">field5</span><span class="o">:</span>
+                    <span class="nx">fields</span><span class="o">:</span> <span class="nx">targetField1</span>
+
+                <span class="c1"># form type and form options for a field</span>
+                <span class="nx">field6</span><span class="o">:</span>
+                    <span class="nx">form_type</span><span class="o">:</span> <span class="nx">text</span>
+                    <span class="nx">form_options</span><span class="o">:</span>
+                        <span class="nb">trim</span><span class="o">:</span> <span class="k">false</span>
+                        <span class="nx">constraints</span><span class="o">:</span>
+                            <span class="c1"># add Symfony\Component\Validator\Constraints\NotBlank validation constraint</span>
+                            <span class="o">-</span> <span class="nx">NotBlank</span><span class="o">:</span> <span class="o">~</span>
+
+                <span class="c1"># to-one association</span>
+                <span class="nx">field7</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">integer</span> <span class="c1"># the data type of an identifier field of the target</span>
+                    <span class="nx">target_class</span><span class="o">:</span> <span class="nx">Acme\Bundle\AcmeBundle\Api\Model\AcmeTargetEntity</span>
+
+                <span class="c1"># to-many association</span>
+                <span class="nx">field8</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">integer</span> <span class="c1"># the data type of an identifier field of the target</span>
+                    <span class="nx">target_class</span><span class="o">:</span> <span class="nx">Acme\Bundle\AcmeBundle\Api\Model\AcmeTargetEntity</span>
+                    <span class="nx">target_type</span><span class="o">:</span> <span class="nx">collection</span>
+
+                <span class="c1"># computed field</span>
+                <span class="nx">field9</span><span class="o">:</span>
+                    <span class="nx">data_type</span><span class="o">:</span> <span class="nx">string</span>
+                    <span class="nx">depends_on</span><span class="o">:</span> <span class="p">[</span><span class="nx">field1</span><span class="p">,</span> <span class="nx">association1</span><span class="o">.</span><span class="nx">field11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filters-configuration-section">
+<h2>&#8220;filters&#8221; configuration section<a class="headerlink" href="#filters-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>This section describes fields by which the result data can be filtered. It contains two properties: <code class="docutils literal"><span class="pre">exclusion_policy</span></code> and <code class="docutils literal"><span class="pre">fields</span></code>.</p>
+<ul class="simple">
+<li><strong>exclusion_policy</strong> <em>string</em> Can be <code class="docutils literal"><span class="pre">all</span></code> or <code class="docutils literal"><span class="pre">none</span></code>. By default <code class="docutils literal"><span class="pre">none</span></code>. Indicates the exclusion strategy that should be used. <code class="docutils literal"><span class="pre">all</span></code> means that all fields are not configured explicitly will be excluded. <code class="docutils literal"><span class="pre">none</span></code> means that only fields marked with <code class="docutils literal"><span class="pre">exclude</span></code> flag will be excluded.</li>
+<li><strong>fields</strong> This section describes a configuration of each field that can be used to filter the result data. Each filter can have the following properties:<ul>
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether filtering by this field should be disabled. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>description</strong> <em>string</em> A human-readable description of the filter or a link to the <a class="reference external" href="./documentation.rst">documentation resource</a>. Used in auto generated documentation only.</li>
+<li><strong>property_path</strong> <em>string</em> The property path to reach the fields&#8217; value. The same way as above in <code class="docutils literal"><span class="pre">fields</span></code> configuration section.</li>
+<li><strong>data_type</strong> <em>string</em> The data type of the filter value. Can be <code class="docutils literal"><span class="pre">boolean</span></code>, <code class="docutils literal"><span class="pre">integer</span></code>, <code class="docutils literal"><span class="pre">string</span></code>, etc.</li>
+<li><strong>allow_array</strong> <em>boolean</em> A flag indicates whether the filter can contains several values. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>allow_range</strong> <em>boolean</em> A flag indicates whether the filter can contains a pair of &#8220;from&#8221; and &#8220;to&#8221; values. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>type</strong> <em>string</em> The filter type. By default the filter type is equal to the <strong>data_type</strong> property.</li>
+<li><strong>options</strong> <em>array</em> The filter options.</li>
+<li><strong>operators</strong> <em>array</em> A list of operators supported by the filter. By default the list of operators depends on the filter type. For example a string filter supports <strong>=</strong> and <strong>!=</strong> operators, a number filter supports <strong>=</strong>, <strong>!=</strong>, <strong>&lt;</strong>, <strong>&lt;=</strong>, <strong>&gt;</strong> and <strong>&gt;=</strong> operators, etc. Usually you need to use this parameter in case if you need to make a list of supported operators more limited.</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">filters</span><span class="o">:</span>
+                <span class="nx">exclusion_policy</span><span class="o">:</span> <span class="nx">all</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="nx">field1</span><span class="o">:</span>
+                        <span class="nx">data_type</span><span class="o">:</span> <span class="nx">integer</span>
+                        <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+                    <span class="nx">field2</span><span class="o">:</span>
+                        <span class="nx">data_type</span><span class="o">:</span> <span class="nx">string</span>
+                        <span class="nx">property_path</span><span class="o">:</span> <span class="nx">firstName</span>
+                        <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;My filter description&#39;</span>
+                    <span class="nx">field3</span><span class="o">:</span>
+                        <span class="nx">data_type</span><span class="o">:</span> <span class="nb">date</span>
+                        <span class="nx">allow_array</span><span class="o">:</span> <span class="k">true</span>
+                        <span class="nx">allow_range</span><span class="o">:</span> <span class="k">true</span>
+                    <span class="nx">field4</span><span class="o">:</span>
+                        <span class="nx">data_type</span><span class="o">:</span> <span class="nx">string</span>
+                        <span class="nx">type</span><span class="o">:</span> <span class="nx">myFilter</span>
+                        <span class="nx">options</span><span class="o">:</span>
+                            <span class="nx">my_option</span><span class="o">:</span> <span class="nx">value</span>
+                    <span class="nx">field5</span><span class="o">:</span>
+                        <span class="nx">operators</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;=&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sorters-configuration-section">
+<h2>&#8220;sorters&#8221; configuration section<a class="headerlink" href="#sorters-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>This section describes fields by which the result data can be sorted. It contains two properties: <code class="docutils literal"><span class="pre">exclusion_policy</span></code> and <code class="docutils literal"><span class="pre">fields</span></code>.</p>
+<ul class="simple">
+<li><strong>exclusion_policy</strong> <em>string</em> Can be <code class="docutils literal"><span class="pre">all</span></code> or <code class="docutils literal"><span class="pre">none</span></code>. By default <code class="docutils literal"><span class="pre">none</span></code>. Indicates the exclusion strategy that should be used. <code class="docutils literal"><span class="pre">all</span></code> means that all fields are not configured explicitly will be excluded. <code class="docutils literal"><span class="pre">none</span></code> means that only fields marked with <code class="docutils literal"><span class="pre">exclude</span></code> flag will be excluded.</li>
+<li><strong>fields</strong> - This section describes a configuration of each field that can be used to sort the result data. Each sorter can have the following properties:<ul>
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether sorting by this field should be disabled. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>property_path</strong> <em>string</em> The property path to reach the fields&#8217; value. The same way as above in <code class="docutils literal"><span class="pre">fields</span></code> configuration section.</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">sorters</span><span class="o">:</span>
+                <span class="nx">fields</span><span class="o">:</span>
+                    <span class="nx">field1</span><span class="o">:</span>
+                        <span class="nx">property_path</span><span class="o">:</span> <span class="nx">firstName</span>
+                    <span class="nx">field2</span><span class="o">:</span>
+                        <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="actions-configuration-section">
+<h2>&#8220;actions&#8221; configuration section<a class="headerlink" href="#actions-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">actions</span></code> configuration section allows to specify action-specific options. The options from this section will be added to the entity configuration. If an option exists in both entity and action configurations the action option wins. The exception is the <code class="docutils literal"><span class="pre">exclude</span></code> option. This option is used to disable an action for a specific entity and it is not copied to the entity configuration.</p>
+<ul class="simple">
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether the action is disabled for entity. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>description</strong> <em>string</em> A short, human-readable description of API resource. Used in auto generated documentation only.</li>
+<li><strong>documentation</strong> <em>string</em> A detailed documentation of API resource or a link to the <a class="reference external" href="./documentation.rst">documentation resource</a>. Used in auto generated documentation only.</li>
+<li><strong>acl_resource</strong> <em>string</em> The name of ACL resource that should be used to protect an entity in a scope of this action. The <code class="docutils literal"><span class="pre">null</span></code> can be used to disable access checks.</li>
+<li><strong>max_results</strong> <em>integer</em> The maximum number of entities in the result. Set <code class="docutils literal"><span class="pre">-1</span></code> (it means unlimited), zero or positive number to set the limit. Can be used to set the limit for both root and related entities.</li>
+<li><strong>order_by</strong> <em>array</em> The property can be used to configure default ordering of the result. The item key is the name of a field. The value can be <code class="docutils literal"><span class="pre">ASC</span></code> or <code class="docutils literal"><span class="pre">DESC</span></code>. By default the result is ordered by identifier field.</li>
+<li><strong>page_size</strong> <em>integer</em> The default page size. Set a positive number or <code class="docutils literal"><span class="pre">-1</span></code> if a pagination should be disabled. Default value is <code class="docutils literal"><span class="pre">10</span></code>.</li>
+<li><strong>disable_sorting</strong> <em>boolean</em> The flag indicates whether a sorting is disabled. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>disable_inclusion</strong> <em>boolean</em> The flag indicates whether an inclusion of related entities is disabled. In JSON.API an <a class="reference external" href="http://jsonapi.org/format/#fetching-includes">**include** request parameter</a> can be used to customize which related entities should be returned. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>disable_fieldset</strong> <em>boolean</em> The flag indicates whether a requesting of a restricted set of fields is disabled. In JSON.API an <a class="reference external" href="http://jsonapi.org/format/#fetching-sparse-fieldsets">**fields** request parameter</a> can be used to customize which fields should be returned. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>disable_meta_properties</strong> <em>boolean</em> The flag indicates whether a requesting of additional meta properties is disabled. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>form_type</strong> <em>string</em> The form type that should be used for the entity.</li>
+<li><strong>form_options</strong> <em>array</em> The form options that should be used for the entity. Please note that these form options are merged with form options are defined on the entity level, but only in case if the <code class="docutils literal"><span class="pre">form_type</span></code> is not specified. If <code class="docutils literal"><span class="pre">form_type</span></code> is specified in an action configuration the action form options completely replace the form options are defined on the entity level.</li>
+<li><strong>form_event_subscriber</strong> The form event subscriber(s) that should be used for the entity. Can be specified as service name or array of service names. An event subscriber service should implement <code class="docutils literal"><span class="pre">Symfony\Component\EventDispatcher\EventSubscriberInterface</span></code> interface. Please note that these event subscribers are merged with event subscribers are defined on the entity level, but only in case if the <code class="docutils literal"><span class="pre">form_type</span></code> is not specified. If <code class="docutils literal"><span class="pre">form_type</span></code> is specified in an action configuration the
+action event subscribers completely replace the event subscribers are defined on the entity level.</li>
+<li><strong>status_codes</strong> <em>array</em> The possible response status codes for the action.<ul>
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether the status code should be excluded for a particular action. This property is described above in <a class="reference external" href="#exclude-option">&#8220;exclude&#8221; option</a>.</li>
+<li><strong>description</strong> <em>string</em> A human-readable description of the status code. Used in auto generated documentation only.</li>
+</ul>
+</li>
+<li><strong>fields</strong> - This section describes entity fields&#8217; configuration specific for a particular action.<ul>
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether the field should be excluded for a particular action. This property is described above in <a class="reference external" href="#exclude-option">&#8220;exclude&#8221; option</a>.</li>
+<li><strong>form_type</strong> <em>string</em> The form type that should be used for the field.</li>
+<li><strong>form_options</strong> <em>array</em> The form options that should be used for the field.</li>
+</ul>
+</li>
+</ul>
+<p>By default, the following permissions are used to restrict access to an entity in a scope of the specific action:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Action</th>
+<th class="head">Permission</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>get</td>
+<td>VIEW</td>
+</tr>
+<tr class="row-odd"><td>get_list</td>
+<td>VIEW</td>
+</tr>
+<tr class="row-even"><td>create</td>
+<td>CREATE and VIEW</td>
+</tr>
+<tr class="row-odd"><td>update</td>
+<td>EDIT and VIEW</td>
+</tr>
+<tr class="row-even"><td>delete</td>
+<td>DELETE</td>
+</tr>
+<tr class="row-odd"><td>delete_list</td>
+<td>DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>Examples of <code class="docutils literal"><span class="pre">actions</span></code> section configuration:</p>
+<p>Disable all action for an entity:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="c1"># this entity does not have own Data API resource</span>
+            <span class="nx">actions</span><span class="o">:</span> <span class="k">false</span>
+</pre></div>
+</div>
+<p>Disable <code class="docutils literal"><span class="pre">delete</span></code> action for an entity:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+<p>Also a short syntax can be used:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span> <span class="k">false</span>
+</pre></div>
+</div>
+<p>Set custom ACL resource for the <code class="docutils literal"><span class="pre">get_list</span></code> action:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">get_list</span><span class="o">:</span>
+                    <span class="nx">acl_resource</span><span class="o">:</span> <span class="nx">acme_view_resource</span>
+</pre></div>
+</div>
+<p>Turn off access checks for the <code class="docutils literal"><span class="pre">get</span></code> action:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+       <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">get</span><span class="o">:</span>
+                    <span class="nx">acl_resource</span><span class="o">:</span> <span class="o">~</span>
+</pre></div>
+</div>
+<p>Add additional status code for <code class="docutils literal"><span class="pre">delete</span></code> action:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">status_codes</span><span class="o">:</span>
+                        <span class="s1">&#39;417&#39;</span><span class="o">:</span> <span class="s1">&#39;Returned when expectations failed&#39;</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">status_codes</span><span class="o">:</span>
+                        <span class="s1">&#39;417&#39;</span><span class="o">:</span>
+                            <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;Returned when expectations failed&#39;</span>
+</pre></div>
+</div>
+<p>Remove existing status code for <code class="docutils literal"><span class="pre">delete</span></code> action:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">status_codes</span><span class="o">:</span>
+                        <span class="s1">&#39;417&#39;</span><span class="o">:</span> <span class="k">false</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">delete</span><span class="o">:</span>
+                    <span class="nx">status_codes</span><span class="o">:</span>
+                        <span class="s1">&#39;417&#39;</span><span class="o">:</span>
+                            <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+<p>Exclude a field for <code class="docutils literal"><span class="pre">update</span></code> action:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Acme\Bundle\AcmeBundle\Entity\AcmeEntity</span><span class="o">:</span>
+            <span class="nx">actions</span><span class="o">:</span>
+                <span class="nx">update</span><span class="o">:</span>
+                    <span class="nx">fields</span><span class="o">:</span>
+                        <span class="nx">field1</span><span class="o">:</span>
+                            <span class="nx">exclude</span><span class="o">:</span> <span class="k">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="subresources-configuration-section">
+<h2>&#8220;subresources&#8221; configuration section<a class="headerlink" href="#subresources-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">subresources</span></code> configuration section allows to provide options for sub-resources.</p>
+<ul class="simple">
+<li><strong>exclude</strong> <em>boolean</em> Indicates whether the sub-resource is disabled for entity. By default <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li><strong>target_class</strong> <em>string</em> The class name of a target entity.</li>
+<li><strong>target_type</strong> <em>string</em> The type of a target association. Can be <strong>to-one</strong> or <strong>to-many</strong>. Also <strong>collection</strong> can be used as an alias for <strong>to-many</strong>. <strong>to-one</strong> can be omitted as it is used by default.</li>
+<li><strong>actions</strong> <em>array</em> The actions supported by the sub-resource. This section has the same options as <a class="reference external" href="#actions-configuration-section">entity **actions** section</a>. If an option exists in both <a class="reference external" href="#actions-configuration-section">entity **actions** section</a> and sub-resource <strong>actions</strong> section the sub-resource option wins.</li>
+<li><strong>filters</strong> - The filters supported by the sub-resource. This section has the same options as <a class="reference external" href="#filters-configuration-section">entity **filters** section</a>. If an option exists in both <a class="reference external" href="#filters-configuration-section">entity **filters** section</a> and sub-resource <strong>filters</strong> section the sub-resource option wins.</li>
+</ul>
+<p>Example:</p>
+<div class="code yaml highlight-php"><div class="highlight"><pre><span></span><span class="nx">api</span><span class="o">:</span>
+    <span class="nx">entities</span><span class="o">:</span>
+        <span class="nx">Oro\Bundle\EmailBundle\Entity\Email</span><span class="o">:</span>
+            <span class="nx">subresources</span><span class="o">:</span>
+                <span class="nx">suggestions</span><span class="o">:</span>
+                    <span class="nx">target_class</span><span class="o">:</span> <span class="nx">Oro\Bundle\ApiBundle\Model\EntityIdentifier</span>
+                    <span class="nx">target_type</span><span class="o">:</span> <span class="nx">collection</span>
+                    <span class="nx">actions</span><span class="o">:</span>
+                        <span class="nx">get_subresource</span><span class="o">:</span>
+                            <span class="nx">description</span><span class="o">:</span> <span class="nx">Get</span> <span class="nx">entities</span> <span class="nx">that</span> <span class="nx">might</span> <span class="nx">be</span> <span class="nx">associated</span> <span class="nx">with</span> <span class="nx">the</span> <span class="nx">email</span>
+                        <span class="nx">get_relationship</span><span class="o">:</span> <span class="k">false</span>
+                        <span class="nx">update_relationship</span><span class="o">:</span> <span class="k">false</span>
+                        <span class="nx">add_relationship</span><span class="o">:</span> <span class="k">false</span>
+                        <span class="nx">delete_relationship</span><span class="o">:</span> <span class="k">false</span>
+                    <span class="nx">filters</span><span class="o">:</span>
+                        <span class="nx">fields</span><span class="o">:</span>
+                            <span class="nx">exclude</span><span class="o">-</span><span class="nb">current</span><span class="o">-</span><span class="nx">user</span><span class="o">:</span>
+                                <span class="nx">description</span><span class="o">:</span> <span class="nx">Indicates</span> <span class="nx">whether</span> <span class="nx">the</span> <span class="nb">current</span> <span class="nx">user</span> <span class="nx">should</span> <span class="nx">be</span> <span class="nx">excluded</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">result</span><span class="o">.</span>
+                                <span class="nx">data_type</span><span class="o">:</span> <span class="nx">boolean</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relations-configuration-section">
+<h2>&#8220;relations&#8221; configuration section<a class="headerlink" href="#relations-configuration-section" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">relations</span></code> configuration section describes a configuration of an entity if it is used in a relationship. This section is not used for JSON.API, but can be helpful for other types of API. This section is similar to the <a class="reference external" href="#entities-configuration-section">entities</a> section.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extend_and_customize/index.html">Customizing Oro Features</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Web Services API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../_sources/dev_guide/web_api/api_docs/configuration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

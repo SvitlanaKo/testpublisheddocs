@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scheduled Tasks via Cron &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Healthcheck and Data Monitoring" href="monitoring/index.html" />
+    <link rel="prev" title="Job Execution" href="jobs.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="monitoring/index.html" title="Healthcheck and Data Monitoring"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="jobs.html" title="Job Execution"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Administrator Guide</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Scheduled Tasks via Cron</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="scheduled-tasks-via-cron">
+<span id="book-time-based-command-execution"></span><h1>Scheduled Tasks via Cron<a class="headerlink" href="#scheduled-tasks-via-cron" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="time-based-command-execution">
+<span id="index-0"></span><h2>Time-Based Command Execution<a class="headerlink" href="#time-based-command-execution" title="Permalink to this headline">¶</a></h2>
+<p>Some recurring tasks should be executed on schedule (for example, imap synchronization or sending email campaigns to customers). Usually, the operating system should be configured to execute a script to perform these tasks.</p>
+<p>With OroPlatform, you can use the <a class="reference external" href="https://github.com/orocrm/platform/tree/master/src/Oro/Bundle/CronBundle">OroCronBundle</a> which makes it easy
+to run Symfony Console commands through cronjobs (on UNIX-based operating
+systems) or through the Windows task scheduler.</p>
+<p>You can view the scheduled tasks via the <strong>System &gt; Configuration</strong> menu.</p>
+<img alt="../_images/scheduled_tasks.png" src="../_images/scheduled_tasks.png" />
+</div>
+<div class="section" id="configuring-the-entry-point-command">
+<h2>Configuring the Entry Point Command<a class="headerlink" href="#configuring-the-entry-point-command" title="Permalink to this headline">¶</a></h2>
+<p>To regularly run a set of commands from your application,
+configure your system to run the <code class="docutils literal"><span class="pre">oro:cron</span></code> command every minute.
+On UNIX-based systems, you can simply set up a <code class="docutils literal"><span class="pre">crontab</span></code> entry for this:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>*/1 * * * * /path/to/php /path/to/app/console oro:cron --env=prod &gt; /dev/null
+</pre></div>
+</div>
+<p>Note: Some OS flavors will require the user name (usually root) in the crontab entry,
+like this:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>*/1 * * * * root /path/to/php /path/to/app/console oro:cron --env=prod &gt; /dev/null
+</pre></div>
+</div>
+<p>On Windows, use the Control Panel to configure the Task Scheduler to do the
+same.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This entry in the crontab does not presuppose execution of cron commands
+every minute. The <code class="docutils literal"><span class="pre">oro:cron</span></code> command only ensures that the actual
+commands are added to the scheduler which makes sure that they are only
+executed at the desired times (see <a class="reference internal" href="#sidebar-cron-work"><span class="std std-ref">How Does it Work</span></a>
+for the insight into the actual process).</p>
+</div>
+<div class="sidebar" id="sidebar-cron-work">
+<p class="first sidebar-title">How Does it Work?</p>
+<p>There are two commands to set up the cron tasks shedule. The
+<code class="docutils literal"><span class="pre">oro:cron:definitions:load</span></code>  command scans for all commands from the
+<code class="docutils literal"><span class="pre">oro:cron</span></code> namespace that implement the
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.CronBundle.Command.CronCommandInterface.html" title="Oro\Bundle\CronBundle\Command\CronCommandInterface"><span class="pre">CronCommandInterface</span></a></code>. For each
+found command, a new <code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.CronBundle.Entity.Schedule.html" title="Oro\Bundle\CronBundle\Entity\Schedule"><span class="pre">Schedule</span></a></code>
+entry is created and saved to the database. This command runs on install and update.
+It can also be run manually if some cron commands or command definitions are
+changed.</p>
+<p class="last">The second command is <code class="docutils literal"><span class="pre">oro:cron</span></code>. It takes all schedules from the database (created by the
+<code class="docutils literal"><span class="pre">oro:cron:definitions:load</span></code> command) and adds the commands that are due to the
+Message Queue. This command should run every minute.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please notice that <code class="docutils literal"><span class="pre">oro:cron:definitions:load</span></code> removes all previously loaded
+commands from the db. So if there are other commands that add cron commands to
+the db (such as <code class="docutils literal"><span class="pre">oro:workflow:definition:load</span></code>), they should be run after
+<code class="docutils literal"><span class="pre">oro:cron:definitions:load</span></code>.</p>
+</div>
+</div>
+<div class="section" id="creating-the-command">
+<span id="create-cron-command"></span><h2>Creating the Command<a class="headerlink" href="#creating-the-command" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">oro:cron</span></code> command will automatically execute all commands previously
+loaded with the <code class="docutils literal"><span class="pre">oro:cron:definitions:load</span></code> command. It loads commands
+that implement the <code class="docutils literal"><span class="pre">CronCommandInterface</span></code> if they are registered in the
+<code class="docutils literal"><span class="pre">oro:cron</span></code> namespace. Implementing <code class="docutils literal"><span class="pre">CronCommandInterface</span></code> requires
+implementation of two methods. First, it is
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.CronBundle.Command.CronCommandInterface.html#method_getDefaultDefinition" title="Oro\Bundle\CronBundle\Command\CronCommandInterface::getDefaultDefinition()"><span class="pre">getDefaultDefinition()</span></a></code>.
+It returns the <a class="reference external" href="http://www.unix.com/man-page/linux/5/crontab/">crontab compatible</a> description of when the command should
+be executed. For example, if a command should be run every day five minutes
+after midnight, the appropriate value is <code class="docutils literal"><span class="pre">5</span> <span class="pre">0</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code>. Your command will
+then look the following way:
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.CronBundle.Command.CronCommandInterface.html#method_isCronEnabled" title="Oro\Bundle\CronBundle\Command\CronCommandInterface::isCronEnabled()"><span class="pre">isCronEnabled()</span></a></code>.
+It checks some pre-conditions and returns true or false. If it returns false, the
+command will not be added to the Message Queue. For example, for the integrations
+sync command it can check that there are more than 0 active integrations.</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="c1">// src/Acme/DemoBundle/Command/DemoCommand.php</span>
+    <span class="k">namespace</span> <span class="nx">Acme\DemoBundle\Command</span><span class="p">;</span>
+
+    <span class="k">use</span> <span class="nx">Oro\Bundle\CronBundle\Command\CronCommandInterface</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Symfony\Component\Console\Input\InputInterface</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Symfony\Component\Console\Output\OutputInterface</span><span class="p">;</span>
+
+    <span class="k">class</span> <span class="nc">DemoCommand</span> <span class="k">implements</span> <span class="nx">CronCommandInterface</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">getDefaultDefinition</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">&#39;5 0 * * *&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">isCronEnabled</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">// check some pre-conditions</span>
+
+            <span class="k">return</span> <span class="nv">$condition</span> <span class="o">?</span> <span class="k">true</span> <span class="o">:</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">function</span> <span class="nf">configure</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">&#39;oro:cron:demo&#39;</span><span class="p">);</span>
+
+            <span class="c1">// ...</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">(</span><span class="nx">InputInterface</span> <span class="nv">$input</span><span class="p">,</span> <span class="nx">OutputInterface</span> <span class="nv">$output</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// ...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="sidebar" id="built-in-cron-commands">
+<p class="first sidebar-title">Cron Commands in OroPlatform</p>
+<p>OroPlatform has a bunch of commands that will be run through <code class="docutils literal"><span class="pre">oro:cron</span></code>:</p>
+<ul class="last simple">
+<li>To clean up the schedule queue, the OroCronBundle provides the
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.CronBundle.Command.CleanupCommand.html" title="Oro\Bundle\CronBundle\Command\CleanupCommand"><span class="pre">CleanupCommand</span></a></code> which deletes
+orphaned entries. It is executed every five minutes.</li>
+<li>Every 30 minutes, the <code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.ImapBundle.Command.Cron.EmailSyncCommand.html" title="Oro\Bundle\ImapBundle\Command\Cron\EmailSyncCommand"><span class="pre">EmailSyncCommand</span></a></code>,
+which is part of the <a class="reference external" href="https://github.com/orocrm/platform/tree/master/src/Oro/Bundle/ImapBundle">ImapBundle</a>, loads new emails from an IMAP server
+and synchronizes them with the local database (you can find more information
+about the synchronization process in the <a class="reference external" href="https://github.com/orocrm/platform/tree/master/src/Oro/Bundle/ImapBundle#synchronization-with-imap-servers">dedicated section</a> of the
+ImapBundle documentation).</li>
+<li>Reminder messages can be created by the <a class="reference external" href="https://github.com/orocrm/platform/tree/master/src/Oro/Bundle/ReminderBundle">ReminderBundle</a>. If they should
+be delivered as emails to users, they will be added to the mail queue
+which is then flushed periodically (every minute) by the
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.ReminderBundle.Command.SendRemindersCommand.html" title="Oro\Bundle\ReminderBundle\Command\SendRemindersCommand"><span class="pre">SendRemindersCommand</span></a></code>.</li>
+<li>Once per hour, tracking log entries are synchronized from log files in
+the file system into the database when the
+<code class="docutils literal"><a class="reference external" href="http://phpdoc.orocrm.com/platform/classes/Oro.Bundle.TrackingBundle.Command.ImportLogsCommand.html" title="Oro\Bundle\TrackingBundle\Command\ImportLogsCommand"><span class="pre">ImportLogsCommand</span></a></code> from
+the <a class="reference external" href="https://github.com/orocrm/platform/tree/master/src/Oro/Bundle/TrackingBundle">TrackingBundle</a> is executed.</li>
+<li>The <code class="docutils literal"><span class="pre">oro:cron:integration:sync</span></code> command runs integration jobs configured
+through the <a class="reference external" href="https://github.com/orocrm/platform/tree/master/src/Oro/Bundle/IntegrationBundle">IntegrationBundle</a> every five minutes.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="op_structure/index.html">Operational Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimize_server_compression_and_caching.html">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Job Execution</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../_sources/admin_guide/cron.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

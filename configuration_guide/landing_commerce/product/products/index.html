@@ -1,0 +1,1168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configure Products in System Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Configure Product Units" href="units.html" />
+    <link rel="prev" title="Product Collections" href="../marketing_web_catalog/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="units.html" title="Configure Product Units"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../marketing_web_catalog/index.html" title="Product Collections"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >Commerce Configuration</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U">Product</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Configure Products in System Configuration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configure-products-in-system-configuration">
+<span id="configuration-products"></span><h1>Configure Products in System Configuration<a class="headerlink" href="#configure-products-in-system-configuration" title="Permalink to this headline">¶</a></h1>
+<p>OroCommerce groups product configuration options into the following categories:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#product-units">Product Units</a></li>
+<li>Image Watermark:<ul>
+<li><a class="reference internal" href="#global-product-image-watermark-configuration">Global Product Image Watermark Configuration</a></li>
+<li><a class="reference internal" href="#product-image-watermark-configuration-per-website">Product Image Watermark Configuration Per Website</a></li>
+</ul>
+</li>
+<li>Image Gallery:<ul>
+<li><a class="reference internal" href="#configure-image-gallery-globally">Configure Image Gallery Globally</a></li>
+<li><a class="reference internal" href="#configure-image-gallery-per-organization">Configure Image Gallery per Organization</a></li>
+<li><a class="reference internal" href="#configure-image-gallery-per-website">Configure Image Gallery per Website</a></li>
+</ul>
+</li>
+<li>Image Preview:<ul>
+<li><a class="reference internal" href="#configure-image-preview-on-product-listing-page-globally">Configure Image Preview on Product Listing Page Globally</a></li>
+<li><a class="reference internal" href="#configure-image-preview-on-product-listing-page-per-organization">Configure Image Preview on Product Listing Page per Organization</a></li>
+<li><a class="reference internal" href="#configure-image-preview-on-product-listing-page-per-website">Configure Image Preview on Product Listing Page per Website</a></li>
+</ul>
+</li>
+<li>New Arrivals:<ul>
+<li><a class="reference internal" href="#enable-new-product-icons-globally">Enable New Product Icons Globally</a></li>
+<li><a class="reference internal" href="#enable-new-product-icons-per-organization">Enable New Product Icons per Organization</a></li>
+<li><a class="reference internal" href="#enable-new-product-icons-per-website">Enable New Product Icons per Website</a></li>
+</ul>
+</li>
+<li>Featured Products:<ul>
+<li><a class="reference internal" href="#select-a-featured-products-segment-to-use-globally">Select a Featured Products Segment to Use Globally</a></li>
+<li><a class="reference internal" href="#select-a-featured-products-segment-to-use-per-organization">Select a Featured Products Segment to Use Per Organization</a></li>
+<li><a class="reference internal" href="#select-a-featured-products-segment-to-use-per-website">Select a Featured Products Segment to Use Per Website</a></li>
+</ul>
+</li>
+<li>Previously Purchased Products:<ul>
+<li><a class="reference internal" href="#enable-and-set-up-previously-purchased-products-globally">Enable and Set Up Previously Purchased Products Globally</a></li>
+<li><a class="reference internal" href="#enable-and-set-up-previously-purchased-products-per-website">Enable and Set Up Previously Purchased Products per Website</a></li>
+</ul>
+</li>
+<li>Configurable Products:<ul>
+<li><a class="reference internal" href="#customize-configurable-products-globally">Customize Configurable Products Globally</a></li>
+<li><a class="reference internal" href="#customize-configurable-products-settings-per-organization">Customize Configurable Products Settings per Organization</a></li>
+<li><a class="reference internal" href="#customize-configurable-products-settings-per-website">Customize Configurable Products Settings per Website</a></li>
+</ul>
+</li>
+<li>Related Items:<ul>
+<li>Related Products:<ul>
+<li><a class="reference internal" href="#enable-and-set-up-related-products-globally">Enable and Set Up Related Products Globally</a></li>
+<li><a class="reference internal" href="#enable-and-set-up-related-products-per-organization">Enable and Set Up Related Products per Organization</a></li>
+<li><a class="reference internal" href="#enable-and-set-up-related-products-per-website">Enable and Set Up Related Products per Website</a></li>
+</ul>
+</li>
+<li>Up-Sell Products:<ul>
+<li><a class="reference internal" href="#enable-and-set-up-up-sell-products-globally">Enable and Set Up Up-Sell Products Globally</a></li>
+<li><a class="reference internal" href="#enable-and-set-up-up-sell-products-per-organization">Enable and Set Up Up-Sell Products per Organization</a></li>
+<li><a class="reference internal" href="#enable-and-set-up-up-sell-products-per-website">Enable and Set Up Up-Sell Products per Website</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="all_products.html#sys-conf-commerce-catalog-special-pages"><span class="std std-ref">All Products Page</span></a></li>
+</ul>
+<div class="section" id="product-units">
+<h2>Product Units<a class="headerlink" href="#product-units" title="Permalink to this headline">¶</a></h2>
+<p>In the system configuration, you are in control of the product unit options that apply system-wide. You may:</p>
+<ul class="simple">
+<li>Select the rounding algorithm for product units.</li>
+<li>Enable/disable the single unit mode for all products and toggle visibility of the unit code.</li>
+<li>Select the primary unit and its precision.</li>
+</ul>
+<p>To update the product unit settings:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Unit</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens.</p>
+<img alt="../../../../_images/ProductUnit.png" class="with-border" src="../../../../_images/ProductUnit.png" />
+<p>The following options are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Unit Rounding Type</strong> &#8211; An algorithm that is used to round the volume specified for this unit (ceil, floor, half down, or half up).</li>
+<li><strong>Single Unit</strong> &#8211; When enabled, it limits the product unit to just one default value and restricts adding new product units.</li>
+<li><strong>Show Unit Code</strong> &#8211; When enabled, the unit appears next to the requested quantity; when disabled, the unit name is hidden and only quantity is displayed. This option is available only when the <strong>Single Unit</strong> is enabled.</li>
+<li><strong>Default Primary Unit</strong> &#8211; The product unit that is shown by default in the website.</li>
+<li><strong>Default Primary Unit Precision</strong> &#8211; The number of digits after the floating point that limits the Primary unit precision (e.g., 1 for 0.x, 2 for 0.xx, 3 for 0.xxx and so on).</li>
+</ul>
+</div></blockquote>
+<ol class="arabic" start="3">
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Enter the updated quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="image-watermark">
+<h2>Image Watermark<a class="headerlink" href="#image-watermark" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="global-product-image-watermark-configuration">
+<h3>Global Product Image Watermark Configuration<a class="headerlink" href="#global-product-image-watermark-configuration" title="Permalink to this headline">¶</a></h3>
+<p>You can control the watermark that will appear on top of every image uploaded as a part of product details.</p>
+<p>To update the product watermark settings:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<blockquote>
+<div><img alt="../../../../_images/ProductImages.png" src="../../../../_images/ProductImages.png" />
+<p>The following options are available:</p>
+<ul class="simple">
+<li><strong>File</strong> — The image file with the watermark on a transparent background.</li>
+<li><strong>Size</strong> — The size of the watermark in percentage compared to the whole image.</li>
+<li><strong>Position</strong> — The watermark position on the image (e.g., top left, top, top right, left, right, center, bottom left, bottom, and bottom right).</li>
+</ul>
+</div></blockquote>
+<ol class="arabic" start="3">
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Enter the updated size or select the position from the list.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="product-image-watermark-configuration-per-website">
+<h3>Product Image Watermark Configuration Per Website<a class="headerlink" href="#product-image-watermark-configuration-per-website" title="Permalink to this headline">¶</a></h3>
+<p>You can control the watermark that will appear on top of every image uploaded as a part of product details per website.</p>
+<p>To update the product watermark settings:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Websites</strong>.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens.</p>
+<img alt="../../../../_images/ProductImagesPerWebsite.png" class="with-border" src="../../../../_images/ProductImagesPerWebsite.png" />
+<p>The following options are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>File</strong> &#8211; The image file with the watermark on a transparent background.</li>
+<li><strong>Size</strong> &#8211; The size of the watermark in percentage compared to the whole image.</li>
+<li><strong>Position</strong> &#8211; The watermark position on the image (e.g top left, top, top right, left, right, center, bottom left, bottom, and bottom right).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the <strong>Use System</strong> check box is selected, the system configuration is applied.</p>
+</div>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p class="first">To customize any of these options:</p>
+<ol class="loweralpha simple">
+<li>Clear the <strong>Use System</strong> check box next to the option.</li>
+<li>Enter the updated size or select the position from the list.</li>
+</ol>
+<img alt="../../../../_images/ProductImagesPerWebsiteOptions.png" class="with-border" src="../../../../_images/ProductImagesPerWebsiteOptions.png" />
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="image-gallery">
+<h2>Image Gallery<a class="headerlink" href="#image-gallery" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-image-gallery-globally">
+<h3>Configure Image Gallery Globally<a class="headerlink" href="#configure-image-gallery-globally" title="Permalink to this headline">¶</a></h3>
+<p>You can choose whether to use popup or inline view for the image gallery in the storefront.</p>
+<p>To configure image gallery options globally:</p>
+<ol class="arabic simple">
+<li>Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens.</p>
+<img alt="../../../../_images/ImageGallery.png" class="with-border" src="../../../../_images/ImageGallery.png" />
+<ol class="arabic" start="3">
+<li><p class="first">When <strong>Popup Gallery on Product View</strong> is enabled, image gallery in the storefront will take the following form:</p>
+<img alt="../../../../_images/ImageGalleryEnabled.png" class="with-border" src="../../../../_images/ImageGalleryEnabled.png" />
+<p>By clicking on the image, the pop up gallery will be displayed in the middle of the screen:</p>
+<img alt="../../../../_images/ImageGalleryEnabled2.png" class="with-border" src="../../../../_images/ImageGalleryEnabled2.png" />
+</li>
+<li><p class="first">When <strong>Popup Gallery on Product View</strong> is disabled, the image gallery will take the form of an inline view:</p>
+<img alt="../../../../_images/ImageGalleryDisabled.png" class="with-border" src="../../../../_images/ImageGalleryDisabled.png" />
+<p>Flick through the pictures in the gallery by pressing &lt; or &gt; arrows without leaving the product page.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, <strong>Popup Gallery on Product View</strong> is enabled.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-image-gallery-per-organization">
+<h3>Configure Image Gallery Per Organization<a class="headerlink" href="#configure-image-gallery-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>You can configure whether to use popup or inline view for the image gallery per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> more actions menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Products &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ImageGalleryOrganization.png" class="with-border" src="../../../../_images/ImageGalleryOrganization.png" />
+<ol class="arabic" start="4">
+<li><p class="first">When <strong>Popup Gallery on Product View</strong> is enabled, image gallery in the storefront will take the following form:</p>
+<img alt="../../../../_images/ImageGalleryOrganizationEnabled.png" class="with-border" src="../../../../_images/ImageGalleryOrganizationEnabled.png" />
+<p>By clicking on the image, the pop up gallery will be displayed in the middle of the screen:</p>
+<img alt="../../../../_images/ImageGalleryOrganizationEnabled2.png" class="with-border" src="../../../../_images/ImageGalleryOrganizationEnabled2.png" />
+</li>
+<li><p class="first">When <strong>Popup Gallery on Product View</strong> is disabled, the image gallery will take the form of an inline view:</p>
+<img alt="../../../../_images/ImageGalleryOrganizationDisabled.png" class="with-border" src="../../../../_images/ImageGalleryOrganizationDisabled.png" />
+<p>Flick through the pictures in the gallery by pressing &lt; or &gt; arrows without leaving the product page.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <strong>Use System</strong> checkbox is enabled, system settings are applied.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-image-gallery-per-website">
+<h3>Configure Image Gallery Per Website<a class="headerlink" href="#configure-image-gallery-per-website" title="Permalink to this headline">¶</a></h3>
+<p>You can configure whether to use popup or inline view for the image gallery per website:</p>
+<ol class="arabic simple">
+<li>Navigate to the system configuration (click <strong>System &gt; Websites</strong> in the main menu).</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> more actions menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ImageGalleryWebsite.png" class="with-border" src="../../../../_images/ImageGalleryWebsite.png" />
+<ol class="arabic" start="4">
+<li><p class="first">When <strong>Popup Gallery on Product View</strong> is enabled, image gallery in the storefront will take the following form:</p>
+<img alt="../../../../_images/ImageGalleryWebsiteEnabled1.png" class="with-border" src="../../../../_images/ImageGalleryWebsiteEnabled1.png" />
+<p>By clicking on the image, the pop up gallery will be displayed in the middle of the screen:</p>
+<img alt="../../../../_images/ImageGalleryWebsiteEnabled2.png" class="with-border" src="../../../../_images/ImageGalleryWebsiteEnabled2.png" />
+</li>
+<li><p class="first">When <strong>Popup Gallery on Product View</strong> is disabled, the image gallery will take the form of an inline view:</p>
+<img alt="../../../../_images/ImageGalleryWebsiteDisabled.png" class="with-border" src="../../../../_images/ImageGalleryWebsiteDisabled.png" />
+<p>Flick through the pictures in the gallery by pressing &lt; or &gt; arrows without leaving the product page.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <strong>Use System</strong> checkbox is enabled, system settings are applied.</p>
+</div>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="image-preview-on-product-listing-page">
+<h2>Image Preview on Product Listing Page<a class="headerlink" href="#image-preview-on-product-listing-page" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-image-preview-on-product-listing-page-globally">
+<h3>Configure Image Preview on Product Listing Page Globally<a class="headerlink" href="#configure-image-preview-on-product-listing-page-globally" title="Permalink to this headline">¶</a></h3>
+<p>To simplify product selection for customer, you can enable product previews on product listing pages.</p>
+<p>To enable image preview globally:</p>
+<ol class="arabic simple">
+<li>Navigate to the system configuration (click <strong>System &gt; Configuration</strong> in the main menu).</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ImagePreviewGlobal.png" class="with-border" src="../../../../_images/ImagePreviewGlobal.png" />
+<ol class="arabic" start="3">
+<li><p class="first">When <strong>Enable Image Preview on Product Listing</strong> is enabled, clicking on the product image on the product listing page in the storefront will open a pop up image gallery, rather than the product page.</p>
+<blockquote>
+<div><img alt="../../../../_images/ImagePreviewEnabled.png" class="with-border" src="../../../../_images/ImagePreviewEnabled.png" />
+</div></blockquote>
+</li>
+<li><p class="first">When <strong>Enable Image Preview on Product Listing</strong> is disabled, clicking on the product image on the product listing page in the storefront will open the product page.</p>
+<blockquote>
+<div><img alt="../../../../_images/ImagePreviewDisabled.png" class="with-border" src="../../../../_images/ImagePreviewDisabled.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, <strong>Enable Image Preview on Product Listing</strong> is enabled.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-image-preview-on-product-listing-page-per-organization">
+<h3>Configure Image Preview on Product Listing Page per Organization<a class="headerlink" href="#configure-image-preview-on-product-listing-page-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable image preview per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> more actions menu to the right of the necessary organization and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Products &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/ImagePreviewOrganization.png" class="with-border" src="../../../../_images/ImagePreviewOrganization.png" />
+<ol class="arabic" start="4">
+<li><p class="first">When <strong>Enable Image Preview on Product Listing</strong> is enabled, clicking on the product image on the product listing page in the storefront will open a pop up image gallery, rather than the product page.</p>
+<blockquote>
+<div><img alt="../../../../_images/ImagePreviewOrgEnabled.png" class="with-border" src="../../../../_images/ImagePreviewOrgEnabled.png" />
+</div></blockquote>
+</li>
+<li><p class="first">When <strong>Enable Image Preview on Product Listing</strong> is disabled, clicking on the product image on the product listing page in the storefront will open the product page.</p>
+<blockquote>
+<div><img alt="../../../../_images/ImagePreviewOrgDisabled.png" class="with-border" src="../../../../_images/ImagePreviewOrgDisabled.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <strong>Use System</strong> checkbox is enabled, system settings are applied.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-image-preview-on-product-listing-page-per-website">
+<h3>Configure Image Preview on Product Listing Page per Website<a class="headerlink" href="#configure-image-preview-on-product-listing-page-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To enable image preview per website:</p>
+<ol class="arabic simple">
+<li>Navigate to the system configuration (click <strong>System &gt; Websites</strong> in the main menu).</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> more actions menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Product Images</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens.</p>
+<img alt="../../../../_images/ImagePreviewWebsite.png" class="with-border" src="../../../../_images/ImagePreviewWebsite.png" />
+<ol class="arabic" start="4">
+<li><p class="first">When <strong>Enable Image Preview on Product Listing</strong> is enabled, clicking on the product image on the product listing page in the storefront will open a pop up image gallery, rather than the product page.</p>
+<blockquote>
+<div><img alt="../../../../_images/ImagePreviewEnabledWebsite.png" class="with-border" src="../../../../_images/ImagePreviewEnabledWebsite.png" />
+</div></blockquote>
+</li>
+<li><p class="first">When <strong>Enable Image Preview on Product Listing</strong> is disabled, clicking on the product image on the product listing page in the storefront will open the product page.</p>
+<blockquote>
+<div><img alt="../../../../_images/ImagePreviewDisabledWebsite.png" class="with-border" src="../../../../_images/ImagePreviewDisabledWebsite.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <strong>Use System</strong> checkbox is enabled, system settings are applied.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="new-arrivals">
+<h2>New Arrivals<a class="headerlink" href="#new-arrivals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-new-product-icons-globally">
+<h3>Enable New Product Icons Globally<a class="headerlink" href="#enable-new-product-icons-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable New Product icons globally:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Promotions</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/NewArrivalsBlockSystemConfig.png" src="../../../../_images/NewArrivalsBlockSystemConfig.png" />
+<ol class="arabic simple" start="3">
+<li>In the <strong>New Product Icons</strong> section, clear the <strong>Use Default</strong> check box and select <strong>Yes</strong> in the <strong>Show on Product View</strong> field.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To disable &#8216;New Product&#8217; icons, select <strong>No</strong> in the <strong>Show on Product View</strong> field, and click <strong>Save</strong>.</p>
+</div>
+</div>
+<div class="section" id="enable-new-product-icons-per-organization">
+<h3>Enable New Product Icons per Organization<a class="headerlink" href="#enable-new-product-icons-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To enable New Product icons per organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Promotions</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens.</p>
+<img alt="../../../../_images/NewArrivalsBlockOrg.png" src="../../../../_images/NewArrivalsBlockOrg.png" />
+<ol class="arabic simple" start="4">
+<li>In the <strong>New Product Icons</strong>, clear the <strong>Use Default</strong> check box and select <em>Yes</em> in the <strong>Show on Product View</strong> list.</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To disable the &#8216;New Product&#8217; icons, select <em>No</em> in the <strong>Show on Product View</strong> list, and click <strong>Save</strong>.</p>
+</div>
+</div>
+<div class="section" id="enable-new-product-icons-per-website">
+<h3>Enable New Product Icons per Website<a class="headerlink" href="#enable-new-product-icons-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To enable New Product icons per website:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Website</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Promotions</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<blockquote>
+<div><img alt="../../../../_images/NewArrivalsBlockWeb.png" src="../../../../_images/NewArrivalsBlockWeb.png" />
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>In the <strong>New Product Icons</strong>, clear the <strong>Use Default</strong> check box and select <em>Yes</em> in the <strong>Show on Product View</strong> list.</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To disable New Product icons, select <em>No</em> in the <strong>Show on Product View</strong> list, and click <strong>Save</strong>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="featured-products">
+<h2>Featured Products<a class="headerlink" href="#featured-products" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="select-a-featured-products-segment-to-use-globally">
+<h3>Select a Featured Products Segment to Use Globally<a class="headerlink" href="#select-a-featured-products-segment-to-use-globally" title="Permalink to this headline">¶</a></h3>
+<p>You can control which <a class="reference internal" href="../../../../user_guide/business_intelligence/business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">segment</span></a> is used to store <a class="reference internal" href="../../../../user_guide/products/products/featured.html#products-featured-products"><span class="std std-ref">featured products</span></a> globally by default.</p>
+<p>To customize the segment for featured products that is used by default for or organizations and all websites:</p>
+<ol class="arabic simple">
+<li>In the main menu, navigate to <strong>System &gt; Configuration</strong>.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Featured Products</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<blockquote>
+<div></div></blockquote>
+<ol class="arabic" start="3">
+<li><p class="first">To customize the segment option:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Select the new segment from the list.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="select-a-featured-products-segment-to-use-per-organization">
+<h3>Select a Featured Products Segment to Use Per Organization<a class="headerlink" href="#select-a-featured-products-segment-to-use-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>You can control which <a class="reference internal" href="../../../../user_guide/business_intelligence/business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">segment</span></a> is used to store <a class="reference internal" href="../../../../user_guide/products/products/featured.html#products-featured-products"><span class="std std-ref">featured products</span></a> by default.</p>
+<p>To update the featured products segment for a particular organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Products &gt; Featured Products</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<ol class="arabic" start="4">
+<li><p class="first">To customize the segment option:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Select the new segment from the list.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="select-a-featured-products-segment-to-use-per-website">
+<h3>Select a Featured Products Segment to Use Per Website<a class="headerlink" href="#select-a-featured-products-segment-to-use-per-website" title="Permalink to this headline">¶</a></h3>
+<p>You can control which <a class="reference internal" href="../../../../user_guide/business_intelligence/business_intelligence_segments.html#user-guide-business-intelligence-filters-segments"><span class="std std-ref">segment</span></a> is used to store <a class="reference internal" href="../../../../user_guide/products/products/featured.html#products-featured-products"><span class="std std-ref">featured products</span></a> by default.</p>
+<p>To update the featured products segment for a particular website:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Website</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Products &gt; Featured Products</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<blockquote>
+<div></div></blockquote>
+<ol class="arabic" start="4">
+<li><p class="first">To customize the segment option:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Select the new segment from the list.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="previously-purchased-products">
+<h2>Previously Purchased Products<a class="headerlink" href="#previously-purchased-products" title="Permalink to this headline">¶</a></h2>
+<p>The previously purchased products page displays the products that were recently purchased by customer users. In the storefront, this page is nested under the <strong>Previous Purchased</strong> menu in <strong>Account</strong>.</p>
+<img alt="../../../../_images/PreviouslyPurchasedFrontStore.png" src="../../../../_images/PreviouslyPurchasedFrontStore.png" />
+<p>The previously purchased products page is disabled by default, but you can enable it on two levels &#8211; globally and per website. Once enabled, you can also set the number of days that the purchase history should cover.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please keep in mind that <a class="reference internal" href="../../../../user_guide/products/products/actions_details/managing_product_visibility.html#products-product-visibility"><span class="std std-ref">visibility restrictions</span></a> may affect the visibility of products for the previously purchased products page. Consequently, if the product is hidden for a specific website, category, customer group, etc., it will not be available on the previously purchased list.</p>
+</div>
+<div class="section" id="enable-and-set-up-previously-purchased-products-globally">
+<h3>Enable and Set Up Previously Purchased Products Globally<a class="headerlink" href="#enable-and-set-up-previously-purchased-products-globally" title="Permalink to this headline">¶</a></h3>
+<p>To enable previously purchased products page globally:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>System &gt; Configuration</strong> in the main menu.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Orders &gt; Purchase History</strong> in the panel to the left.</p>
+<p>The following page opens:</p>
+<img alt="../../../../_images/PreviouslyPurchasedGlobal.png" src="../../../../_images/PreviouslyPurchasedGlobal.png" />
+</li>
+<li><p class="first">In the <strong>Purchase History</strong> section:</p>
+<ul class="simple">
+<li><em>Enable Purchased History</em> &#8212; Clear the <strong>Use Default</strong> checkbox and select the <strong>Enable Purchase History</strong> check box to enable the Previously Purchased Products page.</li>
+<li><em>Display Products Purchased Within (Days)</em> &#8212; The period of 90 days is set by default. To change it, clear the <strong>Use Default</strong> check box and enter the number of days that the purchase history should cover.</li>
+</ul>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong> on the top right of the page.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="enable-and-set-up-previously-purchased-products-per-website">
+<h3>Enable and Set Up Previously Purchased Products per Website<a class="headerlink" href="#enable-and-set-up-previously-purchased-products-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To enable previously purchased products page per website:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>System &gt; Websites</strong> in the main menu.</p>
+</li>
+<li><p class="first">For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Orders &gt; Purchase History</strong> in the panel to the left.</p>
+<p>The following page opens:</p>
+<img alt="../../../../_images/PreviouslyPurchasedWebsite.png" src="../../../../_images/PreviouslyPurchasedWebsite.png" />
+</li>
+<li><p class="first">In the <strong>Purchase History</strong> section:</p>
+<ul class="simple">
+<li><em>Enable Purchased History</em> &#8212; Clear the <strong>Use System</strong> checkbox and select the <strong>Enable Purchase History</strong> check box to enable the Previously Purchased Products page.</li>
+<li><em>Display Products Purchased Within (Days)</em> &#8212; Clear the <strong>Use Default</strong> check box and enter the number of days that the purchase history should cover.</li>
+</ul>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong> on the top right of the page.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="configurable-products">
+<h2>Configurable Products<a class="headerlink" href="#configurable-products" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="customize-configurable-products-globally">
+<h3>Customize Configurable Products Globally<a class="headerlink" href="#customize-configurable-products-globally" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Configuration</strong> in the main menu.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Configurable Products</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/matrix_form_in_product_views.png" src="../../../../_images/matrix_form_in_product_views.png" />
+<p>Here, you can customize a matrix form view on a product page:</p>
+<ol class="arabic">
+<li><p class="first">Clear the <strong>Use Default</strong> check box next to <strong>Display Matrix Form</strong>.</p>
+</li>
+<li><p class="first">Select the necessary option from the following list:</p>
+<ul>
+<li><p class="first"><strong>Do Not Display</strong> &#8212; The option disables the matrix form visibility for a configurable product and displays an alternative table with a possibility to select one simple product within a configurable one at a time.</p>
+<img alt="../../../../_images/configurable_product_disable_matrix.png" src="../../../../_images/configurable_product_disable_matrix.png" />
+</li>
+<li><p class="first"><strong>Inline Matrix Form</strong> &#8212; With this option enabled, the matrix form is displayed next to the product image on the product details page.</p>
+<img alt="../../../../_images/configurable_product_inline_matrix.png" src="../../../../_images/configurable_product_inline_matrix.png" />
+</li>
+<li><p class="first"><strong>Popup Matrix Form</strong> &#8212; The option triggers a popup matrix form upon clicking the <strong>Update Shopping List</strong> button. Once the popup displays, a customer can select multiple simple products at a time.</p>
+<img alt="../../../../_images/configurable_product_popup_matrix.png" src="../../../../_images/configurable_product_popup_matrix.png" />
+</li>
+</ul>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="customize-configurable-products-settings-per-organization">
+<h3>Customize Configurable Products Settings per Organization<a class="headerlink" href="#customize-configurable-products-settings-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>To change the default settings for an organization:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>**System &gt; User Management &gt; Organization**</strong> in the main menu.</li>
+<li>For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Configurable Products</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/matrix_form_in_product_views.png" src="../../../../_images/matrix_form_in_product_views.png" />
+<p>Here, you can customize a matrix form view on a product page:</p>
+<ol class="arabic">
+<li><p class="first">Clear the <strong>Use Default</strong> check box next to <strong>Display Matrix Form</strong>.</p>
+</li>
+<li><p class="first">Select the necessary option from the following list:</p>
+<ul>
+<li><p class="first"><strong>Do Not Display</strong> &#8212; The option disables the matrix form visibility for a configurable product and displays an alternative table with a possibility to select one simple product within a configurable one at a time.</p>
+<img alt="../../../../_images/configurable_product_disable_matrix.png" src="../../../../_images/configurable_product_disable_matrix.png" />
+</li>
+<li><p class="first"><strong>Inline Matrix Form</strong> &#8212; With this option enabled, the matrix form is displayed next to the product image on the product details page.</p>
+<img alt="../../../../_images/configurable_product_inline_matrix.png" src="../../../../_images/configurable_product_inline_matrix.png" />
+</li>
+<li><p class="first"><strong>Popup Matrix Form</strong> &#8212; The option triggers a popup matrix form upon clicking the <strong>Update Shopping List</strong> button. Once the popup displays, a customer can select multiple simple products at a time.</p>
+<img alt="../../../../_images/configurable_product_popup_matrix.png" src="../../../../_images/configurable_product_popup_matrix.png" />
+</li>
+</ul>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="customize-configurable-products-settings-per-website">
+<h3>Customize Configurable Products Settings per Website<a class="headerlink" href="#customize-configurable-products-settings-per-website" title="Permalink to this headline">¶</a></h3>
+<p>To change the default settings for a website:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Websites</strong> in the main menu.</li>
+<li>For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right and click <i class="fa fa-gear fa-lg" aria-hidden="true"></i> to start editing the configuration.</li>
+<li>Select <strong>Commerce &gt; Product &gt; Configurable Products</strong> in the menu to the left.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For faster navigation between the configuration menu sections, use <a class="reference internal" href="../../../landing_system_configuration/quick_search.html#user-guide-system-configuration-quick-search"><span class="std std-ref">Quick Search</span></a>.</p>
+</div>
+<p>The following page opens:</p>
+<img alt="../../../../_images/matrix_form_in_product_views.png" src="../../../../_images/matrix_form_in_product_views.png" />
+<p>Here, you can customize a matrix form view on a product page:</p>
+<ol class="arabic">
+<li><p class="first">Clear the <strong>Use Default</strong> check box next to <strong>Display Matrix Form</strong>.</p>
+</li>
+<li><p class="first">Select the necessary option from the following list:</p>
+<ul>
+<li><p class="first"><strong>Do Not Display</strong> &#8212; The option disables the matrix form visibility for a configurable product and displays an alternative table with a possibility to select one simple product within a configurable one at a time.</p>
+<img alt="../../../../_images/configurable_product_disable_matrix.png" src="../../../../_images/configurable_product_disable_matrix.png" />
+</li>
+<li><p class="first"><strong>Inline Matrix Form</strong> &#8212; With this option enabled, the matrix form is displayed next to the product image on the product details page.</p>
+<img alt="../../../../_images/configurable_product_inline_matrix.png" src="../../../../_images/configurable_product_inline_matrix.png" />
+</li>
+<li><p class="first"><strong>Popup Matrix Form</strong> &#8212; The option triggers a popup matrix form upon clicking the <strong>Update Shopping List</strong> button. Once the popup displays, a customer can select multiple simple products at a time.</p>
+<img alt="../../../../_images/configurable_product_popup_matrix.png" src="../../../../_images/configurable_product_popup_matrix.png" />
+</li>
+</ul>
+</li>
+<li><p class="first">Click <strong>Save Settings</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="related-products">
+<h2>Related Products<a class="headerlink" href="#related-products" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-and-set-up-related-products-globally">
+<h3>Enable and Set Up Related Products Globally<a class="headerlink" href="#enable-and-set-up-related-products-globally" title="Permalink to this headline">¶</a></h3>
+<p>Related products listed for the product may include accessories, services, and other items that are likely to be purchased in the same order. They facilitate navigation through the product catalog in the management console and help a buyer find the other products they may be interested in buying.</p>
+<p>In the system configuration, you can:</p>
+<ul class="simple">
+<li>Enable and disable related product management for the products.</li>
+<li>Control the type of the relationship (one-way or bidirectional).</li>
+<li>Limit the number of items displayed as related.</li>
+</ul>
+<p>These settings may apply <a class="reference internal" href="related_products/global_related_products.html#sys-commerce-catalog-relate-products"><span class="std std-ref">globally</span></a>, on the <a class="reference internal" href="related_products/organization_related_products.html#sys-users-organization-commerce-catalog-related-products"><span class="std std-ref">organization level</span></a>, and on the <a class="reference internal" href="related_products/website_related_products.html#sys-websites-commerce-catalog-related-products"><span class="std std-ref">website level</span></a>.</p>
+<p>To update the related products settings globally:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>System &gt; Configuration</strong>.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Catalog &gt; Related Items</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../../../_images/RelatedProductsGlobal.png" class="with-border" src="../../../../_images/RelatedProductsGlobal.png" />
+<p>In the <strong>Related Products</strong> section, the following options are available:</p>
+<ul>
+<li><p class="first"><strong>Enable Related Products</strong> &#8212; Toggles managing related products on/off. Enabled by default.</p>
+</li>
+<li><p class="first"><strong>Assign in Both Directions</strong> &#8212; When enabled, the products become mutually related. For example, when you add a lightning bulb as a related product for a standing lamp, the relation works both ways and the lamp automatically becomes related item of the lightning bulb. This option is disabled by default.</p>
+</li>
+<li><p class="first"><strong>Maximum Number Of Assigned Items</strong> &#8212; A limit of related products that may be added to any product.</p>
+</li>
+<li><p class="first"><strong>Maximum Items</strong> &#8212; A limit of related products that are shown to a buyer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some related products may be hidden by the visibility settings. If the list of related products still exceeds the limit, only the specified number of items (top of the list) will be shown.</p>
+</div>
+</li>
+<li><p class="first"><strong>Minimum Items</strong> &#8212; The minimum number of related products that may be shown to the buyer. If the actual number of products is less than this value, the related products section is hidden in the storefront for the product.</p>
+</li>
+<li><p class="first"><strong>Show Add Button</strong> &#8212; Enables a buyer to order a related product from the related products section in the main product details. When the option is disabled, a buyer needs to open the related product details before they can add it to the shopping list.</p>
+<p><strong>Show Add Button is Enabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreviewWithAdd.png" class="with-border" src="../../../../_images/RelatedProductPreviewWithAdd.png" />
+<p><strong>Show Add Button is Disabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreview.png" class="with-border" src="../../../../_images/RelatedProductPreview.png" />
+</li>
+<li><p class="first"><strong>Use Slider On Mobile</strong> &#8212; When enabled, one related product is displayed below the main product information. Other related products are accessible using the horizontal slider. Click &lt; and &gt; to slide through the related products.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Set or clear the option, or enter the quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="enable-and-set-up-related-products-per-organization">
+<h3>Enable and Set Up Related Products per Organization<a class="headerlink" href="#enable-and-set-up-related-products-per-organization" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="enable-and-set-up-related-products-per-website">
+<h3>Enable and Set Up Related Products per Website<a class="headerlink" href="#enable-and-set-up-related-products-per-website" title="Permalink to this headline">¶</a></h3>
+<p>Related products listed for the product may include accessories, services, and other items that are likely to be purchased in the same order. They facilitate navigation through the product catalog in the management console and help a buyer find the other products they may be interested in buying.</p>
+<p>In the system configuration, you can:</p>
+<ul class="simple">
+<li>Enable and disable related product management for the products.</li>
+<li>Control the type of the relationship (one-way or bidirectional).</li>
+<li>Limit the number of items displayed as related.</li>
+</ul>
+<p>These settings may apply <a class="reference internal" href="related_products/global_related_products.html#sys-commerce-catalog-relate-products"><span class="std std-ref">globally</span></a>, on the <a class="reference internal" href="related_products/organization_related_products.html#sys-users-organization-commerce-catalog-related-products"><span class="std std-ref">organization level</span></a>, and on the <a class="reference internal" href="related_products/website_related_products.html#sys-websites-commerce-catalog-related-products"><span class="std std-ref">website level</span></a>.</p>
+<p>To update the related products settings per website:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>System &gt; Websites</strong>.</p>
+</li>
+<li><p class="first">For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Catalog &gt; Related Items</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../../../_images/RelatedProductsWebsite.png" class="with-border" src="../../../../_images/RelatedProductsWebsite.png" />
+<blockquote>
+<div><p>In the <strong>Related Products</strong> section, the following options are available:</p>
+<ul>
+<li><p class="first"><strong>Enable Related Products</strong> &#8212; Toggles managing related products on/off. Enabled by default.</p>
+</li>
+<li><p class="first"><strong>Assign in Both Directions</strong> &#8212; When enabled, the products become mutually related. For example, when you add a lightning bulb as a related product for a standing lamp, the relation works both ways and the lamp automatically becomes related item of the lightning bulb. This option is disabled by default.</p>
+</li>
+<li><p class="first"><strong>Maximum Number Of Assigned Items</strong> &#8212; A limit of related products that may be added to any product.</p>
+</li>
+<li><p class="first"><strong>Maximum Items</strong> &#8212; A limit of related products that are shown to a buyer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some related products may be hidden by the visibility settings. If the list of related products still exceeds the limit, only the specified number of items (top of the list) will be shown.</p>
+</div>
+</li>
+<li><p class="first"><strong>Minimum Items</strong> &#8212; The minimum number of related products that may be shown to the buyer. If the actual number of products is less than this value, the related products section is hidden in the storefront for the product.</p>
+</li>
+<li><p class="first"><strong>Show Add Button</strong> &#8212; Enables a buyer to order a related product from the related products section in the main product details. When the option is disabled, a buyer needs to open the related product details before they can add it to the shopping list.</p>
+<p><strong>Show Add Button is Enabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreviewWithAdd.png" class="with-border" src="../../../../_images/RelatedProductPreviewWithAdd.png" />
+<p><strong>Show Add Button is Disabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreview.png" class="with-border" src="../../../../_images/RelatedProductPreview.png" />
+</li>
+<li><p class="first"><strong>Use Slider On Mobile</strong> &#8212; When enabled, one related product is displayed below the main product information. Other related products are accessible using the horizontal slider. Click &lt; and &gt; to slide through the related products.</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Set or clear the option, or type in the quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="upsell-items">
+<h2>Upsell Items<a class="headerlink" href="#upsell-items" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-and-set-up-up-sell-products-globally">
+<h3>Enable and Set Up Up-Sell Products Globally<a class="headerlink" href="#enable-and-set-up-up-sell-products-globally" title="Permalink to this headline">¶</a></h3>
+<p>Up-sell products listed for the product in the OroCommerce storefront may advertise more expensive alternatives to the product, like a newer and more advanced model, upgrades and add-ons that may look tempting when bundled with the product, etc.</p>
+<p>In the system configuration, you can:</p>
+<ul class="simple">
+<li>Enable and disable up-sell product management for the products.</li>
+<li>Limit the number of items displayed as up-sell.</li>
+</ul>
+<p>These settings may apply <a class="reference internal" href="upsell_items/global_upsell_items.html#sys-commerce-catalog-upsell-products"><span class="std std-ref">globally</span></a>, on the <a class="reference internal" href="upsell_items/organization_upsell_items.html#sys-users-organization-commerce-catalog-upsell-products"><span class="std std-ref">organization level</span></a>, and on the <a class="reference internal" href="upsell_items/website_upsell_items.html#sys-websites-commerce-catalog-upsell-products"><span class="std std-ref">website level</span></a>.</p>
+<p>To update the up-sell products settings globally:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>System &gt; Configuration</strong>.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Catalog &gt; Related Items</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../../../_images/RelatedProductsGlobal.png" class="with-border" src="../../../../_images/RelatedProductsGlobal.png" />
+<p>In the <strong>Up-Sell Products</strong> section, the following options are available:</p>
+<ul>
+<li><p class="first"><strong>Enable Up-Sell Products</strong> &#8212; Toggles managing up-sell products on/off. Enabled by default.</p>
+</li>
+<li><p class="first"><strong>Maximum Number Of Assigned Items</strong> &#8212; A limit of related items that may be added to any product.</p>
+</li>
+<li><p class="first"><strong>Maximum Items</strong> &#8212; A limit of up-sell products that are shown to the buyer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some related items may be hidden by the visibility settings. If the list of up-sell products still exceeds the limit, only the specified number of items (top of the list) will be shown.</p>
+</div>
+</li>
+<li><p class="first"><strong>Minimum Items</strong> &#8212; The minimum number of up-sell products that may be shown to the buyer. If the actual number of products is less than this value, the up-sell products section is hidden in the storefront for the product.</p>
+</li>
+<li><p class="first"><strong>Show Add Button</strong> &#8212; Enables a buyer to order the product from the up-sell products section in the main product details. When disabled, a buyer needs to open the up-sell product details before they can add it to the shopping list.</p>
+<p><strong>Show Add Button is Enabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreviewWithAdd.png" class="with-border" src="../../../../_images/RelatedProductPreviewWithAdd.png" />
+<p><strong>Show Add Button is Disabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreview.png" class="with-border" src="../../../../_images/RelatedProductPreview.png" />
+</li>
+<li><p class="first"><strong>Use Slider On Mobile</strong> &#8212; When the option is enabled, one up-sell product is displayed below the main product information. Other up-sell products are accessible using the horizontal slider. Click &lt; and &gt; to slide through the up-sell products.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Set or clear the option, or enter the quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="enable-and-set-up-up-sell-products-per-organization">
+<h3>Enable and Set Up Up-Sell Products per Organization<a class="headerlink" href="#enable-and-set-up-up-sell-products-per-organization" title="Permalink to this headline">¶</a></h3>
+<p>Up-sell products listed for the product in the OroCommerce storefront may advertise more expensive alternatives to the product, like a newer and more advanced model, upgrades and add-ons that may look tempting when bundled with the product, etc.</p>
+<p>In the system configuration, you can:</p>
+<ul class="simple">
+<li>Enable and disable up-sell product management for the products.</li>
+<li>Limit the number of items displayed as up-sell.</li>
+</ul>
+<p>These settings may apply <a class="reference internal" href="upsell_items/global_upsell_items.html#sys-commerce-catalog-upsell-products"><span class="std std-ref">globally</span></a>, on the <a class="reference internal" href="upsell_items/organization_upsell_items.html#sys-users-organization-commerce-catalog-upsell-products"><span class="std std-ref">organization level</span></a>, and on the <a class="reference internal" href="upsell_items/website_upsell_items.html#sys-websites-commerce-catalog-upsell-products"><span class="std std-ref">website level</span></a>.</p>
+<p>To update the related products settings per organization:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>System &gt; User Management &gt; Organizations</strong> in the main menu.</p>
+</li>
+<li><p class="first">For the necessary organization, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary organization and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Catalog &gt; Related Items</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../../../_images/RelatedProductsOrg.png" class="with-border" src="../../../../_images/RelatedProductsOrg.png" />
+<blockquote>
+<div><p>In the <strong>Up-Sell Products</strong> section, the following options are available:</p>
+<ul>
+<li><p class="first"><strong>Enable Up-Sell Products</strong> &#8212; Toggles managing up-sell products on/off. Enabled by default.</p>
+</li>
+<li><p class="first"><strong>Maximum Number Of Assigned Items</strong> &#8212; A limit of related items that may be added to any product.</p>
+</li>
+<li><p class="first"><strong>Maximum Items</strong> &#8212; A limit of up-sell products that are shown to the buyer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some related items may be hidden by the visibility settings. If the list of up-sell products still exceeds the limit, only the specified number of items (top of the list) will be shown.</p>
+</div>
+</li>
+<li><p class="first"><strong>Minimum Items</strong> &#8212; The minimum number of up-sell products that may be shown to the buyer. If the actual number of products is less than this value, the up-sell products section is hidden in the storefront for the product.</p>
+</li>
+<li><p class="first"><strong>Show Add Button</strong> &#8212; Enables a buyer to order the product from the up-sell products section in the main product details. When disabled, a buyer needs to open the up-sell product details before they can add it to the shopping list.</p>
+<p><strong>Show Add Button is Enabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreviewWithAdd.png" class="with-border" src="../../../../_images/RelatedProductPreviewWithAdd.png" />
+<p><strong>Show Add Button is Disabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreview.png" class="with-border" src="../../../../_images/RelatedProductPreview.png" />
+</li>
+<li><p class="first"><strong>Use Slider On Mobile</strong> &#8212; When the option is enabled, one up-sell product is displayed below the main product information. Other up-sell products are accessible using the horizontal slider. Click &lt; and &gt; to slide through the up-sell products.</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Set or clear the option, or enter the quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="enable-and-set-up-up-sell-products-per-website">
+<h3>Enable and Set Up Up-Sell Products per Website<a class="headerlink" href="#enable-and-set-up-up-sell-products-per-website" title="Permalink to this headline">¶</a></h3>
+<p>Up-sell products listed for the product in the OroCommerce storefront may advertise more expensive alternatives to the product, like a newer and more advanced model, upgrades and add-ons that may look tempting when bundled with the product, etc.</p>
+<p>In the system configuration, you can:</p>
+<ul class="simple">
+<li>Enable and disable up-sell product management for the products.</li>
+<li>Limit the number of items displayed as up-sell.</li>
+</ul>
+<p>These settings may apply <a class="reference internal" href="upsell_items/global_upsell_items.html#sys-commerce-catalog-upsell-products"><span class="std std-ref">globally</span></a>, on the <a class="reference internal" href="upsell_items/organization_upsell_items.html#sys-users-organization-commerce-catalog-upsell-products"><span class="std std-ref">organization level</span></a>, and on the <a class="reference internal" href="upsell_items/website_upsell_items.html#sys-websites-commerce-catalog-upsell-products"><span class="std std-ref">website level</span></a>.</p>
+<p>To update the related products settings per website:</p>
+<ol class="arabic">
+<li><p class="first">In the main menu, navigate to <strong>System &gt; Websites</strong>.</p>
+</li>
+<li><p class="first">For the necessary website, hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu to the right of the necessary website and click the <i class="fa fa-gear fa-lg" aria-hidden="true"></i> <strong>Configuration</strong> icon to start editing the configuration.</p>
+</li>
+<li><p class="first">Select <strong>Commerce &gt; Catalog &gt; Related Items</strong> in the menu to the left.</p>
+<p>The following page opens.</p>
+<img alt="../../../../_images/RelatedProductsWebsite.png" class="with-border" src="../../../../_images/RelatedProductsWebsite.png" />
+<blockquote>
+<div><p>In the <strong>Up-Sell Products</strong> section, the following options are available:</p>
+<ul>
+<li><p class="first"><strong>Enable Up-Sell Products</strong> &#8212; Toggles managing up-sell products on/off. Enabled by default.</p>
+</li>
+<li><p class="first"><strong>Maximum Number Of Assigned Items</strong> &#8212; A limit of related items that may be added to any product.</p>
+</li>
+<li><p class="first"><strong>Maximum Items</strong> &#8212; A limit of up-sell products that are shown to the buyer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some related items may be hidden by the visibility settings. If the list of up-sell products still exceeds the limit, only the specified number of items (top of the list) will be shown.</p>
+</div>
+</li>
+<li><p class="first"><strong>Minimum Items</strong> &#8212; The minimum number of up-sell products that may be shown to the buyer. If the actual number of products is less than this value, the up-sell products section is hidden in the storefront for the product.</p>
+</li>
+<li><p class="first"><strong>Show Add Button</strong> &#8212; Enables a buyer to order the product from the up-sell products section in the main product details. When disabled, a buyer needs to open the up-sell product details before they can add it to the shopping list.</p>
+<p><strong>Show Add Button is Enabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreviewWithAdd.png" class="with-border" src="../../../../_images/RelatedProductPreviewWithAdd.png" />
+<p><strong>Show Add Button is Disabled</strong></p>
+<img alt="../../../../_images/RelatedProductPreview.png" class="with-border" src="../../../../_images/RelatedProductPreview.png" />
+</li>
+<li><p class="first"><strong>Use Slider On Mobile</strong> &#8212; When the option is enabled, one up-sell product is displayed below the main product information. Other up-sell products are accessible using the horizontal slider. Click &lt; and &gt; to slide through the up-sell products.</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">To customize any of these options:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Clear the <strong>Use Default</strong> check box next to the option.</li>
+<li>Set or clear the option, or type in the quantity.</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="all-products-page">
+<h2>All Products Page<a class="headerlink" href="#all-products-page" title="Permalink to this headline">¶</a></h2>
+<p>All Products page displays all available products from the master catalog grouped by categories. See <a class="reference internal" href="all_products.html#sys-conf-commerce-catalog-special-pages"><span class="std std-ref">All Products Page</span></a> topic for more information on how to enable All Products page and include it in the web catalog or frontend menu on the OroCommerce storefront.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Commerce Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../catalog/index.html">Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../customer/index.html">Customer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../design/index.html">Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guests/index.html">Guests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../inventory/index.html">Inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../orders/index.html">Orders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../payment/index.html">Payment</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sales/index.html">Sales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shipping/index.html">Shipping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../taxation/index.html">Taxation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../../_sources/configuration_guide/landing_commerce/product/products/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

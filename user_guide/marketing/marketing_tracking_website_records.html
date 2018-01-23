@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tracking Websites &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Send Email Campaign via dotmailer" href="sending_email_campaign_via_dotmailer.html" />
+    <link rel="prev" title="Marketing Campaigns" href="marketing_campaigns.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sending_email_campaign_via_dotmailer.html" title="Send Email Campaign via dotmailer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="marketing_campaigns.html" title="Marketing Campaigns"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Marketing Automation</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Tracking Websites</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="user-guide-marketing-tracking"></span><div class="section" id="tracking-websites">
+<h1>Tracking Websites<a class="headerlink" href="#tracking-websites" title="Permalink to this headline">¶</a></h1>
+<p>With tracking codes in Oro application, you can learn how many users have visited your website from links
+within a specific marketing campaign and what these users&#8217; actions on the site were.</p>
+<p>Before you start using tracking websites, ensure that <a class="reference internal" href="../../configuration_guide/landing_marketing/marketing_features.html#marketing-system-configuration"><span class="std std-ref">tracking is enabled</span></a> and <a class="reference internal" href="../../configuration_guide/landing_marketing/tracking_settings.html#admin-configuration-tracking"><span class="std std-ref">configure tracking settings</span></a> in Oro application via system configuration.</p>
+<p>When the tracking configuration is ready, create a Tracking Website record and add the code generated to the web-pages that you want to
+monitor.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#create-a-website-tracking-and-generate-a-tracking-code" id="id1">Create a Website Tracking and Generate a Tracking Code</a></li>
+<li><a class="reference internal" href="#manage-tracking-websites" id="id2">Manage Tracking Websites</a><ul>
+<li><a class="reference internal" href="#view-tracking-website-details" id="id3">View Tracking Website Details</a></li>
+<li><a class="reference internal" href="#share-the-tracking-website" id="id4">Share the Tracking Website</a></li>
+<li><a class="reference internal" href="#using-the-tracking-code" id="id5">Using the Tracking Code</a></li>
+<li><a class="reference internal" href="#tracked-website-example" id="id6">Tracked Website Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assign-a-tracking-website-in-a-marketing-campaign" id="id7">Assign a Tracking Website in a Marketing Campaign</a></li>
+</ul>
+</div>
+<div class="section" id="create-a-website-tracking-and-generate-a-tracking-code">
+<span id="user-guide-marketing-tracking-websites-create"></span><h2><a class="toc-backref" href="#id1">Create a Website Tracking and Generate a Tracking Code</a><a class="headerlink" href="#create-a-website-tracking-and-generate-a-tracking-code" title="Permalink to this headline">¶</a></h2>
+<p>To generate a new website tracking code:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Marketing &gt; Tracking Websites</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click <strong>Create Tracking Website</strong> in the top right corner to get
+to the <em>Create Campaign</em> page.</p>
+</li>
+<li><p class="first">In the <em>General</em> section, provide the following information:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Field</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Name*</strong></td>
+<td>Name used to refer to the record in the system</td>
+</tr>
+<tr class="row-odd"><td><strong>Identifier*</strong></td>
+<td>Unique code of the website used to generate its tracking</td>
+</tr>
+<tr class="row-even"><td><strong>Url*</strong></td>
+<td>Url of the website to be tracked</td>
+</tr>
+<tr class="row-odd"><td><strong>Owner*</strong></td>
+<td>Limits the list of Users that can manage the tracking website record to the users,  whose
+roles allow managing tracking-websites of the owner (e.g. the owner,
+members of the same business unit, system administrator, etc.).</td>
+</tr>
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Optional.</td>
+</tr>
+<tr class="row-odd"><td><strong>Channel</strong></td>
+<td><p class="first">Optional. Select one of the channels from the list. This connects the tracking record with a channel in the system.
+If this is done, you will be able to bind events registered by the tracking engine and other application data like orders, shopping carts, customer profiles, etc. This connection can be further utilized in reports and segments.</p>
+<img alt="../../_images/tracking_general.png" class="last" src="../../_images/tracking_general.png" />
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">Once you finish configuring the tracking website, click <strong>Save and Close</strong> in the top right corner of the page.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="manage-tracking-websites">
+<span id="user-guide-marketing-tracking-websites-actions"></span><h2><a class="toc-backref" href="#id2">Manage Tracking Websites</a><a class="headerlink" href="#manage-tracking-websites" title="Permalink to this headline">¶</a></h2>
+<p>The following actions are available for a Tracking Websites record after you navigate to the <strong>Marketing &gt; Tracking Websites</strong> in the main menu:</p>
+<img alt="../../_images/tracking_grid_actions.png" src="../../_images/tracking_grid_actions.png" />
+<ul class="simple">
+<li>Delete the record from the system : <i class="fa fa-trash fa-lg" aria-hidden="true"></i></li>
+<li>Get to the edit page of the record: <i class="fa fa-edit fa-lg" aria-hidden="true"></i></li>
+<li>Get to the view page of the record: <i class="fa fa-eye fa-lg" aria-hidden="true"></i></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The tracking process also depends on the <a class="reference internal" href="../../configuration_guide/landing_marketing/tracking_settings.html#admin-configuration-tracking"><span class="std std-ref">Tracking settings</span></a> defined for the
+Oro application instance.</p>
+</div>
+<div class="section" id="view-tracking-website-details">
+<span id="user-guide-marketing-tracking-websites-view-page"></span><h3><a class="toc-backref" href="#id3">View Tracking Website Details</a><a class="headerlink" href="#view-tracking-website-details" title="Permalink to this headline">¶</a></h3>
+<p>To view the website tracking details:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Marketing &gt; Tracking Website</strong> in the main menu.</li>
+<li>Click on the Tracking Website item to preview its contents.</li>
+</ol>
+<p>Here you can:</p>
+<ul>
+<li><p class="first">Preview the general website tracking details (including the identifier and the URL).</p>
+<img alt="../../_images/tracking_view_general.png" src="../../_images/tracking_view_general.png" />
+</li>
+<li><p class="first">Get the tracking code that may be incorporated into the website page to <a class="reference internal" href="#user-guide-how-to-track"><span class="std std-ref">track</span></a> the
+campaign-related user activities.</p>
+<img alt="../../_images/tracking_view_code.png" src="../../_images/tracking_view_code.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The tracking code comes with the following instructions on basic use and customization:</p>
+<p class="last"><em>Make sure this code is on every page of your website before the &lt;/body&gt; tag. To track custom events, please uncomment the trackEvent string and replace [name], [value], and [user_identifier] parameters with your values. The script will log an event with the [name] name and optional [value].</em></p>
+</div>
+</li>
+<li><p class="first">Review the tracking results in Events section. A list of events help you monitor every occurrence of the tracked action (e.g. a user has accessed a pre-defined part of the Website following the campaign). You can find event name and value, user id (guest or user email), the url of the visited page, the code of the marketing campaign and time when the event was logged.</p>
+<img alt="../../_images/tracking_view_events.png" src="../../_images/tracking_view_events.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the example above you can see the three kinds of events defined for the Jack and Johnson E-commerce website tracking. As soon as a user gets on any of the website pages, a <em>visit</em> event is logged with the <em>1</em> value. As soon as a user gets to the <strong>Orders</strong> page of the website, an <em>Order</em> event is logged, with the value that stores an ordered item id. As soon as a user gets to the <em>Item Details</em> page of the website, an <em>View item</em> event is logged with a value that stores a viewed item id.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="share-the-tracking-website">
+<h3><a class="toc-backref" href="#id4">Share the Tracking Website</a><a class="headerlink" href="#share-the-tracking-website" title="Permalink to this headline">¶</a></h3>
+<p>To share the website tracking summary with other Oro application user:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Marketing &gt; Tracking Websites</strong> in the main menu.</p>
+</li>
+<li><p class="first">Click on the Tracking Website to preview its contents.</p>
+</li>
+<li><p class="first">Click <strong>Share</strong> at the top right corner of the page.</p>
+<p>The <strong>Sharing Settings</strong> open.</p>
+</li>
+<li><p class="first">Type in the user name next to the <em>Share with</em> text, or search for the necessary user: click <i class="fa fa-bars fa-lg" aria-hidden="true"></i>, find the person you need, tick the checkbox next to their name, and click <strong>Add</strong>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can preview the sharing status and see who you already shared the Tracking Website with. For this, click <strong>Share</strong> again.</p>
+</div>
+<p>To cancel sharing the Tracking Website with a particular person, click <strong>Share</strong>, and then click <i class="fa fa-trash fa-lg" aria-hidden="true"></i> next to the user name. Use mass actions to cancel sharing for more than one user.</p>
+</div>
+<div class="section" id="using-the-tracking-code">
+<span id="user-guide-how-to-track"></span><h3><a class="toc-backref" href="#id5">Using the Tracking Code</a><a class="headerlink" href="#using-the-tracking-code" title="Permalink to this headline">¶</a></h3>
+<p>Tracking code generated in the Tracking Website shall be added before the &lt;/body&gt; tag on every page of the website you would like to monitor.</p>
+<img alt="../../_images/how_to_tracking_code.png" src="../../_images/how_to_tracking_code.png" />
+<p>The code defines some of <a class="reference external" href="http://piwik.org">piwik</a>-specific settings that should not be changed.</p>
+<p>The following variables may be amended:</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>_paq.push([&#39;setUserId&#39;, [user_identifier] ])
+</pre></div>
+</td></tr></table></div>
+<p>[user_identifier] defines the user id used in compliance with the website settings.</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>_paq.push([&#39;trackEvent&#39;, &#39;OroCRM&#39;, &#39;Tracking&#39;, [name], [value] ]
+</pre></div>
+</td></tr></table></div>
+<p>If you want to track user activities on a specific page of the Website, uncomment this line and replace the
+&#8220;[name]&#8221; and &#8220;[value]&#8221; with the event name (string) and value (number) you would like to see in the Events report in Oro application (e.g. for a cart, event name may be cart_created, and the value may store the item code or cost).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The code may be filled with both static and dynamic values, however the use of dynamic values requires complex
+back-end development.</p>
+</div>
+</div>
+<div class="section" id="tracked-website-example">
+<h3><a class="toc-backref" href="#id6">Tracked Website Example</a><a class="headerlink" href="#tracked-website-example" title="Permalink to this headline">¶</a></h3>
+<p>This is the code pre-implemented for an average website:</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">_paq</span> <span class="o">=</span> <span class="nx">_paq</span> <span class="o">||</span> <span class="p">[];</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setUserId&#39;</span><span class="p">,</span> <span class="s2">&quot;id=guest; visitor-id=51&quot;</span><span class="p">]);</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setConversionAttributionFirstReferrer&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">]);</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;trackPageView&#39;</span><span class="p">]);</span>
+
+    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">u</span><span class="o">=</span><span class="s2">&quot;http://an.average.website.com/&quot;</span><span class="p">;</span>
+        <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setTrackerUrl&#39;</span><span class="p">,</span> <span class="nx">u</span><span class="o">+</span><span class="s1">&#39;tracking.php&#39;</span><span class="p">]);</span>
+        <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setSiteId&#39;</span><span class="p">,</span> <span class="s1">&#39;ANAWERAGEWEBSITE&#39;</span><span class="p">]);</span>
+        <span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">,</span> <span class="nx">g</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">),</span> <span class="nx">s</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span> <span class="nx">g</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+        <span class="nx">g</span><span class="p">.</span><span class="nx">defer</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span> <span class="nx">g</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span> <span class="nx">g</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">u</span><span class="o">+</span><span class="s1">&#39;bundles/orotracking/js/piwik.min.js&#39;</span><span class="p">;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">s</span><span class="p">);</span>
+    <span class="p">})();</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Every time a user gets to the page where this code is embedded, a <em>visit</em> event appears in the
+Website Tracking details with the corresponds value.</p>
+<p>Visitors are treated as guests unless they sign in. As soon as the visitor signs in, their identification is logged in the <em>visitor-id</em> field. A special block has been implemented to enable transfer of the ID data to Oro application.</p>
+<p>On some of the website pages, user activities may be logged in more details. For example, on the shopping list or shopping cart page, the following tracking script may be used:</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">_paq</span> <span class="o">=</span> <span class="nx">_paq</span> <span class="o">||</span> <span class="p">[];</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setUserId&#39;</span><span class="p">,</span> <span class="s2">&quot;id=guest; visitor-id=51&quot;</span><span class="p">]);</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setConversionAttributionFirstReferrer&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">]);</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;trackPageView&#39;</span><span class="p">]);</span>
+    <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;trackEvent&#39;</span><span class="p">,</span> <span class="s1">&#39;OroCRM&#39;</span><span class="p">,</span> <span class="s1">&#39;Tracking&#39;</span><span class="p">,</span> <span class="s1">&#39;cart item added&#39;</span><span class="p">,</span> <span class="s1">&#39;27&#39;</span> <span class="p">]);</span>
+    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="kd">var</span> <span class="nx">u</span><span class="o">=</span><span class="s2">&quot;http://crm.dev/&quot;</span><span class="p">;</span>
+     <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setTrackerUrl&#39;</span><span class="p">,</span> <span class="nx">u</span><span class="o">+</span><span class="s1">&#39;tracking.php&#39;</span><span class="p">]);</span>
+     <span class="nx">_paq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;setSiteId&#39;</span><span class="p">,</span> <span class="s1">&#39;ANAWERAGEWEBSITE&#39;</span><span class="p">]);</span>
+     <span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">,</span> <span class="nx">g</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">),</span> <span class="nx">s</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span> <span class="nx">g</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+     <span class="nx">g</span><span class="p">.</span><span class="nx">defer</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span> <span class="nx">g</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span> <span class="nx">g</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">u</span><span class="o">+</span><span class="s1">&#39;bundles/orotracking/js/piwik.min.js&#39;</span><span class="p">;</span> <span class="nx">s</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">s</span><span class="p">);</span>
+    <span class="p">})();</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Every time a visitor gets to the website page where the code is embedded, a <em>Cart item added</em> event appears in the Website Tracking details.</p>
+<p>A similar tracking script may be placed on any Website pages. For example, on the checkout page you may enable the following actions:</p>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>_paq.push([&#39;trackEvent&#39;, &#39;OroCRM&#39;, &#39;Tracking&#39;, &#39;order submitted&#39;, &#39;2699.990000&#39; ]);
+</pre></div>
+</td></tr></table></div>
+<p>An <em>order submitted</em> and the total cost of the order is logged.</p>
+</div>
+</div>
+<div class="section" id="assign-a-tracking-website-in-a-marketing-campaign">
+<span id="user-guide-marketing-tracking-websites-plus-campaign"></span><h2><a class="toc-backref" href="#id7">Assign a Tracking Website in a Marketing Campaign</a><a class="headerlink" href="#assign-a-tracking-website-in-a-marketing-campaign" title="Permalink to this headline">¶</a></h2>
+<p>To include one or several Tracking Website(s) to a marketing campaign, use one of the following methods:</p>
+<ul class="simple">
+<li>Add a <a class="reference internal" href="marketing_campaigns.html#user-guide-marketing-campaigns"><span class="std std-ref">marketing campaign code</span></a> to the tracking  script provided in the Tracking Code section of the from the Website Tracking details (put it after the <em>setUserId</em> call). Each time a user reaches a page with such a code, an event will be logged within the campaign.</li>
+<li>Add <a class="reference internal" href="marketing_campaigns.html#user-guide-marketing-campaigns"><span class="std std-ref">marketing campaign code</span></a> to the url and use this modified URL as a target in the links that lead to the website page. Use these modified URL in mailing, advert, landing pages etc. Each time a user reaches a page using the modified url, an event is logged within the campaign.</li>
+</ul>
+<p><strong>Related Topics on Marketing Automation</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="index.html#user-guide-marketing"><span class="std std-ref">Marketing Automation</span></a><ul>
+<li><a class="reference internal" href="marketing_lists.html#user-guide-marketing-lists"><span class="std std-ref">Marketing Lists</span></a></li>
+<li><a class="reference internal" href="marketing_campaigns.html#user-guide-marketing-campaigns"><span class="std std-ref">Marketing Campaigns</span></a></li>
+<li><a class="reference internal" href="email_campaigns.html#user-guide-email-campaigns"><span class="std std-ref">Email Campaigns</span></a></li>
+<li><a class="reference internal" href="#user-guide-marketing-tracking"><span class="std std-ref">Website Tracking</span></a></li>
+<li><a class="reference internal" href="sending_email_campaign_via_dotmailer.html#user-guide-dotmailer-campaign"><span class="std std-ref">Send Email Campaign via dotmailer</span></a></li>
+<li><a class="reference internal" href="sending_email_campaign_via_mailchimp.html#user-guide-mailchimp-campaign"><span class="std std-ref">Send Email Campaign via MailChimp</span></a></li>
+<li>Configuration:<ul>
+<li><a class="reference internal" href="dotmailer_data_fields_mappings.html#user-guide-dotmailer-data-fields"><span class="std std-ref">Manage dotmailer Data Fields and Mappings</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/landing_marketing/marketing_features.html#marketing-system-configuration"><span class="std std-ref">Marketing Features</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/landing_marketing/tracking_settings.html#admin-configuration-tracking"><span class="std std-ref">Tracking Settings</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/mailchimp_configuration.html#user-guide-mc-integration"><span class="std std-ref">MailChimp Integration</span></a></li>
+<li><a class="reference internal" href="../../configuration_guide/integrations/dotmailer_integration.html#user-guide-dm-integration"><span class="std std-ref">dotmailer Integration</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../orders/index.html">Orders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Marketing Automation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="marketing_lists.html">Marketing Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email_campaigns.html">Email Campaigns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="marketing_campaigns.html">Marketing Campaigns</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tracking Websites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending_email_campaign_via_dotmailer.html">Send Email Campaign via dotmailer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_data_fields_mappings.html">Manage dotmailer Data Fields and Mappings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending_email_campaign_via_mailchimp.html">Send Email Campaign via MailChimp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/user_guide/marketing/marketing_tracking_website_records.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

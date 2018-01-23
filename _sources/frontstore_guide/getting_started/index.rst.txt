@@ -1,13 +1,13 @@
 .. _frontstore-guide--getting-started:
 
-Getting Started 
-===============
+Register and Sign In
+====================
 
 .. _frontstore-guide--getting-started-overview:
 
 The following guide gives you an overview of the first steps you need to take to start working with the store. These include registration, signing in and requesting a new password.
 
-.. .. contents:: :local:
+.. contents:: :local:
    :depth: 1
 
 .. include:: /frontstore_guide/getting_started/create_account.rst
@@ -30,14 +30,5 @@ The following guide gives you an overview of the first steps you need to take to
    sign_in
    forgot_password
 
-Related Topics
---------------
-
-* :doc:`/frontstore_guide/navigation/index`
-* :doc:`/frontstore_guide/profile/index`
-* :doc:`/frontstore_guide/users_roles/index`
-* :doc:`/frontstore_guide/rfq/index` 
-* :doc:`/frontstore_guide/quotes/index`
-* :doc:`/frontstore_guide/orders/index`
-* :doc:`/frontstore_guide/shopping_lists/index`  
-  
+.. include:: /frontstore_guide/related_topics.rst
+   :start-after: begin

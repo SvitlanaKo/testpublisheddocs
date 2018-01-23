@@ -1,9 +1,9 @@
 Customers and Customer Users
 ============================
 
-.. This topic contains the following sections:
+This topic contains the following sections:
 
-.. .. contents::
+.. contents::
    :local:
    :depth: 1
 
@@ -16,9 +16,9 @@ Overview
 System-wide Customer Configuration
 ----------------------------------
 
-.. include:: /user_guide/customers/configuration/index.rst
-   :start-after: begin
-   :end-before: finish
+.. include:: /configuration_guide/landing_commerce/customer/customers/index.rst
+   :start-after: start
+   :end-before: stop
 
 Customer Accounts
 -----------------

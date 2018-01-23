@@ -1,5 +1,3 @@
-:orphan:
-
 .. _sys--integrations--manage-integrations--ups--flat-rate:
 
 .. System > Integrations > Manage Integrations. UPS, flat rate
@@ -8,13 +6,29 @@
 Shipping Method Integration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. begin
+.. begin_shipping_method_integrations
 
 You may configure integration with third-party providers to offer their shipping services for the quotes and orders placed using OroCommerce.
 
-Out of the box, you may integrate OroCommerce with UPS and Flat Rate shipping.
+Out of the box, you may integrate OroCommerce with :ref:`UPS <doc--integrations--ups>`, DPD, and :ref:`Flat Rate <doc--integrations--flat-rate>` shipping.
+
+.. * ref:`UPS Shipping Integration <doc--integrations--ups>`
+.. * ref:`Flat Rate Shipping Integration <doc--integrations--flat-rate>`
+
+.. stop_shipping_method_integrations
+
+
+.. note::
+    See a short demo on `how to create a shipping integration in OroCommerce <https://www.orocommerce.com/media-library/create-shipping-integrations>`_, or keep reading the step-by-step guidance below.
+
+    .. raw:: html
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ileKXVTG6B8" frameborder="0" allowfullscreen></iframe>
+
 
 .. contents:: :local:
+
+.. _doc--integrations--ups:
 
 UPS Shipping Integration
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,7 +56,7 @@ To enable communication with UPS in order to request the shipping cost estimate 
 
 2. Click **Create Integration** and select UPS as integration type:
 
-   .. image:: /user_guide/img/system/integrations/manage_integrations/CreateUPSIntegration.png
+   .. image:: /configuration_guide/img/integrations/manage_integrations/CreateUPSIntegration.png
       :class: with-border
 
 3. Type in the *Common Integration Details*:
@@ -68,7 +82,7 @@ To enable communication with UPS in order to request the shipping cost estimate 
    * Shipping account name
    * Shipping account number
 
-#. Select the pickup type that shall apply to the deliveries for the shipping methods via this integration. Awailable options are:
+#. Select the pickup type that shall apply to the deliveries for the shipping methods via this integration. Available options are:
 
    * Regular Daily Pickup
    * Customer Counter
@@ -92,6 +106,8 @@ To enable communication with UPS in order to request the shipping cost estimate 
 
 Next, set up a shipping rule that enables this shipping methods for all or some customer orders.
 
+.. _doc--integrations--flat-rate:
+
 Flat Rate Shipping Integration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -103,7 +119,7 @@ To enable flat rate shipping:
 
 2. Click **Create Integration** and select Flat Rate Shipping as integration type:
 
-   .. image:: /user_guide/img/system/integrations/manage_integrations/CreateFlatRate.png
+   .. image:: /configuration_guide/img/integrations/manage_integrations/CreateFlatRate.png
       :class: with-border
 
 3. Type in the integration name and label (e.g. Flat Rate). Add label translations, if necessary.
@@ -123,7 +139,7 @@ To delete an integration and related shipping methods:
 
 1. Navigate to the **Manage Integrations** page by clicking **System > Integrations > Manage Integrations** in the main menu.
 
-2. Hover over the |IcMore| *more actions* menu on the right side of the line with the necessary integration and click |IcDelete|.
+2. Hover over the |IcMore| **More Options** menu on the right side of the line with the necessary integration and click |IcDelete|.
 
    The confirmation box is shown.
 
@@ -136,8 +152,6 @@ To delete an integration and related shipping methods:
 4. Once you are ready to delete the integration, click **Delete**.
 
 The shipping methods created due to this integration are no longer usable in OroCommerce and cannot be enabled in the shipping rule.
-
-.. stop
 
 .. include:: /user_guide/include_images.rst
    :start-after: begin

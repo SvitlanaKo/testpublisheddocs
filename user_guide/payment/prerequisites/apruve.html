@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Prerequisites for Apruve Services Integration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Payment Configuration" href="../payment_config.html" />
+    <link rel="prev" title="Prerequisites for InfinitePay Integration" href="infinitepay.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../payment_config.html" title="Payment Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="infinitepay.html" title="Prerequisites for InfinitePay Integration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >User Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Payment</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Payment Integration Prerequisites</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Prerequisites for Apruve Services Integration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="prerequisites-for-apruve-services-integration">
+<span id="user-guide-payment-prerequisites-apruve"></span><h1>Prerequisites for Apruve Services Integration<a class="headerlink" href="#prerequisites-for-apruve-services-integration" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#register-a-business-account-with-apruve" id="id1">Register a Business Account with Apruve</a></li>
+<li><a class="reference internal" href="#create-a-test-account" id="id2">Create a Test Account</a></li>
+<li><a class="reference internal" href="#add-business-information" id="id3">Add Business Information</a></li>
+<li><a class="reference internal" href="#add-bank-account-information" id="id4">Add Bank Account Information</a></li>
+<li><a class="reference internal" href="#create-an-api-key" id="id5">Create an API Key</a></li>
+<li><a class="reference internal" href="#configure-notifications" id="id6">Configure Notifications</a></li>
+</ul>
+</div>
+<p>Before adding Apruve as a payment method in OroCommerce, you need to create an Apruve business account and a dedicated API key via the official Apruve website.</p>
+<p>The role in the Apruve system is determined by the way you participate in a particular transaction. There are two different roles:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Role</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Shopper</strong></td>
+<td>The person shopping for products or services and selecting the Apruve payment method during the checkout.</td>
+</tr>
+<tr class="row-odd"><td><strong>Merchant</strong></td>
+<td>The person who owns the store.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="register-a-business-account-with-apruve">
+<h2><a class="toc-backref" href="#id1">Register a Business Account with Apruve</a><a class="headerlink" href="#register-a-business-account-with-apruve" title="Permalink to this headline">¶</a></h2>
+<p>To register a business account and enable a checkout credit program integration with OroCommerce, follow the next steps:</p>
+<ol class="arabic">
+<li><p class="first">Contact <a class="reference external" href="https://www.apruve.com/">https://www.apruve.com/</a> to get started and schedule a time for a conversation with a member of the Apruve Sales Team.</p>
+<img alt="../../../_images/apruve_prerequisites_1.png" class="with-border" src="../../../_images/apruve_prerequisites_1.png" />
+</li>
+<li><p class="first">From the Apruve support team, obtain the following credentials:</p>
+<ul class="simple">
+<li><strong>Email Address</strong> &#8212;  Email address used to receive notifications after submitted orders, issued invoices and finalized payments.</li>
+<li><strong>Password</strong> &#8212; Password used to log into your Apruve account to view all the details.</li>
+</ul>
+<p>You will use these credentials to set up the integration between Apruve and OroCommerce (see more details on how to set up this integration in the <a class="reference internal" href="../../../configuration_guide/payment/payment_methods/apruve.html#user-guide-payment-configuration-payment-method-integration-apruve"><span class="std std-ref">Apruve Payment Method Integration</span></a> topic).</p>
+</li>
+<li><p class="first">Log into the <a class="reference external" href="https://app.apruve.com">https://app.apruve.com</a> with your email address and password generated in the previous step.</p>
+<img alt="../../../_images/apruve_prerequisites_2.png" class="with-border" src="../../../_images/apruve_prerequisites_2.png" />
+</li>
+<li><p class="first">Fill in the following sections under <strong>Get Started Checklist</strong> to enable the credit program for your customer user:</p>
+<ul class="simple">
+<li><strong>Add business information</strong> &#8212; Provide a logo and contact information that will be displayed to the customer users.</li>
+<li><strong>Add bank account information</strong> &#8212; Connect a debit card to proceed with all the transactions performed through the Apruve account.</li>
+<li><strong>Connect API</strong> &#8212; Integrate the Apruve API into the OroCommerce checkout.</li>
+</ul>
+<img alt="../../../_images/apruve_prerequisites_3.png" class="with-border" src="../../../_images/apruve_prerequisites_3.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="create-a-test-account">
+<h2><a class="toc-backref" href="#id2">Create a Test Account</a><a class="headerlink" href="#create-a-test-account" title="Permalink to this headline">¶</a></h2>
+<p>The OroCommerce Apruve configuration offers you a possibility to select a test mode to test your store first and ensure that the integration is working properly. Test mode activation should be performed on both sides.</p>
+<p>On the OroCommerce side, you need to enable the test mode when setting up the integration by selecting the <strong>Test Mode</strong> check box (see <a class="reference internal" href="../../../configuration_guide/payment/payment_methods/apruve.html#user-guide-payment-configuration-payment-method-integration-apruve"><span class="std std-ref">Apruve Payment Method Integration</span></a>).</p>
+<p>On the Apruve side, you need to follow the <a class="reference external" href="https://test.apruve.com">https://test.apruve.com</a> link and create a test account. This test account is identical to the <a class="reference external" href="https://app.apruve.com">https://app.apruve.com</a> regular one but exists only as a test environment that can be used for exploring the Apruve software and its functionality without any risks of the money being charged.</p>
+<p>Additionally, the Apruve test account provides the ability to create test credit cards and bank accounts (see <a class="reference internal" href="#add-bank-account-information">Add Bank Account Information</a> for details).</p>
+<p>To create an Apruve test account, proceed with the following steps:</p>
+<ol class="arabic">
+<li><p class="first">Log into the <a class="reference external" href="https://test.apruve.com">https://test.apruve.com</a> with the credentials generated at the stage of registering a business account.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can change the credentials any time by navigating to <strong>Settings &gt; Profile</strong> in the main menu on the left.</p>
+</div>
+</li>
+<li><p class="first">Configure your store settings by adding the business information, linking your bank account to the Apruve system, and generating an API key.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="add-business-information">
+<h2><a class="toc-backref" href="#id3">Add Business Information</a><a class="headerlink" href="#add-business-information" title="Permalink to this headline">¶</a></h2>
+<p>To modify your store profile settings and add contact information, click <strong>Add business information</strong> on the <strong>Get Started Checklist</strong> page.</p>
+<p>Alternatively:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Settings</strong> &gt; <strong>Store Profile</strong> in the main menu on the left.</p>
+</li>
+<li><p class="first">Click the <strong>Merchant</strong> section.</p>
+<p>Here, you can check your <em>Merchant ID</em> which is automatically generated by Apruve along with your password. You will need this <em>Merchant ID</em> when integrating the Apruve payment method with your store.</p>
+</li>
+<li><p class="first">Fill in <em>Store Details</em> in the <strong>Merchant</strong> section with the following credentials:</p>
+<ul class="simple">
+<li>Store Name</li>
+<li>Email Address</li>
+<li>Business Phone</li>
+<li>Website</li>
+<li>Street 1</li>
+<li>Street 2 (optional)</li>
+<li>City</li>
+<li>State</li>
+<li>Postal Code</li>
+<li>Business Tax ID (optional)</li>
+</ul>
+<img alt="../../../_images/apruve_prerequisites_4.png" class="with-border" src="../../../_images/apruve_prerequisites_4.png" />
+</li>
+<li><p class="first">Click <strong>Save Changes</strong> to proceed to the <strong>Branding</strong> section next to <strong>Merchant</strong> section and upload the logo image of your store.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">A high-quality logo image should use the .PNG image extension with a file size smaller than 2MB, dimensions of at least 200 pixels in width, and a transparent background.</p>
+</div>
+<img alt="../../../_images/apruve_prerequisites_5.png" class="with-border" src="../../../_images/apruve_prerequisites_5.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="add-bank-account-information">
+<h2><a class="toc-backref" href="#id4">Add Bank Account Information</a><a class="headerlink" href="#add-bank-account-information" title="Permalink to this headline">¶</a></h2>
+<p>Your debit bank account information is required while processing all various of payments with the help of Apruve.</p>
+<p>To connect your debit bank account to Apruve, click <strong>Add bank account information</strong> on the <strong>Get Started Checklist</strong> page.</p>
+<p>Alternatively:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>Settings &gt; Bank Accounts</strong> in the main menu on the left.</li>
+<li>Fill in all the required information regarding your debit card.</li>
+<li>Click <strong>Add Bank Account</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Apruve offers to create a test account to check the procedure of its integration with your store.</p>
+</div>
+<img alt="../../../_images/apruve_prerequisites_6.png" class="with-border" src="../../../_images/apruve_prerequisites_6.png" />
+</div>
+<div class="section" id="create-an-api-key">
+<h2><a class="toc-backref" href="#id5">Create an API Key</a><a class="headerlink" href="#create-an-api-key" title="Permalink to this headline">¶</a></h2>
+<p>An API key is used to secure your business profile information and provide automated access to your Apruve data. To generate the API key, click <strong>Connect API</strong> on the <strong>Get Started Checklist</strong> page.</p>
+<p>Alternatively,</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Settings &gt; Store Profile</strong> in the main menu on the left.</p>
+</li>
+<li><p class="first">In the <strong>Technical</strong> section, next to <strong>Branding</strong>, click the <strong>Go to my API Keys</strong> link.</p>
+</li>
+<li><p class="first">Click <strong>Create an API Key</strong>.</p>
+<img alt="../../../_images/apruve_prerequisites_7.png" class="with-border" src="../../../_images/apruve_prerequisites_7.png" />
+</li>
+<li><p class="first">Type in the name of the API key.</p>
+</li>
+<li><p class="first">Save it by clicking <strong>Create Key</strong>.</p>
+<img alt="../../../_images/apruve_prerequisites_8.png" class="with-border" src="../../../_images/apruve_prerequisites_8.png" />
+</li>
+</ol>
+<p>You will need this <em>API Key</em> when integrating the Apruve payment method with your store.</p>
+</div>
+<div class="section" id="configure-notifications">
+<h2><a class="toc-backref" href="#id6">Configure Notifications</a><a class="headerlink" href="#configure-notifications" title="Permalink to this headline">¶</a></h2>
+<p>To configure notification options to receive emails on activities performed through Apruve:</p>
+<ol class="arabic">
+<li><p class="first">Navigate to <strong>Settings</strong> &gt; <strong>Store Profile</strong> in the main menu on the left.</p>
+</li>
+<li><p class="first">In the <strong>Technical</strong> section, find the <strong>Notifications</strong> option.</p>
+</li>
+<li><p class="first">Enter <em>Webhook URL</em>, which is generated at the stage of integrating the Apruve payment method with your store (see <a class="reference internal" href="../../../configuration_guide/payment/payment_methods/apruve.html#user-guide-payment-configuration-payment-method-integration-apruve"><span class="std std-ref">Apruve Payment Method Integration</span></a> topic for more details).</p>
+</li>
+<li><p class="first">Optionally, enter your <em>email address</em> to receive all the updates regarding changes in your orders, invoices, and payments.</p>
+</li>
+<li><p class="first">Click <strong>Save Notification Preferences</strong>.</p>
+<img alt="../../../_images/apruve_prerequisites_9.png" class="with-border" src="../../../_images/apruve_prerequisites_9.png" />
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting Started with UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../products/index.html">Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../master_catalog/index.html">Master Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inventory/index.html">Warehouses and Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pricing/index.html">Pricing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../customers/index.html">Customers and Customer Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quotes/index.html">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rfq/index.html">Request for Quote (RFQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shopping_lists/index.html">Shopping Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../orders/index.html">Orders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Payment</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../payment_providers_overview/index.html">Payment Methods and Providers</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Payment Integration Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../payment_config.html">Payment Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../checkout/index.html">Checkout: Payment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../shipping/index.html">Shipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_web_catalog/index.html">Web Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_landing_pages/index.html">Landing Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing/index.html">Marketing Automation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_promotions/index.html">Promotions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_coupons/index.html">Coupons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../marketing_content_blocks/index.html">Content Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../taxes/index.html">Taxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../business_intelligence/index.html">Business Intelligence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../../_sources/user_guide/payment/prerequisites/apruve.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Voice and Video Calls via Hangouts &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Integration with Zendesk" href="zendesk_integration.html" />
+    <link rel="prev" title="Embedded Forms" href="embedded_forms.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="zendesk_integration.html" title="Integration with Zendesk"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="embedded_forms.html" title="Embedded Forms"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Integrations</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Voice and Video Calls via Hangouts</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="voice-and-video-calls-via-hangouts">
+<span id="user-guide-hangouts"></span><h1>Voice and Video Calls via Hangouts<a class="headerlink" href="#voice-and-video-calls-via-hangouts" title="Permalink to this headline">¶</a></h1>
+<p>With the Hangouts integration feature, you can call via Google Hangouts directly from Oro application. This means that sales team
+can make calls to their customers and prospects directly from Oro application, making it faster than ever to make and log your
+sales calls. This feature is also great for support teams, as they can contact customers and utilize the screen sharing
+function for necessary support cases. Additionally, it can be used for internal communications (meetings and
+discussions), as it is possible to hold a session with up to five Oro application users. Moreover, integration with Oro’s
+Calendar allows users to pre-arrange a meeting and then quickly launch a call from the event page.</p>
+<div class="section" id="preliminary-conditions">
+<h2>Preliminary Conditions<a class="headerlink" href="#preliminary-conditions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Have an active Google account (if you try using the feature when not logged in, you will be prompted to log-in)</li>
+<li>Have the Hangouts extension installed in Oro application as described in the
+<a class="reference internal" href="../../admin_guide/package_manager.html#admin-package-manager"><span class="std std-ref">Extensions and Package Manager Guide</span></a></li>
+<li>If you are using a browser other than Chrome, install a Google Hangout or Google Talk extension for
+the browser.</li>
+<li>If you are going to call phone-numbers beyond USA and Canada, make sure there are some funds on you Google Wallet.</li>
+</ul>
+</div>
+<div class="section" id="system-settings">
+<h2>System Settings<a class="headerlink" href="#system-settings" title="Permalink to this headline">¶</a></h2>
+<p>I order to enable the functionality in Oro application, navigate to the <strong>System &gt; Configuration</strong> in the main menu and open <strong>Integrations &gt; Google Settings &gt;
+Google Hangouts</strong> in the panel to the left.</p>
+<img alt="../../_images/enable.png" src="../../_images/enable.png" />
+</div>
+<div class="section" id="start-a-hangout">
+<h2>Start a Hangout<a class="headerlink" href="#start-a-hangout" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="from-a-view-page">
+<h3>From a View Page<a class="headerlink" href="#from-a-view-page" title="Permalink to this headline">¶</a></h3>
+<p>In order to start a hangout:</p>
+<ul class="simple">
+<li>Go to the view page of the record that you want to contact (account,
+lead, contact, user, etc.) .</li>
+<li>Hover the mouse over a phone number or an email address available on the View page.</li>
+</ul>
+<img alt="../../_images/hover.png" src="../../_images/hover.png" />
+<ul class="simple">
+<li>Click the <img alt="HObutton" class="align-middle" src="../../_images/hangouts.png" /> button</li>
+<li>The <strong>Invite Contacts to a Google Hangout</strong> form will appear.</li>
+</ul>
+<img alt="../../_images/invite.png" src="../../_images/invite.png" />
+<ul class="simple">
+<li>Click the <strong>Start a Hangout</strong> button.<ul>
+<li>If you are already logged in to your Google account, the Hangout will start immediately, otherwise you will be
+prompted to log in.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="start-a-hangout-using-phone-number">
+<span id="user-guide-hangouts-call"></span><h3>Start a Hangout Using Phone Number<a class="headerlink" href="#start-a-hangout-using-phone-number" title="Permalink to this headline">¶</a></h3>
+<p>If you call your contact via their phone number, and the telephone calling has been enabled for your Google Hangouts,
+the call will start immediately.</p>
+<p>Otherwise, you will be prompted to enable it:</p>
+<img alt="../../_images/enable_phone.png" src="../../_images/enable_phone.png" />
+<p>Most calls within the USA and Canada are free, and you can pay your balance for other regions using Google Wallet.</p>
+</div>
+<div class="section" id="start-a-hangout-using-email">
+<h3>Start a Hangout Using Email<a class="headerlink" href="#start-a-hangout-using-email" title="Permalink to this headline">¶</a></h3>
+<p>If you call via email, the call will be initiated. You can invite other call participants (up to 5 total),
+remove them (click the <strong>X</strong> button by the name) or send them a link to the session.</p>
+<img alt="../../_images/invite_more.png" src="../../_images/invite_more.png" />
+<p>Once the contact has joined the session, you can talk.</p>
+</div>
+<div class="section" id="start-a-hangout-from-the-log-call-form">
+<h3>Start a Hangout from the Log Call Form<a class="headerlink" href="#start-a-hangout-from-the-log-call-form" title="Permalink to this headline">¶</a></h3>
+<p>The Hangouts feature is also available in the <a class="reference internal" href="../../user_guide/getting_started/activities/calls/index.html#doc-activities-calls"><span class="std std-ref">Log Call</span></a> form.</p>
+<img alt="../../_images/log_call_hangout.png" src="../../_images/log_call_hangout.png" />
+<ul class="simple">
+<li>Click the <strong>Start a Hangout</strong> button to start a Hangout using the phone number.</li>
+</ul>
+</div>
+<div class="section" id="start-a-hangout-from-the-calendar">
+<h3>Start a Hangout from the Calendar<a class="headerlink" href="#start-a-hangout-from-the-calendar" title="Permalink to this headline">¶</a></h3>
+<p>The Hangout feature is also integrated with Oro&#8217;s Calendar. In order to start a Hangout with the users invited to an
+event:</p>
+<ul class="simple">
+<li>Go to the Calendar (or the Calendar widget on the Dashboard)</li>
+<li>Click the event name</li>
+<li>If the event has at least one guest invited, the <strong>Start a Hangout</strong> button will be available.</li>
+</ul>
+<img alt="../../_images/view_event.png" src="../../_images/view_event.png" />
+<ul class="simple">
+<li>Click the <strong>Start a Hangout</strong> button to start a Hangout using the email addresses of the first five guests.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Integrations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="google_integration_settings.html">Google Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="google_single_sign_on.html">Google Single Sign-On</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ldap_integration.html">LDAP Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mailchimp_configuration.html">Configure MailChimp Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration.html">dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration_settings.html">dotmailer Synchronization Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_configuration.html">Configure dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_single_sign_on.html">Configure Single Sign-on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration_settings.html">MS Exchange Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration.html">Integration with Microsoft Exchange Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_outlook_integration_settings.html">MS Outlook Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="outlook_sync.html">Synchronization with Outlook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embedded_forms.html">Embedded Forms</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Voice and Video Calls via Hangouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zendesk_integration.html">Integration with Zendesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commerce_integration.html">CRM and Commerce Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/integrations/hangouts.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

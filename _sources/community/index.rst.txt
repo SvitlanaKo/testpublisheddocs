@@ -1,48 +1,62 @@
 Community Guide
 ===============
 
-Join Oro community and contribute to the open-source OroCommerce Community Edition. The OroCommerce Community Guide provides the following information, best practices and conventions for contributing into the OroCommerce `source code <./contribute>`_, `translation <./translations>`_, and `documentation <./write>`_.
+This guide provides information about best practices and conventions for contributing to the Oro application source code, user interface translations, and documentation. It also describes the ways to contact the Oro community and support
+team, and offers an insight into the Oro application release process.
 
-Contribute to the Open Source Development
------------------------------------------
+Join Oro community and contribute to the open-source OroCommerce Community Edition.
 
-Are you eager to contribute to a free OroCommerce Community Edition open source code? Then you might like the :ref:`Contribute as a Developer <source_code>` topic.
 
-Contribute to the Localization Project
+.. contents:: :local:
+   :depth: 1
+
+
+Contribute to the Source Code, Translations, and Documentation
+--------------------------------------------------------------
+
+.. include:: /community/contribute/index.rst
+   :start-after: begin_contribute
+   :end-before: finish_contribute
+
+Please sign the :ref:`Contributor License Agreement <contributing--cla>` (CLA) before suggesting changes to the source code or documentation.
+
+
+Report Issues
+-------------
+
+* :ref:`Report an Issue <doc--community--issue-report>`
+
+  If you encounter any issues with your Oro application or noticed inaccuracies in our documentation, please inform us
+  about them.
+
+* :ref:`Report a Security Issue <reporting-security-issues>`
+
+  We recognize how important it is to help protect your privacy and security. Please refer to this topic to learn how
+   to communicate security issues to us.
+
+Learn about Release Versions and Dates
 --------------------------------------
 
-Ar you working on a localization for your Oro application? :ref:`Contribute as a Translator <translate>` to make your efforts matter in a long run for your and your customers future deployments.
+Please refer to the :ref:`Understand Release Process <doc--community--release>` topic to learn more about Oro versioning strategy, release and support cycle, and upgrade recommendations.
 
-Contribute to the Knowledge Base
---------------------------------
+Contact Community
+-----------------
 
-You spotted a bit of information that we missed to add to the documentation portal? :ref:`Contribute to the Knowledge Base <knowledge>` to share your perspective and expertize!
+.. include:: /community/contact_community.rst
+   :start-after: begin
+   :end-before: finish
 
-Contact Support
----------------
 
-Get Help by :ref:`submitting your question <question_forum>` on the Oro forum contact us directly to :ref:`report an issues <support>`.
-
-Release Information
--------------------
-
-.. image:: /user_guide/img/OroCommerceReleaseScheduleDark.png
-   :width: 200px
-
-Learn about Oro Product versions, release and support cycles, and upgrade recommendations in :ref:`Release Process <release_process>` section.
 
 .. toctree::
+   :includehidden:
+   :titlesonly:
    :maxdepth: 2
    :hidden:
-   
-   contribute
 
-   translations
-
-   write
-
+   contribute/index
    issues/index
+   release_process
+   contact_community
 
-   question
 
-   release

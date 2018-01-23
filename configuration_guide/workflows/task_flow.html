@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Task Flow &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tags and Taxonomies Management" href="../tags_management/index.html" />
+    <link rel="prev" title="Single Page Checkout Workflow" href="single_page_checkout_workflow.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tags_management/index.html" title="Tags and Taxonomies Management"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="single_page_checkout_workflow.html" title="Single Page Checkout Workflow"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Workflow Management</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Task Flow</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="task-flow">
+<span id="doc-workflows-task-flow"></span><h1>Task Flow<a class="headerlink" href="#task-flow" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>Task Flow</strong> workflow helps you proceed through phases of work on the task.</p>
+<p>Available options depend on the current status of the task. The following table describes which options are available for each of the statuses and how the corresponding transitions change the task status.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="87%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Current Status</th>
+<th class="head">Available Options</th>
+<th class="head">New Status</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="2">Open</td>
+<td>Click <strong>Start Progress</strong> to start working on this task.</td>
+<td>In Progress</td>
+</tr>
+<tr class="row-odd"><td>Click <strong>Close</strong> to close the task.</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td rowspan="2">In Progress</td>
+<td>Click <strong>Stop Progress</strong> to denote that you have stopped working on this task, but the task is not yet completed. (E.g., the description of what neds to be done for this task is to be readjusted.)</td>
+<td>Open</td>
+</tr>
+<tr class="row-odd"><td>Click <strong>Close</strong> to close the task.</td>
+<td>Closed</td>
+</tr>
+<tr class="row-even"><td>Closed</td>
+<td>Click <strong>Reopen</strong> to actualize the task again.</td>
+<td>Open</td>
+</tr>
+</tbody>
+</table>
+<p>For status descriptions, see <a class="reference internal" href="../../user_guide/getting_started/activities/tasks/activities_tasks_statuses.html#doc-activities-tasks-statuses"><span class="std std-ref">Task Statuses</span></a>.</p>
+<p>For information on workflows, see the <a class="reference internal" href="index.html#doc-system-workflow-management"><span class="std std-ref">Workflow Management</span></a> guide.</p>
+<div class="section" id="follow-the-workflow">
+<h2>Follow the Workflow<a class="headerlink" href="#follow-the-workflow" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="from-the-task-view-page">
+<h3>From the Task View Page<a class="headerlink" href="#from-the-task-view-page" title="Permalink to this headline">¶</a></h3>
+<p>The corresponding section on the task view pages contains the transition buttons.</p>
+<img alt="../../_images/activities_tasks_taskflow.png" src="../../_images/activities_tasks_taskflow.png" />
+</div>
+<div class="section" id="from-the-related-entity-view-page">
+<h3>From the Related Entity View Page<a class="headerlink" href="#from-the-related-entity-view-page" title="Permalink to this headline">¶</a></h3>
+<p>By adding a record as a context to a task, you specify that this record is somehow related to the task. Entity records that are specified in a task context have the task displayed in the <strong>Activity</strong> sections on their view pages.</p>
+<p>For a task activity on the related entity view page, you can use the transition icons to progress through the <strong>Task Flow</strong> workflow.</p>
+<img alt="../../_images/related_activity_taskflow.png" src="../../_images/related_activity_taskflow.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Workflow Management</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quote_management_workflow.html">Quote Management Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backoffice_quote_flow_with_approvals.html">Backoffice Quote Flow with Approvals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfq_backoffice.html">RFQ Management Flow Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfq_frontoffice.html">RFQ Submission Flow Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkout.html">Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alternative_checkout.html">Alternative Checkout Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="single_page_checkout_workflow.html">Single Page Checkout Workflow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Task Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/workflows/task_flow.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

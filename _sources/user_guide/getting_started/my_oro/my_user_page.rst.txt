@@ -8,7 +8,7 @@ My User
 
 On the upper-left of the page, you can see your avatar, full name and statuses.
 
-The first status shows that your are granted rights to use the system. The second status is called ``authentication status`` and defines the actuality of your password. As you can see your user page only being logged into the system, you will always see **Enabled** for the first status and **Active** for the other. When an administrator views your page, they will able to see values of your statuses.
+The first status shows that your are granted rights to use the system. The second status is called ``authentication status`` and shares the state of your password. As you can see your user page only being logged into the system, you will always see **Enabled** for the first status and **Active** for the other. When an administrator views your page, they will able to see values of your statuses.
 
 
 .. image:: /user_guide/img/getting_started/my_oro/my_user_review_pagetop.png
@@ -94,7 +94,7 @@ This section contains information about the user filled in when creating the use
 | LDAP Distinguished Name | A value of the **dn** LDAP field. This field is not empty only of your record has been imported from the LDAP server.                                                                                                    |
 +-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Tags                    | A list of tags added to your profile. Point to the the tag name (or **N/A** if no tags are defined) and click the **Edit** icon next to them to add a new tag.                                                           |
-|                         | See more about how to add a tag in the :ref:`Add a Tag from the View Page <user-guide-tags-add>` action description.                                                                                                     |
+|                         |                                                                                                                                                                                                                          |
 |                         |                                                                                                                                                                                                                          |
 |                         | .. image:: /user_guide/img/admin/user_management/user_tags_add.png                                                                                                                                                       |
 +-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -185,7 +185,9 @@ You can delete a phone activity. To do this, click the |IcDelete| **Delete** ico
 
 
 
-For a phone activity, you can immediately start a call via Google Hangouts if such functionality is enabled. To do this, point to the specified phone number and click the **Hangouts** icon next to it. For how to enable Google Hangouts functionality, see the `Voice and Video Calls via Hangouts <../integrations/hangouts>`__ guide.
+For a phone activity, you can immediately start a call via Google Hangouts if such functionality is enabled. To do this, point to the specified phone number and click the **Hangouts** icon next to it.
+
+.. For how to enable Google Hangouts functionality, see the `Voice and Video Calls via Hangouts <../integrations/hangouts>`__ guide.
 
 
 
@@ -215,7 +217,7 @@ Tasks are activities that need to be accomplished. Keeping track on tasks helps 
 
 You can filter tasks by a variety of parameters. To open the task view page, click this task in the grid.
 
-For more information about tasks management, see the :ref:`Tasks <user-guide-activities-tasks>` guide.
+For more information about tasks management, see the :ref:`Tasks <doc-activities-tasks>` guide.
 
 
 Cases Subsection
@@ -231,11 +233,11 @@ For more information about cases management, see the :ref:`Cases <user-guide-act
 **Related Topics**
 
 .. toctree::
-    :maxdepth: 1
+   :maxdepth: 1
 
-    my_user_actions
-    my_user_system_config
-    my_user_menus_config
+   my_user_actions
+   my_user_system_config
+   my_user_menus_config
 
 .. include:: /user_guide/include_images.rst
    :start-after: begin

@@ -12,6 +12,11 @@ OroCommerce is a web application which runs on a server. Users interact with the
 Server-side Requirements
 ------------------------
 
+Resources
+~~~~~~~~~
+
+Resources configuration depends on the data size and number of active users and integrations. Typical setup could be done on a single server with the minimum of 2 CPU cores, 2GB RAM and a fast hard drive (SSD is recommended). The application could scale to multiple servers and a separate database server based on the expected load.
+
 Operating Systems
 ~~~~~~~~~~~~~~~~~
 
@@ -30,7 +35,7 @@ Oro applications are compatible with most web servers with PHP support, but we r
 |                   | Web server configuration recommendations are well |
 |                   | described in `Symfony documentation`_             |
 +-------------------+---------------------------------------------------+
-| *PHP*             | * `PHP`_ 7.X                                      |
+| *PHP*             | * `PHP`_ 7.1 and 7.1.x versions                   |
 |                   | * PHP CLI, the same version as for the web server |
 +-------------------+---------------------------------------------------+
 | *PHP Settings*    | Few updates to default PHP configuration settings |
@@ -80,7 +85,9 @@ Enterprise edition is built to support better scale and performance. It is compa
 +------------------+-----------------------------------------------------+
 | *Search Index*   | * `Elasticsearch`_ 2.x                              |
 +------------------+-----------------------------------------------------+
-| *Job Queue*      | * `RabbitMQ`_ 3.5.8 and above, 3.6.x is recommended |
+| *Job Queue*      | * `RabbitMQ`_ 3.5.8 and above with Erlang/OTP       |
+|                  |   version 18.0 and higher.                          |
+|                  |   RabbitMQ 3.6.x is recommended                     |
 +------------------+-----------------------------------------------------+
 
 .. _sys-requirements-postgre-config:
@@ -111,13 +118,13 @@ Recommended and supported browsers are:
 
  * `Mozilla Firefox`_ (latest)
  * `Google Chrome`_ (latest)
- * `Microsoft Internet Explorer`_ 10 and above
+ * `Microsoft Internet Explorer`_ 11 and above
  * `Microsoft Edge`_ (latest)
  * `Safari`_ (latest)
 
 .. note::
 
-    Any browser you use needs to have cookies and JavaScript turned on.
+    Any browser needs to have cookies and JavaScript turned on.
 
 
 .. _`Apache`: https://httpd.apache.org/

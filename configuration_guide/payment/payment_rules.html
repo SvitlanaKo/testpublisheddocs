@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Payment Rules Configuration &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Menus Configuration" href="../menu/index.html" />
+    <link rel="prev" title="Wirecard Integration" href="payment_methods/wirecard.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../menu/index.html" title="Menus Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="payment_methods/wirecard.html" title="Wirecard Integration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Payment Configuration</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Payment Rules Configuration</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="sys-payment-rules"></span><div class="section" id="payment-rules-configuration">
+<h1>Payment Rules Configuration<a class="headerlink" href="#payment-rules-configuration" title="Permalink to this headline">¶</a></h1>
+<p>You can configure one or more payment rules that enable the payment methods for the provided destinations.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>See a short demo on <a class="reference external" href="https://www.orocommerce.com/media-library/how-to-create-payment-rules">how to create payment rules</a>, or keep reading the step-by-step guidance below.</p>
+<div class="last"><iframe width="560" height="315" src="https://www.youtube.com/embed/JwuvMGIwDfk" frameborder="0" allowfullscreen></iframe></div></div>
+<div class="section" id="create-a-payment-rule">
+<h2>Create a Payment Rule<a class="headerlink" href="#create-a-payment-rule" title="Permalink to this headline">¶</a></h2>
+<p>To create a payment rule:</p>
+<ol class="arabic">
+<li><p class="first">Ensure that the integrations for the payment methods that you plan to use (PayPal Payflow Gateway, PayPal Payments Pro, etc.) are already configured.</p>
+</li>
+<li><p class="first">Navigate to <strong>System &gt; Payment Rules</strong> in the main menu. The list of payment rules opens.</p>
+</li>
+<li><p class="first">Click <strong>Create Payment Rule</strong>. The corresponding page opens.</p>
+</li>
+<li><p class="first">In the <strong>General Information</strong> section:</p>
+<ol class="loweralpha simple">
+<li>Select the <strong>Enabled</strong> check box to activate the payment rule. You may keep it clear while you are drafting and testing the conditions.</li>
+<li>Specify the payment rule name and sort order to set the priority compared to other payment rules.</li>
+<li>Select the payment currency.</li>
+<li>Select <strong>Stop Further Rule Processing</strong> if you would like to prevent applying other payment rules with lower priority.</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Destinations</strong> section, add one or more destinations to apply this payment rule for. The payment rule applies when the billing address matches the provided destination(s). To add a destination:</p>
+<ol class="loweralpha">
+<li><p class="first">Click <strong>+ Add</strong>. The following section appears:</p>
+<img alt="../../_images/create_payment_rule.png" class="with-border" src="../../_images/create_payment_rule.png" />
+</li>
+<li><p class="first">Specify the destination (e.g. select a Country, or select a country and state; for the most granularity you may provide a distinct list of postal codes to apply the payment rule for.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">In the <strong>Conditions</strong> section, specify the expression that describes the conditions when this payment rule should be applied. For example, <em>account = 1</em>.</p>
+<img alt="../../_images/create_payment_rule_expression.png" class="with-border" src="../../_images/create_payment_rule_expression.png" />
+<p>For detailed information about the expression language used in the shipping and payment rules, please see the <a class="reference internal" href="../../user_guide/shipping/configuration/expression_lang.html#payment-shipping-expression-lang"><span class="std std-ref">Expression Language for Shipping and Payment Rules</span></a> guide.</p>
+</li>
+<li><p class="first">In the <strong>Payment Method Configurations</strong> section, you may enable one or more payment methods with this payment rule. To add a payment method, select it from the list and click <strong>+ Add</strong>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Only one unique payment method per integration may be selected in the payment rule.</p>
+<p><strong>PayPal:</strong></p>
+<p>To enable several PayPal Payflow Gateway options with different payment settings, create a separate payment rule for every unique option.
+You still can use one copy of PayPal Payflow Gateway and one copy of PayPal Payflow Gateway Express Checkout in the same payment rule, as these are different payment methods.</p>
+<p><strong>Wirecard:</strong></p>
+<p>The single Wircard integration enables you to set up the following payment methods:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><em>WireCard - Credit Card</em>—Via this payment method a buyer can pay for the order using a credit card.</li>
+<li><em>WireCard - PayPal</em>—When this payment method is used, a buyer is redirected to the PayPal site where they can complete the payment using their PayPal account or credit card.</li>
+<li><em>WireCard - SEPA</em>—Via this payment method a buyer can pay for the order in EUR using a SEPA (Single Euro Payment Area) payment.</li>
+</ul>
+<p>You can add any combination of these payment methods in a single payment rule. However, if you want to enable <strong>WireCard - SEPA</strong>, then in step 3 you must select <em>EUR</em> for <strong>Currency</strong>.</p>
+</div></blockquote>
+</div>
+</li>
+<li><p class="first">In the <strong>Websites</strong> section, specify the website(s) that the payment rule should apply to, if you have more than one website. This field is optional and may be left empty. Hold the Ctrl key to choose several websites, if necessary.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please note that application of payment rules to websites is only available for Enterprise customers.</p>
+</div>
+<img alt="../../_images/websites_payment_rule.png" class="with-border" src="../../_images/websites_payment_rule.png" />
+<ul class="simple">
+<li>When no website is selected, the payment rule is always applied by default.</li>
+<li>When at least one website is selected, the payment rule will apply to the orders created in the storefront of the specified website.</li>
+</ul>
+</li>
+<li><p class="first">Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="manage-a-payment-rule">
+<h2>Manage a Payment Rule<a class="headerlink" href="#manage-a-payment-rule" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-a-payment-rule">
+<h3>Enable a Payment Rule<a class="headerlink" href="#enable-a-payment-rule" title="Permalink to this headline">¶</a></h3>
+<p>To enable a payment rule:</p>
+<ol class="arabic simple">
+<li>Navigate to <strong>System &gt; Payment Rules</strong> in the main menu. The list of shipping rules opens.</li>
+<li>Hover over the <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> <strong>More Options</strong> menu at the end of the row with the necessary payment rule.</li>
+<li>Click the <i class="fa fa-check fa-lg" aria-hidden="true"></i> <strong>Activate</strong> icon.</li>
+</ol>
+<p>To enable several shipping rules at the same time:</p>
+<ol class="arabic">
+<li><p class="first">Select the checkboxes on the left of the corresponding rows. The selected payment rules will be highlighted in yellow.</p>
+</li>
+<li><p class="first">Click <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i> on the far right of table header.</p>
+</li>
+<li><p class="first">Click <i class="fa fa-check fa-lg" aria-hidden="true"></i> <strong>Enable</strong>.</p>
+<blockquote>
+<div><img alt="../../_images/mass_action_payment_rule.png" class="with-border" src="../../_images/mass_action_payment_rule.png" />
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="filter-a-payment-rule-list">
+<h3>Filter a Payment Rule List<a class="headerlink" href="#filter-a-payment-rule-list" title="Permalink to this headline">¶</a></h3>
+<p>You can use filters on the payment rules list page to find the required records quicker:</p>
+<ol class="arabic">
+<li><p class="first">To show filters, click <i class="fa fa-filter fa-lg" aria-hidden="true"></i> above the table on the far right.</p>
+<img alt="../../_images/filter_payment_rule.png" class="with-border" src="../../_images/filter_payment_rule.png" />
+<p>Filters are hidden by default.</p>
+</li>
+<li><p class="first">To apply a filter, click on its button in the bar, and specify your query in the control that appears.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Filter controls might look different depending on the type of data you are going to filter, e.g. textual, numeric, a date or an option set.</p>
+</div>
+<img alt="../../_images/filter_payment_rule_2.png" class="with-border" src="../../_images/filter_payment_rule_2.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="organize-a-payment-rule-list">
+<h3>Organize a Payment Rule List<a class="headerlink" href="#organize-a-payment-rule-list" title="Permalink to this headline">¶</a></h3>
+<p>To define which columns to show in the table, click <i class="fa fa-cog fa-lg" aria-hidden="true"></i> above the table on the far right:</p>
+<blockquote>
+<div><img alt="../../_images/grid_settings_payment_rules.png" class="with-border" src="../../_images/grid_settings_payment_rules.png" />
+</div></blockquote>
+<ul class="simple">
+<li>To choose the columns to be displayed in the table, select the check box next to the required column under <strong>Show</strong>. Clear the check box to make the column disappear from the table.</li>
+<li>To change the order of the columns, click <i class="fa fa-arrows-v fa-lg" aria-hidden="true"></i> next to the name of the column you wish to move, hold the mouse button and drag the column to the required position.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Payment Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="payment_configuration.html">System Configuration: Merchant Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="payment_method_integrations.html">Payment Method Integration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Payment Rules Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/payment/payment_rules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

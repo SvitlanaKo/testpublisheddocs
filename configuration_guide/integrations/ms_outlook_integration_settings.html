@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MS Outlook Integration Settings &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Synchronization with Outlook" href="outlook_sync.html" />
+    <link rel="prev" title="Integration with Microsoft Exchange Server" href="ms_exchange_integration.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="outlook_sync.html" title="Synchronization with Outlook"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ms_exchange_integration.html" title="Integration with Microsoft Exchange Server"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Integrations</a> &#187;</li> 
+     <li class="nav-item nav-item-this">MS Outlook Integration Settings</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ms-outlook-integration-settings">
+<span id="admin-configuration-ms-outlook-integration-settings"></span><h1>MS Outlook Integration Settings<a class="headerlink" href="#ms-outlook-integration-settings" title="Permalink to this headline">¶</a></h1>
+<p>Integration with Microsoft Outlook is available for the OroCRM Enterprise Edition only. The integration allows automatic synchronization of all the contacts, tasks and calendar events available for the user can be synchronized with the specified Outlook account and vice versa.</p>
+<p>In order to enable data synchronization from OroCRM go to <strong>My User</strong> and click the link to download the add-in to integrate with your Outlook client.</p>
+<p>Wait for the download to finish and run the installation process.</p>
+<img alt="../../_images/settings_1_8.png" src="../../_images/settings_1_8.png" />
+<div class="section" id="ms-outlook-add-in">
+<h2>MS Outlook Add-in<a class="headerlink" href="#ms-outlook-add-in" title="Permalink to this headline">¶</a></h2>
+<p>To modify the code to alter the add-in look, go to <strong>System&gt;Configuration&gt;System Configuration&gt;Integrations&gt;MS Outlook settings&gt;MS Outlook Add-in</strong>.</p>
+<p>In the example below, you can see the add-in default look:</p>
+<img alt="../../_images/addin_view.png" src="../../_images/addin_view.png" />
+<div class="sidebar">
+<p class="first sidebar-title">Use Default</p>
+<p class="last">Beside each of the settings there is a <strong>Use Default</strong> check-box. If the check-box is active, the default value will
+be used. Default values for each of the settings are described in corresponding sections below.</p>
+</div>
+</div>
+<div class="section" id="integration-settings">
+<h2>Integration Settings<a class="headerlink" href="#integration-settings" title="Permalink to this headline">¶</a></h2>
+<p>You can configure the set of entities to be synchronized, synchronization direction, synchronization intervals and priority of the conflict resolution.</p>
+<p>For this, navigate to <strong>System&gt;Configuration&gt;System Configuration&gt;Integrations&gt;MS Outlook settings&gt;Integration Settings</strong>.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="22%" />
+<col width="33%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Setting</strong></th>
+<th class="head"><strong>Description</strong></th>
+<th class="head"><strong>Possible Values</strong></th>
+<th class="head"><strong>Default Value</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Sync Direction</strong></td>
+<td>The data synchronization direction</td>
+<td><ul class="first last simple">
+<li>OroCRM to Outlook</li>
+<li>Outlook to OroCRM</li>
+<li>Biderectional</li>
+</ul>
+</td>
+<td>Biderectional</td>
+</tr>
+<tr class="row-odd"><td><strong>Conflict Resolution</strong></td>
+<td>Conflict resolution strategy to be used if the same data has been changed in both
+Outlook and CRM</td>
+<td><ul class="first last simple">
+<li>OroCRM always wins</li>
+<li>Outlook always wins</li>
+</ul>
+</td>
+<td>OroCRM always wins</td>
+</tr>
+<tr class="row-even"><td><strong>CRM Sync Interval (In Seconds)</strong></td>
+<td>How often changes on the CRM side will be checked</td>
+<td>Any numeric value from 1 to
+86399</td>
+<td>120</td>
+</tr>
+<tr class="row-odd"><td><strong>Outlook Sync Interval (In Seconds)</strong></td>
+<td>How often changes on Outlook side will be checked</td>
+<td>Any numeric value from 1
+to 86399</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="synchronization-settings">
+<h2>Synchronization Settings<a class="headerlink" href="#synchronization-settings" title="Permalink to this headline">¶</a></h2>
+<p>Checking <strong>Contacts, Tasks and Calendar Events</strong> enables synchronization of these records.</p>
+<p>More information on MS Outlook integration with OroCRM can be found in the relevant <a class="reference internal" href="outlook_sync.html#user-guide-synch-outlook"><span class="std std-ref">Synchronization with Outlook guide</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Integrations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="google_integration_settings.html">Google Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="google_single_sign_on.html">Google Single Sign-On</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ldap_integration.html">LDAP Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mailchimp_configuration.html">Configure MailChimp Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration.html">dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_integration_settings.html">dotmailer Synchronization Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_configuration.html">Configure dotmailer Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dotmailer_single_sign_on.html">Configure Single Sign-on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration_settings.html">MS Exchange Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ms_exchange_integration.html">Integration with Microsoft Exchange Server</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MS Outlook Integration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="outlook_sync.html">Synchronization with Outlook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embedded_forms.html">Embedded Forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hangouts.html">Voice and Video Calls via Hangouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zendesk_integration.html">Integration with Zendesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commerce_integration.html">CRM and Commerce Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../menu/index.html">Menus Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/integrations/ms_outlook_integration_settings.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

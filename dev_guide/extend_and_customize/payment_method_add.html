@@ -1,0 +1,2869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Add a New Payment Method &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Add a New Shipping Method" href="shipping_method_add.html" />
+    <link rel="prev" title="How to Replace Inline-Javascript with a Component" href="how_to_replace_inline-javascript_with_component.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="shipping_method_add.html" title="Add a New Shipping Method"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="how_to_replace_inline-javascript_with_component.html" title="How to Replace Inline-Javascript with a Component"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Developer Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Customizing Oro Features</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Add a New Payment Method</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="add-a-new-payment-method">
+<h1>Add a New Payment Method<a class="headerlink" href="#add-a-new-payment-method" title="Permalink to this headline">¶</a></h1>
+<p>This topic describes how to add a custom payment method for your OroCommerce-based store.</p>
+<p>It is recommended to manage payment methods through integrations. Therefore, to create a new payment method:</p>
+<ul class="simple">
+<li>Implement an integration for a payment method</li>
+<li>Implement a payment method itself</li>
+</ul>
+<p>As an example, let us implement a collect on delivery (cash on delivery, COD) payment option. This is a simple method that does not utilize external services (like credit card payment interfaces) and requires just the minimum set of options to operate. Thus, at the end of the topic, you will have the understanding of what steps are necessary to add a workable payment method and the basic template that you can further extend when the need arises.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#create-a-bundle" id="id2">Create a Bundle</a></li>
+<li><a class="reference internal" href="#create-a-payment-integration" id="id3">Create a Payment Integration</a><ul>
+<li><a class="reference internal" href="#create-an-entity-to-store-the-payment-method-settings" id="id4">Create an Entity to Store the Payment Method Settings</a></li>
+<li><a class="reference internal" href="#create-a-repository-that-returns-the-payment-method-settings" id="id5">Create a Repository That Returns the Payment Method Settings</a></li>
+<li><a class="reference internal" href="#create-a-user-interface-form-for-the-payment-method-integration" id="id6">Create a User Interface Form for the Payment Method Integration</a></li>
+<li><a class="reference internal" href="#create-a-configuration-file-for-the-service-container" id="id7">Create a Configuration File for the Service Container</a></li>
+<li><a class="reference internal" href="#add-the-user-interface-form-to-the-services-container" id="id8">Add the User Interface Form to the Services Container</a></li>
+<li><a class="reference internal" href="#set-up-services-with-dependencyinjection" id="id9">Set up Services with DependencyInjection</a></li>
+<li><a class="reference internal" href="#add-translations-for-the-form-texts" id="id10">Add Translations for the Form Texts</a></li>
+<li><a class="reference internal" href="#create-the-integration-channel-type" id="id11">Create the Integration Channel Type</a></li>
+<li><a class="reference internal" href="#add-an-icon-for-the-integration" id="id12">Add an Icon for the Integration</a></li>
+<li><a class="reference internal" href="#create-the-integration-transport" id="id13">Create the Integration Transport</a></li>
+<li><a class="reference internal" href="#add-the-channel-type-and-transport-to-the-services-container" id="id14">Add the Channel Type and Transport to the Services Container</a></li>
+<li><a class="reference internal" href="#add-translations-for-the-channel-type-and-transport" id="id15">Add Translations for the Channel Type and Transport</a></li>
+<li><a class="reference internal" href="#add-an-installer" id="id16">Add an Installer</a></li>
+<li><a class="reference internal" href="#check-that-the-integration-is-created-successfully" id="id17">Check That the Integration is Created Successfully</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-a-payment-method" id="id18">Implement a Payment Method</a><ul>
+<li><a class="reference internal" href="#create-a-factory-for-the-payment-method-configuration" id="id19">Create a Factory for the Payment Method Configuration</a><ul>
+<li><a class="reference internal" href="#configuration-factory-interface" id="id20">Configuration Factory Interface</a></li>
+<li><a class="reference internal" href="#configuration-factory-class" id="id21">Configuration Factory Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-a-provider-for-the-payment-method-configuration" id="id22">Create a Provider for the Payment Method Configuration</a><ul>
+<li><a class="reference internal" href="#configuration-provider-interface" id="id23">Configuration Provider Interface</a></li>
+<li><a class="reference internal" href="#configuration-provider-class" id="id24">Configuration Provider Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-payment-method-configuration" id="id25">Implement Payment Method Configuration</a><ul>
+<li><a class="reference internal" href="#configuration-interface" id="id26">Configuration Interface</a></li>
+<li><a class="reference internal" href="#configuration-class" id="id27">Configuration Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#add-the-payment-method-configuration-factory-and-provider-to-the-services-container" id="id28">Add the Payment Method Configuration Factory and Provider to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-factory-for-the-payment-method-view" id="id29">Create a Factory for the Payment Method View</a><ul>
+<li><a class="reference internal" href="#payment-method-view-factory-interface" id="id30">Payment Method View Factory Interface</a></li>
+<li><a class="reference internal" href="#payment-method-view-factory-class" id="id31">Payment Method View Factory Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-provider-for-the-payment-method-view" id="id32">Create Provider for the Payment Method View</a><ul>
+<li><a class="reference internal" href="#payment-method-view-provider-class" id="id33">Payment Method View Provider Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-the-payment-method-view" id="id34">Implement the Payment Method View</a><ul>
+<li><a class="reference internal" href="#payment-method-view-class" id="id35">Payment Method View Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#add-the-payment-method-view-factory-and-provider-to-the-services-container" id="id36">Add the Payment Method View Factory and Provider to the Services Container</a></li>
+<li><a class="reference internal" href="#create-a-factory-for-the-main-method" id="id37">Create a Factory for the Main Method</a><ul>
+<li><a class="reference internal" href="#factory-interface" id="id38">Factory Interface</a></li>
+<li><a class="reference internal" href="#factory-class" id="id39">Factory Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-provider-for-the-main-method" id="id40">Create Provider for the Main Method</a><ul>
+<li><a class="reference internal" href="#provider-class" id="id41">Provider Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-the-main-method" id="id42">Implement the Main Method</a><ul>
+<li><a class="reference internal" href="#class" id="id43">Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1" id="id44">Add the Payment Method View Factory and Provider to the Services Container</a></li>
+<li><a class="reference internal" href="#define-the-payment-method-s-layouts-for-the-storefront" id="id45">Define the Payment Method&#8217;s Layouts for the Storefront</a><ul>
+<li><a class="reference internal" href="#layout-html-twig-for-the-payment-method-selection" id="id46">layout.html.twig for the Payment Method Selection</a></li>
+<li><a class="reference internal" href="#layout-html-for-the-payment-method-selection" id="id47">layout.html for the Payment Method Selection</a></li>
+<li><a class="reference internal" href="#layout-html-twig-for-the-order-review" id="id48">layout.html.twig for the Order Review</a></li>
+<li><a class="reference internal" href="#layout-html-for-the-order-review" id="id49">layout.html for the Order Review</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#define-a-translation-for-the-custom-message" id="id50">Define a Translation for the Custom Message</a></li>
+<li><a class="reference internal" href="#check-that-payment-method-is-added" id="id51">Check That Payment Method is Added</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="create-a-bundle">
+<h2><a class="toc-backref" href="#id2">Create a Bundle</a><a class="headerlink" href="#create-a-bundle" title="Permalink to this headline">¶</a></h2>
+<p>First, create and enable the CollectOnDeliveryBundle bundle for your payment method as described in the <a class="reference internal" href="how_to_create_new_bundle.html#how-to-create-new-bundle"><span class="std std-ref">How to create a new bundle</span></a> topic:</p>
+<ol class="arabic simple">
+<li>In the /src/ACME/Bundle/CollectOnDeliveryBundle/ directory of your application, create class CollectOnDeliveryBundle.php:</li>
+</ol>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="o">&lt;?</span><span class="nx">php</span>
+
+ <span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle</span><span class="p">;</span>
+
+ <span class="k">use</span> <span class="nx">Symfony\Component\HttpKernel\Bundle\Bundle</span><span class="p">;</span>
+
+ <span class="k">class</span> <span class="nc">CollectOnDeliveryBundle</span> <span class="k">extends</span> <span class="nx">Bundle</span>
+ <span class="p">{</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<ol class="arabic" start="2">
+<li><p class="first">To enable the bundle, create Resources/config/oro/bundles.yml in the same directory, with the following content:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># src/ACME/Bundle/CollectOnDeliveryBundle/Resources/config/oro/bundles.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">bundles</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\CollectOnDeliveryBundle</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">To fully enable a bundle, you need to regenerate the application cache. However, to save time, you can do it after creation of the payment integration.</p>
+</div>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">All the files and subdirectories mentioned in the following sections of this topic are to be added to the /src/ACME/Bundle/CollectOnDeliveryBundle/ directory of your application (referred to as <strong>&lt;bundle_root&gt;</strong>).</p>
+</div>
+</div>
+<div class="section" id="create-a-payment-integration">
+<h2><a class="toc-backref" href="#id3">Create a Payment Integration</a><a class="headerlink" href="#create-a-payment-integration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-an-entity-to-store-the-payment-method-settings">
+<h3><a class="toc-backref" href="#id4">Create an Entity to Store the Payment Method Settings</a><a class="headerlink" href="#create-an-entity-to-store-the-payment-method-settings" title="Permalink to this headline">¶</a></h3>
+<p>Define an entity to store the configuration settings of the payment method in the database. To do this, create &lt;bundle_root&gt;/Entity/CollectOnDeliverySettings.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Doctrine\ORM\Mapping</span> <span class="k">as</span> <span class="nx">ORM</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\Common\Collections\ArrayCollection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\Common\Collections\Collection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Entity\Transport</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\ParameterBag</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @ORM\Entity(</span>
+<span class="sd"> *     repositoryClass=&quot;ACME\Bundle\CollectOnDeliveryBundle\Entity\Repository\CollectOnDeliverySettingsRepository&quot;</span>
+<span class="sd"> * )</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">CollectOnDeliverySettings</span> <span class="k">extends</span> <span class="nx">Transport</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var Collection|LocalizedFallbackValue[]</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ORM\ManyToMany(</span>
+<span class="sd">     *      targetEntity=&quot;Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue&quot;,</span>
+<span class="sd">     *      cascade={&quot;ALL&quot;},</span>
+<span class="sd">     *      orphanRemoval=true</span>
+<span class="sd">     * )</span>
+<span class="sd">     * @ORM\JoinTable(</span>
+<span class="sd">     *      name=&quot;acme_coll_on_deliv_trans_label&quot;,</span>
+<span class="sd">     *      joinColumns={</span>
+<span class="sd">     *          @ORM\JoinColumn(name=&quot;transport_id&quot;, referencedColumnName=&quot;id&quot;, onDelete=&quot;CASCADE&quot;)</span>
+<span class="sd">     *      },</span>
+<span class="sd">     *      inverseJoinColumns={</span>
+<span class="sd">     *          @ORM\JoinColumn(name=&quot;localized_value_id&quot;, referencedColumnName=&quot;id&quot;, onDelete=&quot;CASCADE&quot;, unique=true)</span>
+<span class="sd">     *      }</span>
+<span class="sd">     * )</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$labels</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var Collection|LocalizedFallbackValue[]</span>
+<span class="sd">     *</span>
+<span class="sd">     * @ORM\ManyToMany(</span>
+<span class="sd">     *      targetEntity=&quot;Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue&quot;,</span>
+<span class="sd">     *      cascade={&quot;ALL&quot;},</span>
+<span class="sd">     *      orphanRemoval=true</span>
+<span class="sd">     * )</span>
+<span class="sd">     * @ORM\JoinTable(</span>
+<span class="sd">     *      name=&quot;acme_coll_on_deliv_short_label&quot;,</span>
+<span class="sd">     *      joinColumns={</span>
+<span class="sd">     *          @ORM\JoinColumn(name=&quot;transport_id&quot;, referencedColumnName=&quot;id&quot;, onDelete=&quot;CASCADE&quot;)</span>
+<span class="sd">     *      },</span>
+<span class="sd">     *      inverseJoinColumns={</span>
+<span class="sd">     *          @ORM\JoinColumn(name=&quot;localized_value_id&quot;, referencedColumnName=&quot;id&quot;, onDelete=&quot;CASCADE&quot;, unique=true)</span>
+<span class="sd">     *      }</span>
+<span class="sd">     * )</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$shortLabels</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var ParameterBag</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$settings</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ArrayCollection</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shortLabels</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ArrayCollection</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return Collection|LocalizedFallbackValue[]</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabels</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizedFallbackValue $label</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return $this</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">addLabel</span><span class="p">(</span><span class="nx">LocalizedFallbackValue</span> <span class="nv">$label</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$label</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizedFallbackValue $label</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return $this</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">removeLabel</span><span class="p">(</span><span class="nx">LocalizedFallbackValue</span> <span class="nv">$label</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$label</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">labels</span><span class="o">-&gt;</span><span class="na">removeElement</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return Collection|LocalizedFallbackValue[]</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getShortLabels</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shortLabels</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizedFallbackValue $label</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return $this</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">addShortLabel</span><span class="p">(</span><span class="nx">LocalizedFallbackValue</span> <span class="nv">$label</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shortLabels</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$label</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shortLabels</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizedFallbackValue $label</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return $this</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">removeShortLabel</span><span class="p">(</span><span class="nx">LocalizedFallbackValue</span> <span class="nv">$label</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shortLabels</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$label</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shortLabels</span><span class="o">-&gt;</span><span class="na">removeElement</span><span class="p">(</span><span class="nv">$label</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return ParameterBag</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSettingsBag</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">===</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ParameterBag</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="s1">&#39;labels&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getLabels</span><span class="p">(),</span>
+                    <span class="s1">&#39;short_labels&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getShortLabels</span><span class="p">(),</span>
+                <span class="p">]</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">settings</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>As you can see from the code above, the only two necessary parameters are defined for our collect on delivery payment method: <code class="docutils literal"><span class="pre">labels</span></code> and <code class="docutils literal"><span class="pre">shortLabels</span></code>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>When naming DB columns, make sure that the name does not exceed 31 symbols. Pay attention to the acme_coll_on_deliv_short_label name in the following extract:</p>
+<div class="last highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="o">*</span> <span class="o">@</span><span class="nx">ORM\JoinTable</span><span class="p">(</span>
+  <span class="o">*</span>      <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;acme_coll_on_deliv_short_label&quot;</span><span class="p">,</span>
+  <span class="o">*</span>      <span class="nx">joinColumns</span><span class="o">=</span><span class="p">{</span>
+  <span class="o">*</span>          <span class="o">@</span><span class="nx">ORM\JoinColumn</span><span class="p">(</span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;transport_id&quot;</span><span class="p">,</span> <span class="nx">referencedColumnName</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="nx">onDelete</span><span class="o">=</span><span class="s2">&quot;CASCADE&quot;</span><span class="p">)</span>
+  <span class="o">*</span>      <span class="p">},</span>
+  <span class="o">*</span>      <span class="o">...</span>
+  <span class="o">*</span> <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="create-a-repository-that-returns-the-payment-method-settings">
+<h3><a class="toc-backref" href="#id5">Create a Repository That Returns the Payment Method Settings</a><a class="headerlink" href="#create-a-repository-that-returns-the-payment-method-settings" title="Permalink to this headline">¶</a></h3>
+<p>The repository returns on request the configuration settings stored by the entity that you created in the previous step. To add the repository, create &lt;bundle_root&gt;/Entity/Repository/CollectOnDeliverySettingsRepository.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\Repository</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\CollectOnDeliverySettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\ORM\EntityRepository</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliverySettingsRepository</span> <span class="k">extends</span> <span class="nx">EntityRepository</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @return CollectOnDeliverySettings[]</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getEnabledSettings</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createQueryBuilder</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">innerJoin</span><span class="p">(</span><span class="s1">&#39;settings.channel&#39;</span><span class="p">,</span> <span class="s1">&#39;channel&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">(</span><span class="s1">&#39;channel.enabled = true&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">getQuery</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">getResult</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-user-interface-form-for-the-payment-method-integration">
+<h3><a class="toc-backref" href="#id6">Create a User Interface Form for the Payment Method Integration</a><a class="headerlink" href="#create-a-user-interface-form-for-the-payment-method-integration" title="Permalink to this headline">¶</a></h3>
+<p>When you add an integration via the user interface of the management console, a form that contains the integration settings appears. In this step, implement the form. To do this, create &lt;bundle_root&gt;/Form/Type/CollectOnDeliverySettingsType.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Form\Type</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\CollectOnDeliverySettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\LocaleBundle\Form\Type\LocalizedFallbackValueCollectionType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Form\AbstractType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Form\FormBuilderInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\OptionsResolver\OptionsResolver</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Validator\Constraints\NotBlank</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliverySettingsType</span> <span class="k">extends</span> <span class="nx">AbstractType</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">BLOCK_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;acme_collect_on_delivery_setting_type&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">buildForm</span><span class="p">(</span><span class="nx">FormBuilderInterface</span> <span class="nv">$builder</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$builder</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span>
+                <span class="s1">&#39;labels&#39;</span><span class="p">,</span>
+                <span class="nx">LocalizedFallbackValueCollectionType</span><span class="o">::</span><span class="na">NAME</span><span class="p">,</span>
+                <span class="p">[</span>
+                    <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;acme.collect_on_delivery.settings.labels.label&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+                    <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;constraints&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="k">new</span> <span class="nx">NotBlank</span><span class="p">()]],</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span>
+                <span class="s1">&#39;shortLabels&#39;</span><span class="p">,</span>
+                <span class="nx">LocalizedFallbackValueCollectionType</span><span class="o">::</span><span class="na">NAME</span><span class="p">,</span>
+                <span class="p">[</span>
+                    <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;acme.collect_on_delivery.settings.short_labels.label&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+                    <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;constraints&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="k">new</span> <span class="nx">NotBlank</span><span class="p">()]],</span>
+                <span class="p">]</span>
+            <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">configureOptions</span><span class="p">(</span><span class="nx">OptionsResolver</span> <span class="nv">$resolver</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$resolver</span><span class="o">-&gt;</span><span class="na">setDefaults</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;data_class&#39;</span> <span class="o">=&gt;</span> <span class="nx">CollectOnDeliverySettings</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getBlockPrefix</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="na">BLOCK_PREFIX</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-configuration-file-for-the-service-container">
+<h3><a class="toc-backref" href="#id7">Create a Configuration File for the Service Container</a><a class="headerlink" href="#create-a-configuration-file-for-the-service-container" title="Permalink to this headline">¶</a></h3>
+<p>To start using a service container for your bundle, first create the configuration file &lt;bundle_root&gt;/Resources/config/services.yml.</p>
+</div>
+<div class="section" id="add-the-user-interface-form-to-the-services-container">
+<h3><a class="toc-backref" href="#id8">Add the User Interface Form to the Services Container</a><a class="headerlink" href="#add-the-user-interface-form-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>Add the following lines to the services.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.form.type.settings</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="s">&#39;ACME\Bundle\CollectOnDeliveryBundle\Form\Type\CollectOnDeliverySettingsType&#39;</span>
+      <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">form.type</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="set-up-services-with-dependencyinjection">
+<h3><a class="toc-backref" href="#id9">Set up Services with DependencyInjection</a><a class="headerlink" href="#set-up-services-with-dependencyinjection" title="Permalink to this headline">¶</a></h3>
+<p>To set up services, load your configuration file (services.yml) using the DependencyInjection component. For this, create &lt;bundle_root&gt;/DependencyInjection/CollectOnDeliveryExtension.php with the following content:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\DependencyInjection</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\Config\FileLocator</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\DependencyInjection\ContainerBuilder</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\DependencyInjection\Loader</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpKernel\DependencyInjection\Extension</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryExtension</span> <span class="k">extends</span> <span class="nx">Extension</span>
+<span class="p">{</span>
+    <span class="sd">/** @internal */</span>
+    <span class="k">const</span> <span class="no">ALIAS</span> <span class="o">=</span> <span class="s1">&#39;collect_on_delivery&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param array            $configs</span>
+<span class="sd">     * @param ContainerBuilder $container</span>
+<span class="sd">     *</span>
+<span class="sd">     * @throws \Exception</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">load</span><span class="p">(</span><span class="k">array</span> <span class="nv">$configs</span><span class="p">,</span> <span class="nx">ContainerBuilder</span> <span class="nv">$container</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Loader\YamlFileLoader</span><span class="p">(</span><span class="nv">$container</span><span class="p">,</span> <span class="k">new</span> <span class="nx">FileLocator</span><span class="p">(</span><span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../Resources/config&#39;</span><span class="p">));</span>
+        <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;services.yml&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return string</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAlias</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">ALIAS</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-translations-for-the-form-texts">
+<h3><a class="toc-backref" href="#id10">Add Translations for the Form Texts</a><a class="headerlink" href="#add-translations-for-the-form-texts" title="Permalink to this headline">¶</a></h3>
+<p>To present the information on the user interface in the user-friendly way, add translations for the payment method settings&#8217; names. To do this, create &lt;bundle_root&gt;/Resources/translations/messages.en.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+ <span class="l l-Scalar l-Scalar-Plain">collect_on_delivery</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+         <span class="l l-Scalar l-Scalar-Plain">labels.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Label&#39;</span>
+         <span class="l l-Scalar l-Scalar-Plain">short_labels.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Short</span><span class="nv"> </span><span class="s">Label&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-the-integration-channel-type">
+<h3><a class="toc-backref" href="#id11">Create the Integration Channel Type</a><a class="headerlink" href="#create-the-integration-channel-type" title="Permalink to this headline">¶</a></h3>
+<p>When you select the type of the integration on the user interface, you will see the name and the icon that you define in this step. To implement a channel type, create &lt;bundle_root&gt;/Integration/CollectOnDeliveryChannelType.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Integration</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\ChannelInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\IconAwareIntegrationInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryChannelType</span> <span class="k">implements</span> <span class="nx">ChannelInterface</span><span class="p">,</span> <span class="nx">IconAwareIntegrationInterface</span>
+<span class="p">{</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;acme.collect_on_delivery.channel_type.label&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIcon</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;bundles/acmecollectondelivery/img/collect-on-delivery-icon.png&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-an-icon-for-the-integration">
+<h3><a class="toc-backref" href="#id12">Add an Icon for the Integration</a><a class="headerlink" href="#add-an-icon-for-the-integration" title="Permalink to this headline">¶</a></h3>
+<p>To add an icon:</p>
+<ol class="arabic">
+<li><p class="first">Save the file to the &lt;bundle_root&gt;/Resources/public/img directory.</p>
+</li>
+<li><p class="first">Install assets:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>app/console oro:assets:install
+</pre></div>
+</td></tr></table></div>
+</li>
+</ol>
+<p>To make sure that the icon is accessible for the web interface, check if it appears (as a copy or a symlink depending on the settings selected during the application installation) in the /web/bundles/collect_on_delivery/img directory of your application.</p>
+</div>
+<div class="section" id="create-the-integration-transport">
+<h3><a class="toc-backref" href="#id13">Create the Integration Transport</a><a class="headerlink" href="#create-the-integration-transport" title="Permalink to this headline">¶</a></h3>
+<p>A transport is generally responsible for how the data is obtained from the external system. While the Collect On Delivery method does not interact with external systems, you still need to define a transport and implement all methods of the TransportInterface for the integration to work properly. To add a transport, create &lt;bundle_root&gt;/Integration/CollectOnDeliveryTransport.php:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Integration</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\CollectOnDeliverySettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Form\Type\CollectOnDeliverySettingsType</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Entity\Transport</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Provider\TransportInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryTransport</span> <span class="k">implements</span> <span class="nx">TransportInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="nx">Transport</span> <span class="nv">$transportEntity</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;acme.collect_on_delivery.settings.transport.label&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSettingsFormType</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">CollectOnDeliverySettingsType</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSettingsEntityFQCN</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">CollectOnDeliverySettings</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-the-channel-type-and-transport-to-the-services-container">
+<h3><a class="toc-backref" href="#id14">Add the Channel Type and Transport to the Services Container</a><a class="headerlink" href="#add-the-channel-type-and-transport-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>To register the channel type and transport, append the following key-values to &lt;bundle_root&gt;/Resources/config/services.yml:</p>
+<div class="highlight-none"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>parameters:
+    acme_collect_on_delivery.integration.type: &#39;collect_on_delivery&#39;
+
+services:
+    acme_collect_on_delivery.integration.channel:
+        class: &#39;ACME\Bundle\CollectOnDeliveryBundle\Integration\CollectOnDeliveryChannelType&#39;
+        public: true
+        tags:
+            - { name: oro_integration.channel, type: %acme_collect_on_delivery.integration.type% }
+
+    acme_collect_on_delivery.integration.transport:
+        class: &#39;ACME\Bundle\CollectOnDeliveryBundle\Integration\CollectOnDeliveryTransport&#39;
+        public: false
+        tags:
+            - { name: oro_integration.transport, type: %acme_collect_on_delivery.integration.type%, channel_type: %acme_collect_on_delivery.integration.type% }
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-translations-for-the-channel-type-and-transport">
+<h3><a class="toc-backref" href="#id15">Add Translations for the Channel Type and Transport</a><a class="headerlink" href="#add-translations-for-the-channel-type-and-transport" title="Permalink to this headline">¶</a></h3>
+<p>The channel type and, in general, transport labels also appear on the user interface (you will not see the the transport label for Collect On Delivery). Provide translations for them by appending the &lt;bundle_root&gt;/Resources/translations/messages.en.yml. Now, the messages.en.yml content must look as follows:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">collect_on_delivery</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">labels.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Labels&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">short_labels.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Short</span><span class="nv"> </span><span class="s">Labels&#39;</span>
+            <span class="l l-Scalar l-Scalar-Plain">transport.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Collect</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">delivery&#39;</span>
+
+        <span class="l l-Scalar l-Scalar-Plain">channel_type.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Collect</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">delivery&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="add-an-installer">
+<h3><a class="toc-backref" href="#id16">Add an Installer</a><a class="headerlink" href="#add-an-installer" title="Permalink to this headline">¶</a></h3>
+<p>An installer ensures that upon the application installation, the database will contain the entity that you defined within your bundle.</p>
+<p>Follow the instructions provided in the <a class="reference internal" href="installer_generate.html#installer-generate"><span class="std std-ref">How to generate an installer</span></a> topic. After you complete it, you will have the class &lt;bundle_root&gt;/Migrations/Schema/FastShippingBundleInstaller.php with the following content:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Migrations\Schema</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Doctrine\DBAL\Schema\Schema</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\MigrationBundle\Migration\Installation</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\MigrationBundle\Migration\QueryBag</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * @SuppressWarnings(PHPMD.TooManyMethods)</span>
+<span class="sd"> * @SuppressWarnings(PHPMD.ExcessiveClassLength)</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">CollectOnDeliveryBundleInstaller</span> <span class="k">implements</span> <span class="nx">Installation</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getMigrationVersion</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;v1_0&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">,</span> <span class="nx">QueryBag</span> <span class="nv">$queries</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/** Tables generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createAcmeCollOnDelivTransLabelTable</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">createAcmeCollOnDelivShortLabelTable</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+
+        <span class="sd">/** Foreign keys generation **/</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addAcmeCollOnDelivTransLabelForeignKeys</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addAcmeCollOnDelivShortLabelForeignKeys</span><span class="p">(</span><span class="nv">$schema</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create acme_coll_on_deliv_trans_label table</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">createAcmeCollOnDelivTransLabelTable</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;acme_coll_on_deliv_trans_label&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;transport_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setPrimaryKey</span><span class="p">([</span><span class="s1">&#39;transport_id&#39;</span><span class="p">,</span> <span class="s1">&#39;localized_value_id&#39;</span><span class="p">]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">([</span><span class="s1">&#39;transport_id&#39;</span><span class="p">],</span> <span class="s1">&#39;idx_13476d069909c13f&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addUniqueIndex</span><span class="p">([</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">],</span> <span class="s1">&#39;uniq_13476d06eb576e89&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Create acme_coll_on_deliv_short_label table</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">createAcmeCollOnDelivShortLabelTable</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">createTable</span><span class="p">(</span><span class="s1">&#39;acme_coll_on_deliv_short_label&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;transport_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addUniqueIndex</span><span class="p">([</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">],</span> <span class="s1">&#39;uniq_2c81a8dceb576e89&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addIndex</span><span class="p">([</span><span class="s1">&#39;transport_id&#39;</span><span class="p">],</span> <span class="s1">&#39;idx_2c81a8dc9909c13f&#39;</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">setPrimaryKey</span><span class="p">([</span><span class="s1">&#39;transport_id&#39;</span><span class="p">,</span> <span class="s1">&#39;localized_value_id&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Add acme_coll_on_deliv_trans_label foreign keys.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addAcmeCollOnDelivTransLabelForeignKeys</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;acme_coll_on_deliv_trans_label&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_fallback_localization_val&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">]</span>
+        <span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_integration_transport&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;transport_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Add acme_coll_on_deliv_short_label foreign keys.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param Schema $schema</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addAcmeCollOnDelivShortLabelForeignKeys</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$table</span> <span class="o">=</span> <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;acme_coll_on_deliv_short_label&#39;</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_fallback_localization_val&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;localized_value_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">]</span>
+        <span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addForeignKeyConstraint</span><span class="p">(</span>
+            <span class="nv">$schema</span><span class="o">-&gt;</span><span class="na">getTable</span><span class="p">(</span><span class="s1">&#39;oro_integration_transport&#39;</span><span class="p">),</span>
+            <span class="p">[</span><span class="s1">&#39;transport_id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">&#39;onUpdate&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span> <span class="s1">&#39;onDelete&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CASCADE&#39;</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="check-that-the-integration-is-created-successfully">
+<h3><a class="toc-backref" href="#id17">Check That the Integration is Created Successfully</a><a class="headerlink" href="#check-that-the-integration-is-created-successfully" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Clear the application cache:</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>app/console cache:clear
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are working in production environment, you have to use the <code class="docutils literal"><span class="pre">--env=prod</span></code> parameter  with the command.</p>
+</div>
+</li>
+<li><p class="first">Open the user interface and check that the changes have applied and you can add an integration of the Collect On Delivery type.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="implement-a-payment-method">
+<h2><a class="toc-backref" href="#id18">Implement a Payment Method</a><a class="headerlink" href="#implement-a-payment-method" title="Permalink to this headline">¶</a></h2>
+<p>Now implement the payment method itself.</p>
+<div class="section" id="create-a-factory-for-the-payment-method-configuration">
+<h3><a class="toc-backref" href="#id19">Create a Factory for the Payment Method Configuration</a><a class="headerlink" href="#create-a-factory-for-the-payment-method-configuration" title="Permalink to this headline">¶</a></h3>
+<p>A configuration factory generates an individual configuration set for each instance of the integration of the Collect On Delivery type.</p>
+<p>To add a payment method configuration factory, in the directory &lt;bundle_root&gt;/Method/Config/Factory/ create interface CollectOnDeliveryConfigFactoryInterface.php and the class CollectOnDeliveryConfigFactory.php that implements this interface:</p>
+<div class="section" id="configuration-factory-interface">
+<h4><a class="toc-backref" href="#id20">Configuration Factory Interface</a><a class="headerlink" href="#configuration-factory-interface" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\Factory</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\CollectOnDeliverySettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">CollectOnDeliveryConfigFactoryInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliverySettings $settings</span>
+<span class="sd">     * @return CollectOnDeliveryConfigInterface</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">CollectOnDeliverySettings</span> <span class="nv">$settings</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="configuration-factory-class">
+<h4><a class="toc-backref" href="#id21">Configuration Factory Class</a><a class="headerlink" href="#configuration-factory-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\Factory</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\CollectOnDeliverySettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\CollectOnDeliveryConfig</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\Common\Collections\Collection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\IntegrationBundle\Generator\IntegrationIdentifierGeneratorInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\LocaleBundle\Helper\LocalizationHelper</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryConfigFactory</span> <span class="k">implements</span> <span class="nx">CollectOnDeliveryConfigFactoryInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var LocalizationHelper</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$localizationHelper</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var IntegrationIdentifierGeneratorInterface</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$identifierGenerator</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param LocalizationHelper $localizationHelper</span>
+<span class="sd">     * @param IntegrationIdentifierGeneratorInterface $identifierGenerator</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+        <span class="nx">LocalizationHelper</span> <span class="nv">$localizationHelper</span><span class="p">,</span>
+        <span class="nx">IntegrationIdentifierGeneratorInterface</span> <span class="nv">$identifierGenerator</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">localizationHelper</span> <span class="o">=</span> <span class="nv">$localizationHelper</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifierGenerator</span> <span class="o">=</span> <span class="nv">$identifierGenerator</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">CollectOnDeliverySettings</span> <span class="nv">$settings</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$params</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="nv">$channel</span> <span class="o">=</span> <span class="nv">$settings</span><span class="o">-&gt;</span><span class="na">getChannel</span><span class="p">();</span>
+
+        <span class="nv">$params</span><span class="p">[</span><span class="nx">CollectOnDeliveryConfig</span><span class="o">::</span><span class="na">LABEL_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getLocalizedValue</span><span class="p">(</span><span class="nv">$settings</span><span class="o">-&gt;</span><span class="na">getLabels</span><span class="p">());</span>
+        <span class="nv">$params</span><span class="p">[</span><span class="nx">CollectOnDeliveryConfig</span><span class="o">::</span><span class="na">SHORT_LABEL_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getLocalizedValue</span><span class="p">(</span><span class="nv">$settings</span><span class="o">-&gt;</span><span class="na">getShortLabels</span><span class="p">());</span>
+        <span class="nv">$params</span><span class="p">[</span><span class="nx">CollectOnDeliveryConfig</span><span class="o">::</span><span class="na">ADMIN_LABEL_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$channel</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">();</span>
+        <span class="nv">$params</span><span class="p">[</span><span class="nx">CollectOnDeliveryConfig</span><span class="o">::</span><span class="na">PAYMENT_METHOD_IDENTIFIER_KEY</span><span class="p">]</span> <span class="o">=</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifierGenerator</span><span class="o">-&gt;</span><span class="na">generateIdentifier</span><span class="p">(</span><span class="nv">$channel</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">CollectOnDeliveryConfig</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param Collection $values</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return string</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getLocalizedValue</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$values</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">localizationHelper</span><span class="o">-&gt;</span><span class="na">getLocalizedValue</span><span class="p">(</span><span class="nv">$values</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="create-a-provider-for-the-payment-method-configuration">
+<h3><a class="toc-backref" href="#id22">Create a Provider for the Payment Method Configuration</a><a class="headerlink" href="#create-a-provider-for-the-payment-method-configuration" title="Permalink to this headline">¶</a></h3>
+<p>A configuration provider accepts and integration id and returns settings based on it.</p>
+<p>To add a payment method configuration provider, in the directory &lt;bundle_root&gt;/Method/Config/Provider/ create interface CollectOnDeliveryConfigProviderInterface.php and the class CollectOnDeliveryConfigProvider.php that implements this interface:</p>
+<div class="section" id="configuration-provider-interface">
+<h4><a class="toc-backref" href="#id23">Configuration Provider Interface</a><a class="headerlink" href="#configuration-provider-interface" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\Provider</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">CollectOnDeliveryConfigProviderInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @return CollectOnDeliveryConfigInterface[]</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPaymentConfigs</span><span class="p">();</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param string $identifier</span>
+<span class="sd">     * @return CollectOnDeliveryConfigInterface|null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPaymentConfig</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param string $identifier</span>
+<span class="sd">     * @return bool</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">hasPaymentConfig</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="configuration-provider-class">
+<h4><a class="toc-backref" href="#id24">Configuration Provider Class</a><a class="headerlink" href="#configuration-provider-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\Provider</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\CollectOnDeliverySettings</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Entity\Repository\CollectOnDeliverySettingsRepository</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config\Factory\CollectOnDeliveryConfigFactoryInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Doctrine\Common\Persistence\ManagerRegistry</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Psr\Log\LoggerInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryConfigProvider</span> <span class="k">implements</span> <span class="nx">CollectOnDeliveryConfigProviderInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var ManagerRegistry</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$doctrine</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var CollectOnDeliveryConfigFactoryInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$configFactory</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var CollectOnDeliveryConfigInterface[]</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$configs</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var LoggerInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$logger</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param ManagerRegistry $doctrine</span>
+<span class="sd">     * @param LoggerInterface $logger</span>
+<span class="sd">     * @param CollectOnDeliveryConfigFactoryInterface $configFactory</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+        <span class="nx">ManagerRegistry</span> <span class="nv">$doctrine</span><span class="p">,</span>
+        <span class="nx">LoggerInterface</span> <span class="nv">$logger</span><span class="p">,</span>
+        <span class="nx">CollectOnDeliveryConfigFactoryInterface</span> <span class="nv">$configFactory</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doctrine</span> <span class="o">=</span> <span class="nv">$doctrine</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span> <span class="o">=</span> <span class="nv">$logger</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configFactory</span> <span class="o">=</span> <span class="nv">$configFactory</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPaymentConfigs</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$configs</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="nv">$settings</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getEnabledIntegrationSettings</span><span class="p">();</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$settings</span> <span class="k">as</span> <span class="nv">$setting</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$config</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configFactory</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$setting</span><span class="p">);</span>
+
+            <span class="nv">$configs</span><span class="p">[</span><span class="nv">$config</span><span class="o">-&gt;</span><span class="na">getPaymentMethodIdentifier</span><span class="p">()]</span> <span class="o">=</span> <span class="nv">$config</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$configs</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPaymentConfig</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$paymentConfigs</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getPaymentConfigs</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">([]</span> <span class="o">===</span> <span class="nv">$paymentConfigs</span> <span class="o">||</span> <span class="k">false</span> <span class="o">===</span> <span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">,</span> <span class="nv">$paymentConfigs</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$paymentConfigs</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">hasPaymentConfig</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">null</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getPaymentConfig</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @return CollectOnDeliverySettings[]</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">getEnabledIntegrationSettings</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="sd">/** @var CollectOnDeliverySettingsRepository $repository */</span>
+            <span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doctrine</span>
+                <span class="o">-&gt;</span><span class="na">getManagerForClass</span><span class="p">(</span><span class="nx">CollectOnDeliverySettings</span><span class="o">::</span><span class="na">class</span><span class="p">)</span>
+                <span class="o">-&gt;</span><span class="na">getRepository</span><span class="p">(</span><span class="nx">CollectOnDeliverySettings</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="nv">$repository</span><span class="o">-&gt;</span><span class="na">getEnabledSettings</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\UnexpectedValueException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">critical</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+
+            <span class="k">return</span> <span class="p">[];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="implement-payment-method-configuration">
+<h3><a class="toc-backref" href="#id25">Implement Payment Method Configuration</a><a class="headerlink" href="#implement-payment-method-configuration" title="Permalink to this headline">¶</a></h3>
+<p>In the &lt;bundle_root&gt;/Method/Config directory, create the CollectOnDeliveryConfigInterface.php interface and the CollectOnDeliveryConfig.php class that implements this interface:</p>
+<div class="section" id="configuration-interface">
+<h4><a class="toc-backref" href="#id26">Configuration Interface</a><a class="headerlink" href="#configuration-interface" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\Config\PaymentConfigInterface</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">CollectOnDeliveryConfigInterface</span> <span class="k">extends</span> <span class="nx">PaymentConfigInterface</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="configuration-class">
+<h4><a class="toc-backref" href="#id27">Configuration Class</a><a class="headerlink" href="#configuration-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PaymentMethod\Config</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\ParameterBag</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryConfig</span> <span class="k">extends</span> <span class="nx">ParameterBag</span> <span class="k">implements</span> <span class="nx">CollectOnDeliveryConfigInterface</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">LABEL_KEY</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">SHORT_LABEL_KEY</span> <span class="o">=</span> <span class="s1">&#39;short_label&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">ADMIN_LABEL_KEY</span> <span class="o">=</span> <span class="s1">&#39;admin_label&#39;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="no">PAYMENT_METHOD_IDENTIFIER_KEY</span> <span class="o">=</span> <span class="s1">&#39;payment_method_identifier&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$parameters</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$parameters</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">LABEL_KEY</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getShortLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">SHORT_LABEL_KEY</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAdminLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">ADMIN_LABEL_KEY</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPaymentMethodIdentifier</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="na">PAYMENT_METHOD_IDENTIFIER_KEY</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="add-the-payment-method-configuration-factory-and-provider-to-the-services-container">
+<h3><a class="toc-backref" href="#id28">Add the Payment Method Configuration Factory and Provider to the Services Container</a><a class="headerlink" href="#add-the-payment-method-configuration-factory-and-provider-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>To register the payment method configuration factory and provider, append the following key-values to &lt;bundle_root&gt;/Resources/config/services.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.factory.collect_on_delivery_config</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\Factory\CollectOnDeliveryConfigFactory</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+     <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@oro_locale.helper.localization&#39;</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_collect_on_delivery.generator.collect_on_delivery_config_identifier&#39;</span>
+
+ <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.payment_method.config.provider</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\Provider\CollectOnDeliveryConfigProvider</span>
+     <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@doctrine&#39;</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@logger&#39;</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_collect_on_delivery.factory.collect_on_delivery_config&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-factory-for-the-payment-method-view">
+<h3><a class="toc-backref" href="#id29">Create a Factory for the Payment Method View</a><a class="headerlink" href="#create-a-factory-for-the-payment-method-view" title="Permalink to this headline">¶</a></h3>
+<p>Views provide the set of options for the payment method blocks that users see when they select the Collect on Delivery payment method and review the orders during the checkout.</p>
+<p>To add a payment method view factory, in the directory &lt;bundle_root&gt;/Method/View/Factory/ create interface CollectOnDeliveryViewFactoryInterface.php and the class CollectOnDeliveryViewFactory.php that implements this interface:</p>
+<div class="section" id="payment-method-view-factory-interface">
+<h4><a class="toc-backref" href="#id30">Payment Method View Factory Interface</a><a class="headerlink" href="#payment-method-view-factory-interface" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\View\Factory</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\View\PaymentMethodViewInterface</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">CollectOnDeliveryViewFactoryInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigInterface $config</span>
+<span class="sd">     * @return PaymentMethodViewInterface</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="payment-method-view-factory-class">
+<h4><a class="toc-backref" href="#id31">Payment Method View Factory Class</a><a class="headerlink" href="#payment-method-view-factory-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\View\Factory</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\View\CollectOnDeliveryView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryViewFactory</span> <span class="k">implements</span> <span class="nx">CollectOnDeliveryViewFactoryInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">CollectOnDeliveryView</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="create-provider-for-the-payment-method-view">
+<h3><a class="toc-backref" href="#id32">Create Provider for the Payment Method View</a><a class="headerlink" href="#create-provider-for-the-payment-method-view" title="Permalink to this headline">¶</a></h3>
+<p>To add a payment method view provider, create &lt;bundle_root&gt;/Method/View/Provider/CollectOnDeliveryViewProvider.php:</p>
+<div class="section" id="payment-method-view-provider-class">
+<h4><a class="toc-backref" href="#id33">Payment Method View Provider Class</a><a class="headerlink" href="#payment-method-view-provider-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\View\Provider</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\Provider\CollectOnDeliveryConfigProviderInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\View\Factory\CollectOnDeliveryViewFactoryInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\View\AbstractPaymentMethodViewProvider</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryViewProvider</span> <span class="k">extends</span> <span class="nx">AbstractPaymentMethodViewProvider</span>
+<span class="p">{</span>
+    <span class="sd">/** @var CollectOnDeliveryViewFactoryInterface */</span>
+    <span class="k">private</span> <span class="nv">$factory</span><span class="p">;</span>
+
+    <span class="sd">/** @var CollectOnDeliveryConfigProviderInterface */</span>
+    <span class="k">private</span> <span class="nv">$configProvider</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigProviderInterface $configProvider</span>
+<span class="sd">     * @param CollectOnDeliveryViewFactoryInterface $factory</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+        <span class="nx">CollectOnDeliveryConfigProviderInterface</span> <span class="nv">$configProvider</span><span class="p">,</span>
+        <span class="nx">CollectOnDeliveryViewFactoryInterface</span> <span class="nv">$factory</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">factory</span> <span class="o">=</span> <span class="nv">$factory</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configProvider</span> <span class="o">=</span> <span class="nv">$configProvider</span><span class="p">;</span>
+
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">buildViews</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$configs</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configProvider</span><span class="o">-&gt;</span><span class="na">getPaymentConfigs</span><span class="p">();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$configs</span> <span class="k">as</span> <span class="nv">$config</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addCollectOnDeliveryView</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigInterface $config</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addCollectOnDeliveryView</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addView</span><span class="p">(</span>
+            <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">getPaymentMethodIdentifier</span><span class="p">(),</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">factory</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$config</span><span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="implement-the-payment-method-view">
+<h3><a class="toc-backref" href="#id34">Implement the Payment Method View</a><a class="headerlink" href="#implement-the-payment-method-view" title="Permalink to this headline">¶</a></h3>
+<p>Finally, to implement the payment method view, create &lt;bundle_root&gt;/Method/ViewCollectOnDeliveryView.php:</p>
+<div class="section" id="payment-method-view-class">
+<h4><a class="toc-backref" href="#id35">Payment Method View Class</a><a class="headerlink" href="#payment-method-view-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\View</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Context\PaymentContextInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\View\PaymentMethodViewInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryView</span> <span class="k">implements</span> <span class="nx">PaymentMethodViewInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var CollectOnDeliveryConfigInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$config</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigInterface $config</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span> <span class="o">=</span> <span class="nv">$config</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getOptions</span><span class="p">(</span><span class="nx">PaymentContextInterface</span> <span class="nv">$context</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[];</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getBlock</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;_payment_methods_collect_on_delivery_widget&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">getLabel</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getShortLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">getShortLabel</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAdminLabel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">getAdminLabel</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/** {@inheritDoc} */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPaymentMethodIdentifier</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">getPaymentMethodIdentifier</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="add-the-payment-method-view-factory-and-provider-to-the-services-container">
+<h3><a class="toc-backref" href="#id36">Add the Payment Method View Factory and Provider to the Services Container</a><a class="headerlink" href="#add-the-payment-method-view-factory-and-provider-to-the-services-container" title="Permalink to this headline">¶</a></h3>
+<p>To register the payment method view factory and provider, append the following key-values to &lt;bundle_root&gt;/Resources/config/services.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.factory.method_view.collect_on_delivery</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\Method\View\Factory\CollectOnDeliveryViewFactory</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+ <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.payment_method_view_provider.collect_on_delivery</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\Method\View\Provider\CollectOnDeliveryViewProvider</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+     <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_collect_on_delivery.payment_method.config.provider&#39;</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_collect_on_delivery.factory.method_view.collect_on_delivery&#39;</span>
+     <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">oro_payment.payment_method_view_provider</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-a-factory-for-the-main-method">
+<h3><a class="toc-backref" href="#id37">Create a Factory for the Main Method</a><a class="headerlink" href="#create-a-factory-for-the-main-method" title="Permalink to this headline">¶</a></h3>
+<p>To add a payment method factory, in the directory &lt;bundle_root&gt;/Method/Factory/ create interface CollectOnDeliveryFactoryInterface.php and the class CollectOnDeliveryFactory.php that implements this interface:</p>
+<div class="section" id="factory-interface">
+<h4><a class="toc-backref" href="#id38">Factory Interface</a><a class="headerlink" href="#factory-interface" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Factory</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\PaymentMethodInterface</span><span class="p">;</span>
+
+<span class="k">interface</span> <span class="nx">CollectOnDeliveryMethodFactoryInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigInterface $config</span>
+<span class="sd">     * @return PaymentMethodInterface</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="factory-class">
+<h4><a class="toc-backref" href="#id39">Factory Class</a><a class="headerlink" href="#factory-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Factory</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\PMethod\CollectOnDelivery</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryMethodFactory</span> <span class="k">implements</span> <span class="nx">CollectOnDeliveryMethodFactoryInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">CollectOnDelivery</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="create-provider-for-the-main-method">
+<h3><a class="toc-backref" href="#id40">Create Provider for the Main Method</a><a class="headerlink" href="#create-provider-for-the-main-method" title="Permalink to this headline">¶</a></h3>
+<p>To add a payment method provider, create &lt;bundle_root&gt;/Method/Provider/CollectOnDeliveryProvider.php:</p>
+<div class="section" id="provider-class">
+<h4><a class="toc-backref" href="#id41">Provider Class</a><a class="headerlink" href="#provider-class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Provider</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\Provider\CollectOnDeliveryConfigProviderInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Factory\CollectOnDeliveryMethodFactoryInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\Provider\AbstractPaymentMethodProvider</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDeliveryMethodProvider</span> <span class="k">extends</span> <span class="nx">AbstractPaymentMethodProvider</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var CollectOnDeliveryMethodFactoryInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$factory</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @var CollectOnDeliveryConfigProviderInterface</span>
+<span class="sd">     */</span>
+    <span class="k">private</span> <span class="nv">$configProvider</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigProviderInterface $configProvider</span>
+<span class="sd">     * @param CollectOnDeliveryMethodFactoryInterface $factory</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+        <span class="nx">CollectOnDeliveryConfigProviderInterface</span> <span class="nv">$configProvider</span><span class="p">,</span>
+        <span class="nx">CollectOnDeliveryMethodFactoryInterface</span> <span class="nv">$factory</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configProvider</span> <span class="o">=</span> <span class="nv">$configProvider</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">factory</span> <span class="o">=</span> <span class="nv">$factory</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">collectMethods</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$configs</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configProvider</span><span class="o">-&gt;</span><span class="na">getPaymentConfigs</span><span class="p">();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$configs</span> <span class="k">as</span> <span class="nv">$config</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addCollectOnDeliveryMethod</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigInterface $config</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">addCollectOnDeliveryMethod</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span>
+            <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">getPaymentMethodIdentifier</span><span class="p">(),</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">factory</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$config</span><span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="implement-the-main-method">
+<h3><a class="toc-backref" href="#id42">Implement the Main Method</a><a class="headerlink" href="#implement-the-main-method" title="Permalink to this headline">¶</a></h3>
+<p>Now, implement the main method. To do this, create the &lt;bundle_root&gt;/Method/CollectOnDelivery.php class:</p>
+<div class="section" id="class">
+<h4><a class="toc-backref" href="#id43">Class</a><a class="headerlink" href="#class" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ACME\Bundle\CollectOnDeliveryBundle\Method\Config\CollectOnDeliveryConfigInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Context\PaymentContextInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Entity\PaymentTransaction</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Oro\Bundle\PaymentBundle\Method\PaymentMethodInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CollectOnDelivery</span> <span class="k">implements</span> <span class="nx">PaymentMethodInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var CollectOnDeliveryConfigInterface</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$config</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * @param CollectOnDeliveryConfigInterface $config</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">CollectOnDeliveryConfigInterface</span> <span class="nv">$config</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span> <span class="o">=</span> <span class="nv">$config</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">(</span><span class="nv">$action</span><span class="p">,</span> <span class="nx">PaymentTransaction</span> <span class="nv">$paymentTransaction</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$paymentTransaction</span><span class="o">-&gt;</span><span class="na">setAction</span><span class="p">(</span><span class="nx">PaymentMethodInterface</span><span class="o">::</span><span class="na">PURCHASE</span><span class="p">);</span>
+        <span class="nv">$paymentTransaction</span><span class="o">-&gt;</span><span class="na">setActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+        <span class="nv">$paymentTransaction</span><span class="o">-&gt;</span><span class="na">setSuccessful</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="p">[];</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIdentifier</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="o">-&gt;</span><span class="na">getPaymentMethodIdentifier</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">isApplicable</span><span class="p">(</span><span class="nx">PaymentContextInterface</span> <span class="nv">$context</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * {@inheritDoc}</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">supports</span><span class="p">(</span><span class="nv">$actionName</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$actionName</span> <span class="o">===</span> <span class="nx">self</span><span class="o">::</span><span class="na">PURCHASE</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>Pay attention to the lines:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="l l-Scalar l-Scalar-Plain">$paymentTransaction-&gt;setAction(PaymentMethodInterface::PURCHASE);</span>
+
+<span class="nn">...</span>
+
+<span class="l l-Scalar l-Scalar-Plain">/**</span>
+<span class="l l-Scalar l-Scalar-Plain">* {@inheritDoc}</span>
+<span class="l l-Scalar l-Scalar-Plain">*/</span>
+ <span class="l l-Scalar l-Scalar-Plain">public function supports($actionName)</span>
+ <span class="l l-Scalar l-Scalar-Plain">{</span>
+     <span class="l l-Scalar l-Scalar-Plain">return $actionName === self::PURCHASE;</span>
+ <span class="l l-Scalar l-Scalar-Plain">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>This is where you define which transaction types are associated with the payment method. To keep it simple, for Collect On Delivery a single transaction is defined. Thus, it will work the following way: when a user submits an order, the &#8220;purchase&#8221; transaction takes place, and the order status becomes &#8220;purchased&#8221;.</p>
+<blockquote class="last">
+<div>Check <a class="reference external" href="https://github.com/oroinc/orocommerce/blob/master/src/Oro/Bundle/PaymentBundle/Method/PaymentMethodInterface.php">PaymentMethodInterface</a> for more information on other predefined transactions.</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id44">Add the Payment Method View Factory and Provider to the Services Container</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>To register the payment method main factory and provider, append the following key-values to &lt;bundle_root&gt;/Resources/config/services.yml:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.factory.method.collect_on_delivery</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\Method\Factory\CollectOnDeliveryMethodFactory</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+ <span class="l l-Scalar l-Scalar-Plain">acme_collect_on_delivery.payment_method_provider.collect_on_delivery</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ACME\Bundle\CollectOnDeliveryBundle\Method\Provider\CollectOnDeliveryMethodProvider</span>
+     <span class="l l-Scalar l-Scalar-Plain">public</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+     <span class="l l-Scalar l-Scalar-Plain">arguments</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_collect_on_delivery.payment_method.config.provider&#39;</span>
+         <span class="p p-Indicator">-</span> <span class="s">&#39;@acme_collect_on_delivery.factory.method.collect_on_delivery&#39;</span>
+     <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+         <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">oro_payment.payment_method_provider</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="define-the-payment-method-s-layouts-for-the-storefront">
+<h3><a class="toc-backref" href="#id45">Define the Payment Method&#8217;s Layouts for the Storefront</a><a class="headerlink" href="#define-the-payment-method-s-layouts-for-the-storefront" title="Permalink to this headline">¶</a></h3>
+<p>Layouts provide the html template for the payment method blocks that users see when doing the checkout in the storefront. There are two different blocks: one that users see during selection of the payment method, and the other that they see when reviewing the order. You need to define templates for each of these blocks.</p>
+<p>For this, in the directory &lt;bundle_root&gt;//Resources/views/layouts/default/imports/, create templates for the payment method selection checkout step:</p>
+<ul class="simple">
+<li>oro_payment_method_options/layout.html.twig</li>
+<li>oro_payment_method_options/layout.html</li>
+</ul>
+<blockquote>
+<div>and for the order review:</div></blockquote>
+<ul class="simple">
+<li>oro_payment_method_order_submit/layout.html.twig</li>
+<li>oro_payment_method_order_submit/layout.html</li>
+</ul>
+<div class="section" id="layout-html-twig-for-the-payment-method-selection">
+<h4><a class="toc-backref" href="#id46">layout.html.twig for the Payment Method Selection</a><a class="headerlink" href="#layout-html-twig-for-the-payment-method-selection" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>{% block _payment_methods_collect_on_delivery_widget %}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;{{ class_prefix }}-form__payment-methods&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ &#39;acme.collect_on_delivery.payment_method_message&#39;|trans }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</td></tr></table></div>
+<p>Note that the custom message to appear in the block is defined. Do not forget to add translations in the messages.en.yml for any custom text that you add.</p>
+</div>
+<div class="section" id="layout-html-for-the-payment-method-selection">
+<h4><a class="toc-backref" href="#id47">layout.html for the Payment Method Selection</a><a class="headerlink" href="#layout-html-for-the-payment-method-selection" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>layout:
+    actions:
+        - &#39;@setBlockTheme&#39;:
+            themes:
+                - &#39;layout.html.twig&#39;
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="layout-html-twig-for-the-order-review">
+<h4><a class="toc-backref" href="#id48">layout.html.twig for the Order Review</a><a class="headerlink" href="#layout-html-twig-for-the-order-review" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>{% block _order_review_payment_methods_collect_on_delivery_widget -%}
+    {% if options.payment_method is defined %}
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span>
+             <span class="na">data-page-component-module</span><span class="o">=</span><span class="s">&quot;oropayment/js/app/components/payment-method-component&quot;</span>
+             <span class="na">data-page-component-options</span><span class="o">=</span><span class="s">&quot;{{ {paymentMethod: options.payment_method}|json_encode }}&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    {% endif %}
+{%- endblock %}
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="layout-html-for-the-order-review">
+<h4><a class="toc-backref" href="#id49">layout.html for the Order Review</a><a class="headerlink" href="#layout-html-for-the-order-review" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>layout:
+    actions:
+        - &#39;@setBlockTheme&#39;:
+            themes:
+                - &#39;layout.html.twig&#39;
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="define-a-translation-for-the-custom-message">
+<h3><a class="toc-backref" href="#id50">Define a Translation for the Custom Message</a><a class="headerlink" href="#define-a-translation-for-the-custom-message" title="Permalink to this headline">¶</a></h3>
+<p>In step, you have added a custom message to the payment method block. Define a translation for it in the messages.en.yml which now should look like the following:</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">acme</span><span class="p p-Indicator">:</span>
+ <span class="l l-Scalar l-Scalar-Plain">collect_on_delivery</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+         <span class="l l-Scalar l-Scalar-Plain">labels.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Labels&#39;</span>
+         <span class="l l-Scalar l-Scalar-Plain">short_labels.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Short</span><span class="nv"> </span><span class="s">Labels&#39;</span>
+         <span class="l l-Scalar l-Scalar-Plain">transport.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Collect</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">delivery&#39;</span>
+
+     <span class="l l-Scalar l-Scalar-Plain">channel_type.label</span><span class="p p-Indicator">:</span> <span class="s">&#39;Collect</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">delivery&#39;</span>
+<span class="hll">     <span class="l l-Scalar l-Scalar-Plain">payment_method_message</span><span class="p p-Indicator">:</span> <span class="s">&#39;Pay</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">delivery&#39;</span>
+</span></pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="check-that-payment-method-is-added">
+<h3><a class="toc-backref" href="#id51">Check That Payment Method is Added</a><a class="headerlink" href="#check-that-payment-method-is-added" title="Permalink to this headline">¶</a></h3>
+<p>Now, the Collect On Delivery payment method is fully implemented.</p>
+<p>Clear the application cache, open the user interface and try to submit an order.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">OroPlatform Architecture</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Customizing Oro Features</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../entities/adding_properties.html">Add Properties to Core Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing_crud.html">Customizing CRUD Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing_import_export.html">Extending Entities to Support Bulk Import and Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_add_an_extension_to_oro_marketplace.html">How to Add an Extension to the OroCRM Marketplace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing_data_grid_in_orocommerce.html">Customizing Data Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using_php_instead_of_twig_for_templates.html">Using PHP Instead of Twig for Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_create_new_bundle.html">How to Create New Bundle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_extend_existing_bundle.html">How to Extend Existing Bundle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_add_entity_event_listeners.html">How to Add Entity Event Listeners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_create_and_customize_application_menu.html">How to Create and Customize Application Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_custom_validation_constraints.html">How to Add Custom User Validation Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_create_global_js_component.html">How to Create a Global JavaScript Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how_to_replace_inline-javascript_with_component.html">How to Replace Inline-Javascript with a Component</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Add a New Payment Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shipping_method_add.html">Add a New Shipping Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integration.html">How to Create an Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installer_generate.html">How to Generate an Installer for a Bundle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../web_api/index.html">Web Services API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theme/index.html">Customizing the Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install_upgrade_and_patch/index.html">Extension and Patch Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Annotation and Configuration Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../entities/index.html">Using and Managing Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">How to... Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/dev_guide/extend_and_customize/payment_method_add.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

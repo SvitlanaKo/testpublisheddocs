@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Price Calculation on the Storefront &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Price Calculation on the Storefront</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="price-calculation-on-the-storefront">
+<h1>Price Calculation on the Storefront<a class="headerlink" href="#price-calculation-on-the-storefront" title="Permalink to this headline">¶</a></h1>
+<p>Product prices on the storefront are taken from the combination of the price lists that are enabled on the system level, website level,
+customer group and customer level.
+Based on the fallback configuration, OroCommerce identifies the enabled price lists (see scenarios below) and selects one price per product quantity tier in the active currency to show it to the buyer as the listing price on the storefront.
+As there might be multiple prices matching the selection criteria in the enabled price lists, OroCommerce follows the configured <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">price selection strategy</span></a> (minimal price vs priority-based).</p>
+<p>The enabled price lists for different fallback options setup is illustrated in the table below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="14%" />
+<col width="16%" />
+<col width="12%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration Level (Price Lists)</th>
+<th class="head">Fallback Option</th>
+<th class="head">Configuration 1</th>
+<th class="head">Configuration 2</th>
+<th class="head">Config. 3</th>
+<th class="head">Config. 4</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">System</span></a> (X, Y, Z)</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../../configuration_guide/pricing/website_price_lists.html#sys-website-edit-price-lists"><span class="std std-ref">Website</span></a> (A, B, C)</td>
+<td>Config</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>o</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../../configuration_guide/pricing/customer_group_price_lists.html#customers-customer-groups-edit-price-lists"><span class="std std-ref">Website for Customer Group</span></a> (D, E, F)</td>
+<td>Website</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>o</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../../configuration_guide/pricing/customer_price_lists.html#customers-customers-edit-price-lists"><span class="std std-ref">Website for Customer</span></a> (G)</td>
+<td>Customer Group</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>o</td>
+</tr>
+<tr class="row-even"><td colspan="2"><strong>Resulting active price lists</strong></td>
+<td><em>X, Y, Z, A, B, C, D, E, F, G</em></td>
+<td><em>A, B, C, D, E, F, G</em></td>
+<td><em>D, E, F, G</em></td>
+<td><em>G only</em></td>
+</tr>
+</tbody>
+</table>
+<p>Whether the buyer will get the minimal price or the price from the price list with the highest priority, depends on the pricing strategy configured <a class="reference internal" href="../../configuration_guide/pricing/global_pricing.html#sys-config-commerce-catalog-pricing"><span class="std std-ref">globally</span></a>.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#minimal-prices-strategy">Minimal Prices Strategy</a></li>
+<li><a class="reference internal" href="#merge-by-priority-strategy">Merge By Priority Strategy</a></li>
+</ul>
+<div class="section" id="minimal-prices-strategy">
+<h2>Minimal Prices Strategy<a class="headerlink" href="#minimal-prices-strategy" title="Permalink to this headline">¶</a></h2>
+<p>When Minimal Prices Strategy is selected, the OroCommerce uses the minimum price per tier that is found in the available (enabled) price lists.</p>
+<p>For example, let&#8217;s use the product prices in two price lists:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="48%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 4 item</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+</tr>
+</tbody>
+</table>
+<p>The following minimal tier prices will be shown to the buyer.</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>8$ / 1 item</li>
+<li>7$ / 2 item</li>
+<li>6$ / 4 item</li>
+</ul>
+</div>
+<div class="section" id="merge-by-priority-strategy">
+<h2>Merge By Priority Strategy<a class="headerlink" href="#merge-by-priority-strategy" title="Permalink to this headline">¶</a></h2>
+<p>Merge By Priority Strategy picks the first price from the given sequence of the Price Lists for a missing price tier in the given currency.</p>
+<p>In the price list priority configuration, the <cite>Merge Allowed</cite> flag shows whether a particular Price List is allowed to be merged with the other prices. When Merge Allowed is disabled for a price list, its price will be exclusively used for the product that has no price provided in other price lists with higher priority.</p>
+<p>Let&#8217;s take a look at the following example: product price is defined in two price lists that allow price merge.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="36%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+<th class="head">Merge Allowed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 5 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>The product&#8217;s price calculation will result in the following list prices:</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>9$ / 1 item</li>
+<li>8$ / 2 item</li>
+<li>7$ / 4 item</li>
+<li>6$ / 5 item</li>
+</ul>
+<p>Now let&#8217;s see what changes if the merge is not allowed in the price list with higher priority:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="36%" />
+<col width="23%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+<th class="head">Merge Allowed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 5 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>The product&#8217;s price calculation will result in the following list prices:</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>9$ / 1 item</li>
+<li>8$ / 2 item</li>
+<li>6$ / 5 item</li>
+</ul>
+<p>Note that the price for 4 items from the Custom Price List is not used.</p>
+<p>Finally, let&#8217;s consider the mixed example, where the merge is allowed for some price lists, including the one of the top priority. However, there is one price list that does not allow merge.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="34%" />
+<col width="26%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Product</th>
+<th class="head">Price List</th>
+<th class="head">Price</th>
+<th class="head">Merge Allowed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>9$ / 1 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>8$ / 2 item</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Default PriceList</td>
+<td>6$ / 5 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>8$ / 1 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 2 item</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom PriceList</td>
+<td>7$ / 4 item</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+<td>&#8212;</td>
+</tr>
+<tr class="row-even"><td>SKU1</td>
+<td>Custom2 PriceList</td>
+<td>5$ / 10 item</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>SKU1</td>
+<td>Custom2 PriceList</td>
+<td>4$ / 100 item</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>Now the product will have the following list prices:</p>
+<p><strong>SKU1</strong>:</p>
+<ul class="simple">
+<li>9$ / 1 item</li>
+<li>8$ / 2 item</li>
+<li>6$ / 5 item</li>
+<li>5$ / 10 item</li>
+<li>4$ / 100 item</li>
+</ul>
+<p>The prices from the Custom Price List, where <strong>Merge Allowed</strong> is off, are omitted.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/user_guide/pricing/calculation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

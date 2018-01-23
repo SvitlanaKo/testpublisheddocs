@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Edit a Frontend Menu &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Used Images" href="service_page.html" />
+    <link rel="prev" title="Menu Configuration Levels" href="menu_config_levels.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<script language="javascript" type="text/javascript">
+    <!--
+    var materialdropdown = document.querySelector('.material-dropdown'),
+    middle = document.querySelector('.middle'),
+    cross = document.querySelector('.cross'),
+    dropdown = document.querySelector('.dropdown');
+
+materialdropdown.addEventListener('click', function() {
+  middle.classList.toggle('active');
+  cross.classList.toggle('active');
+  dropdown.classList.toggle('active');
+})
+    -->
+  </script>
+    
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="service_page.html" title="Used Images"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="menu_config_levels.html" title="Menu Configuration Levels"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Configuration Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Menus Configuration</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Edit a Frontend Menu</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="user-guide-system-menu-menu-frontend"></span><div class="section" id="edit-a-frontend-menu">
+<h1>Edit a Frontend Menu<a class="headerlink" href="#edit-a-frontend-menu" title="Permalink to this headline">¶</a></h1>
+<p>To update the frontend menu contents, follow the <a class="reference internal" href="menu_config_levels.html#doc-system-menu-config-levels-frontend-menus"><span class="std std-ref">Customize Default Frontend Menus</span></a> guide and click the menu name or on the <i class="fa fa-eye fa-lg" aria-hidden="true"></i> View icon in the corresponding row of the frontend menu list.</p>
+<img alt="../../_images/frontend_menu_1.png" src="../../_images/frontend_menu_1.png" />
+<p>On the page that opens, the menu item tree is shown in the left panel. The <strong>General Information</strong> section is reserved for the menu item configuration, which you can update, as shown in the <a class="reference internal" href="menu_config.html#doc-system-menu-config-add-menu-item"><span class="std std-ref">Add a Menu Item</span></a> section.</p>
+<img alt="../../_images/frontend_menu_2.png" src="../../_images/frontend_menu_2.png" />
+<p>Moreover, you can customize additional visibility restrictions in the following fields in order to selectively display or hide some menu items from the customer:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#user-agent" id="id1">User Agent</a></li>
+<li><a class="reference internal" href="#exclude-on-screens" id="id2">Exclude On Screens</a></li>
+<li><a class="reference internal" href="#condition" id="id3">Condition</a></li>
+</ul>
+</div>
+<div class="section" id="user-agent">
+<h2><a class="toc-backref" href="#id1">User Agent</a><a class="headerlink" href="#user-agent" title="Permalink to this headline">¶</a></h2>
+<p>User agent is unique to every customer. It reveals a catalog of technical data about the device and software that the customer is using. You can control whether to show or hide some menu items from the customer by proceeding with the following steps:</p>
+<ol class="arabic simple">
+<li>Click <strong>+Add</strong> next to the <strong>User Agent</strong> field.</li>
+</ol>
+<p>The following text field displays:</p>
+<img alt="../../_images/frontend_menu_3.png" src="../../_images/frontend_menu_3.png" />
+<ol class="arabic simple" start="2">
+<li>Fill in the text field with a user agent substring or a string, if required.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>A user agent string is a combination of user agent application versions, operating systems, crawlers, and other scripts which are specific for each user (e.g. Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36).</p>
+<p class="last">A user agent substring is a part of the aforementioned string (e.g. Mozilla, Windows, Safari, etc).</p>
+</div>
+<a class="reference internal image-reference" href="../../_images/frontend_menu_4.png"><img alt="../../_images/frontend_menu_4.png" src="../../_images/frontend_menu_4.png" style="width: 70%;" /></a>
+<ol class="arabic" start="3">
+<li><p class="first">Select the corresponding operation from the list.</p>
+<ul class="simple">
+<li>The <em>contains</em> operation determines whether the specified substring is included in the user agent string (e.g. in case you mention Mozilla, all the versions of Mozilla in the user agent string will meet the requirements of this function).</li>
+<li>The <em>does not contain</em> operation determines whether the specified substring is not included in the user agent string.</li>
+<li>The <em>matches</em> operation checks whether the specified value fully matches the user agent string (e.g. you need to provide a version of Mozilla to meet the requirements of this function).</li>
+<li>The <em>does not match</em> operation checks when the specified value does not match the user agent string.</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/frontend_menu_5.png"><img alt="../../_images/frontend_menu_5.png" src="../../_images/frontend_menu_5.png" style="width: 70%;" /></a>
+</li>
+<li><p class="first">To create more advanced condition, you can combine constrains into the expression using logical AND and OR operators:</p>
+<ul>
+<li><p class="first">Click <strong>+ And</strong> below the operation field within the same block to add another constrain block into the expression via AND.</p>
+<p><em>AND</em> operation means that only those user agents that comply with all the specified conditions in a group will be selected.</p>
+</li>
+</ul>
+<img alt="../../_images/frontend_menu_6.png" src="../../_images/frontend_menu_6.png" />
+<ul>
+<li><p class="first">Click <strong>+ Add</strong> at the bottom of the expression block to add another constrain block into the expression via OR.</p>
+<p><em>OR</em> operation activates the expression once any of the constraint blocks in a group evaluates to true.</p>
+</li>
+</ul>
+<img alt="../../_images/frontend_menu_7.png" src="../../_images/frontend_menu_7.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="exclude-on-screens">
+<h2><a class="toc-backref" href="#id2">Exclude On Screens</a><a class="headerlink" href="#exclude-on-screens" title="Permalink to this headline">¶</a></h2>
+<p><strong>Exclude On Screens</strong> enables you to hide the menu items on the specified screens sizes.</p>
+<ol class="arabic simple">
+<li>Click any screen size to select the one for which the menu will be hidden from the customer.</li>
+<li>Hold <strong>Ctrl</strong> and click the value to select/deselect multiple screens.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<img alt="../../_images/frontend_menu_8.png" src="../../_images/frontend_menu_8.png" />
+<p>As an illustration, let us hide the <strong>About</strong> menu item from the desktops with 13 in. screen by enabling <strong>Exclude On Screens</strong> and selecting the corresponding screen size.</p>
+<img alt="../../_images/frontend_menu_9.png" src="../../_images/frontend_menu_9.png" />
+</div>
+<div class="section" id="condition">
+<h2><a class="toc-backref" href="#id3">Condition</a><a class="headerlink" href="#condition" title="Permalink to this headline">¶</a></h2>
+<p><strong>Condition</strong> enables you to restrict visibility of a menu item using the following functions:</p>
+<ul>
+<li><p class="first">The <em>is_logged_in()</em> function stands for the <em>registered users</em>. If entered, only the users who have logged into the Oro storefront are enabled to view the corresponding menu item.</p>
+<img alt="../../_images/frontend_menu_10.png" src="../../_images/frontend_menu_10.png" />
+</li>
+<li><p class="first">The <em>!is_logged_in()</em> function stands for the <em>non-registered users</em>. If entered, only the unregistered users are enabled to view the corresponding menu item.</p>
+</li>
+<li><p class="first">The <em>config_value(&#8216;some_identifier&#8217;)</em> function limits visibility of the corresponding menu item upon specifying the certain value instead of <em>&#8216;some_identifier&#8217;</em>.</p>
+<p>As an example, let us make the <strong>About</strong> section in the storefront visible to customers with configured taxes. For this, we need to:</p>
+<ol class="loweralpha simple">
+<li>Customize the <em>config_value(&#8216;some_identifier&#8217;)</em> function with the required value instead of <em>some_identifier</em>. In our case, it is the <em>oro_tax.tax_enable</em> value.</li>
+<li>Click <strong>Save</strong> on the top right of the About menu page to save the changes.</li>
+</ol>
+<ol class="loweralpha simple" start="2">
+<li>Enable <strong>Tax Calculation</strong> in the system configuration. More information on tax configuration can be found in the relevant <a class="reference internal" href="../landing_commerce/taxation/taxes/tax_calculation.html#user-guide-taxes-tax-configuration"><span class="std std-ref">Configure Tax Calculation</span></a> topic.</li>
+<li>Click <strong>Save</strong> on the top right of the Tax Calculation configuration page.</li>
+</ol>
+<p>The steps are illustrated below:</p>
+<blockquote>
+<div><img alt="../../_images/frontend_menu_11.png" class="with-border" src="../../_images/frontend_menu_11.png" />
+<img alt="../../_images/frontend_menu_12.png" class="with-border" src="../../_images/frontend_menu_12.png" />
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Storefront Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../landing_system_configuration/index.html">System Configuration Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_commerce/index.html">Commerce Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_crm/index.html">CRM Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../landing_marketing/index.html">Marketing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../localization/index.html">System Localization and Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pricing/index.html">Pricing Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email/index.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integrations/index.html">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../payment/index.html">Payment Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Menus Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="menu_config.html">Customizing a Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menu_config_levels.html">Menu Configuration Levels</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Edit a Frontend Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="service_page.html">Used Images</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workflows/index.html">Workflow Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tags_management/index.html">Tags and Taxonomies Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../websites/index.html">Website Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team All rights reserved.
+           
+      
+      |
+      <a href="../../_sources/configuration_guide/menu/menu_frontend.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
