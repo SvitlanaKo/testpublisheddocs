@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Logging Conventions &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Report Issues" href="../issues/index.html" />
+    <link rel="prev" title="Contribute to Documentation" href="documentation.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../issues/index.html" title="Report Issues"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="documentation.html" title="Contribute to Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Community Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Contribute</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Logging Conventions</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="logging-conventions">
+<span id="community-contribute-logging-conventions"></span><h1>Logging Conventions<a class="headerlink" href="#logging-conventions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p>Use Monolog logger that implements the PSR-3 LoggerInterface, de-facto logging standard defined in php-fig/log package. For an overview, please, see logging in Symfony, where we borrowed this sample:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="nv">$logger</span><span class="o">-&gt;</span><span class="na">critical</span><span class="p">(</span><span class="s1">&#39;I left the oven on!&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="c1">// include extra &quot;context&quot; info in your logs</span>
+    <span class="s1">&#39;cause&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;in_hurry&#39;</span><span class="p">,</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>Debug, info, notice, warning, error, critical, and alert methods have two arguments:
+* A string with a human readable message.
+* An array of the context variables with values that can help in resolving an issue.</p>
+</div>
+<div class="section" id="how-to-use-logger">
+<h2>How to Use Logger<a class="headerlink" href="#how-to-use-logger" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">In case your class provide any kind of extensibility without class modification, by dispatching events or providing extensions system, add logger as extension or event listener, do not inject it to the main service.</p>
+</li>
+<li><p class="first">Inject logger to the constructor of extension or main service as required dependency if you free to change class signature, otherwise use LoggerAwareInterface.
+You can be restricted to call __constructor() in case it is private or instantiated not using service container, by CompilerPass or factory that are not under your control etc.</p>
+</li>
+<li><p class="first">In service container configuration add logger (&#64;logger) as required argument to constructor or in setter in case LoggerAwareInterface used:</p>
+<p><strong>Constructor injection</strong></p>
+<div class="code text highlight-php"><div class="highlight"><pre><span></span><span class="nx">services</span><span class="o">:</span>
+    <span class="nx">acme</span><span class="o">.</span><span class="nx">logger_aware_service</span><span class="o">:</span>
+        <span class="nx">class</span><span class="o">:</span>     <span class="nx">AcmeBundle\Foo\BarLoggerAwareService</span>
+        <span class="nx">arguments</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;@logger&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><em>Setter injection</em></p>
+<div class="code text highlight-php"><div class="highlight"><pre><span></span><span class="nx">services</span><span class="o">:</span>
+    <span class="nx">acme</span><span class="o">.</span><span class="nx">logger_aware_service</span><span class="o">:</span>
+        <span class="nx">class</span><span class="o">:</span>     <span class="nx">AcmeBundle\Foo\BarLoggerAwareService</span>
+        <span class="nx">calls</span><span class="o">:</span>
+            <span class="o">-</span> <span class="p">[</span><span class="nx">setLogger</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;@logger&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Every independent component should use its own channel with the <em>oro_</em> prefix:</p>
+<div class="code text highlight-php"><div class="highlight"><pre><span></span><span class="nx">tags</span><span class="o">:</span>
+    <span class="o">-</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">monolog</span><span class="o">.</span><span class="nx">logger</span><span class="p">,</span> <span class="nx">channel</span><span class="o">:</span> <span class="nx">oro_api</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>You can reuse existing channel only to override or extend the existing logger aware service.</p>
+</li>
+<li><p class="first">If LoggerAwareInterface was used, every logger method call should be wrapped with the following check to ensure that the logger exists, and no exceptions are triggered due to its unavailability:</p>
+<div class="code text highlight-php"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="p">){</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span>  <span class="nv">$context</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Messages should be simple and human-readable. Any extra information should be passed in the context variables:</p>
+<div class="code text highlight-php"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span>
+    <span class="s1">&#39;Authentication failure, forward triggered.&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">&#39;failure_path&#39;</span><span class="o">=&gt;</span><span class="nv">$path</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">When you need a user-friendly message on production instead of a real one, use the following approach (see this sample): when something goes wrong for the user, but the system is still usable, display a message like &#8220;Something has gone wrong, contact the system administrator&#8221; and log the real exception to facilitate the future debug process.
+You can use this approach when:</p>
+<blockquote>
+<div><ul class="simple">
+<li>A form was submitted but the expected action was stopped which led to the exception.</li>
+<li>A system is not able to save the record to the database because of a MySQL error (for example, when you use a non-unique key).</li>
+<li>A system fails to send a message to the queue, or the queue does not respond.</li>
+<li>A system fails to send an external request or a third-party API did not respond or responded with an unexpected message.</li>
+<li>Etc.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Preserve the context. Always place your logging calls next to the actions it logs, in the same method or class. Avoid logging the operation progress, input, or outcome in the external class that triggers operation execution.</p>
+</li>
+<li><p class="first">It is recommended to use debug, info, notice, warning, error, critical, and alert methods defined in LoggerInterface with a specified log level instead of the log() method.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="message">
+<h2>Message<a class="headerlink" href="#message" title="Permalink to this headline">¶</a></h2>
+<p>Log message should contain a short description of the action that happened. The data that define action context (e.g. who triggered action, what was the execution result, etc) should be placed in context variables (second parameter in LoggerInterface methods).</p>
+<p>Do not use sprintf() to add variables to the message. Use placeholders instead and put variables into the context. This way, the message stays readable for both human and machine.</p>
+<p>Placeholder rules:</p>
+<ul class="simple">
+<li>The message MAY contain placeholders which implementors MAY replace with values from the context array.</li>
+<li>Placeholder names MUST correspond to keys in the context array.</li>
+<li>Placeholder names MUST be delimited with a single opening brace { and a single closing brace }. There MUST NOT be any whitespace between the delimiters and the placeholder name.</li>
+<li>Placeholder names SHOULD be composed only of the characters A-Z, a-z, 0-9, underscore _, and period.</li>
+</ul>
+</div>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>In a context array, you may pass any additional information about the trigger event and its accompanying circumstances. Here are general recommendations:</p>
+<ul class="simple">
+<li>Avoid overly lengthy objects in context. Use normalization to keep only useful information.</li>
+<li>Leave out any sensitive data, like user credentials.</li>
+<li>Use &#8216;exception&#8217; key for passing the Exception object (this is a MUST).</li>
+<li>When adding a resource, use only the id and the information that is supposed to change as a result of the operation.</li>
+</ul>
+<p><strong>Precaution</strong>: Building a value for the context must neither throw an exception nor raise any php error, warning or notice.</p>
+</div>
+<div class="section" id="log-levels">
+<h2>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="emergency">
+<h3>Emergency<a class="headerlink" href="#emergency" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::EMERGENCY when the system becomes unusable.</p>
+</div>
+<div class="section" id="alert">
+<h3>Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::ALERT when the situation calls for immediate action. For example, the entire website is down or the database is unavailable (network connection or a database server is down). Messages of Alert level should wake you up. It could trigger the SMS alert or notify you in any other perceptible way.</p>
+</div>
+<div class="section" id="critical">
+<h3>Critical<a class="headerlink" href="#critical" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::CRITICAL to register any critical conditions. For example, you can log a critical message when the application component became unavailable, or when you are handling an unexpected exception that should not be displayed to a user (e.g. 500 Internal server error).</p>
+</div>
+<div class="section" id="error">
+<h3>Error<a class="headerlink" href="#error" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::ERROR for logging runtime errors that do not require immediate action but should typically be logged and monitored for further investigation. Potential triggers for logging an error are the following:</p>
+<ul class="simple">
+<li>an expected or scheduled operation was not executed (e.g. a batch action that failed before processing any records; external API is not responding; external API response is unexpected and cannot be handled by the system).</li>
+<li>an unexpected exception occurred but did not lead to unwanted messages shown to the user (like 500 Internal server error).</li>
+</ul>
+</div>
+<div class="section" id="warning">
+<h3>Warning<a class="headerlink" href="#warning" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::WARNING to capture disturbing situations that are not errors:
+* incomplete operation processing (e.g. only a portion of the batch was processed).
+* expected or handled exceptions that record a non-optimal or inefficient operation, for example:</p>
+<blockquote>
+<div><ul class="simple">
+<li>deprecated API is used.</li>
+<li>API is misused (wrong parameters, unsupported input values).</li>
+<li>something is done in a non-recommended way which is not necessarily wrong.</li>
+<li>action or operation that takes longer than usual.</li>
+<li>import data contains additional unknown fields and the system ignores them as it is not programmed to handle these extra data.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="notice">
+<h3>Notice<a class="headerlink" href="#notice" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::NOTICE to record extremely significant events or high-level business operations that were executed successfully, for example:</p>
+<ul class="simple">
+<li>Import is complete</li>
+<li>Final transition in the workflow is complete</li>
+<li>Payment was sent successfully</li>
+</ul>
+</div>
+<div class="section" id="info">
+<h3>Info<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h3>
+<p>Use LogLevel::INFO to record events of moderate significance or intermediate steps of the business process, for example:</p>
+<ul class="simple">
+<li>User logs in</li>
+<li>Action is complete</li>
+<li>Workflow transition is complete</li>
+<li>Email is send</li>
+<li>External API request is sent</li>
+</ul>
+</div>
+<div class="section" id="debug">
+<h3>Debug<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h3>
+<p>Messages with LogLevel::DEBUG provides additional detailed debug information for the events that are logged on a higher level (info, notice, warning, error, critical, and alert). This information is usually logged only to dev.log or to the Symfony profiler.</p>
+</div>
+</div>
+<div class="section" id="logging-strategy-what-should-be-logged">
+<h2>Logging Strategy: What Should Be Logged<a class="headerlink" href="#logging-strategy-what-should-be-logged" title="Permalink to this headline">¶</a></h2>
+<p>To get this right, think of yourself some day in the past (or future) facing a customer problem. Let us make it late night and severely urgent.
+In your logging strategy, you are building a diagnostics toolkit that will give you enough information for the worst case scenario. You will be able to diagnose a non-reproducible problem after it has happened. You will know the state of the critical services and you will be able to spot when a critical component or integration went down and got unresponsive. You will know where exactly in the process you got a failure and what context and data were the system handling at the time.</p>
+<p>To be on the safe side, log the following:</p>
+<ul class="simple">
+<li>Business operations with detailed context for every step</li>
+<li>Transitions (workflow transition, user banned, checkout completed)</li>
+<li>Integration points (calls, availability, response time)</li>
+<li>Resources availability (limit reached, capacity exhausted)</li>
+<li>Service availability (startup, shutdown, response time)</li>
+<li>Input and output (if it helps to find an issue)</li>
+</ul>
+<div class="section" id="logging-exceptions">
+<h3>Logging Exceptions<a class="headerlink" href="#logging-exceptions" title="Permalink to this headline">¶</a></h3>
+<p>Throw only custom extended from SPL exceptions (like OroBundleEntityMergeBundleExceptionOutOfBoundsException). For logging these, usually used DEBUG log level.
+In exceptional circumstances, catch SPL exception classes (like Exception, OutOfBoundsException) only when you really intend to handle all exceptions in a same unified manner. Log them with ERROR log level and re-throw on debug mode if possible.
+Do not catch exceptions just for logging, as Symfony handles uncaught exceptions for you.</p>
+</div>
+</div>
+<div class="section" id="examples-of-correct-exception-handling-and-logging">
+<h2>Examples of Correct Exception Handling and Logging<a class="headerlink" href="#examples-of-correct-exception-handling-and-logging" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-1">
+<h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h3>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">// in case of injection logger to constructor</span>
+<span class="c1">// do some work</span>
+
+<span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;exception&#39;</span><span class="o">=&gt;</span> <span class="nv">$e</span><span class="p">]);</span>
+    <span class="c1">// optionally</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">getFlashBag</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="nv">$message</span><span class="p">);</span>
+    <span class="c1">// recover</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-2">
+<h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">// in case of using LoggerAwareInterface</span>
+<span class="c1">// do some work</span>
+
+<span class="k">catch</span> <span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="p">){</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;exception&#39;</span><span class="o">=&gt;</span> <span class="nv">$e</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="c1">// optionally</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">getFlashBag</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="nv">$message</span><span class="p">);</span>
+    <span class="c1">// recover</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-3">
+<h3>Example 3<a class="headerlink" href="#example-3" title="Permalink to this headline">¶</a></h3>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">// do some work</span>
+
+<span class="k">catch</span> <span class="p">(</span><span class="nx">MyCustomExpectedException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">logger</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;exception&#39;</span><span class="o">=&gt;</span> <span class="nv">$e</span><span class="p">]);</span>
+    <span class="c1">// recover</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="incorrect-exceptions-handling">
+<h4>Incorrect Exceptions Handling<a class="headerlink" href="#incorrect-exceptions-handling" title="Permalink to this headline">¶</a></h4>
+<p>Handling exceptions without logging is incorrect:</p>
+<div class="code php highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">// do some work</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">// do some work</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do some work without logging</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-enable-logging-for-cli-commands">
+<h2>How to Enable Logging for CLI Commands<a class="headerlink" href="#how-to-enable-logging-for-cli-commands" title="Permalink to this headline">¶</a></h2>
+<p>Input of cli command will be logged automatically by OroPlatform.
+Uncaught exceptions will be logged automatically as well.
+Log command output to DEBUG level only if it short and is necessary for debugging while command input is known.
+In case you need to log some extra information your command should extend SymfonyBundleFrameworkBundleCommandContainerAwareCommand so you&#8217;ll be able to get logger from container (see example <a class="reference external" href="http://symfony.com/doc/current/console/logging.html#manually-logging-from-a-console-command">here</a>).</p>
+</div>
+<div class="section" id="how-to-enable-logger-only-on-dev-environment">
+<h2>How to Enable Logger Only on Dev Environment<a class="headerlink" href="#how-to-enable-logger-only-on-dev-environment" title="Permalink to this headline">¶</a></h2>
+<p>Usually it can be necessary for services that log with INFO and above levels and including logger as dependency will affect production performance.
+You should add logger in Decorator of the service and replace the original one with it in the container at CompilerPass based on the environment variable and logger availability. For example check &#8220;SymfonyComponentTranslationLoggingTranslator&#8221;  that replace original &#8220;SymfonyComponentTranslationTranslator&#8221; in &#8220;SymfonyBundleFrameworkBundleDependencyInjectionCompilerLoggingTranslatorPass&#8221; based on container parameter.</p>
+</div>
+<div class="section" id="avoid-logging-sensitive-information">
+<h2>Avoid Logging Sensitive Information<a class="headerlink" href="#avoid-logging-sensitive-information" title="Permalink to this headline">¶</a></h2>
+<p>Never log sensitive data. Under any circumstances. We mean it. Use data anonymizing or encryption to secure customer identity and their sensitive business-critical information.</p>
+</div>
+<div class="section" id="additional-information">
+<h2>Additional Information<a class="headerlink" href="#additional-information" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://arctecgroup.net/pdf/howtoapplogging.pdf">How to Do Application Logging Right</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../admin_guide/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Community Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Contribute</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="code_style.html">Code Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_version_control.html">Code Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_dev_env.html">Set Up a Development Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_ui_translations.html">Contribute to Translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation.html">Contribute to Documentation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Logging Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../issues/index.html">Report Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_process.html">Understand Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contact_community.html">Contact Community</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../_sources/community/contribute/code_logging.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

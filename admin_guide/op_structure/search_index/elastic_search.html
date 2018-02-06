@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Elasticsearch &#8212; OroCommerce 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Manage Search in Oro Applications (ORM)" href="db_search/index.html" />
+    <link rel="prev" title="Search Index" href="index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+<div class="header">
+    <div class="main-nav">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div id="nav-menu" class="navbar-top">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <a href="https://www.orocommerce.com/"
+                           class="navbar-brand"><img
+                                src="https://www.orocommerce.com/wp-content/themes/commerce/images/orocommerce_logo.svg"
+                                alt="Open Source B2B eCommerce Platform - OroCommerce"></a>
+                    </div>
+                    <div class="navbar-header">
+                        <p class="navbar-header" href="#">Documentation</p>
+                    </div>
+                    <div class="navbar-right">
+                        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="db_search/index.html" title="Manage Search in Oro Applications (ORM)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Search Index"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Home</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Administrator Guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Operational Structure</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Search Index</a> &#187;</li> 
+     <li class="nav-item nav-item-this">Elasticsearch</li>
+      </ul>
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="elasticsearch">
+<span id="elastic-search"></span><h1>Elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h1>
+<p>Enterprise Editions of Oro applications support implementation of the search engine using <a class="reference external" href="http://www.Elasticsearch.org/">Elasticsearch</a>.</p>
+<p>In this section, you will learn the following about Elasticsearch:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#system-requirements" id="id5">System Requirements</a><ul>
+<li><a class="reference internal" href="#elasticsearch-supported-versions" id="id6">Elasticsearch Supported Versions</a></li>
+<li><a class="reference internal" href="#required-plugins" id="id7">Required Plugins</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration" id="id8">Configuration</a><ul>
+<li><a class="reference internal" href="#parameters" id="id9">Parameters</a></li>
+<li><a class="reference internal" href="#client-configuration" id="id10">Client Configuration</a></li>
+<li><a class="reference internal" href="#index-configuration" id="id11">Index Configuration</a></li>
+<li><a class="reference internal" href="#disable-environment-checks" id="id12">Disable Environment Checks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#index-agent-and-search-engine" id="id13">Index Agent and Search Engine</a><ul>
+<li><a class="reference internal" href="#index-agent" id="id14">Index Agent</a></li>
+<li><a class="reference internal" href="#search-engine" id="id15">Search Engine</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#request-builders" id="id16">Request Builders</a><ul>
+<li><a class="reference internal" href="#fromrequestbuilder" id="id17">FromRequestBuilder</a></li>
+<li><a class="reference internal" href="#whererequestbuilder" id="id18">WhereRequestBuilder</a></li>
+<li><a class="reference internal" href="#orderrequestbuilder" id="id19">OrderRequestBuilder</a></li>
+<li><a class="reference internal" href="#limitrequestbuilder" id="id20">LimitRequestBuilder</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting" id="id21">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#got-exception-no-alive-nodes-found-in-your-cluster-during-installation-or-indexation" id="id22">Got exception <cite>No alive nodes found in your cluster</cite> during installation or indexation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="system-requirements">
+<h2><a class="toc-backref" href="#id5">System Requirements</a><a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The following are requirements that should be met before using the ElasticSearchBundle.</p>
+<div class="section" id="elasticsearch-supported-versions">
+<h3><a class="toc-backref" href="#id6">Elasticsearch Supported Versions</a><a class="headerlink" href="#elasticsearch-supported-versions" title="Permalink to this headline">¶</a></h3>
+<p>By default, ElasticSearchBundle supports Elasticsearch engine version 2.*. You can manually specify the minimum allowed version and the upper bound version in the application configuration.</p>
+</div>
+<div class="section" id="required-plugins">
+<h3><a class="toc-backref" href="#id7">Required Plugins</a><a class="headerlink" href="#required-plugins" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><a class="reference external" href="https://www.elastic.co/guide/en/Elasticsearch/plugins/2.4/plugins-delete-by-query.html">Delete By Query</a></p>
+<blockquote>
+<div><p>To provide a possibility to refresh types, OroElasticSearchBundle relies on the Delete By Query functionality, and it is required to install a plugin to support it. Please, follow the installation steps in the <a class="reference external" href="https://www.elastic.co/guide/en/Elasticsearch/plugins/2.4/plugins-delete-by-query.html#_installation">Elasticsearch official documentation</a>.</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#id8">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The ElasticSearchBundle bundle provides you with the opportunity to configure Elasticsearch-based search engine for your needs.</p>
+<div class="section" id="parameters">
+<span id="elastic-search-parameters"></span><h3><a class="toc-backref" href="#id9">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<p>If you have a running Elasticsearch server, the default settings are sufficient. The search engine automatically defines the client and index configuration, and then creates the index.</p>
+<p>If required, you can customize the Elasticsearch client settings. For this, modify the following parameters in the <cite>app/config/parameters.yml</cite> file:</p>
+<p>Basic parameters:</p>
+<ul class="simple">
+<li><strong>search_engine_name</strong> - An engine name, must be &#8220;elastic_search&#8221; for the Elasticsearch engine.</li>
+<li><strong>search_engine_host</strong> - A host name that the Elasticsearch should be connected to. Remember to specify the <cite>https://</cite> if you are going to use SSL.</li>
+<li><strong>search_engine_port</strong> - A port number that the Elasticsearch should use for connection.</li>
+</ul>
+<p>Auth parameters:</p>
+<ul class="simple">
+<li><strong>search_engine_username</strong> - A login for the HTTP Auth authentication.</li>
+<li><strong>search_engine_password</strong> - A password for HTTP Auth authentication.</li>
+</ul>
+<p>Index name:</p>
+<ul class="simple">
+<li><strong>search_engine_index_name</strong> - A name of the Elasticsearch index to store data in.</li>
+</ul>
+<p>SSL Authentication:</p>
+<ul class="simple">
+<li><strong>search_engine_ssl_verification</strong> - A path to the <cite>cacert.pem</cite> certificate which is used to verify a node certificate.</li>
+<li><strong>search_engine_ssl_cert</strong> - A path to the client public certificate file.</li>
+<li><strong>search_engine_ssl_cert_password</strong> - A password for the certificate defined in the <strong>search_engine_ssl_cert</strong> parameter (optional).</li>
+<li><strong>search_engine_ssl_key</strong> - A path to the client private key file.</li>
+<li><strong>search_engine_ssl_key_password</strong> - A password for the key defined in the <strong>search_engine_ssl_key</strong> parameter (optional).</li>
+</ul>
+<p>You will likely need the <a class="reference external" href="https://www.elastic.co/products/shield">Shield</a> installed in the Elasticsearch for the Cluster SSL authentication to work.</p>
+<p>For general information on configuring SSL certificates, see the <a class="reference external" href="https://www.elastic.co/guide/en/Elasticsearch/client/php-api/current/_configuration.html">configuration</a> section in the Elasticsearch documentation.</p>
+<p>If you need more specific Elasticsearch configuration, see the following chapters.</p>
+</div>
+<div class="section" id="client-configuration">
+<h3><a class="toc-backref" href="#id10">Client Configuration</a><a class="headerlink" href="#client-configuration" title="Permalink to this headline">¶</a></h3>
+<p>To configure your Elasticsearch engine, put the following configuration into the <cite>app/config/config.yml</cite> file, under the <cite>oro_search</cite> section:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>oro_search:
+    engine: &quot;elastic_search&quot;
+</pre></div>
+</div>
+<p>In this case, all the required settings will be taken from <cite>app/config/parameters.yml</cite> (see the <a class="reference internal" href="#elastic-search-parameters"><span class="std std-ref">Parameters</span></a> section.</p>
+<p>If you need to create a more transparent and detailed configuration, define the required settings directly in the <cite>app/config/config.yml</cite>.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>oro_search:
+    engine: &quot;elastic_search&quot;
+    engine_parameters:
+        client:
+            hosts: [&#39;192.168.10.5:9200&#39;, &#39;192.168.15.7:9200&#39;]
+            # other configuration options for which setters exist in ElasticSearch\ClientBuilder class
+            # (e.g. retries option can be used as setRetries() method exists)
+            retries: 1
+</pre></div>
+</div>
+</div>
+<div class="section" id="index-configuration">
+<h3><a class="toc-backref" href="#id11">Index Configuration</a><a class="headerlink" href="#index-configuration" title="Permalink to this headline">¶</a></h3>
+<p>All settings required for the creation of an Elasticsearch index are defined in the <cite>search.yml</cite> and <cite>config.yml</cite> (the main config) files. This configuration is converted to the Elasticsearch mappings format and appears as follows:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>oro_search:
+    engine_parameters:
+        client:
+            # ... client configuration
+        index:
+            index: &lt;indexName&gt;
+            body:
+                mappings:                               # mapping parameters
+                    &lt;entityTypeName-1&gt;:                 # a name of the type
+                        properties:
+                            &lt;entityField-1&gt;:            # a name of the field
+                                type:   string          # a type of the field
+                            # ... list of entity fields
+                            &lt;entityField-N&gt;:
+                                type:   string
+                    # ... list of types
+                    &lt;entityTypeName-N&gt;:
+                        properties:
+                            &lt;entityField-1&gt;:
+                                type:   string
+</pre></div>
+</div>
+<p>For more information about index configuration, see the
+<a class="reference external" href="https://www.elastic.co/guide/en/Elasticsearch/client/php-api/current/_index_management_operations.html">Elasticsearch API documentation</a>.</p>
+</div>
+<div class="section" id="disable-environment-checks">
+<h3><a class="toc-backref" href="#id12">Disable Environment Checks</a><a class="headerlink" href="#disable-environment-checks" title="Permalink to this headline">¶</a></h3>
+<p>The bundle provides you with the opportunity to disable some system level checks that are performed during the application installation or index creation. These checks are used to ensure that environment is properly configured and that the search index is accessible.
+However, in some cases, these checks might be disabled to isolate all interactions with Elasticsearch at the <cite>/&lt;indexName&gt;/</cite> URL. These checks do not affect the application performance - the flags are used only during application installation or full reindexation.</p>
+<p><strong>Important!</strong> Disabling these checks might lead to inconsistent or unpredictable behavior of the application. Disable at your own risk.</p>
+<p>Set the following options to false to disable checks:</p>
+<ul class="simple">
+<li><strong>system_requirements_check</strong> (default <cite>true</cite>) - Check the system requirements during application installation and usage. Please make sure that a supported version of Elasticsearch is used and all required plugins are installed.</li>
+<li><strong>index_status_check</strong> (default <cite>true</cite>) - Check the index accessibility and readiness after creation. Please make sure that the Elasticsearch index will be available upon creation.</li>
+</ul>
+<p>Here is an example of the configuration that disables both of these checks:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>oro_search:
+    engine_parameters:
+        system_requirements_check: false
+        index_status_check: false
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="index-agent-and-search-engine">
+<h2><a class="toc-backref" href="#id13">Index Agent and Search Engine</a><a class="headerlink" href="#index-agent-and-search-engine" title="Permalink to this headline">¶</a></h2>
+<p>Index agent and search engine are two basic classes used to work with Elasticsearch index and perform the full text search.</p>
+<div class="section" id="index-agent">
+<h3><a class="toc-backref" href="#id14">Index Agent</a><a class="headerlink" href="#index-agent" title="Permalink to this headline">¶</a></h3>
+<p><strong>Class:</strong> OroBundleElasticSearchBundleEngineIndexAgent</p>
+<p>Index agent is used by the search engine to get index name, initialize client and perform reindexing.
+The agent receives DI configuration of the search engine, like access credentials and index name, and uses it to setup entity mapping.
+Afterwards, it supplies additional settings to tokenize text fields and merge all generated data with the external configuration.</p>
+<p>The entity mapping is built based on the search entity configuration that is defined in <cite>search.yml</cite> files, the main configuration and
+field type mappings. Field type mappings are injected through the DI as a parameter.</p>
+<p>_oro_ElasticSearch.field_type_mapping_:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>text:
+    type: string
+    store: true
+    index: not_analyzed
+decimal:
+    type: double
+    store: true
+integer:
+    type: integer
+    store: true
+datetime:
+    type: date
+    store: true
+    format: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd&quot;
+</pre></div>
+</div>
+<p>To make search faster, a special field that contains all text information (&#8220;all_text&#8221;) is generated (in lowercase and
+split into tokens using nGram tokenizer). In additional index settings, custom search and index analyzers are defined for this field.</p>
+<p>The data explained above is used to create and initialize a client (an instance of the ElasticSearchClient) and then return it to the
+search engine to perform full text search. The Index agent class uses the ClientFactory class to create an instance. You can use the factory to instantiate as many clients with various configurations, as you wish.</p>
+<p>For reindex, the agent recreates the entire index by deleting the existing one and creating a new one with the defined configuration.
+Partial mapping recreation is no longer possible.</p>
+</div>
+<div class="section" id="search-engine">
+<h3><a class="toc-backref" href="#id15">Search Engine</a><a class="headerlink" href="#search-engine" title="Permalink to this headline">¶</a></h3>
+<p><strong>Class:</strong> OroBundleElasticSearchBundleEngineElasticSearch</p>
+<p>The search engine implements the AbstractEngine interface. The SearchBundle uses search engine to handle search-related operations, and the
+search engine uses an index agent as a proxy to call the search-index-related operations (e.g. to get the index name or
+to request index recreation).</p>
+<p>To perform <em>save</em> and <em>delete</em> operations, search engine uses <a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/docs-bulk.html">Elasticsearch bulk API</a>.
+Deletion performs as is, but save requires to delete the existing entity first and only then saves the new entity. This is done to clean the traces of old values that have no matching new values to overwrite them.</p>
+<p>Reindex operation recreates the entire search index and then triggers the save operation for
+all affected entities.</p>
+<p>Search engine uses <a class="reference internal" href="#elastic-search-request-builders"><span class="std std-ref">request builders</span></a> to build an Elasticsearch search request
+based on the source query. Each request builder in the chain receives the current request, modifies it and returns altered data.
+New request builders can be added to the engine through DI.</p>
+</div>
+</div>
+<div class="section" id="request-builders">
+<span id="elastic-search-request-builders"></span><h2><a class="toc-backref" href="#id16">Request Builders</a><a class="headerlink" href="#request-builders" title="Permalink to this headline">¶</a></h2>
+<p>Request builder is a separate class used to build a specific part of a search request to Elasticsearch based on the
+source Query object. The request builder must implement the
+_OroBundleElasticSearchBundleRequestBuilderRequestBuilderInterface_ interface. According to this interface, the builder receives
+Query object and the existing request array. The builder returns modified request array.</p>
+<p>There are four default request builders.</p>
+<div class="section" id="fromrequestbuilder">
+<h3><a class="toc-backref" href="#id17">FromRequestBuilder</a><a class="headerlink" href="#fromrequestbuilder" title="Permalink to this headline">¶</a></h3>
+<p><strong>Class:</strong> OroBundleElasticSearchBundleRequestBuilderFromRequestBuilder</p>
+<p>The builder gets the <strong>from</strong> part of a query and converts any specific entities into the required
+<a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/search-search.html">index types</a>.</p>
+</div>
+<div class="section" id="whererequestbuilder">
+<h3><a class="toc-backref" href="#id18">WhereRequestBuilder</a><a class="headerlink" href="#whererequestbuilder" title="Permalink to this headline">¶</a></h3>
+<p><strong>Class:</strong> OroBundleElasticSearchBundleRequestBuilderWhereRequestBuilder</p>
+<p>The builder iterates through all conditions in the <strong>where</strong> part of the query and passes them to the chain of part builders that are used to process specific condition operators.</p>
+<ul class="simple">
+<li><strong>ContainsWherePartBuilder</strong> - processes <strong>~</strong> (contains) and <strong>!~</strong> (does not contain) operators. Adds <a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/query-dsl-match-query.html">match query</a> for &#8220;all_text&#8221; field with nGram tokenizer or <a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/query-dsl-wildcard-query.html">wildcard query</a> for regular fields;</li>
+<li><strong>EqualsWherePartBuilder</strong> - processes <strong>=</strong> (equals) and <strong>!=</strong> (is not equal) operators. Adds a  <a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/query-dsl-match-query.html">match query</a>;</li>
+<li><strong>RangeWherePartBuilder</strong> - processes arithmetical operators applied to numeric values: <strong>&gt;</strong> (greater), <strong>&gt;=</strong> (greater or equals), <strong>&lt;</strong> (lower) and <strong>&lt;=</strong> (lower or equals ). Adds appropriate <a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/query-dsl-range-query.html">range query</a>;</li>
+<li><strong>InWherePartBuilder</strong> - processes <strong>in</strong> and <strong>!in</strong> operators. Converts the set into several <strong>=</strong> or <strong>!=</strong> conditions that uses <a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/query-dsl-match-query.html">match query</a>.</li>
+</ul>
+<p>Each part builder receives field name, field type, condition operator, value, boolean keyword and source request and returns the altered request.</p>
+</div>
+<div class="section" id="orderrequestbuilder">
+<h3><a class="toc-backref" href="#id19">OrderRequestBuilder</a><a class="headerlink" href="#orderrequestbuilder" title="Permalink to this headline">¶</a></h3>
+<p><strong>Class:</strong> OroBundleElasticSearchBundleRequestBuilderOrderRequestBuilder</p>
+<p>The builder gets the order-by field and the order direction from the query. If they are defined, builder converts them to the
+<a class="reference external" href="http://www.Elasticsearch.org/guide/en/Elasticsearch/reference/current/search-request-sort.html">sort</a> parameter of a search request.
+The result is sorted by relevance by default.</p>
+</div>
+<div class="section" id="limitrequestbuilder">
+<h3><a class="toc-backref" href="#id20">LimitRequestBuilder</a><a class="headerlink" href="#limitrequestbuilder" title="Permalink to this headline">¶</a></h3>
+<p><strong>Class:</strong> OroBundleElasticSearchBundleRequestBuilderLimitRequestBuilder</p>
+<p>The builder gets the first result and max results values from the query, and if they are defined they are converted into the <a class="reference external" href="http://www.ElasticSearch.org/guide/en/ElasticSearch/reference/current/search-request-from-size.html">from/size</a> pagination parameters of a search request.</p>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2><a class="toc-backref" href="#id21">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="got-exception-no-alive-nodes-found-in-your-cluster-during-installation-or-indexation">
+<h3><a class="toc-backref" href="#id22">Got exception <cite>No alive nodes found in your cluster</cite> during installation or indexation</a><a class="headerlink" href="#got-exception-no-alive-nodes-found-in-your-cluster-during-installation-or-indexation" title="Permalink to this headline">¶</a></h3>
+<p>Check if Elasticsearch instance is turned on and accessible. The easiest way to do that is to try connecting to the Elasticsearch
+host and port using the <cite>curl</cite> utility.</p>
+<p>The following is an example of an invalid response when the Elastic search is not available:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>&gt; curl localhost:9200
+curl: (7) couldn&#39;t connect to host
+</pre></div>
+</div>
+<p>To fix this issue, please, turn on Elasticsearch and make sure that it is available, e.g. the host is resolved to the
+appropriate IP address and the port is open.</p>
+<p>The following is the example of a valid response when the Elasticsearch is available:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>&gt; curl localhost:9200
+{
+  &quot;name&quot; : &quot;Llyron&quot;,
+  &quot;cluster_name&quot; : &quot;Elasticsearch&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;2.3.1&quot;,
+    &quot;build_hash&quot; : &quot;bd980929010aef404e7cb0843e61d0665269fc39&quot;,
+    &quot;build_timestamp&quot; : &quot;2016-04-04T12:25:05Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;5.5.0&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install_upgrade/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../seo_config_guide/index.html">SEO Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frontstore_guide/index.html">Front Store Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Administrator Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Operational Structure</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Search Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/index.html">DataBase System Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cache.html">Cache in Oro Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mq/index.html">Message Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_server_compression_and_caching.html">Web Server Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../price_list_sharding.html">How to Configure Price List Sharding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimize_index_and_price_calculation.html">Optimize Website Indexation and Price Recalculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package_manager.html">Extensions and Package Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../processes.html">Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jobs.html">Job Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cron.html">Scheduled Tasks via Cron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../monitoring/index.html">Healthcheck and Data Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guide/index.html">Configuration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../system_requirements.html">System Requirements</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oro Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../../../_sources/admin_guide/op_structure/search_index/elastic_search.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
