@@ -112,8 +112,8 @@ div.sphinxsidebarwrapper {
 
 div.sphinxsidebarwrapper ul {
     overflow-y: scroll;
-    /*min-height: 450px;*/
-    max-height: 500px;
+    min-height: 450px;
+    max-height: 450px;
 }
 
 div.sphinxsidebarwrapper ul.current li ul {
